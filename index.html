@@ -2,9 +2,9 @@
 <html lang="ru" data-theme="light">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="JOHNGALTAZ — витрина: игровые ноутбуки, периферия, бытовая техника, косметическое и медицинское оборудование. Заказ за 1–2 минуты." />
-  <title>JOHNGALTAZ — интернет-магазин</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="JOHNGALTAZ — каталог товаров: фильтры, поиск, сравнение, избранное, корзина и оформление заявки/заказа." />
+  <title>Каталог — JOHNGALTAZ</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,298 +20,309 @@
       --card: #FFFFFF;
       --muted: #64748B;
       --line: #E2E8F0;
-      --shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
-      --shadow-hover: 0 20px 40px rgba(15, 23, 42, 0.12);
+      --ok: #10B981;
+      --warn: #F59E0B;
+      
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+      --shadow-hover: 0 20px 40px rgba(15, 23, 42, 0.1);
+      
       --radius: 14px;
       --radius2: 24px;
       --max: 1200px;
-      --focus: 0 0 0 3px rgba(248,92,88,.25);
+      --focus: 0 0 0 3px rgba(248, 92, 88, 0.25);
       --font: 'Inter', system-ui, -apple-system, sans-serif;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%; scroll-behavior: smooth;}
-    body{
-      margin:0; min-width:320px;
-      font-family:var(--font);
-      color:var(--primary);
-      background:var(--bg);
-      line-height:1.5;
-      -webkit-font-smoothing: antialiased;
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; scroll-behavior: smooth; overflow-x: hidden; }
+    
+    body {
+      margin: 0; min-width: 320px;
+      font-family: var(--font);
+      color: var(--primary); background: var(--bg);
+      line-height: 1.5; -webkit-font-smoothing: antialiased;
     }
-    a{color:inherit; text-decoration:none}
-    button, input, select, textarea{font:inherit}
+    
+    *, *::before, *::after { min-width: 0; }
+    img, svg { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; }
     a, button { -webkit-tap-highlight-color: transparent; }
     
     ::-webkit-scrollbar { width: 8px; height: 8px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 10px; }
     ::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+    ::selection { background: rgba(248, 92, 88, 0.2); color: var(--primary); }
 
-    .container{max-width:var(--max); margin:0 auto; padding:0 20px}
-    .skip{position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden}
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 20px; }
+    .skip { position: absolute; left: -999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
 
     /* Header */
-    header{
-      position:sticky; top:0; z-index:50;
-      background:rgba(255,255,255,.9);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom:1px solid rgba(226,232,240,.8);
+    header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
     }
-    .topbar{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:12px 0}
-    .brand{display:flex; align-items:center; gap:12px; min-width:190px}
-    .logo{
-      width:48px; height:48px; border-radius:12px;
-      object-fit:cover; background:#fff; box-shadow:0 4px 12px rgba(15,23,42,.08);
-    }
-    .brand-title{display:flex; flex-direction:column; gap:2px}
-    .brand-title b{letter-spacing:-0.02em; font-weight:800; font-size:18px}
-    .brand-title small{color:var(--muted); font-size:12px; font-weight:500}
-
-    .searchwrap{flex:1; display:flex; gap:10px; align-items:center; max-width: 500px; margin: 0 auto;}
-    .search{
-      width:100%; display:flex; gap:10px; align-items:center;
-      background:var(--bg); border:1px solid var(--line);
-      border-radius:999px; padding:8px 8px 8px 16px; transition:0.2s;
-    }
-    .search i { color: var(--muted); }
-    .search:focus-within{background:#fff; border-color:rgba(248,92,88,.4); box-shadow:var(--focus)}
-    .search input{border:none; outline:none; width:100%; background:transparent; font-size:14px}
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 0; }
     
-    .chip{
-      display:inline-flex; align-items:center; gap:8px;
-      border:1px solid var(--line); background:#fff;
-      border-radius:999px; padding:8px 14px;
-      color:var(--primary); font-size:13px; font-weight:600;
-      transition:0.2s;
-    }
-    .chip:hover { border-color: #CBD5E1; }
-    .chip i { color: var(--accent); font-size: 15px; }
-    .chip select{border:none; outline:none; background:transparent; padding:0; margin:0; cursor:pointer; font-weight:600}
+    .brand { display: flex; align-items: center; gap: 14px; min-width: 0; }
+    .logo { width: 44px; height: 44px; border-radius: 12px; object-fit: cover; background: #fff; box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08); }
+    .brand-title { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+    .brand-title b { letter-spacing: -0.01em; font-weight: 800; font-size: 17px; white-space: nowrap; }
+    .brand-title small { color: var(--muted); font-size: 12px; font-weight: 500; }
 
-    .actions{display:flex; align-items:center; gap:10px;}
-    .iconbtn{
-      position:relative;
-      display:inline-flex; align-items:center; justify-content:center;
-      width:46px; height:46px; border-radius:50%;
-      border:1px solid var(--line); background:#fff;
-      cursor:pointer; font-size:18px; color:var(--primary);
-      transition:0.2s;
+    .searchwrap { flex: 1; display: flex; gap: 12px; align-items: center; max-width: 400px; margin: 0 auto; }
+    .search {
+      width: 100%; display: flex; gap: 10px; align-items: center;
+      background: var(--bg); border: 1px solid var(--line);
+      border-radius: 999px; padding: 6px 6px 6px 16px; transition: 0.2s;
     }
-    .iconbtn:hover{transform:translateY(-2px); border-color:#CBD5E1; background:#F8FAFC}
-    .badge{
-      position:absolute; top:-4px; right:-4px;
-      min-width:20px; height:20px; padding:0 6px;
-      background:var(--accent); color:#fff; border-radius:10px;
-      font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center;
-      border:2px solid #fff; box-shadow:0 2px 6px rgba(248,92,88,.4);
-    }
-    .hamb{display:none}
+    .search:focus-within { background: #fff; border-color: rgba(248, 92, 88, 0.4); box-shadow: var(--focus); }
+    .search input { border: none; outline: none; width: 100%; background: transparent; font-size: 14px; }
+    .search span[aria-hidden="true"] { font-size: 0; color: transparent; }
+    .search span[aria-hidden="true"]::before { content: "\f002"; font-family: "Font Awesome 6 Free"; font-weight: 900; font-size: 14px; color: var(--muted); }
 
-    nav{padding:0 0 12px 0;}
-    .navrow{display:flex; align-items:center; justify-content:space-between; gap:16px;}
-    .navlinks{display:flex; gap:6px; flex-wrap:wrap}
-    .navlinks a{
-      padding:8px 16px; border-radius:999px; font-weight:500;
-      color:var(--muted); font-size:14px; transition:0.2s;
+    .actions { display: flex; align-items: center; gap: 10px; justify-content: flex-end; }
+    .chip {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid var(--line); background: #fff;
+      border-radius: 999px; padding: 6px 12px;
+      color: var(--primary); font-size: 13px; font-weight: 600;
+      transition: 0.2s;
     }
-    .navlinks a:hover{color:var(--primary); background:rgba(15,23,42,.04)}
-    .navright{display:flex; gap:12px; align-items:center}
+    .chip select { border: none; outline: none; background: transparent; cursor: pointer; font-weight: 600;}
+    .chip span[aria-hidden="true"] { font-size: 0; color: transparent; }
+    .chip[title="Язык"] span[aria-hidden="true"]::before { content: "\f0ac"; font-family: "Font Awesome 6 Free"; font-weight: 900; font-size: 16px; color: var(--accent); }
+    .chip[title="Валюта"] span[aria-hidden="true"]::before { content: "\f53d"; font-family: "Font Awesome 6 Free"; font-weight: 900; font-size: 16px; color: var(--accent); }
 
-    /* Buttons */
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:8px;
-      padding:12px 20px; min-height:44px;
-      border-radius:999px; border:1px solid var(--line);
-      background:#fff; cursor:pointer; font-weight:600; font-size:14px;
-      transition:0.2s;
+    .iconbtn {
+      position: relative; display: inline-flex; align-items: center; justify-content: center;
+      width: 46px; height: 46px; border-radius: 50%;
+      border: 1px solid var(--line); background: #fff;
+      cursor: pointer; transition: 0.2s; font-size: 0 !important; color: transparent !important;
     }
-    .btn:hover{border-color:#CBD5E1; background:#F8FAFC; transform:translateY(-1px)}
-    .btn.primary{background:var(--primary); border-color:var(--primary); color:#fff}
-    .btn.primary:hover{background:#1E293B}
+    .iconbtn:hover { border-color: #CBD5E1; background: #F8FAFC; transform: translateY(-2px); }
+    .iconbtn::before { font-family: "Font Awesome 6 Free"; font-weight: 900; font-size: 18px; color: var(--primary); }
     
-    .cta{
-      display:inline-flex; align-items:center; justify-content:center; gap:8px;
-      padding:12px 24px; min-height:44px;
-      border-radius:999px; background:var(--accent); color:#fff; border:none;
-      cursor:pointer; box-shadow:0 8px 20px rgba(248,92,88,.25);
-      font-weight:700; font-size:14px; transition:0.2s;
-    }
-    .cta:hover{transform:translateY(-2px); box-shadow:0 12px 24px rgba(248,92,88,.35); background:var(--accent-hover)}
+    #wishBtn::before { content: "\f004"; font-weight: 400; }
+    #cmpBtn::before { content: "\f07e"; }
+    #cartBtn::before { content: "\f07a"; }
+    .hamb::before { content: "\f0c9"; }
 
-    /* Hero */
-    .hero{padding:32px 0 24px}
-    .hero-card{
-      background:linear-gradient(135deg, #fff, #F8FAFC);
-      border:1px solid var(--line);
-      border-radius:var(--radius2);
-      box-shadow:var(--shadow);
-      padding:32px;
-      display:grid; grid-template-columns: 1.2fr .8fr; gap:32px;
-      position: relative; overflow: hidden;
+    .badge {
+      position: absolute; top: -4px; right: -4px;
+      min-width: 20px; height: 20px; padding: 0 6px;
+      background: var(--accent); color: #fff !important; border-radius: 10px;
+      font-size: 11px !important; font-weight: 700; font-family: var(--font) !important;
+      display: flex; align-items: center; justify-content: center;
+      border: 2px solid #fff; box-shadow: 0 2px 6px rgba(248, 92, 88, 0.4);
     }
-    .hero-card::before {
-      content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-      background: radial-gradient(circle, rgba(248,92,88,0.03) 0%, transparent 60%); pointer-events: none;
-    }
-    .hero h1{margin:0 0 16px 0; font-size: clamp(28px, 3vw, 42px); font-weight:800; letter-spacing:-0.02em; line-height:1.2; position: relative;}
-    .hero p{margin:0 0 24px 0; color:var(--muted); font-size:16px; max-width:60ch; line-height:1.6; position: relative;}
-    .herobtns{display:flex; gap:12px; flex-wrap:wrap; position: relative;}
-    .hero-side{display:flex; flex-direction:column; gap:16px; position: relative;}
-    .kpi{display:grid; grid-template-columns:1fr 1fr; gap:16px}
-    .kpi .tile{
-      border:1px solid var(--line); border-radius:16px; padding:16px;
-      background:#fff; transition:0.3s;
-    }
-    .kpi .tile:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
-    .kpi .tile i { color: var(--accent); font-size: 20px; margin-bottom: 8px; display: block; }
-    .tile b{display:block; font-size:15px; font-weight:700}
-    .tile small{color:var(--muted); font-size:13px; margin-top:4px; display:block}
-    .note{
-      border-left:4px solid var(--accent); padding:16px;
-      border-radius:0 16px 16px 0; background:rgba(248,92,88,.05);
-      font-size:14px; font-weight:500; display:flex; gap:12px; align-items:flex-start;
-    }
-    .note i { color: var(--accent); font-size: 18px; margin-top: 2px; }
 
-    /* Sections */
-    section{padding:32px 0}
-    .section-title{display:flex; align-items:flex-end; justify-content:space-between; gap:16px; margin-bottom:24px}
-    .section-title h2{margin:0; font-size:24px; font-weight:800; letter-spacing:-0.01em}
-    .section-title p{margin:8px 0 0; color:var(--muted); font-size:15px}
+    .hamb { display: none; }
+    nav { padding: 0 0 12px 0; display: block; }
+    .navrow { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .navlinks { display: flex; gap: 6px; flex-wrap: wrap; }
+    .navlinks a { padding: 8px 16px; border-radius: 999px; color: var(--muted); font-size: 14px; font-weight: 500; transition: 0.2s; }
+    .navlinks a:hover { color: var(--primary); background: rgba(15, 23, 42, 0.04); }
+    .navright { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
 
-    .grid{display:grid; grid-template-columns: repeat(12, 1fr); gap:20px;}
-    .card{background:#fff; border:1px solid var(--line); border-radius:var(--radius2); box-shadow:var(--shadow); transition:0.3s}
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 12px 20px; min-height: 44px;
+      border-radius: 999px; border: 1px solid var(--line);
+      background: #fff; color: var(--primary); cursor: pointer; font-weight: 600; font-size: 14px; transition: 0.2s;
+    }
+    .btn:hover { border-color: #CBD5E1; background: #F8FAFC; transform: translateY(-1px); }
+    .btn.primary { background: var(--primary); border-color: var(--primary); color: #fff; }
+    .cta {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 12px 24px; min-height: 44px;
+      border-radius: 999px; background: var(--accent); color: #fff; border: none;
+      cursor: pointer; box-shadow: 0 8px 24px rgba(248, 92, 88, 0.3);
+      font-weight: 700; font-size: 14px; transition: 0.2s;
+    }
+    .cta:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(248, 92, 88, 0.4); background: var(--accent-hover); }
+
+    main { padding: 24px 0 80px; }
+    .pagehead { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin: 10px 0 24px; flex-wrap: wrap; }
+    .pagehead h1 { margin: 0; font-size: clamp(24px, 3vw, 32px); font-weight: 800; line-height: 1.15; letter-spacing: -0.01em; }
+    .pagehead p { margin: 8px 0 0; color: var(--muted); font-size: 14px; max-width: 65ch; }
+    .crumbs { display: flex; gap: 8px; align-items: center; color: var(--muted); font-size: 13px; font-weight: 500; margin-bottom: 8px;}
+
+    .layout { display: grid; grid-template-columns: minmax(0, 280px) minmax(0, 1fr); gap: 24px; align-items: start; }
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius2); box-shadow: var(--shadow); transition: 0.3s; }
     .card:hover { box-shadow: var(--shadow-hover); }
-    .pad{padding:24px}
-    
-    .cat{
-      grid-column: span 4; display:flex; flex-direction:column; gap:12px;
-      padding:24px; cursor:pointer; transition: 0.3s;
-    }
-    .cat:hover{transform:translateY(-4px); border-color:#CBD5E1}
-    .cat-icon { width: 48px; height: 48px; border-radius: 12px; background: #F1F5F9; display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--primary); margin-bottom: 8px; transition: 0.3s; }
-    .cat:hover .cat-icon { background: var(--accent); color: #fff; }
-    .cat b{font-size:18px; font-weight:700}
-    .cat small{color:var(--muted); font-size:14px; line-height: 1.5; flex: 1;}
-    .cat .tag{display:inline-flex; width:max-content; gap:6px; align-items:center; border:1px solid var(--line); border-radius:8px; padding:6px 12px; font-size:12px; font-weight:600; background:#F8FAFC}
+    .pad { padding: 20px; }
 
-    .two{grid-column: span 6;}
-    .three{grid-column: span 4;}
-    
-    .formrow{display:grid; grid-template-columns:1fr 1fr; gap:16px}
-    .field label{display:block; font-size:13px; font-weight:600; color:var(--muted); margin-bottom:8px}
-    .field input, .field select, .field textarea{
-      width:100%; padding:12px 16px; border-radius:12px;
-      border:1px solid var(--line); outline:none; background:var(--bg); font-size:14px; transition:0.2s;
-    }
-    .field input:focus, .field select:focus, .field textarea:focus{background:#fff; box-shadow:var(--focus); border-color:var(--accent)}
-    .help{color:var(--muted); font-size:13px; margin-top:8px}
-    .inline{display:flex; gap:12px; align-items:center; flex-wrap:wrap;}
-    .muted{color:var(--muted)}
-    
-    footer{
-      padding:40px 0 80px; border-top:1px solid var(--line); margin-top:40px;
-    }
-    .footgrid{display:grid; grid-template-columns:2fr 1fr 1fr; gap:32px}
-    .footgrid b { font-size: 16px; margin-bottom: 12px; display: block; }
-    .footgrid a{display:block; padding:8px 0; color:var(--muted); font-size: 14px; transition: 0.2s;}
-    .footgrid a:hover{color:var(--accent); padding-left: 4px; }
-    .small{font-size:13px; color:var(--muted); margin-top: 8px;}
+    /* Filters */
+    .filters { position: sticky; top: 100px; }
+    .fhead { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 16px; }
+    .fhead b { font-size: 18px; font-weight: 700; }
+    .pill { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line); background: #F1F5F9; border-radius: 999px; padding: 6px 14px; font-size: 13px; font-weight: 600; color: var(--primary); }
+    .group { border-top: 1px solid var(--line); padding-top: 16px; margin-top: 16px; }
+    .group:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+    .gtitle { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
+    .gtitle b { font-size: 14px; font-weight: 600; }
+    .gtitle button { border: none; background: #F1F5F9; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; transition: 0.2s; color: var(--muted); }
+    .gtitle button:hover { background: #E2E8F0; color: var(--primary); }
+    .rows { display: flex; flex-direction: column; gap: 12px; }
+    label { font-size: 13px; font-weight: 500; color: var(--muted); margin-bottom: 4px; display: block; }
+    .field input, .field select { width: 100%; padding: 10px 14px; border-radius: 12px; border: 1px solid var(--line); background: var(--bg); font-size: 14px; outline: none; transition: 0.2s; }
+    .field input:focus, .field select:focus { background: #fff; box-shadow: var(--focus); border-color: var(--accent); }
+    .range2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .rangeval { display: flex; justify-content: space-between; gap: 10px; font-size: 12px; color: var(--muted); }
+    .switch { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px; cursor: pointer; }
+    .switch span { font-size: 13px; font-weight: 500; }
+    .switch input { width: 18px; height: 18px; accent-color: var(--accent); }
+    .tagrow { display: flex; gap: 8px; flex-wrap: wrap; }
+    .tag { display: inline-flex; align-items: center; border: 1px solid var(--line); background: var(--bg); border-radius: 8px; padding: 6px 12px; font-size: 13px; font-weight: 500; cursor: pointer; transition: 0.2s; }
+    .tag:hover { background: #E2E8F0; }
+    .mini { padding: 8px 16px; min-height: 38px; font-size: 13px; }
 
-    /* Drawer / Modal */
-    .overlay{position:fixed; inset:0; background:rgba(15,23,42,.6); backdrop-filter: blur(4px); display:none; z-index:200; opacity: 0; transition: 0.3s;}
-    .overlay.show{display:block; opacity: 1;}
-    .drawer{
-      position:fixed; top:0; right:0; width:min(480px, 100vw); height:100%;
-      background:#fff; box-shadow:-20px 0 60px rgba(15,23,42,.15);
-      transform: translateX(100%); transition: transform .3s cubic-bezier(0.4, 0, 0.2, 1);
-      z-index:210; display:flex; flex-direction:column;
-    }
-    .drawer.show{transform: translateX(0)}
-    .drawer header{position:sticky; top:0; background:#fff; border-bottom:1px solid var(--line); padding:16px 20px;}
-    .drawer h3{margin:0; font-size:18px; font-weight:700}
-    .drawer .content{padding:20px; overflow:auto; flex:1}
-    .row{display:flex; justify-content:space-between; gap:12px; align-items:center}
-    .close{border:none; background:var(--bg); cursor:pointer; font-size:18px; width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; transition:0.2s; color:var(--muted)}
-    .close:hover{background:#E2E8F0; color:var(--primary); transform:rotate(90deg)}
-    
-    .item{
-      border:1px solid var(--line); border-radius:16px; padding:12px;
-      display:grid; grid-template-columns:72px 1fr; gap:16px; margin-bottom:12px; background:#fff;
-    }
-    .thumb{width:72px; height:72px; border-radius:10px; object-fit:cover; background:var(--bg); border:1px solid var(--line)}
-    .item b{display:block; font-size:14px; font-weight:600; margin-bottom:4px}
-    .item small{display:block; color:var(--muted); font-size:12px}
-    .qty{display:flex; align-items:center; gap:8px; margin-top:10px; flex-wrap:wrap}
-    .qty button{width:32px; height:32px; border-radius:8px; border:1px solid var(--line); background:var(--bg); cursor:pointer; font-weight:600; color:var(--primary)}
-    .qty input{width:48px; height:32px; text-align:center; border-radius:8px; border:1px solid var(--line); font-weight:600}
-    .totals{border-top:1px solid var(--line); padding:20px; background:#F8FAFC;}
-    .totals .cta{width:100%; font-size:16px; padding:16px}
+    /* Results */
+    .toolbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 20px; flex-wrap: wrap; border-bottom: 1px solid var(--line); }
+    .toolbar .left, .toolbar .right { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .count { color: var(--muted); font-size: 14px; font-weight: 500; }
+    .sort { display: flex; align-items: center; gap: 8px; }
+    .sort select { padding: 8px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg); font-size: 13px; font-weight: 500; outline: none; }
 
-    /* WhatsApp floating */
-    .float-wa{position:fixed; right:24px; bottom:24px; z-index:220; display:flex; flex-direction:column; gap:12px;}
-    .fab{
-      width:60px; height:60px; border-radius:50%; border:none; cursor:pointer;
-      color:#fff; background:linear-gradient(135deg, #25D366, #128C7E);
-      box-shadow:0 10px 24px rgba(37,211,102,.3);
-      display:flex; align-items:center; justify-content:center; font-size:28px; transition:0.3s;
-    }
-    .fab:hover{transform:scale(1.08) translateY(-4px); box-shadow:0 16px 32px rgba(37,211,102,.4)}
-    .sr{position:absolute; left:-999px; width:1px; height:1px; overflow:hidden}
+    .products { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; padding: 20px; }
+    .p { border: 1px solid var(--line); border-radius: var(--radius2); background: #fff; transition: 0.3s; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+    .p:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); border-color: #CBD5E1; }
+    .pimg { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-bottom: 1px solid var(--line); transition: 0.5s; }
+    .p:hover .pimg { transform: scale(1.03); }
+    
+    .pbody { padding: 16px; flex: 1; display: flex; flex-direction: column; background: #fff; z-index: 2; position: relative;}
+    .pname { margin: 0; font-size: 16px; font-weight: 700; line-height: 1.4; }
+    .psku { margin-top: 4px; color: var(--muted); font-size: 12px; font-family: monospace; }
+    .pmeta { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px; }
+    
+    .chip2 { border-radius: 6px; padding: 4px 8px; font-size: 11px; font-weight: 700; text-transform: uppercase; background: var(--bg); color: var(--muted); }
+    .chip2.ok { background: rgba(16, 185, 129, 0.1); color: #047857; }
+    .chip2.warn { background: rgba(245, 158, 11, 0.1); color: #B45309; }
+    
+    .specs { margin-top: 16px; display: grid; gap: 6px; color: var(--muted); font-size: 13px; }
+    .specs div { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-left: 12px; position: relative; }
+    .specs div::before { content: "•"; position: absolute; left: 0; color: #CBD5E1; }
+    
+    .price { display: flex; align-items: center; gap: 10px; margin-top: auto; padding-top: 16px; }
+    .price b { font-size: 20px; font-weight: 800; letter-spacing: -0.02em; }
+    .price s { color: #94A3B8; font-size: 14px; font-weight: 500; }
+    
+    .pactions { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+    .pactions .btn, .pactions .cta { flex: 1 1 auto; padding: 10px; min-height: 40px; }
+    
+    .iconbar { display: flex; gap: 8px; margin-top: 12px; }
+    .iconbar .iconbtn { width: 40px; height: 40px; border-radius: 12px; background: var(--bg); border: none; font-size: 16px !important; color: var(--muted) !important;}
+    .iconbar .iconbtn:hover { background: #E2E8F0; color: var(--accent) !important; }
+    .iconbar .iconbtn.active { color: var(--accent) !important; }
+    
+    .sticker { position: absolute; top: 12px; left: 12px; z-index: 10; background: var(--accent); color: #fff; font-size: 12px; font-weight: 800; padding: 6px 12px; border-radius: 999px; box-shadow: 0 4px 12px rgba(248, 92, 88, 0.3); }
+    .preorderline { margin-top: 12px; font-size: 12px; font-weight: 500; color: var(--primary); border-left: 3px solid var(--accent); padding: 8px 12px; border-radius: 0 8px 8px 0; background: rgba(248, 92, 88, 0.05); }
+
+    /* Modal / Drawer */
+    .overlay { position: fixed; inset: 0; background: rgba(15,23,42,.6); backdrop-filter: blur(4px); display: none; z-index: 200; opacity: 0; transition: 0.3s; }
+    .overlay.show { display: block; opacity: 1; }
+    .drawer { position: fixed; top: 0; right: 0; width: min(480px, 100vw); height: 100%; background: #fff; box-shadow: -20px 0 60px rgba(15,23,42,.15); transform: translateX(100%); transition: transform .3s cubic-bezier(0.4, 0, 0.2, 1); z-index: 210; display: flex; flex-direction: column; }
+    .drawer.show { transform: translateX(0); }
+    .drawer header { position: sticky; top: 0; background: #fff; border-bottom: 1px solid var(--line); padding: 16px 20px; }
+    .drawer h3 { margin: 0; font-size: 18px; font-weight: 700; }
+    .drawer .content { padding: 20px; overflow-y: auto; flex: 1; }
+    .row { display: flex; justify-content: space-between; gap: 12px; align-items: center; }
+    .close { border: none; background: var(--bg); cursor: pointer; font-size: 18px; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.2s; color: var(--muted); }
+    .close:hover { background: #E2E8F0; color: var(--primary); transform: rotate(90deg); }
+    
+    .item { border: 1px solid var(--line); border-radius: 16px; padding: 12px; display: grid; grid-template-columns: 72px 1fr; gap: 16px; margin-bottom: 12px; background: #fff; }
+    .thumb { width: 72px; height: 72px; border-radius: 10px; object-fit: cover; background: var(--bg); border: 1px solid var(--line); }
+    .item b { display: block; font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+    .item small { display: block; color: var(--muted); font-size: 12px; }
+    .qty { display: flex; align-items: center; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
+    .qty button { width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); cursor: pointer; font-weight: 600; color: var(--primary); }
+    .qty input { width: 48px; height: 32px; text-align: center; border-radius: 8px; border: 1px solid var(--line); font-weight: 600; }
+    .totals { border-top: 1px solid var(--line); padding: 20px; background: #F8FAFC; }
+    .totals .cta { width: 100%; font-size: 16px; padding: 16px; border-radius: 16px; }
+
+    .modal { position: fixed; inset: 0; display: none; z-index: 260; }
+    .modal.show { display: block; }
+    .modal .pane { position: absolute; inset: auto 0 0 0; margin: auto; max-width: min(960px, 96vw); max-height: min(90vh, 800px); top: 5vh; background: #fff; border-radius: 24px; box-shadow: 0 25px 50px -12px rgba(15,23,42,.25); overflow: hidden; left: 0; right: 0; display: flex; flex-direction: column; animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+    @keyframes modalSlideUp { from { opacity: 0; transform: translateY(20px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    .mhead { padding: 16px 24px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; gap: 12px; background: #F8FAFC; }
+    .mhead b { font-size: 16px; font-weight: 700; }
+    .mbody { padding: 24px; overflow-y: auto; }
+    
+    .pdp { display: grid; grid-template-columns: minmax(0, 400px) minmax(0, 1fr); gap: 32px; align-items: start; }
+    .gal { border: 1px solid var(--line); border-radius: 20px; overflow: hidden; background: var(--bg); padding: 20px; }
+    .gal img { width: 100%; aspect-ratio: 4/3; object-fit: contain; mix-blend-mode: multiply; }
+    .pdp h2 { margin: 0; font-size: 24px; font-weight: 800; line-height: 1.2; letter-spacing: -0.02em; }
+    .pdp .box { border: 1px solid var(--line); border-radius: 16px; padding: 16px; background: #F8FAFC; margin-top: 16px; }
+    .tbl { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .tbl td { padding: 10px 0; border-bottom: 1px solid rgba(226,232,240,.8); }
+    .tbl td:first-child { color: var(--muted); width: 40%; font-weight: 500; }
+    .variantrow { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+    .pdpactions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+    .pdpactions .btn, .pdpactions .cta { flex: 1 1 auto; padding: 14px; border-radius: 16px; font-size: 15px; }
+    .warnbox { margin-top: 16px; border: 1px solid rgba(245,158,11,.3); padding: 12px 16px; border-radius: 12px; background: rgba(245,158,11,.05); font-size: 13px; font-weight: 500; color: #92400E; }
+
+    /* Checkout */
+    .checkoutWrap { margin-top: 32px; border-top: 1px solid var(--line); padding-top: 32px; }
+    .checkoutHead { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+    .checkoutHead h2 { margin: 0; font-size: 24px; font-weight: 800; letter-spacing: -0.02em; }
+    .formgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+    .b2bBox { margin-top: 24px; border: 1px solid var(--line); border-radius: 16px; padding: 20px; background: #F8FAFC; }
+    .help, #urlHint, #priceHint { display: none !important; }
+
+    /* Floating WA */
+    .float-wa { position: fixed; right: 24px; bottom: 24px; z-index: 220; display: flex; flex-direction: column; gap: 12px; }
+    .fab { width: 60px; height: 60px; border-radius: 50%; border: none; cursor: pointer; color: #fff; background: linear-gradient(135deg, #25D366, #128C7E); box-shadow: 0 10px 24px rgba(37,211,102,.3); display: flex; align-items: center; justify-content: center; font-size: 28px; transition: 0.3s; }
+    .fab:hover { transform: scale(1.08) translateY(-4px); box-shadow: 0 16px 32px rgba(37,211,102,.4); }
 
     /* =========================================
-       МОБИЛЬНАЯ АДАПТАЦИЯ (ИДЕАЛЬНАЯ СЕТКА)
+       МОБИЛЬНАЯ АДАПТАЦИЯ КАТАЛОГА
        ========================================= */
     @media (max-width: 920px){
-      /* Новая сетка шапки для планшетов и телефонов */
       .topbar {
-        display: grid;
-        grid-template-columns: 1fr auto;
-        gap: 12px;
-        padding: 12px 0;
+        display: grid; grid-template-columns: 1fr auto; gap: 12px; padding: 12px 0;
       }
       .brand { grid-column: 1 / 2; }
       .hamb { display: inline-flex !important; }
-      
-      /* Поиск уходит на вторую строку */
       .searchwrap { grid-column: 1 / -1; max-width: 100%; margin: 0; }
       
-      /* Кнопки выстраиваются в ряд с горизонтальным скроллом, если не влезают */
       .actions {
         grid-column: 1 / -1;
         display: flex; justify-content: flex-start;
         flex-wrap: nowrap; overflow-x: auto;
         padding-bottom: 8px; gap: 10px;
       }
-      /* Убираем видимый скроллбар для эстетики */
       .actions::-webkit-scrollbar { display: none; }
       .chip, .iconbtn { flex-shrink: 0; }
-
-      nav{display:none; margin-top: 12px; border-top: 1px solid var(--line); padding-top: 12px;}
-      nav.open{display:block}
-      .navrow{flex-direction:column; align-items:flex-start}
       
-      .hero-card{grid-template-columns:1fr; padding: 24px;}
-      .cat{grid-column: span 6}
-      .two, .three {grid-column: span 12}
-      .footgrid{grid-template-columns:1fr}
+      nav { display: none; margin-top: 12px; border-top: 1px solid var(--line); padding-top: 12px; }
+      nav.open { display: block; }
+      .layout { grid-template-columns: 1fr; }
+      .filters { position: static; top: auto; }
+      .modal .pane { top: auto; bottom: 0; border-radius: 24px 24px 0 0; max-height: 85vh; }
+      .pdp { grid-template-columns: 1fr; gap: 20px; }
     }
     
     @media (max-width: 520px){
-      .container{padding:0 16px}
-      .iconbtn{width:42px; height:42px; font-size: 16px;}
-      .hero h1 { font-size: 26px; }
-      .cat{grid-column: span 12}
-      .formrow, .kpi {grid-template-columns:1fr}
-      .float-wa{right:16px; bottom:16px}
-      .fab{width:54px; height:54px; font-size:24px}
+      .container { padding: 0 16px; }
+      .iconbtn { width: 42px; height: 42px; font-size: 16px; }
+      .float-wa { right: 16px; bottom: 16px; }
+      .fab { width: 54px; height: 54px; font-size: 24px; }
+      .btn, .cta { width: 100%; justify-content: center; }
+      .sort { width: 100%; justify-content: space-between; }
+      .sort select { flex: 1; margin-left: 12px; }
+      .toolbar .left, .toolbar .right { width: 100%; justify-content: space-between; }
+      .products { padding: 16px 0; grid-template-columns: 1fr; }
+      .formgrid, .variantrow, .range2 { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 
-<body data-page="home">
-<a class="skip" href="#main">Перейти к содержимому</a>
+<body data-page="catalog">
+<a class="skip" href="#main">Перейти к каталогу</a>
 
 <header>
   <div class="container">
@@ -320,10 +331,10 @@
         <img class="logo" src="images/logo.jpg" alt="Логотип JOHNGALTAZ" onerror="this.src='https://via.placeholder.com/48?text=GTZ'"/>
         <div class="brand-title">
           <b>JOHNGALTAZ</b>
-          <small id="ui-subtitle">Витрина • Заказы • КП</small>
+          <small id="ui-subtitle">Каталог • Фильтры • Оформление</small>
         </div>
       </a>
-      
+
       <button class="iconbtn hamb" id="hambBtn" type="button" aria-label="Открыть меню">
         <i class="fa-solid fa-bars"></i>
       </button>
@@ -332,7 +343,7 @@
         <div class="search" aria-label="Поиск по каталогу">
           <i class="fa-solid fa-magnifying-glass"></i>
           <input id="searchInput" placeholder="Поиск: ноутбук, RTX 4060, монитор..." autocomplete="off" />
-          <button class="btn" id="goCatalogBtn" type="button" style="padding: 6px 14px; min-height: 36px;">Найти</button>
+          <button class="btn mini" id="doSearch" type="button" style="padding: 6px 14px; min-height: 36px; border-radius: 999px;">Найти</button>
         </div>
       </div>
 
@@ -373,15 +384,13 @@
     <nav id="nav" aria-label="Основная навигация">
       <div class="navrow">
         <div class="navlinks">
+          <a href="index.html" id="navHome">Главная</a>
           <a href="catalog.html" id="navCatalog">Каталог</a>
-          <a href="#delivery" id="navDelivery">Доставка и оплата</a>
-          <a href="#guarantee" id="navGuarantee">Гарантия</a>
-          <a href="#b2b" id="navB2B">Юр. лица</a>
-          <a href="#contacts" id="navContacts">Контакты</a>
+          <a href="#checkout" id="navCheckout">Оформление</a>
         </div>
         <div class="navright">
-          <button class="cta" id="openPicker" type="button"><i class="fa-solid fa-laptop-code"></i> Подбор ноутбука</button>
-          <a class="btn" href="catalog.html?cat=laptops" id="toLaptops">Игровые ноутбуки</a>
+          <button class="btn" id="openCompare" type="button"><i class="fa-solid fa-scale-balanced"></i> Сравнение</button>
+          <button class="cta" id="openOneClick" type="button"><i class="fa-solid fa-bolt"></i> Купить в 1 клик</button>
         </div>
       </div>
     </nav>
@@ -389,282 +398,262 @@
 </header>
 
 <main id="main" class="container">
-  <div class="hero">
-    <div class="hero-card">
-      <div>
-        <h1 id="heroTitle">Игровые ноутбуки, периферия и оборудование — с честными сроками и гарантией</h1>
-        <p id="heroText">
-          Быстрый поиск по характеристикам, сравнение до 4 моделей, предзаказ с пометкой “~8 дней до Алматы” и оформление заявки за 1–2 минуты.
-        </p>
-        <div class="herobtns">
-          <a class="btn primary" href="catalog.html" id="heroGoCatalog">Открыть каталог</a>
-          <button class="btn" id="heroOpenCart" type="button"><i class="fa-solid fa-cart-shopping"></i> Корзина</button>
-          <button class="btn" id="heroOneClick" type="button"><i class="fa-solid fa-bolt"></i> Купить в 1 клик</button>
-        </div>
-        <div class="help" id="heroHelp" style="margin-top: 16px;"><i class="fa-brands fa-whatsapp" style="color:#25D366"></i> WhatsApp для консультации: <b>+7 747 043 67 47</b></div>
-      </div>
-
-      <aside class="hero-side">
-        <div class="kpi">
-          <div class="tile">
-            <i class="fa-solid fa-scale-balanced"></i>
-            <b id="kpi1">Сравнение 2–4</b>
-            <small id="kpi1s">По CPU/GPU/RAM/SSD</small>
-          </div>
-          <div class="tile">
-            <i class="fa-solid fa-truck-fast"></i>
-            <b id="kpi2">Предзаказ</b>
-            <small id="kpi2s">Доставка до Алматы ~ 8 дней</small>
-          </div>
-          <div class="tile">
-            <i class="fa-solid fa-file-invoice-dollar"></i>
-            <b id="kpi3">B2B / КП</b>
-            <small id="kpi3s">Счёт и реквизиты</small>
-          </div>
-          <div class="tile">
-            <i class="fa-solid fa-file-medical"></i>
-            <b id="kpi4">Документы</b>
-            <small id="kpi4s">Для мед/косм товаров</small>
-          </div>
-        </div>
-        <div class="note" id="noteText">
-          <i class="fa-solid fa-circle-exclamation"></i>
-          <div>Для мед/косм оборудования часть позиций оформляется как “Запрос КП” (без корзины).</div>
-        </div>
-      </aside>
+  <div class="pagehead">
+    <div>
+      <div class="crumbs" id="crumbs">Главная → Каталог</div>
+      <h1 id="pageTitle">Каталог товаров</h1>
+      <p id="pageDesc">Фильтры работают быстро, сравнение до 4 товаров, избранное и корзина. Для предзаказа показываем сроки “~8 дней до Алматы + доставка”.</p>
     </div>
+    <div class="pill" id="activePill">Активные фильтры: 0</div>
   </div>
 
-  <section>
-    <div class="section-title">
-      <div>
-        <h2 id="catTitle">Категории</h2>
-        <p id="catDesc">Перейдите в каталог с готовыми фильтрами</p>
+  <div class="layout">
+    <aside class="card pad filters" id="filtersCard" aria-label="Фильтры каталога">
+      <div class="fhead">
+        <b><i class="fa-solid fa-sliders" style="margin-right: 6px; color: var(--accent);"></i> Фильтры</b>
+        <button class="btn mini" type="button" id="resetBtn" style="min-height:32px; padding: 6px 12px; font-size:12px;">Сброс</button>
       </div>
-    </div>
 
-    <div class="grid">
-      <a class="card cat" href="catalog.html?cat=laptops">
-        <div class="cat-icon"><i class="fa-solid fa-laptop"></i></div>
-        <b id="c1">Игровые ноутбуки</b>
-        <small id="c1s">Фильтры: CPU/GPU/RAM/SSD/экран/Гц</small>
-        <span class="tag" id="c1t">RTX • 144–240Hz • NVMe</span>
-      </a>
-
-      <a class="card cat" href="catalog.html?cat=periphery">
-        <div class="cat-icon"><i class="fa-solid fa-headset"></i></div>
-        <b id="c2">Периферия</b>
-        <small id="c2s">Мыши, клавиатуры, гарнитуры, мониторы</small>
-        <span class="tag" id="c2t">Сортировка • наличие</span>
-      </a>
-
-      <a class="card cat" href="catalog.html?cat=home">
-        <div class="cat-icon"><i class="fa-solid fa-blender"></i></div>
-        <b id="c3">Мелко-бытовая техника</b>
-        <small id="c3s">Для дома и офиса</small>
-        <span class="tag" id="c3t">Доставка • гарантия</span>
-      </a>
-
-      <a class="card cat" href="catalog.html?cat=cosmo">
-        <div class="cat-icon"><i class="fa-solid fa-spa"></i></div>
-        <b id="c4">Косметическое оборудование</b>
-        <small id="c4s">Документы • предупреждения</small>
-        <span class="tag" id="c4t">Запрос КП</span>
-      </a>
-
-      <a class="card cat" href="catalog.html?cat=medical">
-        <div class="cat-icon"><i class="fa-solid fa-stethoscope"></i></div>
-        <b id="c5">Медицинское оборудование</b>
-        <small id="c5s">Сертификаты • инструкции</small>
-        <span class="tag" id="c5t">B2B • счёт</span>
-      </a>
-
-      <a class="card cat" href="catalog.html" style="background: var(--primary); color: #fff; border-color: var(--primary);">
-        <div class="cat-icon" style="background: rgba(255,255,255,0.1); color: #fff;"><i class="fa-solid fa-border-all"></i></div>
-        <b id="c6">Все товары</b>
-        <small id="c6s" style="color: #CBD5E1;">Поиск, фильтры, избранное и сравнение</small>
-        <span class="tag" id="c6t" style="background: rgba(255,255,255,0.1); color: #fff; border:none;">Перейти в каталог <i class="fa-solid fa-arrow-right"></i></span>
-      </a>
-    </div>
-  </section>
-
-  <section id="delivery">
-    <div class="section-title">
-      <div>
-        <h2 id="delTitle">Доставка и оплата</h2>
-        <p id="delDesc">Предзаказ и сроки — отображаются в карточках</p>
-      </div>
-    </div>
-
-    <div class="grid">
-      <div class="card two pad">
-        <b id="del1"><i class="fa-solid fa-box" style="color:var(--accent); margin-right:8px;"></i> Предзаказ</b>
-        <p class="muted" id="del1t" style="margin:8px 0 0">
-          Для товаров “Под заказ/Предзаказ” показываем: <b>“Поставка до Алматы ~ 8 дней + доставка по городу/в регионы”</b>.
-          Значение “8 дней” — по умолчанию и может переопределяться на уровне товара/SKU.
-        </p>
-      </div>
-      <div class="card two pad">
-        <b id="del2"><i class="fa-solid fa-credit-card" style="color:var(--accent); margin-right:8px;"></i> Оплата</b>
-        <p class="muted" id="del2t" style="margin:8px 0 0">
-          На этапе 1 — оформление заявки/заказа и отправка администратору. Интеграции Kaspi/эквайринг можно подключить позже.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section id="guarantee">
-    <div class="section-title">
-      <div>
-        <h2 id="gTitle">Гарантия и доверие</h2>
-        <p id="gDesc">Честные статусы наличия и документы</p>
-      </div>
-    </div>
-
-    <div class="grid">
-      <div class="card three pad">
-        <b id="g1"><i class="fa-solid fa-check-circle" style="color:var(--ok); margin-right:8px;"></i> Наличие</b>
-        <p class="muted" id="g1t" style="margin:8px 0 0">В карточке: “В наличии” или “Под заказ/Предзаказ” + сроки.</p>
-      </div>
-      <div class="card three pad">
-        <b id="g2"><i class="fa-solid fa-shield-halved" style="color:var(--accent); margin-right:8px;"></i> Гарантия/возврат</b>
-        <p class="muted" id="g2t" style="margin:8px 0 0">Ссылки и блоки — на главной и в каталоге (в модальном окне товара).</p>
-      </div>
-      <div class="card three pad">
-        <b id="g3"><i class="fa-solid fa-file-contract" style="color:var(--primary); margin-right:8px;"></i> Сертификаты</b>
-        <p class="muted" id="g3t" style="margin:8px 0 0">Для мед/косм товаров: документы + “Важно/предупреждения”.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="picker">
-    <div class="section-title">
-      <div>
-        <h2 id="pTitle">Подбор ноутбука</h2>
-        <p id="pDesc">Оставьте заявку — отправим в WhatsApp</p>
-      </div>
-    </div>
-
-    <div class="card pad">
-      <form id="pickerForm">
-        <div class="formrow">
-          <div class="field">
-            <label for="pName" id="pNameL">Имя</label>
-            <input id="pName" required placeholder="Например: Айбек" />
-          </div>
-          <div class="field">
-            <label for="pPhone" id="pPhoneL">Телефон</label>
-            <input id="pPhone" required placeholder="+7 ..." />
-          </div>
+      <div class="group">
+        <div class="gtitle">
+          <b>Категория</b>
+          <button type="button" data-toggle="cat"><i class="fa-solid fa-chevron-down"></i></button>
         </div>
-
-        <div class="formrow" style="margin-top:16px">
+        <div class="rows" data-box="cat">
           <div class="field">
-            <label for="pBudget" id="pBudgetL">Бюджет</label>
-            <select id="pBudget">
-              <option>до 400 000 ₸</option>
-              <option>400 000 – 700 000 ₸</option>
-              <option>700 000 – 1 200 000 ₸</option>
-              <option>1 200 000 ₸ и выше</option>
+            <label for="catSel">Выбор</label>
+            <select id="catSel">
+              <option value="">Все категории</option>
+              <option value="laptops">Игровые ноутбуки</option>
+              <option value="periphery">Периферия</option>
+              <option value="home">Мелко-бытовая техника</option>
+              <option value="cosmo">Косметическое оборудование</option>
+              <option value="medical">Медицинское оборудование</option>
             </select>
           </div>
           <div class="field">
-            <label for="pUse" id="pUseL">Задачи</label>
-            <select id="pUse">
-              <option>Игры (CS2 / Dota / Warzone)</option>
-              <option>Киберспорт (144–240Hz)</option>
-              <option>Монтаж/3D (GPU/VRAM важно)</option>
-              <option>Учёба/работа</option>
+            <label for="subSel">Подкатегория</label>
+            <select id="subSel">
+              <option value="">Все</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="group">
+        <div class="gtitle">
+          <b>Цена</b>
+          <button type="button" data-toggle="price"><i class="fa-solid fa-chevron-down"></i></button>
+        </div>
+        <div class="rows" data-box="price">
+          <div class="range2">
+            <div class="field">
+              <label for="minPrice">Мин (KZT)</label>
+              <input id="minPrice" inputmode="numeric" placeholder="0" />
+            </div>
+            <div class="field">
+              <label for="maxPrice">Макс (KZT)</label>
+              <input id="maxPrice" inputmode="numeric" placeholder="∞" />
+            </div>
+          </div>
+          <div class="rangeval" id="priceHint">Подсказка по цене</div>
+        </div>
+      </div>
+
+      <div class="group">
+        <div class="gtitle">
+          <b>Бренд</b>
+          <button type="button" data-toggle="brand"><i class="fa-solid fa-chevron-down"></i></button>
+        </div>
+        <div class="rows" data-box="brand">
+          <div class="field">
+            <label for="brandSel">Выбор</label>
+            <select id="brandSel">
+              <option value="">Все</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="group">
+        <div class="gtitle">
+          <b>Наличие</b>
+          <button type="button" data-toggle="stock"><i class="fa-solid fa-chevron-down"></i></button>
+        </div>
+        <div class="rows" data-box="stock">
+          <label class="switch">
+            <span>Только “В наличии”</span>
+            <input type="checkbox" id="onlyInStock" />
+          </label>
+          <label class="switch">
+            <span>Показывать “Предзаказ”</span>
+            <input type="checkbox" id="showPreorder" checked />
+          </label>
+        </div>
+      </div>
+
+      <div class="group" id="laptopFilters" style="display:none">
+        <div class="gtitle">
+          <b>Ноутбуки: характеристики</b>
+          <button type="button" data-toggle="laptop"><i class="fa-solid fa-chevron-down"></i></button>
+        </div>
+        <div class="rows" data-box="laptop">
+          <div class="field"><label for="cpuSel">CPU</label><select id="cpuSel"><option value="">Любой</option></select></div>
+          <div class="field"><label for="gpuSel">GPU</label><select id="gpuSel"><option value="">Любой</option></select></div>
+          <div class="field"><label for="ramSel">RAM</label><select id="ramSel"><option value="">Любая</option></select></div>
+          <div class="field"><label for="ssdSel">SSD</label><select id="ssdSel"><option value="">Любой</option></select></div>
+          <div class="field"><label for="inchSel">Экран (дюймы)</label><select id="inchSel"><option value="">Любой</option></select></div>
+          <div class="field"><label for="hzSel">Частота (Hz)</label><select id="hzSel"><option value="">Любая</option></select></div>
+          <div class="field"><label for="osSel">ОС</label><select id="osSel"><option value="">Любая</option></select></div>
+          <div class="field"><label for="panelSel">Матрица</label><select id="panelSel"><option value="">Любая</option></select></div>
+        </div>
+      </div>
+
+      <div class="group">
+        <div class="gtitle">
+          <b>Быстрые категории</b>
+          <button type="button" data-toggle="quick"><i class="fa-solid fa-chevron-down"></i></button>
+        </div>
+        <div class="tagrow" data-box="quick">
+          <span class="tag" data-qcat="laptops"><i class="fa-solid fa-laptop"></i> Игровые ноутбуки</span>
+          <span class="tag" data-qcat="periphery"><i class="fa-solid fa-headset"></i> Периферия</span>
+          <span class="tag" data-qcat="home"><i class="fa-solid fa-blender"></i> Бытовая</span>
+          <span class="tag" data-qcat="cosmo">Космо</span>
+          <span class="tag" data-qcat="medical">Мед</span>
+          <span class="tag" data-qreset="1"><i class="fa-solid fa-xmark"></i> Сбросить</span>
+        </div>
+      </div>
+
+      <div class="group">
+        <div class="rows">
+          <button class="cta" type="button" id="applyBtn">Применить фильтры</button>
+          <div class="rangeval" id="urlHint">Подсказка по URL</div>
+        </div>
+      </div>
+    </aside>
+
+    <section class="card" aria-label="Список товаров">
+      <div class="toolbar">
+        <div class="left">
+          <span class="count" id="countText">Найдено: 0</span>
+          <span class="pill" id="queryPill">Запрос: —</span>
+        </div>
+        <div class="right">
+          <div class="sort">
+            <span class="count"><i class="fa-solid fa-arrow-up-wide-short"></i></span>
+            <select id="sortSel" aria-label="Сортировка">
+              <option value="pop">По популярности</option>
+              <option value="new">Новинки</option>
+              <option value="price_asc">Сначала дешевле</option>
+              <option value="price_desc">Сначала дороже</option>
+            </select>
+          </div>
+          <button class="btn mini" type="button" id="openFiltersMobile"><i class="fa-solid fa-filter"></i> Фильтры</button>
+        </div>
+      </div>
+
+      <div class="products" id="products"></div>
+    </section>
+  </div>
+
+  <section id="checkout" class="checkoutWrap">
+    <div class="checkoutHead">
+      <div>
+        <h2>Оформление заказа / заявки</h2>
+        <p>Заполняется за 1–2 минуты. В тестовой версии заявка отправляется в WhatsApp администратору.</p>
+      </div>
+      <div class="pill" id="cartMini"><i class="fa-solid fa-basket-shopping"></i> В корзине: 0</div>
+    </div>
+
+    <div class="card pad" style="margin-top:12px">
+      <form id="checkoutForm">
+        <div class="formgrid">
+          <div class="field">
+            <label for="cName">ФИО</label>
+            <input id="cName" required placeholder="Например: Иван Иванов" />
+          </div>
+          <div class="field">
+            <label for="cPhone">Телефон</label>
+            <input id="cPhone" required placeholder="+7 ..." />
+          </div>
+          <div class="field">
+            <label for="cCity">Город</label>
+            <input id="cCity" required placeholder="Алматы / Астана / ..." />
+          </div>
+          <div class="field">
+            <label for="cAddr">Адрес</label>
+            <input id="cAddr" required placeholder="Улица, дом, квартира" />
+          </div>
+          <div class="field">
+            <label for="cShip">Способ доставки</label>
+            <select id="cShip" required>
+              <option value="curier">Курьер</option>
+              <option value="pickup">Самовывоз</option>
+              <option value="post">Казпочта / доставка</option>
+              <option value="sdek">СДЭК</option>
+              <option value="boxberry">Boxberry</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="cPay">Способ оплаты</label>
+            <select id="cPay" required>
+              <option value="kaspi">Kaspi</option>
+              <option value="card">Карта</option>
+              <option value="transfer">Перевод</option>
+              <option value="online">Онлайн-эквайринг (когда будет)</option>
             </select>
           </div>
         </div>
 
         <div class="field" style="margin-top:16px">
-          <label for="pNotes" id="pNotesL">Комментарии</label>
-          <textarea id="pNotes" rows="3" placeholder="Например: хочу RTX 4060, 16–32GB RAM, 1TB SSD"></textarea>
+          <label for="cComment">Комментарий (опционально)</label>
+          <textarea id="cComment" rows="3" placeholder="Например: удобное время доставки, уточнения по комплектации..."></textarea>
         </div>
 
-        <div class="inline" style="margin-top:20px">
-          <button class="cta" type="submit" id="pSend"><i class="fa-brands fa-whatsapp"></i> Отправить в WhatsApp</button>
-          <span class="help" id="pHelp"><i class="fa-solid fa-lock" style="font-size:10px;"></i> Мы не сохраняем данные на сервере (заявка уйдёт напрямую в WhatsApp).</span>
+        <div class="b2bBox">
+          <label class="switch" style="margin:0">
+            <span><i class="fa-solid fa-building" style="margin-right:8px; color:var(--muted)"></i> <b>Юр. лицо</b> (B2B)</span>
+            <input type="checkbox" id="isB2B" />
+          </label>
+
+          <div id="b2bFields" style="display:none">
+            <div class="formgrid">
+              <div class="field">
+                <label for="bCompany">Компания</label>
+                <input id="bCompany" placeholder="ТОО ..." />
+              </div>
+              <div class="field">
+                <label for="bBin">БИН/ИНН</label>
+                <input id="bBin" placeholder="..." />
+              </div>
+              <div class="field">
+                <label for="bAddr">Юр. адрес</label>
+                <input id="bAddr" placeholder="..." />
+              </div>
+              <div class="field">
+                <label for="bEmail">Email для счёта</label>
+                <input id="bEmail" type="email" placeholder="..." />
+              </div>
+            </div>
+
+            <div class="file" style="margin-top:16px">
+              <div>
+                <b style="font-size:13px"><i class="fa-solid fa-file-pdf" style="margin-right:6px; color:var(--accent)"></i> Реквизиты файлом (опционально)</b>
+                <div class="help">Подсказка</div>
+              </div>
+              <input id="bFile" type="file" />
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:24px; display:flex; gap:12px; flex-wrap:wrap">
+          <button class="cta" type="submit"><i class="fa-brands fa-whatsapp"></i> Отправить заявку/заказ</button>
+          <button class="btn" type="button" id="openCartFromCheckout"><i class="fa-solid fa-basket-shopping"></i> Открыть корзину</button>
         </div>
       </form>
     </div>
   </section>
-
-  <section id="b2b">
-    <div class="section-title">
-      <div>
-        <h2 id="bTitle">Юр. лица • Запрос КП</h2>
-        <p id="bDesc">Счёт, реквизиты и консультация</p>
-      </div>
-    </div>
-
-    <div class="grid">
-      <div class="card two pad">
-        <b id="b1"><i class="fa-solid fa-building" style="color:var(--primary); margin-right:8px;"></i> Для компаний</b>
-        <p class="muted" id="b1t" style="margin:8px 0 0">
-          В оформлении заказа есть чек-бокс “Юр. лицо” — появятся поля для компании, БИН/ИНН и e-mail для счёта.
-        </p>
-        <div class="inline" style="margin-top:16px">
-          <a class="btn" href="catalog.html?b2b=1" id="bGo">Перейти в каталог</a>
-          <button class="btn" type="button" id="bAsk"><i class="fa-solid fa-file-signature"></i> Запросить КП</button>
-        </div>
-      </div>
-      <div class="card two pad">
-        <b id="b2"><i class="fa-solid fa-folder-open" style="color:var(--muted); margin-right:8px;"></i> Документы</b>
-        <p class="muted" id="b2t" style="margin:8px 0 0">
-          Для мед/косм оборудования в карточке товара предусмотрены документы и блок предупреждений.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section id="contacts">
-    <div class="section-title">
-      <div>
-        <h2 id="ctTitle">Контакты</h2>
-        <p id="ctDesc">Связь и быстрые кнопки</p>
-      </div>
-    </div>
-
-    <div class="card pad">
-      <div class="inline">
-        <div>
-          <b><i class="fa-brands fa-whatsapp" style="color:#25D366"></i> WhatsApp:</b> <span class="muted">+7 747 043 67 47</span>
-          <div class="small">ИП «JOHNGALTAZ», БИН (ИИН): 990819301421</div>
-        </div>
-        <div style="margin-left:auto" class="inline">
-          <button class="cta" type="button" id="waBtn">Написать в WhatsApp</button>
-          <a class="btn" href="catalog.html" id="ctCatalog">Каталог</a>
-        </div>
-      </div>
-    </div>
-  </section>
 </main>
-
-<footer class="container">
-  <div class="footgrid">
-    <div>
-      <b style="font-size:18px; font-weight:800; letter-spacing:-0.02em;">JOHNGALTAZ</b>
-      <div class="small">Витрина + оформление заказов/заявок</div>
-      <div class="small">© <span id="year"></span> Все права защищены.</div>
-    </div>
-    <div>
-      <b id="fInfo">Информация</b>
-      <a href="#delivery" id="fDel">Доставка и оплата</a>
-      <a href="#guarantee" id="fGar">Гарантия и возврат</a>
-      <a href="#b2b" id="fB2B">Юр. лица</a>
-      <a href="#contacts" id="fCon">Контакты</a>
-    </div>
-    <div>
-      <b id="fDocs">Документы</b>
-      <a href="#policy" id="fPol" onclick="alert('Здесь будет отдельная страница');return false;">Политика конфиденциальности</a>
-      <a href="#terms" id="fTerms" onclick="alert('Здесь будет отдельная страница');return false;">Пользовательское соглашение</a>
-      <a href="#cookie" id="fCookie" onclick="alert('Здесь будет отдельная страница');return false;">Cookie</a>
-    </div>
-  </div>
-</footer>
 
 <div class="overlay" id="overlay" tabindex="-1" aria-hidden="true"></div>
 
@@ -677,6 +666,17 @@
   <div class="totals" id="drawerTotals" style="display:none"></div>
 </aside>
 
+<div class="modal" id="modal" aria-hidden="true">
+  <div class="overlay show" id="modalOverlay" style="display:block"></div>
+  <div class="pane" role="dialog" aria-modal="true" aria-label="Карточка товара">
+    <div class="mhead">
+      <b id="mTitle">Товар</b>
+      <button class="close" id="mClose" type="button" aria-label="Закрыть"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="mbody" id="mBody"></div>
+  </div>
+</div>
+
 <div class="float-wa" aria-label="Быстрые кнопки">
   <button class="fab" id="fabWA" type="button" aria-label="WhatsApp">
     <i class="fa-brands fa-whatsapp"></i>
@@ -686,174 +686,193 @@
 
 <script>
 /* ===========================
-   Shared mini-app (2 files)
+   Catalog mini-app (2 files)
    =========================== */
 
-const ADMIN_WA = "+77470436747"; 
+const ADMIN_WA = "+77470436747";
 const STORE_KEY = "jg_store_v1";
 
 const I18N = {
   ru: {
-    subtitle: "Витрина • Заказы • КП",
-    navCatalog: "Каталог",
-    navDelivery: "Доставка и оплата",
-    navGuarantee: "Гарантия",
-    navB2B: "Юр. лица",
-    navContacts: "Контакты",
-    heroTitle: "Игровые ноутбуки, периферия и оборудование — с честными сроками и гарантией",
-    heroText: "Быстрый поиск по характеристикам, сравнение до 4 моделей, предзаказ с пометкой “~8 дней до Алматы” и оформление заявки за 1–2 минуты.",
-    heroGoCatalog: "Открыть каталог",
-    catTitle: "Категории",
-    catDesc: "Перейдите в каталог с готовыми фильтрами",
-    bAsk: "Запрос КП",
-    wa: "Написать в WhatsApp",
+    subtitle: "Каталог • Фильтры • Оформление",
+    empty: "Пока пусто",
     cart: "Корзина",
     wishlist: "Избранное",
     compare: "Сравнение",
-    empty: "Пока пусто",
-    checkout: "Оформить заказ",
+    checkout: "Оформить (в WhatsApp)",
+    in: "В наличии",
+    pre: "Под заказ / Предзаказ",
+    preorderLine: "Поставка до Алматы ~ 8 дней + доставка по городу/в регионы",
+    ask: "Задать вопрос",
+    quote: "Запрос КП",
+    buy: "В корзину",
+    buyNow: "Купить сейчас",
+    oneClick: "Купить в 1 клик",
+    open: "Открыть",
+    remove: "Убрать",
+    del: "Удалить",
+    total: "Итого",
+    goCheckout: "Перейти к оформлению",
+    diff: "Показать отличия",
   },
   kz: {
-    subtitle: "Витрина • Тапсырыс • КП",
-    navCatalog: "Каталог",
-    navDelivery: "Жеткізу және төлем",
-    navGuarantee: "Кепілдік",
-    navB2B: "Заңды тұлғалар",
-    navContacts: "Байланыс",
-    heroTitle: "Ойын ноутбуктары, периферия және жабдық — ашық мерзім және кепілдікпен",
-    heroText: "Сипаттамалар бойынша жылдам іздеу, 4 модельге дейін салыстыру, “Алматыға ~8 күн” алдын ала тапсырыс белгісі және өтінімді 1–2 минутта рәсімдеу.",
-    heroGoCatalog: "Каталогқа өту",
-    catTitle: "Санаттар",
-    catDesc: "Дайын сүзгілермен каталогқа өтіңіз",
-    bAsk: "КП сұрау",
-    wa: "WhatsApp жазу",
+    subtitle: "Каталог • Сүзгілер • Рәсімдеу",
+    empty: "Әзірге бос",
     cart: "Себет",
     wishlist: "Таңдаулылар",
     compare: "Салыстыру",
-    empty: "Әзірге бос",
-    checkout: "Тапсырыс беру",
+    checkout: "WhatsApp-қа жіберу",
+    in: "Бар",
+    pre: "Алдын ала тапсырыс",
+    preorderLine: "Алматыға ~ 8 күн + қала/аймақ жеткізуі",
+    ask: "Сұрақ қою",
+    quote: "КП сұрау",
+    buy: "Себетке",
+    buyNow: "Қазір сатып алу",
+    oneClick: "1 шерту",
+    open: "Ашу",
+    remove: "Алу",
+    del: "Өшіру",
+    total: "Барлығы",
+    goCheckout: "Рәсімдеуге өту",
+    diff: "Айырмашылық",
   },
   en: {
-    subtitle: "Showcase • Orders • Quotes",
-    navCatalog: "Catalog",
-    navDelivery: "Delivery & Payment",
-    navGuarantee: "Warranty",
-    navB2B: "Business",
-    navContacts: "Contacts",
-    heroTitle: "Gaming laptops, peripherals & equipment — with honest lead times and warranty",
-    heroText: "Fast spec search, compare up to 4 items, preorder tag “~8 days to Almaty” and a 1–2 minute checkout request.",
-    heroGoCatalog: "Open catalog",
-    catTitle: "Categories",
-    catDesc: "Go to catalog with ready filters",
-    bAsk: "Request a quote",
-    wa: "WhatsApp",
+    subtitle: "Catalog • Filters • Checkout",
+    empty: "It’s empty for now",
     cart: "Cart",
     wishlist: "Wishlist",
     compare: "Compare",
-    empty: "It’s empty for now",
-    checkout: "Checkout",
+    checkout: "Send via WhatsApp",
+    in: "In stock",
+    pre: "Preorder",
+    preorderLine: "~8 days to Almaty + local/regional delivery",
+    ask: "Ask",
+    quote: "Request quote",
+    buy: "Add to cart",
+    buyNow: "Buy now",
+    oneClick: "1-click",
+    open: "Open",
+    remove: "Remove",
+    del: "Delete",
+    total: "Total",
+    goCheckout: "Go to checkout",
+    diff: "Highlight diffs",
   }
 };
 
-const FX = { 
-  KZT: 1,
-  RUB: 0.20,
-  USD: 0.0022 
-};
+const FX = { KZT: 1, RUB: 0.20, USD: 0.0022 };
 
-function loadState(){
-  const raw = localStorage.getItem(STORE_KEY);
-  return raw ? JSON.parse(raw) : { lang:"ru", cur:"KZT", cart:[], wish:[], cmp:[] };
-}
+function loadState(){ const raw = localStorage.getItem(STORE_KEY); return raw ? JSON.parse(raw) : { lang:"ru", cur:"KZT", cart:[], wish:[], cmp:[] }; }
 function saveState(s){ localStorage.setItem(STORE_KEY, JSON.stringify(s)); }
-function fmtMoney(kzt, cur){
-  const rate = FX[cur] ?? 1;
-  const val = kzt * rate;
-  const opt = { maximumFractionDigits: cur==="KZT" ? 0 : 2 };
-  return new Intl.NumberFormat(undefined, opt).format(val) + " " + cur;
-}
-function waLink(text){
-  const msg = encodeURIComponent(text);
-  const phone = ADMIN_WA.replace(/\D/g,"");
-  return `https://wa.me/${phone}?text=${msg}`;
-}
-function openWA(text){
-  window.open(waLink(text), "_blank", "noopener,noreferrer");
-}
+function fmtMoney(kzt, cur){ const rate = FX[cur] ?? 1; const val = kzt * rate; const opt = { maximumFractionDigits: cur==="KZT" ? 0 : 2 }; return new Intl.NumberFormat(undefined, opt).format(val) + " " + cur; }
+function waLink(text){ const msg = encodeURIComponent(text); const phone = ADMIN_WA.replace(/\D/g,""); return `https://wa.me/${phone}?text=${msg}`; }
+function openWA(text){ window.open(waLink(text), "_blank", "noopener,noreferrer"); }
 
 const state = loadState();
+
+function mkLaptop(i, brand, cpu, gpu, ram, ssd, inch, hz, panel, os, price, oldPrice, stock){
+  return {
+    id: i, sku: `LAP-${String(i).padStart(3,"0")}`, name: `${brand} Gaming ${inch}" (${cpu} / ${gpu})`,
+    cat: "laptops", sub: "gaming", brand, priceKZT: price, oldPriceKZT: oldPrice || null,
+    stock, leadDays: stock==="pre" ? 8 : 0, img: `tovar${i}.jpg`, popularity: 100 - i, created: 1000 - i,
+    flags: { quoteOnly:false }, specs: { cpu, gpu, ram, ssd, inch, hz, panel, os, weight: (2.1 + (i%7)*0.05).toFixed(2) + " kg", backlight: (i%2===0) ? "Да" : "Опц." }
+  };
+}
+
+function mkSimple(i, cat, sub, brand, name, price, oldPrice, stock, quoteOnly=false){
+  return {
+    id: i, sku: `${cat.toUpperCase().slice(0,3)}-${String(i).padStart(3,"0")}`, name: name,
+    cat, sub, brand, priceKZT: price, oldPriceKZT: oldPrice || null, stock, leadDays: stock==="pre" ? 8 : 0,
+    img: `tovar${i}.jpg`, popularity: 80 - (i%30), created: 900 - i, flags: { quoteOnly: !!quoteOnly }, specs: {}
+  };
+}
+
+const PRODUCTS = [];
+const brandsL = ["THUNDEROBOT","ASUS","Acer","MSI","Lenovo"];
+const cpus = ["Intel i5-13420H","Intel i7-13620H","Ryzen 5 7640HS","Ryzen 7 7840HS","Intel i9-13900H"];
+const gpus = ["RTX 4050","RTX 4060","RTX 4070","RTX 4080","RTX 3050"];
+const rams = ["16GB","32GB","64GB"];
+const ssds = ["512GB NVMe","1TB NVMe","2TB NVMe"];
+const inches = ["15.6","16","17.3"];
+const hzs = ["144","165","240"];
+const panels = ["IPS","VA","Mini-LED"];
+const oss = ["Windows 11","Без ОС","Linux"];
+
+for(let i=1;i<=20;i++){
+  const brand = brandsL[i%brandsL.length], cpu = cpus[i%cpus.length], gpu = gpus[i%gpus.length], ram = rams[i%rams.length], ssd = ssds[i%ssds.length], inch = inches[i%inches.length], hz = hzs[i%hzs.length], panel = panels[i%panels.length], os = oss[i%oss.length];
+  const price = 420000 + i*28000;
+  const oldP = (i%4===0) ? Math.round(price*1.12) : null;
+  const stock = (i%3===0) ? "pre" : "in";
+  PRODUCTS.push(mkLaptop(i, brand, cpu, gpu, ram, ssd, inch, hz, panel, os, price, oldP, stock));
+}
+
+const perBrands = ["Logitech","Razer","HyperX","SteelSeries","AOC"];
+const homeBrands = ["Xiaomi","Philips","Tefal","Samsung","LG"];
+const perSubs = [["mice","Мышь игровая"],["keyboards","Клавиатура механическая"],["headsets","Гарнитура"],["monitors","Монитор"],["pads","Коврик"]];
+for(let i=21;i<=30;i++){
+  const b = perBrands[i%perBrands.length], [sub, base] = perSubs[i%perSubs.length];
+  PRODUCTS.push(mkSimple(i, "periphery", sub, b, `${b} ${base} Pro ${i}`, 12000 + (i-20)*9000, (i%5===0) ? Math.round((12000 + (i-20)*9000)*1.18) : null, (i%4===0) ? "pre" : "in", false));
+}
+const homeSubs = [["kitchen","Техника для кухни"],["care","Уход/гигиена"],["climate","Климат"],["clean","Уборка"],["iron","Утюг/пар"]];
+for(let i=31;i<=35;i++){
+  const b = homeBrands[i%homeBrands.length], [sub, base] = homeSubs[i%homeSubs.length];
+  PRODUCTS.push(mkSimple(i, "home", sub, b, `${b} ${base} Model ${i}`, 25000 + (i-30)*25000, (i%2===0) ? Math.round((25000 + (i-30)*25000)*1.15) : null, (i%3===0) ? "pre" : "in", false));
+}
+const cosBrands = ["LumiPro","DermaLine","BeautyTech","SkinLab"];
+const medBrands = ["MedCare","BioPulse","ClinicPro","HealthLine"];
+const cosSubs = [["laser","Лазер/эпиляция"],["rf","RF-лифтинг"],["hydra","Гидропилинг"],["massage","Массаж/вакуум"]];
+const medSubs = [["diagnostics","Диагностика"],["therapy","Терапия"],["steril","Стерилизация"],["consum","Расходники/аксесс."]];
+for(let i=36;i<=42;i++){
+  const b = cosBrands[i%cosBrands.length], [sub, base] = cosSubs[i%cosSubs.length];
+  PRODUCTS.push(mkSimple(i, "cosmo", sub, b, `${b} ${base} System ${i}`, 220000 + (i-35)*65000, null, "pre", (i%2===0)));
+}
+for(let i=43;i<=50;i++){
+  const b = medBrands[i%medBrands.length], [sub, base] = medSubs[i%medSubs.length];
+  PRODUCTS.push(mkSimple(i, "medical", sub, b, `${b} ${base} Unit ${i}`, 180000 + (i-42)*80000, (i%4===0) ? Math.round((180000 + (i-42)*80000)*1.10) : null, (i%2===0) ? "pre" : "in", (i%3!==0)));
+}
+
+function enrichSimpleSpecs(p){
+  if(p.cat==="periphery"){ p.specs = { type: p.sub, connection: (p.id%2===0) ? "Беспроводное" : "Проводное", warranty: "12 мес", color: (p.id%3===0) ? "Black" : "Black/Red" }; }
+  if(p.cat==="home"){ p.specs = { type: p.sub, power: (800 + (p.id%6)*150) + " W", warranty: "12 мес", weight: (1.2 + (p.id%5)*0.2).toFixed(1) + " kg" }; }
+  if(p.cat==="cosmo"){ p.specs = { type: p.sub, mode: "Профессиональный", docs: "Сертификаты/инструкции (по запросу)", warranty: "12 мес" }; p.warning = "Важно: имеются противопоказания/требования. Уточняйте у менеджера перед покупкой."; p.docs = ["Сертификат соответствия (пример)", "Инструкция (пример)"]; }
+  if(p.cat==="medical"){ p.specs = { type: p.sub, docs: "Рег. удостоверение/сертификаты (если есть)", warranty: "12 мес", service: "Сервис/обучение (опц.)" }; p.warning = "Важно: медицинское оборудование требует корректной эксплуатации и может иметь ограничения. Запросите консультацию."; p.docs = ["Сертификат (пример)", "Паспорт изделия (пример)"]; }
+  return p;
+}
+PRODUCTS.forEach(enrichSimpleSpecs);
+
+function qsParse(){ const u = new URL(location.href); const q = {}; u.searchParams.forEach((v,k)=> q[k]=v); return q; }
+function qsSet(params){
+  const u = new URL(location.href);
+  Object.keys(params).forEach(k=>{ const v = params[k]; if(v===undefined || v===null || v==="") u.searchParams.delete(k); else u.searchParams.set(k, String(v)); });
+  history.replaceState({}, "", u.toString());
+}
+function uniq(arr){ return Array.from(new Set(arr)).filter(Boolean); }
 
 function setCounts(){
   document.getElementById("wishCount").textContent = state.wish.length;
   document.getElementById("cmpCount").textContent = state.cmp.length;
   document.getElementById("cartCount").textContent = state.cart.reduce((a,i)=>a+i.qty,0);
+  document.getElementById("cartMini").innerHTML = `<i class="fa-solid fa-basket-shopping" style="margin-right:6px"></i> В корзине: ` + state.cart.reduce((a,i)=>a+i.qty,0);
 }
-function applyI18N(){
-  const t = I18N[state.lang] || I18N.ru;
-  const byId = (id, val) => { const el=document.getElementById(id); if(el) el.textContent=val; };
-
-  byId("ui-subtitle", t.subtitle);
-  byId("navCatalog", t.navCatalog);
-  byId("navDelivery", t.navDelivery);
-  byId("navGuarantee", t.navGuarantee);
-  byId("navB2B", t.navB2B);
-  byId("navContacts", t.navContacts);
-
-  byId("heroTitle", t.heroTitle);
-  byId("heroText", t.heroText);
-  byId("heroGoCatalog", t.heroGoCatalog);
-
-  byId("catTitle", t.catTitle);
-  byId("catDesc", t.catDesc);
-
-  const bAskBtn = document.getElementById("bAsk");
-  if(bAskBtn) bAskBtn.innerHTML = `<i class="fa-solid fa-file-signature"></i> ${t.bAsk}`;
-
-  const waBtn = document.getElementById("waBtn");
-  if(waBtn) waBtn.textContent = t.wa;
-
-  document.getElementById("year").textContent = new Date().getFullYear();
-}
+function applyI18N(){ const t = I18N[state.lang] || I18N.ru; document.getElementById("ui-subtitle").textContent = t.subtitle; }
 
 function drawerOpen(title, html, totalsHtml=null){
-  const overlay = document.getElementById("overlay");
-  const drawer = document.getElementById("drawer");
-  document.getElementById("drawerTitle").textContent = title;
-  document.getElementById("drawerContent").innerHTML = html;
-
+  const overlay = document.getElementById("overlay"), drawer = document.getElementById("drawer");
+  document.getElementById("drawerTitle").textContent = title; document.getElementById("drawerContent").innerHTML = html;
   const totals = document.getElementById("drawerTotals");
-  if(totalsHtml){
-    totals.style.display="block";
-    totals.innerHTML = totalsHtml;
-  } else {
-    totals.style.display="none";
-    totals.innerHTML = "";
-  }
-
-  overlay.classList.add("show");
-  drawer.classList.add("show");
-  overlay.setAttribute("aria-hidden","false");
-  overlay.focus();
+  if(totalsHtml){ totals.style.display="block"; totals.innerHTML = totalsHtml; } else { totals.style.display="none"; totals.innerHTML = ""; }
+  overlay.classList.add("show"); drawer.classList.add("show"); overlay.setAttribute("aria-hidden","false"); overlay.focus();
 }
-function drawerClose(){
-  document.getElementById("overlay").classList.remove("show");
-  document.getElementById("drawer").classList.remove("show");
-  document.getElementById("overlay").setAttribute("aria-hidden","true");
-}
-document.getElementById("drawerClose").addEventListener("click", drawerClose);
-document.getElementById("overlay").addEventListener("click", drawerClose);
+function drawerClose(){ document.getElementById("overlay").classList.remove("show"); document.getElementById("drawer").classList.remove("show"); document.getElementById("overlay").setAttribute("aria-hidden","true"); }
+document.getElementById("drawerClose").addEventListener("click", drawerClose); document.getElementById("overlay").addEventListener("click", drawerClose);
 
 function renderCart(){
-  if(!state.cart.length){
-    drawerOpen(I18N[state.lang].cart, `<p class="muted"><i class="fa-solid fa-box-open" style="margin-right:8px;"></i>${I18N[state.lang].empty}</p>`);
-    return;
-  }
-
+  const t = I18N[state.lang] || I18N.ru;
+  if(!state.cart.length){ drawerOpen(t.cart, `<p class="muted"><i class="fa-solid fa-box-open" style="margin-right:8px;"></i>${t.empty}</p>`); return; }
   const rows = state.cart.map(it => `
     <div class="item">
-      <div>
-        <img class="thumb" src="images/${it.img || "tovar1.jpg"}" onerror="this.src='https://via.placeholder.com/72'">
-      </div>
+      <div><img class="thumb" src="images/${it.img || "tovar1.jpg"}" onerror="this.src='https://via.placeholder.com/72'"></div>
       <div>
         <b>${it.name || it.sku}</b>
         <small>${it.variantName ? it.variantName : ""}</small>
@@ -862,149 +881,411 @@ function renderCart(){
           <button type="button" data-act="dec" data-sku="${it.sku}" data-vid="${it.vid}">−</button>
           <input value="${it.qty}" inputmode="numeric" data-act="qty" data-sku="${it.sku}" data-vid="${it.vid}">
           <button type="button" data-act="inc" data-sku="${it.sku}" data-vid="${it.vid}">+</button>
-          <button class="btn" type="button" data-act="rm" data-sku="${it.sku}" data-vid="${it.vid}" style="padding: 6px 12px; min-height:32px; font-size:12px;">Удалить</button>
+          <button class="btn mini" type="button" data-act="rm" data-sku="${it.sku}" data-vid="${it.vid}" style="padding:6px 12px; min-height:32px; font-size:12px;"><i class="fa-solid fa-trash-can"></i></button>
         </div>
       </div>
     </div>
   `).join("");
-
   const totalKZT = state.cart.reduce((sum,it)=>sum + (it.priceKZT||0)*it.qty, 0);
-
-  drawerOpen(
-    I18N[state.lang].cart,
-    rows,
-    `
-      <div class="row" style="margin-bottom:16px">
-        <div class="muted">Итого</div>
+  drawerOpen(t.cart, rows, `
+      <div class="row" style="margin-bottom:10px">
+        <div class="muted">${t.total}</div>
         <div style="font-size: 20px;"><b>${fmtMoney(totalKZT, state.cur)}</b></div>
       </div>
-      <button class="cta" id="goCheckout" type="button">${I18N[state.lang].checkout}</button>
-      <div class="help" style="text-align:center; margin-top:12px;"><i class="fa-solid fa-circle-info"></i> Оформление откроется в каталоге.</div>
-    `
-  );
-
+      <button class="cta" id="goCheckout" type="button">${t.goCheckout}</button>
+    `);
   document.getElementById("drawerContent").addEventListener("click", (e)=>{
-    const btn = e.target.closest("button");
-    if(!btn) return;
-    const act = btn.dataset.act;
-    if(!act) return;
-    const sku = btn.dataset.sku;
-    const vid = btn.dataset.vid;
-    const idx = state.cart.findIndex(x=>x.sku===sku && String(x.vid)===String(vid));
-    if(idx<0) return;
-    if(act==="inc") state.cart[idx].qty += 1;
-    if(act==="dec") state.cart[idx].qty = Math.max(1, state.cart[idx].qty - 1);
-    if(act==="rm") state.cart.splice(idx,1);
+    const btn = e.target.closest("button"); if(!btn) return;
+    const act = btn.dataset.act; if(!act) return;
+    const sku = btn.dataset.sku, vid = btn.dataset.vid;
+    const idx = state.cart.findIndex(x=>x.sku===sku && String(x.vid)===String(vid)); if(idx<0) return;
+    if(act==="inc") state.cart[idx].qty += 1; if(act==="dec") state.cart[idx].qty = Math.max(1, state.cart[idx].qty - 1); if(act==="rm") state.cart.splice(idx,1);
     saveState(state); setCounts(); renderCart();
   }, { once:true });
+  document.getElementById("goCheckout").addEventListener("click", ()=>{ drawerClose(); document.getElementById("checkout").scrollIntoView({behavior:"smooth"}); });
+}
 
-  document.getElementById("goCheckout").addEventListener("click", ()=>{
-    location.href = "catalog.html?open=cart";
+function renderWish(){
+  const t = I18N[state.lang] || I18N.ru;
+  if(!state.wish.length){ drawerOpen(t.wishlist, `<p class="muted"><i class="fa-solid fa-box-open" style="margin-right:8px;"></i>${t.empty}</p>`); return; }
+  const html = state.wish.map(sku=>{
+    const p = PRODUCTS.find(x=>x.sku===sku);
+    return `<div class="item">
+        <img class="thumb" src="images/${p?.img || "tovar1.jpg"}" onerror="this.src='https://via.placeholder.com/72'">
+        <div>
+          <b>${p?.name || sku}</b>
+          <small class="muted">${p ? fmtMoney(p.priceKZT, state.cur) : ""}</small>
+          <div class="qty">
+            <button class="btn mini" type="button" data-open="${sku}" style="padding:6px 12px; min-height:32px; font-size:12px;">${t.open}</button>
+            <button class="btn mini" type="button" data-rm="${sku}" style="padding:6px 12px; min-height:32px; font-size:12px;">${t.remove}</button>
+          </div>
+        </div>
+      </div>`;
+  }).join("");
+  drawerOpen(t.wishlist, html);
+  document.getElementById("drawerContent").addEventListener("click",(e)=>{
+    const bOpen = e.target.closest("button[data-open]"), bRm = e.target.closest("button[data-rm]");
+    if(bOpen){ drawerClose(); openProduct(bOpen.dataset.open); }
+    if(bRm){ const sku = bRm.dataset.rm, i = state.wish.indexOf(sku); if(i>=0) state.wish.splice(i,1); saveState(state); setCounts(); renderWish(); }
+  }, { once:true });
+}
+
+function renderCompare(){
+  const t = I18N[state.lang] || I18N.ru;
+  if(!state.cmp.length){ drawerOpen(t.compare, `<p class="muted"><i class="fa-solid fa-box-open" style="margin-right:8px;"></i>${t.empty}</p>`); return; }
+  const items = state.cmp.map(sku=>PRODUCTS.find(x=>x.sku===sku)).filter(Boolean).slice(0,4);
+  const allKeys = uniq(items.flatMap(p=> (p.cat==="laptops") ? ["brand","cpu","gpu","ram","ssd","inch","hz","panel","os","weight","backlight"] : Object.keys(p.specs || {}) ));
+  function val(p,k){
+    if(p.cat==="laptops"){ const s = p.specs || {}; const map = { brand:p.brand, cpu:s.cpu, gpu:s.gpu, ram:s.ram, ssd:s.ssd, inch:s.inch, hz:s.hz, panel:s.panel, os:s.os, weight:s.weight, backlight:s.backlight }; return map[k] ?? "—"; }
+    return (p.specs && p.specs[k]) ? p.specs[k] : "—";
+  }
+  const head = `<div class="row" style="margin-bottom:10px"><div class="muted">Товаров: ${items.length}/4</div><button class="btn mini" type="button" id="cmpDiff" style="padding:6px 12px; min-height:32px; font-size:12px;"><i class="fa-solid fa-eye-low-vision" style="margin-right:6px"></i>${t.diff}</button></div>`;
+  const cols = items.map(p=>`<div class="card pad" style="box-shadow:none; border-radius:16px; border:1px solid var(--line)"><b style="font-size:13px">${p.name}</b><small class="muted">${fmtMoney(p.priceKZT, state.cur)}</small><div class="qty" style="margin-top:8px"><button class="btn mini" type="button" data-open="${p.sku}" style="padding:6px 12px; min-height:32px; font-size:12px;">${t.open}</button><button class="btn mini" type="button" data-rm="${p.sku}" style="padding:6px 12px; min-height:32px; font-size:12px;"><i class="fa-solid fa-trash-can"></i></button></div></div>`).join("");
+  const table = `<div style="display:grid; grid-template-columns: repeat(${items.length}, minmax(0,1fr)); gap:10px; margin-bottom:12px">${cols}</div>
+    <div class="card pad" style="box-shadow:none; border-radius:16px; border:1px solid var(--line)">
+      <div style="display:grid; grid-template-columns: repeat(${items.length}, minmax(0,1fr)); gap:10px; margin-top:10px" id="cmpGrid">
+        ${items.map(p=>`<div class="box" style="border-radius:16px">${allKeys.map(k=>`<div style="display:flex; justify-content:space-between; gap:10px; padding:7px 0; border-bottom:1px dashed var(--line)"><span class="muted" style="font-size:12px">${k.toUpperCase()}</span><b style="font-size:12px; text-align:right">${val(p,k)}</b></div>`).join("")}</div>`).join("")}
+      </div>
+    </div>`;
+  drawerOpen(t.compare, head + table);
+  document.getElementById("drawerContent").addEventListener("click",(e)=>{
+    const bOpen = e.target.closest("button[data-open]"), bRm = e.target.closest("button[data-rm]");
+    if(bOpen){ drawerClose(); openProduct(bOpen.dataset.open); }
+    if(bRm){ const sku = bRm.dataset.rm, i = state.cmp.indexOf(sku); if(i>=0) state.cmp.splice(i,1); saveState(state); setCounts(); renderCompare(); }
+  }, { once:true });
+  document.getElementById("cmpDiff").addEventListener("click", ()=>{
+    const boxes = Array.from(document.querySelectorAll("#cmpGrid .box")); const rowsCount = allKeys.length;
+    for(let r=0; r<rowsCount; r++){
+      const k = allKeys[r], vals = items.map(p=>String(val(p,k))), allSame = vals.every(v=>v===vals[0]);
+      if(allSame){ boxes.forEach(b=>{ const row = b.children[r]; if(row) row.style.display = "none"; }); }
+      else { boxes.forEach(b=>{ const row = b.children[r]; if(row) row.style.display = ""; }); }
+    }
   });
 }
 
-function renderSimpleList(title, arr, type){
-  if(!arr.length){
-    drawerOpen(title, `<p class="muted"><i class="fa-solid fa-box-open" style="margin-right:8px;"></i>${I18N[state.lang].empty}</p>`);
-    return;
-  }
-  const html = arr.map(sku => `
-    <div class="item">
-      <img class="thumb" src="images/tovar1.jpg" onerror="this.src='https://via.placeholder.com/72'">
+function modalOpen(title, html){ const m = document.getElementById("modal"); document.getElementById("mTitle").textContent = title; document.getElementById("mBody").innerHTML = html; m.classList.add("show"); m.setAttribute("aria-hidden","false"); }
+function modalClose(){ const m = document.getElementById("modal"); m.classList.remove("show"); m.setAttribute("aria-hidden","true"); }
+document.getElementById("mClose").addEventListener("click", modalClose); document.getElementById("modalOverlay").addEventListener("click", modalClose);
+
+function skuInList(list, sku){ return list.includes(sku); }
+function addToWish(sku){ const i = state.wish.indexOf(sku); if(i>=0) state.wish.splice(i,1); else state.wish.push(sku); saveState(state); setCounts(); render(); }
+function addToCmp(sku){ const i = state.cmp.indexOf(sku); if(i>=0) state.cmp.splice(i,1); else { if(state.cmp.length>=4){ alert("Можно сравнить до 4 товаров."); return; } state.cmp.push(sku); } saveState(state); setCounts(); render(); }
+
+function addToCart(item, qty=1, vid="base", variantName=""){
+  const existing = state.cart.find(x=>x.sku===item.sku && String(x.vid)===String(vid));
+  const stockLabel = (item.stock==="in") ? (I18N[state.lang].in) : (I18N[state.lang].pre);
+  if(existing) existing.qty += qty;
+  else { state.cart.push({ sku: item.sku, name: item.name, priceKZT: item.priceKZT, img: item.img, qty, vid, variantName, stock: stockLabel + (item.stock==="pre" ? " • ~8 дней" : "") }); }
+  saveState(state); setCounts();
+}
+
+function openProduct(sku){
+  const t = I18N[state.lang] || I18N.ru; const p = PRODUCTS.find(x=>x.sku===sku); if(!p){ alert("Товар не найден"); return; }
+  const variants = [];
+  if(p.cat==="laptops"){
+    const baseRam = p.specs.ram, baseSsd = p.specs.ssd, altRam = (baseRam==="16GB") ? "32GB" : "16GB", altSsd = (baseSsd.includes("512")) ? "1TB NVMe" : "512GB NVMe";
+    variants.push({ id:"v1", ram:baseRam, ssd:baseSsd, priceKZT:p.priceKZT, stock:p.stock });
+    variants.push({ id:"v2", ram:altRam, ssd:baseSsd, priceKZT:Math.round(p.priceKZT*1.08), stock:(p.id%2===0)?"pre":"in" });
+    variants.push({ id:"v3", ram:baseRam, ssd:altSsd, priceKZT:Math.round(p.priceKZT*1.06), stock:"pre" });
+  } else { variants.push({ id:"base", priceKZT:p.priceKZT, stock:p.stock }); }
+
+  const stockChip = (p.stock==="in") ? `<span class="chip2 ok"><i class="fa-solid fa-check"></i> ${t.in}</span>` : `<span class="chip2 warn"><i class="fa-solid fa-hourglass-half"></i> ${t.pre}</span>`;
+  const preorderLine = (p.stock==="pre") ? `<div class="preorderline">${t.preorderLine}</div>` : "";
+  const specsRows = (p.cat==="laptops") ? [["Бренд", p.brand], ["CPU", p.specs.cpu], ["GPU", p.specs.gpu], ["RAM", p.specs.ram], ["SSD", p.specs.ssd], ["Экран", `${p.specs.inch}" • ${p.specs.hz}Hz • ${p.specs.panel}`], ["ОС", p.specs.os], ["Вес", p.specs.weight], ["Подсветка", p.specs.backlight], ["SKU", p.sku]] : [["Бренд", p.brand], ["Тип", p.specs.type || p.sub || "—"], ["Документы", p.specs.docs || "—"], ["Гарантия", p.specs.warranty || "—"], ["SKU", p.sku]];
+  const warningBlock = (p.warning) ? `<div class="warnbox"><i class="fa-solid fa-triangle-exclamation"></i> <b>Важно:</b> ${p.warning}</div>` : "";
+  const docsBlock = (p.docs && p.docs.length) ? `<div style="margin-top:10px"><b style="font-size:13px">Документы</b><div class="docs">${p.docs.map(d=>`<a class="doclink" href="#" onclick="alert('Заглушка документа: ${d}'); return false;"><i class="fa-solid fa-file-pdf" style="color:var(--accent)"></i> ${d}</a>`).join("")}</div></div>` : "";
+  const quoteOnly = !!(p.flags && p.flags.quoteOnly);
+
+  const html = `
+    <div class="pdp">
+      <div class="gal"><img src="images/${p.img}" alt="" onerror="this.src='https://via.placeholder.com/400'"></div>
       <div>
-        <b>${sku}</b>
-        <small class="muted">Откройте каталог, чтобы увидеть детали.</small>
-        <div class="inline" style="margin-top:12px">
-          <a class="btn" href="catalog.html?${type}=${encodeURIComponent(sku)}" style="padding: 6px 12px; min-height:32px; font-size:12px;">Открыть в каталоге</a>
-          <button class="btn" type="button" data-sku="${sku}" style="padding: 6px 12px; min-height:32px; font-size:12px;">Убрать</button>
+        <h2>${p.name}</h2>
+        <div class="muted" style="margin-top:6px; font-family: monospace;">SKU: <b>${p.sku}</b></div>
+        <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap; align-items:center">
+          ${stockChip}
+          ${p.oldPriceKZT ? `<span class="chip2" style="background: rgba(248,92,88,0.1); color: var(--accent);"><i class="fa-solid fa-fire"></i> Акция</span>` : ""}
+          ${quoteOnly ? `<span class="chip2 warn"><i class="fa-solid fa-file-invoice"></i> ${t.quote}</span>` : ""}
+        </div>
+        <div class="price" style="margin-top:16px">
+          <b id="pdpPrice">${fmtMoney(variants[0].priceKZT, state.cur)}</b>
+          ${p.oldPriceKZT ? `<s>${fmtMoney(p.oldPriceKZT, state.cur)}</s>` : ""}
+        </div>
+        ${preorderLine}
+        <div class="box" style="margin-top:16px">
+          <b style="font-size:14px">Характеристики</b>
+          <table class="tbl" style="margin-top:8px">
+            ${specsRows.map(([k,v])=>`<tr><td>${k}</td><td><b>${v}</b></td></tr>`).join("")}
+          </table>
+        </div>
+        ${p.cat==="laptops" ? `
+          <div class="box" style="margin-top:16px">
+            <b style="font-size:14px">Конфигурация</b>
+            <div class="variantrow">
+              <div><label style="font-size:12px; color:var(--muted); display:block; margin-bottom:4px;">RAM</label><select id="vRam"></select></div>
+              <div><label style="font-size:12px; color:var(--muted); display:block; margin-bottom:4px;">SSD</label><select id="vSsd"></select></div>
+            </div>
+            <div class="muted" style="margin-top:12px; font-size:13px; font-weight: 500;" id="vStock"></div>
+          </div>
+        ` : ""}
+        ${warningBlock}
+        ${docsBlock}
+        <div class="pdpactions">
+          ${quoteOnly
+            ? `<button class="cta" type="button" id="pdpQuote"><i class="fa-solid fa-file-signature"></i> ${t.quote}</button>
+               <button class="btn" type="button" id="pdpAsk"><i class="fa-solid fa-circle-question"></i> ${t.ask}</button>`
+            : `<button class="cta" type="button" id="pdpAdd"><i class="fa-solid fa-cart-plus"></i> ${t.buy}</button>
+               <button class="btn" type="button" id="pdpBuyNow"><i class="fa-solid fa-bag-shopping"></i> ${t.buyNow}</button>
+               <button class="btn" type="button" id="pdpOne"><i class="fa-solid fa-bolt"></i> ${t.oneClick}</button>`
+          }
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:16px">
+          <button class="btn mini" type="button" id="pdpWish">${skuInList(state.wish,p.sku) ? "<i class='fa-solid fa-heart' style='color:var(--accent)'></i> В избранном" : "<i class='fa-regular fa-heart'></i> В избранное"}</button>
+          <button class="btn mini" type="button" id="pdpCmp">${skuInList(state.cmp,p.sku) ? "<i class='fa-solid fa-check' style='color:var(--ok)'></i> В сравнении" : "<i class='fa-solid fa-scale-balanced'></i> Сравнить"}</button>
         </div>
       </div>
     </div>
-  `).join("");
-  drawerOpen(title, html);
-  
-  document.getElementById("drawerContent").addEventListener("click", (e)=>{
-    const b = e.target.closest("button");
-    if(!b) return;
-    const sku = b.dataset.sku;
-    if(!sku) return;
-    const list = type==="wish" ? state.wish : state.cmp;
-    const i = list.indexOf(sku);
-    if(i>=0) list.splice(i,1);
-    saveState(state); setCounts(); renderSimpleList(title, list, type);
-  }, { once:true });
+  `;
+  modalOpen("Карточка товара", html);
+
+  let chosen = variants[0];
+  function updChosen(){
+    const priceEl = document.getElementById("pdpPrice"); if(priceEl) priceEl.textContent = fmtMoney(chosen.priceKZT, state.cur);
+    const stockEl = document.getElementById("vStock"); if(stockEl){ const s = (chosen.stock==="in") ? (t.in) : (t.pre); stockEl.innerHTML = "<i class='fa-solid fa-info-circle' style='margin-right:6px;'></i> Наличие: " + s + (chosen.stock==="pre" ? " • ~8 дней до Алматы" : ""); }
+  }
+
+  if(p.cat==="laptops"){
+    const ramSel = document.getElementById("vRam"), ssdSel = document.getElementById("vSsd"), rams = uniq(variants.map(v=>v.ram)), ssds = uniq(variants.map(v=>v.ssd));
+    ramSel.innerHTML = rams.map(x=>`<option value="${x}">${x}</option>`).join(""); ssdSel.innerHTML = ssds.map(x=>`<option value="${x}">${x}</option>`).join("");
+    ramSel.value = variants[0].ram; ssdSel.value = variants[0].ssd;
+    function selectVariant(){ const r = ramSel.value, s = ssdSel.value, found = variants.find(v=>v.ram===r && v.ssd===s) || variants[0]; chosen = found; updChosen(); }
+    ramSel.addEventListener("change", selectVariant); ssdSel.addEventListener("change", selectVariant); updChosen();
+  }
+
+  const wishBtn = document.getElementById("pdpWish"), cmpBtn  = document.getElementById("pdpCmp");
+  if(wishBtn) wishBtn.addEventListener("click", ()=>{ addToWish(p.sku); wishBtn.innerHTML = skuInList(state.wish,p.sku) ? "<i class='fa-solid fa-heart' style='color:var(--accent)'></i> В избранном" : "<i class='fa-regular fa-heart'></i> В избранное"; });
+  if(cmpBtn) cmpBtn.addEventListener("click", ()=>{ addToCmp(p.sku); cmpBtn.innerHTML = skuInList(state.cmp,p.sku) ? "<i class='fa-solid fa-check' style='color:var(--ok)'></i> В сравнении" : "<i class='fa-solid fa-scale-balanced'></i> Сравнить"; });
+
+  const askText = `Здравствуйте! Вопрос по товару:\n${p.name}\nSKU: ${p.sku}\nКатегория: ${p.cat}\nНаличие: ${p.stock==="in" ? t.in : t.pre}\n`;
+  const quoteText = `Здравствуйте! Хочу запросить КП/консультацию:\n${p.name}\nSKU: ${p.sku}\nКатегория: ${p.cat}\n`;
+
+  const addBtn = document.getElementById("pdpAdd"), buyNowBtn = document.getElementById("pdpBuyNow"), oneBtn = document.getElementById("pdpOne"), qBtn = document.getElementById("pdpQuote"), aBtn = document.getElementById("pdpAsk");
+  if(addBtn) addBtn.addEventListener("click", ()=>{ const vid = (p.cat==="laptops") ? chosen.id : "base", vName = (p.cat==="laptops") ? `${chosen.ram} / ${chosen.ssd}` : ""; addToCart(p, 1, vid, vName); alert("Добавлено в корзину"); });
+  if(buyNowBtn) buyNowBtn.addEventListener("click", ()=>{ const vid = (p.cat==="laptops") ? chosen.id : "base", vName = (p.cat==="laptops") ? `${chosen.ram} / ${chosen.ssd}` : ""; addToCart(p, 1, vid, vName); modalClose(); renderCart(); });
+  if(oneBtn) oneBtn.addEventListener("click", ()=>{ modalClose(); openOneClick(p); });
+  if(qBtn) qBtn.addEventListener("click", ()=> openWA(quoteText));
+  if(aBtn) aBtn.addEventListener("click", ()=> openWA(askText));
 }
 
-/* UI events */
-document.getElementById("langSel").value = state.lang;
-document.getElementById("curSel").value = state.cur;
+function openOneClick(product=null){
+  const t = I18N[state.lang] || I18N.ru; const title = product ? `Купить в 1 клик: ${product.name}` : "Купить в 1 клик";
+  const html = `
+    <div class="card pad" style="box-shadow:none; border-radius:16px; border:1px solid var(--line)">
+      <b style="font-size:16px"><i class="fa-solid fa-bolt" style="color:var(--accent); margin-right:8px;"></i> ${title}</b>
+      <div class="muted" style="margin-top:8px; font-size:13px">Оставьте имя и телефон — мы свяжемся и уточним наличие/сроки.</div>
+      <div class="formgrid" style="margin-top:16px">
+        <div class="field"><label>Имя</label><input id="ocName" placeholder="Например: Айбек" /></div>
+        <div class="field"><label>Телефон</label><input id="ocPhone" placeholder="+7 ..." /></div>
+      </div>
+      <div class="field" style="margin-top:16px"><label>Комментарий</label><input id="ocNote" placeholder="Например: нужна доставка..." /></div>
+      <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:20px">
+        <button class="cta" type="button" id="ocSend"><i class="fa-brands fa-whatsapp"></i> Отправить</button>
+        <button class="btn" type="button" id="ocCancel">Отмена</button>
+      </div>
+    </div>
+  `;
+  modalOpen("Купить в 1 клик", html);
+  document.getElementById("ocCancel").addEventListener("click", modalClose);
+  document.getElementById("ocSend").addEventListener("click", ()=>{
+    const name = (document.getElementById("ocName").value || "").trim(), phone = (document.getElementById("ocPhone").value || "").trim(), note = (document.getElementById("ocNote").value || "").trim();
+    const pLine = product ? `Товар: ${product.name}\nSKU: ${product.sku}\nЦена: ${fmtMoney(product.priceKZT, state.cur)}\n` : "";
+    const msg = `Заявка: Купить в 1 клик\n${pLine}Имя: ${name || "-"}\nТелефон: ${phone || "-"}\nКомментарий: ${note || "-"}\n(Сайт JOHNGALTAZ)`;
+    openWA(msg);
+  });
+}
 
-document.getElementById("langSel").addEventListener("change", (e)=>{
-  state.lang = e.target.value;
-  saveState(state); applyI18N();
-});
-document.getElementById("curSel").addEventListener("change", (e)=>{
-  state.cur = e.target.value;
-  saveState(state); applyI18N();
+const UI = {
+  products: document.getElementById("products"), countText: document.getElementById("countText"), queryPill: document.getElementById("queryPill"), activePill: document.getElementById("activePill"),
+  catSel: document.getElementById("catSel"), subSel: document.getElementById("subSel"), brandSel: document.getElementById("brandSel"), minPrice: document.getElementById("minPrice"), maxPrice: document.getElementById("maxPrice"), onlyInStock: document.getElementById("onlyInStock"), showPreorder: document.getElementById("showPreorder"),
+  laptopFilters: document.getElementById("laptopFilters"), cpuSel: document.getElementById("cpuSel"), gpuSel: document.getElementById("gpuSel"), ramSel: document.getElementById("ramSel"), ssdSel: document.getElementById("ssdSel"), inchSel: document.getElementById("inchSel"), hzSel: document.getElementById("hzSel"), osSel: document.getElementById("osSel"), panelSel: document.getElementById("panelSel"),
+  searchInput: document.getElementById("searchInput"), sortSel: document.getElementById("sortSel"),
+};
+
+function fillSelect(sel, values, firstLabel="Все"){ sel.innerHTML = `<option value="">${firstLabel}</option>` + values.map(v=>`<option value="${v}">${v}</option>`).join(""); }
+function syncSubcats(cat){ const subs = uniq(PRODUCTS.filter(p=>!cat || p.cat===cat).map(p=>p.sub)); fillSelect(UI.subSel, subs, "Все"); }
+function syncBrands(cat){ const brands = uniq(PRODUCTS.filter(p=>!cat || p.cat===cat).map(p=>p.brand)); fillSelect(UI.brandSel, brands, "Все"); }
+function syncLaptopFacetOptions(){
+  const ls = PRODUCTS.filter(p=>p.cat==="laptops");
+  fillSelect(UI.cpuSel, uniq(ls.map(p=>p.specs.cpu)), "Любой"); fillSelect(UI.gpuSel, uniq(ls.map(p=>p.specs.gpu)), "Любой"); fillSelect(UI.ramSel, uniq(ls.map(p=>p.specs.ram)), "Любая"); fillSelect(UI.ssdSel, uniq(ls.map(p=>p.specs.ssd)), "Любой"); fillSelect(UI.inchSel, uniq(ls.map(p=>p.specs.inch)), "Любой"); fillSelect(UI.hzSel, uniq(ls.map(p=>p.specs.hz)), "Любая"); fillSelect(UI.osSel, uniq(ls.map(p=>p.specs.os)), "Любая"); fillSelect(UI.panelSel, uniq(ls.map(p=>p.specs.panel)), "Любая");
+}
+
+function getFilters(){
+  const q = (UI.searchInput.value || "").trim(), cat = UI.catSel.value, sub = UI.subSel.value, brand = UI.brandSel.value, minP = parseInt((UI.minPrice.value||"").replace(/\s/g,""), 10), maxP = parseInt((UI.maxPrice.value||"").replace(/\s/g,""), 10), onlyIn = UI.onlyInStock.checked, showPre = UI.showPreorder.checked, sort = UI.sortSel.value;
+  const laptop = { cpu: UI.cpuSel.value, gpu: UI.gpuSel.value, ram: UI.ramSel.value, ssd: UI.ssdSel.value, inch: UI.inchSel.value, hz: UI.hzSel.value, os: UI.osSel.value, panel: UI.panelSel.value };
+  return { q, cat, sub, brand, minP: isNaN(minP)?null:minP, maxP: isNaN(maxP)?null:maxP, onlyIn, showPre, sort, laptop };
+}
+
+function setFromQS(){
+  const p = qsParse();
+  if(p.lang){ state.lang = p.lang; saveState(state); } if(p.cur){ state.cur = p.cur; saveState(state); }
+  document.getElementById("langSel").value = state.lang; document.getElementById("curSel").value = state.cur;
+  UI.searchInput.value = p.q || ""; UI.catSel.value = p.cat || ""; syncSubcats(UI.catSel.value); UI.subSel.value = p.sub || ""; syncBrands(UI.catSel.value); UI.brandSel.value = p.brand || ""; UI.minPrice.value = p.min || ""; UI.maxPrice.value = p.max || ""; UI.onlyInStock.checked = (p.onlyIn==="1"); UI.showPreorder.checked = (p.showPre==="0") ? false : true; UI.sortSel.value = p.sort || "pop";
+  syncLaptopFacetOptions(); UI.cpuSel.value = p.cpu || ""; UI.gpuSel.value = p.gpu || ""; UI.ramSel.value = p.ram || ""; UI.ssdSel.value = p.ssd || ""; UI.inchSel.value = p.inch || ""; UI.hzSel.value = p.hz || ""; UI.osSel.value = p.os || ""; UI.panelSel.value = p.panel || "";
+  if(p.open==="cart") renderCart(); if(p.open==="oneclick") openOneClick(null); if(p.wish) openProduct(p.wish); if(p.cmp) openProduct(p.cmp);
+}
+
+function applyToQS(){
+  const f = getFilters();
+  qsSet({ q: f.q || "", cat: f.cat || "", sub: f.sub || "", brand: f.brand || "", min: f.minP ?? "", max: f.maxP ?? "", onlyIn: f.onlyIn ? "1" : "", showPre: f.showPre ? "" : "0", sort: f.sort || "", cpu: (f.cat==="laptops") ? (f.laptop.cpu || "") : "", gpu: (f.cat==="laptops") ? (f.laptop.gpu || "") : "", ram: (f.cat==="laptops") ? (f.laptop.ram || "") : "", ssd: (f.cat==="laptops") ? (f.laptop.ssd || "") : "", inch:(f.cat==="laptops") ? (f.laptop.inch|| "") : "", hz:  (f.cat==="laptops") ? (f.laptop.hz  || "") : "", os:  (f.cat==="laptops") ? (f.laptop.os  || "") : "", panel:(f.cat==="laptops") ? (f.laptop.panel|| "") : "", lang: state.lang, cur: state.cur });
+}
+
+function filterProducts(){
+  const f = getFilters(), t = I18N[state.lang] || I18N.ru; let list = PRODUCTS.slice();
+  if(f.cat) list = list.filter(p=>p.cat===f.cat); if(f.sub) list = list.filter(p=>p.sub===f.sub); if(f.brand) list = list.filter(p=>p.brand===f.brand);
+  if(f.onlyIn) list = list.filter(p=>p.stock==="in"); if(!f.showPre) list = list.filter(p=>p.stock!=="pre");
+  if(f.minP!=null) list = list.filter(p=>p.priceKZT>=f.minP); if(f.maxP!=null) list = list.filter(p=>p.priceKZT<=f.maxP);
+  if(f.q){ const q = f.q.toLowerCase(); list = list.filter(p=>{ const blob = (p.name+" "+p.sku+" "+p.brand+" "+(p.cat||"")+" "+(p.sub||"")+" "+JSON.stringify(p.specs||{})).toLowerCase(); return blob.includes(q); }); }
+  if(f.cat==="laptops"){ if(f.laptop.cpu) list = list.filter(p=>p.specs.cpu===f.laptop.cpu); if(f.laptop.gpu) list = list.filter(p=>p.specs.gpu===f.laptop.gpu); if(f.laptop.ram) list = list.filter(p=>p.specs.ram===f.laptop.ram); if(f.laptop.ssd) list = list.filter(p=>p.specs.ssd===f.laptop.ssd); if(f.laptop.inch) list = list.filter(p=>p.specs.inch===f.laptop.inch); if(f.laptop.hz) list = list.filter(p=>p.specs.hz===f.laptop.hz); if(f.laptop.os) list = list.filter(p=>p.specs.os===f.laptop.os); if(f.laptop.panel) list = list.filter(p=>p.specs.panel===f.laptop.panel); }
+  if(f.sort==="price_asc") list.sort((a,b)=>a.priceKZT-b.priceKZT); if(f.sort==="price_desc") list.sort((a,b)=>b.priceKZT-a.priceKZT); if(f.sort==="new") list.sort((a,b)=>b.created-a.created); if(f.sort==="pop") list.sort((a,b)=>b.popularity-a.popularity);
+  
+  UI.queryPill.innerHTML = f.q ? `<i class="fa-solid fa-magnifying-glass" style="margin-right:4px"></i> "${f.q}"` : `<i class="fa-solid fa-magnifying-glass" style="margin-right:4px"></i> —`;
+  UI.countText.textContent = "Найдено: " + list.length;
+  const active = [f.q, f.cat, f.sub, f.brand, (f.minP!=null ? "min" : ""), (f.maxP!=null ? "max" : ""), (f.onlyIn ? "onlyIn" : ""), (!f.showPre ? "noPre" : ""), (f.cat==="laptops" ? f.laptop.cpu : ""), (f.cat==="laptops" ? f.laptop.gpu : ""), (f.cat==="laptops" ? f.laptop.ram : ""), (f.cat==="laptops" ? f.laptop.ssd : ""), (f.cat==="laptops" ? f.laptop.inch : ""), (f.cat==="laptops" ? f.laptop.hz : ""), (f.cat==="laptops" ? f.laptop.os : ""), (f.cat==="laptops" ? f.laptop.panel : "")].filter(Boolean).length;
+  UI.activePill.innerHTML = `<i class="fa-solid fa-filter" style="margin-right:4px"></i> Активные фильтры: ` + active;
+  return list;
+}
+
+function cardHTML(p){
+  const t = I18N[state.lang] || I18N.ru;
+  const stockChip = (p.stock==="in") ? `<span class="chip2 ok"><i class="fa-solid fa-check"></i> ${t.in}</span>` : `<span class="chip2 warn"><i class="fa-solid fa-hourglass-half"></i> ${t.pre}</span>`;
+  const keySpecs = (p.cat==="laptops") ? [`CPU: ${p.specs.cpu}`, `GPU: ${p.specs.gpu}`, `RAM: ${p.specs.ram}`, `SSD: ${p.specs.ssd}`, `${p.specs.inch}" • ${p.specs.hz}Hz`] : [p.specs.type ? `Тип: ${p.specs.type}` : "", p.specs.power ? `Мощность: ${p.specs.power}` : "", p.specs.connection ? `Связь: ${p.specs.connection}` : "", p.specs.warranty ? `Гарантия: ${p.specs.warranty}` : "", p.specs.docs ? `Документы: есть` : ""].filter(Boolean).slice(0,4);
+  const preorderLine = (p.stock==="pre") ? `<div class="preorderline">${t.preorderLine}</div>` : "";
+  const sale = p.oldPriceKZT ? Math.round((1 - p.priceKZT/p.oldPriceKZT)*100) : null;
+
+  return `
+    <article class="p" data-sku="${p.sku}">
+      <div style="position:relative">
+        ${sale ? `<div class="sticker">-${Math.abs(sale)}%</div>` : ""}
+        <img class="pimg" src="images/${p.img}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/400'">
+      </div>
+      <div class="pbody">
+        <h3 class="pname">${p.name}</h3>
+        <div class="psku">SKU: <b>${p.sku}</b></div>
+        <div class="pmeta">
+          ${stockChip}
+          <span class="chip2"><i class="fa-solid fa-tag"></i> ${p.brand}</span>
+          ${p.flags.quoteOnly ? `<span class="chip2 warn"><i class="fa-solid fa-file-invoice"></i> ${t.quote}</span>` : ""}
+        </div>
+        ${keySpecs.length ? `<div class="specs">${keySpecs.map(s=>`<div>${s}</div>`).join("")}</div>` : ""}
+        <div class="price">
+          <b>${fmtMoney(p.priceKZT, state.cur)}</b>
+          ${p.oldPriceKZT ? `<s>${fmtMoney(p.oldPriceKZT, state.cur)}</s>` : ""}
+        </div>
+        ${preorderLine}
+        <div class="pactions">
+          ${p.flags.quoteOnly ? `<button class="cta" type="button" data-act="quote"><i class="fa-solid fa-file-signature"></i> Запрос КП</button>` : `<button class="cta" type="button" data-act="add"><i class="fa-solid fa-cart-plus"></i> В корзину</button>`}
+          <button class="btn" type="button" data-act="open">Открыть</button>
+        </div>
+        <div class="iconbar">
+          <button class="iconbtn ${state.wish.includes(p.sku) ? 'active' : ''}" type="button" data-act="wish" aria-label="В избранное">${state.wish.includes(p.sku) ? "<i class='fa-solid fa-heart'></i>" : "<i class='fa-regular fa-heart'></i>"}</button>
+          <button class="iconbtn ${state.cmp.includes(p.sku) ? 'active' : ''}" type="button" data-act="cmp" aria-label="Сравнить">${state.cmp.includes(p.sku) ? "<i class='fa-solid fa-check'></i>" : "<i class='fa-solid fa-scale-balanced'></i>"}</button>
+          <button class="iconbtn" type="button" data-act="one" aria-label="Купить в 1 клик"><i class="fa-solid fa-bolt"></i></button>
+        </div>
+      </div>
+    </article>
+  `;
+}
+
+function render(){
+  applyI18N(); setCounts();
+  const cat = UI.catSel.value; UI.laptopFilters.style.display = (cat==="laptops") ? "block" : "none";
+  syncSubcats(cat); syncBrands(cat);
+  const list = filterProducts(); UI.products.innerHTML = list.map(cardHTML).join("");
+  const mapName = { "": "Каталог товаров", "laptops": "Игровые ноутбуки", "periphery": "Периферия", "home": "Мелко-бытовая техника", "cosmo": "Косметическое оборудование", "medical": "Медицинское оборудование" };
+  document.getElementById("pageTitle").textContent = mapName[cat || ""] || "Каталог товаров";
+}
+
+document.getElementById("langSel").value = state.lang; document.getElementById("curSel").value = state.cur;
+document.getElementById("langSel").addEventListener("change", (e)=>{ state.lang = e.target.value; saveState(state); applyToQS(); render(); });
+document.getElementById("curSel").addEventListener("change", (e)=>{ state.cur = e.target.value; saveState(state); applyToQS(); render(); });
+document.getElementById("hambBtn").addEventListener("click", ()=>{ document.getElementById("nav").classList.toggle("open"); });
+document.getElementById("doSearch").addEventListener("click", ()=>{ applyToQS(); render(); });
+document.getElementById("searchInput").addEventListener("keydown",(e)=>{ if(e.key==="Enter"){ e.preventDefault(); document.getElementById("doSearch").click(); } });
+document.getElementById("sortSel").addEventListener("change", ()=>{ applyToQS(); render(); });
+document.getElementById("applyBtn").addEventListener("click", ()=>{ applyToQS(); render(); });
+
+document.getElementById("resetBtn").addEventListener("click", ()=>{
+  UI.searchInput.value = ""; UI.catSel.value = ""; syncSubcats(""); UI.subSel.value = ""; syncBrands(""); UI.brandSel.value = ""; UI.minPrice.value = ""; UI.maxPrice.value = ""; UI.onlyInStock.checked = false; UI.showPreorder.checked = true; UI.sortSel.value = "pop";
+  UI.cpuSel.value = ""; UI.gpuSel.value = ""; UI.ramSel.value = ""; UI.ssdSel.value = ""; UI.inchSel.value = ""; UI.hzSel.value = ""; UI.osSel.value = ""; UI.panelSel.value = "";
+  applyToQS(); render();
 });
 
-document.getElementById("hambBtn").addEventListener("click", ()=>{
-  const nav = document.getElementById("nav");
-  nav.classList.toggle("open");
+UI.catSel.addEventListener("change", ()=>{ syncSubcats(UI.catSel.value); syncBrands(UI.catSel.value); render(); });
+document.getElementById("openFiltersMobile").addEventListener("click", ()=>{ document.getElementById("filtersCard").scrollIntoView({behavior:"smooth"}); });
+
+document.querySelectorAll(".gtitle button[data-toggle]").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    const key = btn.dataset.toggle, box = document.querySelector(`[data-box="${key}"]`); if(!box) return;
+    const isHidden = box.style.display==="none"; box.style.display = isHidden ? "" : "none";
+    btn.innerHTML = isHidden ? "<i class='fa-solid fa-chevron-down'></i>" : "<i class='fa-solid fa-chevron-right'></i>";
+  });
+});
+
+document.querySelectorAll(".tagrow .tag").forEach(tag=>{
+  tag.addEventListener("click", ()=>{
+    const qcat = tag.dataset.qcat, reset = tag.dataset.qreset;
+    if(reset){ UI.catSel.value = ""; } else if(qcat){ UI.catSel.value = qcat; }
+    syncSubcats(UI.catSel.value); syncBrands(UI.catSel.value); applyToQS(); render();
+  });
 });
 
 document.getElementById("cartBtn").addEventListener("click", renderCart);
-document.getElementById("wishBtn").addEventListener("click", ()=>renderSimpleList(I18N[state.lang].wishlist, state.wish, "wish"));
-document.getElementById("cmpBtn").addEventListener("click", ()=>renderSimpleList(I18N[state.lang].compare, state.cmp, "cmp"));
-document.getElementById("heroOpenCart").addEventListener("click", renderCart);
+document.getElementById("wishBtn").addEventListener("click", renderWish);
+document.getElementById("cmpBtn").addEventListener("click", renderCompare);
+document.getElementById("openCompare").addEventListener("click", renderCompare);
+document.getElementById("openOneClick").addEventListener("click", ()=>openOneClick(null));
+document.getElementById("openCartFromCheckout").addEventListener("click", renderCart);
+document.getElementById("fabWA").addEventListener("click", ()=>{ openWA("Здравствуйте! Нужна консультация по товарам JOHNGALTAZ."); });
 
-document.getElementById("goCatalogBtn").addEventListener("click", ()=>{
-  const q = document.getElementById("searchInput").value.trim();
-  location.href = "catalog.html" + (q ? `?q=${encodeURIComponent(q)}` : "");
-});
-document.getElementById("searchInput").addEventListener("keydown", (e)=>{
-  if(e.key==="Enter"){ e.preventDefault(); document.getElementById("goCatalogBtn").click(); }
-});
-
-document.getElementById("waBtn").addEventListener("click", ()=>{
-  openWA("Здравствуйте! Нужна консультация по товарам JOHNGALTAZ.");
-});
-document.getElementById("fabWA").addEventListener("click", ()=>{
-  openWA("Здравствуйте! Нужна консультация по товарам JOHNGALTAZ.");
-});
-
-document.getElementById("heroOneClick").addEventListener("click", ()=>{
-  location.href = "catalog.html?open=oneclick";
+document.getElementById("products").addEventListener("click", (e)=>{
+  const card = e.target.closest(".p"); if(!card) return;
+  const sku = card.dataset.sku, p = PRODUCTS.find(x=>x.sku===sku); if(!p) return;
+  const actBtn = e.target.closest("button[data-act]");
+  if(!actBtn){ openProduct(sku); return; }
+  const act = actBtn.dataset.act;
+  if(act==="open") openProduct(sku);
+  if(act==="wish") addToWish(sku);
+  if(act==="cmp") addToCmp(sku);
+  if(act==="one") openOneClick(p);
+  if(act==="add"){ addToCart(p, 1, "base", ""); alert("Добавлено в корзину"); }
+  if(act==="quote"){ openWA(`Здравствуйте! Хочу запросить КП/консультацию:\n${p.name}\nSKU: ${p.sku}\nКатегория: ${p.cat}\n(Сайт JOHNGALTAZ)`); }
 });
 
-document.getElementById("openPicker").addEventListener("click", ()=>{
-  document.getElementById("picker").scrollIntoView({behavior:"smooth"});
+document.getElementById("isB2B").addEventListener("change", (e)=>{ document.getElementById("b2bFields").style.display = e.target.checked ? "block" : "none"; });
+
+document.getElementById("checkoutForm").addEventListener("submit", (e)=>{
+  e.preventDefault(); const t = I18N[state.lang] || I18N.ru;
+  if(!state.cart.length){ alert("Корзина пустая. Добавьте товары."); return; }
+  const name = document.getElementById("cName").value.trim(), phone = document.getElementById("cPhone").value.trim(), city = document.getElementById("cCity").value.trim(), addr = document.getElementById("cAddr").value.trim(), ship = document.getElementById("cShip").value, pay = document.getElementById("cPay").value, comment = document.getElementById("cComment").value.trim();
+  const isB2B = document.getElementById("isB2B").checked, bCompany = document.getElementById("bCompany").value.trim(), bBin = document.getElementById("bBin").value.trim(), bAddr = document.getElementById("bAddr").value.trim(), bEmail = document.getElementById("bEmail").value.trim(), file = document.getElementById("bFile").files[0];
+  const shipMap = { curier:"Курьер", pickup:"Самовывоз", post:"Казпочта/доставка", sdek:"СДЭК", boxberry:"Boxberry" }, payMap = { kaspi:"Kaspi", card:"Карта", transfer:"Перевод", online:"Онлайн-эквайринг" };
+  const lines = state.cart.map((it, idx)=> { const p = PRODUCTS.find(x=>x.sku===it.sku); const lead = (p && p.stock==="pre") ? " • ~8 дней до Алматы" : ""; return `${idx+1}) ${it.name} (${it.sku}) ${it.variantName?("["+it.variantName+"]"):""} — ${it.qty} шт — ${fmtMoney(it.priceKZT, state.cur)}${lead}`; });
+  const totalKZT = state.cart.reduce((sum,it)=>sum + (it.priceKZT||0)*it.qty, 0);
+  const b2bBlock = isB2B ? `Юр. лицо: Да\nКомпания: ${bCompany || "-"}\nБИН/ИНН: ${bBin || "-"}\nЮр. адрес: ${bAddr || "-"}\nEmail: ${bEmail || "-"}\nФайл реквизитов: ${file ? file.name : "нет"}\n` : `Юр. лицо: Нет`;
+  const msg = `Заказ / заявка (JOHNGALTAZ)\nФИО: ${name}\nТелефон: ${phone}\nГород: ${city}\nАдрес: ${addr}\nДоставка: ${shipMap[ship] || ship}\nОплата: ${payMap[pay] || pay}\nКомментарий: ${comment || "-"}\n${b2bBlock}\nСостав заказа:\n${lines.join("\n")}\n\nИтого: ${fmtMoney(totalKZT, state.cur)}\n\nСтатус: новый (тестовый сайт)`;
+  openWA(msg);
 });
 
-document.getElementById("bAsk").addEventListener("click", ()=>{
-  openWA("Здравствуйте! Хочу запросить КП (юр. лица). Подскажите условия и сроки.");
-});
+function initFacets(){ syncLaptopFacetOptions(); syncSubcats(""); syncBrands(""); }
+initFacets(); setFromQS(); applyI18N(); setCounts(); render();
 
-document.getElementById("pickerForm").addEventListener("submit", (e)=>{
-  e.preventDefault();
-  const name = document.getElementById("pName").value.trim();
-  const phone = document.getElementById("pPhone").value.trim();
-  const budget = document.getElementById("pBudget").value;
-  const use = document.getElementById("pUse").value;
-  const notes = document.getElementById("pNotes").value.trim();
-  const text =
-`Заявка: Подбор ноутбука
-Имя: ${name}
-Телефон: ${phone}
-Бюджет: ${budget}
-Задачи: ${use}
-Комментарий: ${notes || "-"}
-(Сайт JOHNGALTAZ)`;
-  openWA(text);
-});
-
-setCounts();
-applyI18N();
+(function(){
+  const p = qsParse();
+  if(p.cat){ UI.catSel.value = p.cat; syncSubcats(p.cat); syncBrands(p.cat); }
+  const qv = (UI.searchInput.value||"").trim();
+  UI.queryPill.innerHTML = qv ? `<i class="fa-solid fa-magnifying-glass"></i> "${qv}"` : `<i class="fa-solid fa-magnifying-glass"></i> —`;
+  if(p.sku){ openProduct(p.sku); }
+})();
 </script>
 </body>
 </html>
