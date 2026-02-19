@@ -2,9 +2,9 @@
 <html lang="ru" data-theme="light">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Каталог JOHNGALTAZ: фильтры по CPU/GPU/RAM/SSD/экрану, сравнение, избранное, корзина и оформление заявки." />
-  <title>JOHNGALTAZ — каталог</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="JOHNGALTAZ — каталог товаров: фильтры, поиск, сравнение, избранное, корзина и оформление заявки/заказа." />
+  <title>Каталог — JOHNGALTAZ</title>
 
   <style>
     :root{
@@ -23,38 +23,56 @@
       --focus: 0 0 0 3px rgba(248,92,88,.25);
       --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
     }
+
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{margin:0; font-family:var(--font); color:var(--primary); background:var(--bg); line-height:1.4;}
+    html, body { overflow-x: hidden; }
+    body{
+      margin:0;
+      min-width:320px;
+      font-family:var(--font);
+      color:var(--primary);
+      background:var(--bg);
+      line-height:1.4;
+    }
+    *, *::before, *::after { min-width: 0; }
+    img, svg { max-width: 100%; height: auto; }
+
     a{color:inherit; text-decoration:none}
     button, input, select, textarea{font:inherit}
+    a, button { -webkit-tap-highlight-color: transparent; }
+    button { touch-action: manipulation; }
+
     .container{max-width:var(--max); margin:0 auto; padding:0 16px}
+
     .skip{position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden}
     .skip:focus{left:16px; top:16px; width:auto; height:auto; padding:10px 12px; background:#fff; border-radius:12px; box-shadow:var(--shadow); z-index:9999}
 
-    /* Header */
+    /* Header (same style as index) */
     header{
-      position:sticky; top:0; z-index:60;
+      position:sticky; top:0; z-index:50;
       background:rgba(246,246,243,.85);
       backdrop-filter:saturate(1.3) blur(10px);
       border-bottom:1px solid rgba(214,214,214,.6);
     }
-    .topbar{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 0}
-    .brand{display:flex; align-items:center; gap:12px; min-width:190px}
-    .logo{width:44px; height:44px; border-radius:12px; object-fit:cover; background:#fff; box-shadow:0 6px 16px rgba(11,20,22,.08)}
-    .brand-title{display:flex; flex-direction:column; gap:2px}
-    .brand-title b{letter-spacing:.2px}
+    .topbar{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 0; flex-wrap:wrap; row-gap:10px;}
+    .brand{display:flex; align-items:center; gap:12px; min-width:0; flex: 1 1 auto;}
+    .logo{
+      width:44px; height:44px; border-radius:12px;
+      object-fit:cover; background:#fff; box-shadow:0 6px 16px rgba(11,20,22,.08);
+    }
+    .brand-title{display:flex; flex-direction:column; gap:2px; min-width:0}
+    .brand-title b{letter-spacing:.2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
     .brand-title small{color:var(--muted); font-size:12px}
 
-    .searchwrap{flex:1; display:flex; gap:10px; align-items:center}
+    .searchwrap{flex:1; display:flex; gap:10px; align-items:center; min-width:260px}
     .search{
       width:100%;
       display:flex; gap:8px; align-items:center;
       background:#fff; border:1px solid var(--line);
       border-radius:999px; padding:10px 12px; box-shadow: 0 6px 18px rgba(11,20,22,.05);
     }
-    .search input{border:none; outline:none; width:100%; background:transparent}
-
+    .search input{border:none; outline:none; width:100%; background:transparent;}
     .chip{
       display:inline-flex; align-items:center; gap:8px;
       border:1px solid var(--line);
@@ -63,9 +81,9 @@
       padding:8px 10px;
       color:var(--primary);
     }
-    .chip select{border:none; outline:none; background:transparent; cursor:pointer}
+    .chip select{border:none; outline:none; background:transparent; padding:0; margin:0; cursor:pointer;}
 
-    .actions{display:flex; align-items:center; gap:10px}
+    .actions{display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end;}
     .iconbtn{
       position:relative;
       display:inline-flex; align-items:center; justify-content:center;
@@ -75,66 +93,120 @@
       background:#fff;
       cursor:pointer;
       box-shadow: 0 6px 18px rgba(11,20,22,.05);
+      transition: transform .12s ease, box-shadow .12s ease, background .12s ease, border-color .12s ease;
     }
+    .iconbtn:hover{transform:translateY(-1px)}
     .iconbtn:focus{outline:none; box-shadow:var(--focus), 0 6px 18px rgba(11,20,22,.05)}
     .badge{
       position:absolute; top:-6px; right:-6px;
-      min-width:18px; height:18px; padding:0 5px;
+      min-width:18px; height:18px;
+      padding:0 5px;
       background:var(--accent); color:#fff; border-radius:999px;
       font-size:11px; display:flex; align-items:center; justify-content:center;
       border:2px solid var(--bg);
     }
     .hamb{display:none}
-    nav{padding:0 0 10px 0}
-    .navrow{display:flex; align-items:center; justify-content:space-between; gap:12px}
+
+    nav{padding:0 0 10px 0; display:block}
+    .navrow{display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap}
     .navlinks{display:flex; gap:10px; flex-wrap:wrap}
-    .navlinks a{padding:8px 12px; border-radius:999px; border:1px solid rgba(214,214,214,0); }
-    .navlinks a:hover{background:#fff; border-color:var(--line)}
+    .navlinks a{
+      padding:8px 12px; border-radius:999px;
+      border:1px solid rgba(214,214,214,.0);
+      color:var(--primary);
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+    }
+    .navlinks a:hover{background:#fff; border-color:var(--line); transform:translateY(-1px)}
+    .navright{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+
     .btn{
       display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      padding:10px 14px; border-radius:999px;
-      border:1px solid var(--line); background:#fff;
-      cursor:pointer; font-weight:700;
-    }
-    .btn:focus{outline:none; box-shadow:var(--focus)}
-    .btn.primary{background:var(--accent); border-color:var(--accent); color:#fff; box-shadow:0 10px 26px rgba(248,92,88,.25)}
-    .btn.ghost{background:transparent}
-    .muted{color:var(--muted)}
-    .small{font-size:12px; color:var(--muted)}
-    .pill{
-      display:inline-flex; align-items:center; gap:8px;
-      border:1px solid rgba(214,214,214,.85);
+      padding:12px 16px;
+      min-height:44px;
       border-radius:999px;
-      padding:6px 10px;
-      font-size:12px;
-      background:rgba(246,246,243,.55);
-      color:var(--primary);
+      border:1px solid var(--line);
+      background:#fff;
+      cursor:pointer;
+      font-weight:700;
+      transition: transform .12s ease, box-shadow .12s ease, background .12s ease, border-color .12s ease;
     }
-    .pill.ok{border-color:rgba(15,138,75,.25); background:rgba(15,138,75,.08)}
-    .pill.warn{border-color:rgba(154,106,0,.25); background:rgba(154,106,0,.10)}
-    .pill.accent{border-color:rgba(248,92,88,.25); background:rgba(248,92,88,.10)}
+    .btn:hover{border-color:rgba(214,214,214,.85); transform:translateY(-1px)}
+    .btn:focus{outline:none; box-shadow:var(--focus)}
+    .btn.primary{background:var(--accent); border-color:var(--accent); color:#fff; box-shadow: 0 10px 26px rgba(248,92,88,.25)}
+    .btn.primary:hover{box-shadow: 0 14px 34px rgba(248,92,88,.28)}
 
-    /* Layout */
-    main{padding:16px 0 90px}
-    .grid{
+    .cta{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 16px;
+      min-height:44px;
+      border-radius:999px;
+      background:var(--accent); color:#fff; border:1px solid var(--accent);
+      cursor:pointer; box-shadow: 0 10px 26px rgba(248,92,88,.25);
+      font-weight:800;
+      transition: transform .12s ease, box-shadow .12s ease;
+    }
+    .cta:hover{transform:translateY(-1px); box-shadow: 0 14px 34px rgba(248,92,88,.28)}
+    .cta:focus{outline:none; box-shadow:var(--focus), 0 14px 34px rgba(248,92,88,.28)}
+
+    /* Page layout */
+    main{padding:18px 0 80px}
+    .pagehead{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:12px;
+      margin:10px 0 12px;
+      flex-wrap:wrap;
+    }
+    .pagehead h1{margin:0; font-size: clamp(20px, 2.2vw, 28px); line-height:1.15}
+    .pagehead p{margin:6px 0 0; color:var(--muted); font-size:13px; max-width:70ch}
+    .crumbs{display:flex; gap:8px; align-items:center; color:var(--muted); font-size:12px}
+
+    .layout{
       display:grid;
-      grid-template-columns: 320px 1fr;
+      grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
       gap:12px;
       align-items:start;
     }
+
     .card{
       background:#fff;
       border:1px solid rgba(214,214,214,.75);
       border-radius:var(--radius2);
       box-shadow:var(--shadow);
+      transition: transform .12s ease, box-shadow .12s ease;
     }
+    .card:hover{box-shadow: 0 14px 40px rgba(11,20,22,.10)}
     .pad{padding:14px}
-    .filters h2{margin:0 0 10px 0; font-size:16px}
-    .field{margin-bottom:10px}
-    .field label{display:block; font-size:12px; color:var(--muted); margin-bottom:6px}
+
+    /* Filters */
+    .filters{position:sticky; top:106px;}
+    .fhead{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      margin-bottom:10px;
+    }
+    .fhead b{font-size:15px}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      border:1px solid var(--line);
+      background:rgba(246,246,243,.6);
+      border-radius:999px;
+      padding:7px 10px;
+      font-size:12px;
+      color:var(--primary);
+      white-space:nowrap;
+    }
+    .group{border-top:1px solid rgba(214,214,214,.65); padding-top:12px; margin-top:12px}
+    .group:first-child{border-top:none; padding-top:0; margin-top:0}
+    .gtitle{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px}
+    .gtitle b{font-size:13px}
+    .gtitle button{
+      border:none; background:transparent; cursor:pointer;
+      padding:6px 8px; border-radius:12px;
+    }
+    .gtitle button:focus{outline:none; box-shadow:var(--focus)}
+    .rows{display:flex; flex-direction:column; gap:10px}
+    label{font-size:12px; color:var(--muted)}
     .field input, .field select{
       width:100%;
-      padding:10px 12px;
+      padding:11px 12px;
       border-radius:14px;
       border:1px solid var(--line);
       outline:none;
@@ -142,130 +214,337 @@
     }
     .field input:focus, .field select:focus{box-shadow:var(--focus); border-color:rgba(248,92,88,.45)}
     .range2{display:grid; grid-template-columns:1fr 1fr; gap:10px}
-    .hr{height:1px; background:rgba(214,214,214,.7); margin:12px 0}
+    .rangeval{display:flex; justify-content:space-between; gap:10px; font-size:12px; color:var(--muted)}
+    .switch{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      padding:10px 12px;
+      border:1px solid rgba(214,214,214,.75);
+      border-radius:14px;
+      background:linear-gradient(180deg, #fff, rgba(246,246,243,.35));
+    }
+    .switch input{width:18px; height:18px}
+    .tagrow{display:flex; gap:8px; flex-wrap:wrap}
+    .tag{
+      display:inline-flex; align-items:center; gap:8px;
+      border:1px solid var(--line);
+      background:#fff;
+      border-radius:999px;
+      padding:7px 10px;
+      font-size:12px;
+      cursor:pointer;
+    }
+    .tag.on{border-color:rgba(248,92,88,.55); box-shadow:0 0 0 3px rgba(248,92,88,.14)}
+    .mini{padding:8px 10px; min-height:38px; font-weight:700}
 
-    /* Products list */
+    /* Results top bar */
     .toolbar{
-      display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap;
-      margin-bottom:10px;
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      padding:12px 14px;
+      flex-wrap:wrap;
     }
     .toolbar .left{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
     .toolbar .right{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
-    .count{font-size:13px; color:var(--muted)}
+    .count{color:var(--muted); font-size:12px}
+    .sort{display:flex; align-items:center; gap:8px}
+    .sort select{
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:#fff;
+      outline:none;
+    }
+    .sort select:focus{box-shadow:var(--focus); border-color:rgba(248,92,88,.45)}
+
+    /* Products grid */
     .products{
       display:grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
       gap:12px;
+      padding:0 14px 14px;
     }
     .p{
+      border:1px solid rgba(214,214,214,.75);
+      border-radius:var(--radius2);
       overflow:hidden;
-      display:flex; flex-direction:column;
-      min-height: 360px;
+      background:linear-gradient(180deg, #fff, rgba(246,246,243,.35));
+      box-shadow: 0 10px 30px rgba(11,20,22,.06);
+      transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
     }
+    .p:hover{transform:translateY(-2px); box-shadow: 0 14px 40px rgba(11,20,22,.10)}
     .pimg{
       width:100%;
-      height:170px;
+      aspect-ratio: 4 / 3;
       object-fit:cover;
       background:#fff;
-      border-bottom:1px solid rgba(214,214,214,.65);
     }
-    .pbody{padding:12px; display:flex; flex-direction:column; gap:10px; flex:1}
-    .pname{font-weight:800; font-size:14px}
-    .price{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap}
-    .price b{font-size:16px}
-    .price s{color:var(--muted); font-size:13px}
-    .specs{display:flex; flex-wrap:wrap; gap:8px}
-    .specs .pill{font-size:11px}
-    .pactions{display:flex; flex-wrap:wrap; gap:8px; margin-top:auto}
-    .pactions .btn{padding:9px 12px}
-    .pactions .btn.primary{flex:1}
-    .mini{padding:9px 10px; border-radius:999px; border:1px solid var(--line); background:#fff; cursor:pointer}
-    .mini:focus{outline:none; box-shadow:var(--focus)}
-    .mini.on{border-color:rgba(248,92,88,.55); background:rgba(248,92,88,.10)}
+    .pbody{padding:12px}
+    .pname{margin:0; font-size:14px; line-height:1.25; overflow-wrap:anywhere}
+    .psku{margin-top:4px; color:var(--muted); font-size:12px}
+    .pmeta{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
+    .chip2{
+      display:inline-flex; align-items:center; gap:6px;
+      border:1px solid rgba(214,214,214,.8);
+      border-radius:999px;
+      padding:6px 9px;
+      font-size:12px;
+      background:#fff;
+      color:var(--primary);
+      white-space:nowrap;
+    }
+    .chip2.ok{border-color:rgba(15,138,75,.35); background:rgba(15,138,75,.06)}
+    .chip2.warn{border-color:rgba(154,106,0,.35); background:rgba(154,106,0,.06)}
+    .specs{
+      margin-top:10px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:8px;
+      color:var(--muted);
+      font-size:12px;
+    }
+    .specs div{white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
 
-    /* Modals */
+    .price{
+      display:flex; align-items:baseline; gap:10px;
+      margin-top:10px;
+    }
+    .price b{font-size:16px}
+    .price s{color:var(--muted); font-size:12px}
+    .pactions{
+      margin-top:12px;
+      display:flex; gap:10px; flex-wrap:wrap;
+    }
+    .pactions .btn, .pactions .cta{flex:1 1 auto}
+    .iconbar{display:flex; gap:10px; margin-top:10px}
+    .iconbar .iconbtn{width:42px; height:42px}
+    .sticker{
+      position:absolute; top:10px; left:10px;
+      background:var(--accent); color:#fff;
+      font-size:12px; font-weight:800;
+      padding:6px 10px; border-radius:999px;
+      box-shadow: 0 10px 26px rgba(248,92,88,.25);
+    }
+    .preorderline{
+      margin-top:10px;
+      font-size:12px;
+      color:var(--primary);
+      border-left:3px solid var(--accent);
+      padding:8px 10px;
+      border-radius:12px;
+      background:rgba(248,92,88,.07);
+    }
+
+    /* Drawer / Modal */
     .overlay{
-      position:fixed; inset:0; background:rgba(11,20,22,.45);
-      display:none; z-index:200;
+      position:fixed; inset:0;
+      background:rgba(11,20,22,.45);
+      display:none;
+      z-index:200;
     }
     .overlay.show{display:block}
-    .modal{
-      position:fixed; inset:auto 0 0 0;
-      margin:auto;
-      width:min(980px, 96vw);
-      max-height: min(92vh, 860px);
-      top: 50%;
-      transform: translateY(-50%);
+
+    .drawer{
+      position:fixed; top:0; right:0;
+      width:min(460px, 92vw);
+      height:100%;
       background:#fff;
-      border:1px solid rgba(214,214,214,.75);
-      border-radius:22px;
-      box-shadow: 0 20px 90px rgba(11,20,22,.25);
-      display:none;
+      border-left:1px solid rgba(214,214,214,.75);
+      box-shadow: -20px 0 60px rgba(11,20,22,.18);
+      transform: translateX(110%);
+      transition: transform .18s ease;
       z-index:210;
-      overflow:hidden;
+      display:flex; flex-direction:column;
     }
-    .modal.show{display:block}
-    .mhead{
-      display:flex; justify-content:space-between; gap:10px; align-items:center;
+    .drawer.show{transform: translateX(0)}
+    .drawer header{
+      position:sticky; top:0;
+      background:#fff; border-bottom:1px solid rgba(214,214,214,.65);
       padding:12px 14px;
-      border-bottom:1px solid rgba(214,214,214,.65);
-      background:rgba(246,246,243,.65);
     }
-    .mhead h3{margin:0; font-size:16px}
+    .drawer h3{margin:0; font-size:16px}
+    .drawer .content{padding:12px 14px; overflow:auto; flex:1}
+    .row{display:flex; justify-content:space-between; gap:10px; align-items:center}
     .close{border:none; background:transparent; cursor:pointer; font-size:18px; padding:6px 10px; border-radius:12px}
     .close:focus{outline:none; box-shadow:var(--focus)}
-    .mbody{padding:14px; overflow:auto; max-height: calc(min(92vh, 860px) - 56px);}
+    .item{
+      border:1px solid rgba(214,214,214,.65);
+      border-radius:16px;
+      padding:10px;
+      display:grid;
+      grid-template-columns:64px 1fr;
+      gap:10px;
+      margin-bottom:10px;
+      background:linear-gradient(180deg, #fff, rgba(246,246,243,.35));
+    }
+    .thumb{
+      width:64px; height:64px; border-radius:14px; object-fit:cover; background:#fff;
+      border:1px solid rgba(214,214,214,.65)
+    }
+    .item b{display:block; font-size:13px}
+    .item small{display:block; color:var(--muted); font-size:12px}
+    .qty{display:flex; align-items:center; gap:8px; margin-top:8px; flex-wrap:wrap}
+    .qty button{width:30px; height:30px; border-radius:12px; border:1px solid var(--line); background:#fff; cursor:pointer}
+    .qty input{width:56px; text-align:center; padding:8px; border-radius:12px; border:1px solid var(--line)}
+    .totals{
+      border-top:1px solid rgba(214,214,214,.65);
+      padding:12px 14px;
+      background:rgba(246,246,243,.55);
+    }
+    .totals .cta{width:100%}
 
-    /* PDP layout */
-    .pdp{display:grid; grid-template-columns: 1fr 1.1fr; gap:14px}
-    .gallery{border:1px solid rgba(214,214,214,.75); border-radius:18px; overflow:hidden}
-    .gallery img{width:100%; height:380px; object-fit:cover; background:#fff}
-    .pdp h1{margin:0 0 6px 0; font-size:18px}
-    .meta{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px}
-    .tbl{width:100%; border-collapse:collapse; border-radius:16px; overflow:hidden; border:1px solid rgba(214,214,214,.65)}
-    .tbl td{padding:10px 10px; border-bottom:1px solid rgba(214,214,214,.5); font-size:13px}
-    .tbl tr:last-child td{border-bottom:none}
-    .tabs{display:flex; gap:8px; flex-wrap:wrap; margin:12px 0}
-    .tab{padding:8px 12px; border-radius:999px; border:1px solid var(--line); background:#fff; cursor:pointer}
-    .tab.on{border-color:rgba(248,92,88,.55); background:rgba(248,92,88,.10)}
-    .warnbox{border-left:3px solid var(--accent); background:rgba(248,92,88,.07); padding:10px 12px; border-radius:12px}
-    .doclink{display:flex; align-items:center; justify-content:space-between; gap:10px; border:1px solid rgba(214,214,214,.65); border-radius:14px; padding:10px 12px; margin-bottom:8px}
-    .doclink small{color:var(--muted)}
+    .modal{
+      position:fixed; inset:0;
+      display:none;
+      z-index:260;
+    }
+    .modal.show{display:block}
+    .modal .pane{
+      position:absolute; inset:auto 0 0 0;
+      margin:auto;
+      max-width:min(920px, 96vw);
+      max-height:min(88vh, 740px);
+      top:6vh;
+      background:#fff;
+      border:1px solid rgba(214,214,214,.75);
+      border-radius:var(--radius2);
+      box-shadow: 0 30px 80px rgba(11,20,22,.22);
+      overflow:hidden;
+      left:0; right:0;
+      display:flex; flex-direction:column;
+    }
+    .mhead{
+      padding:12px 14px;
+      border-bottom:1px solid rgba(214,214,214,.65);
+      display:flex; justify-content:space-between; align-items:center; gap:10px;
+      background:rgba(246,246,243,.55);
+    }
+    .mhead b{font-size:14px}
+    .mbody{
+      padding:14px;
+      overflow:auto;
+    }
+    .pdp{
+      display:grid;
+      grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
+      gap:12px;
+      align-items:start;
+    }
+    .gal{
+      border:1px solid rgba(214,214,214,.75);
+      border-radius:var(--radius2);
+      overflow:hidden;
+      background:linear-gradient(180deg, #fff, rgba(246,246,243,.35));
+    }
+    .gal img{width:100%; aspect-ratio: 4/3; object-fit:cover}
+    .pdp h2{margin:0; font-size:18px; line-height:1.2}
+    .pdp .muted{color:var(--muted)}
+    .pdp .box{
+      border:1px solid rgba(214,214,214,.75);
+      border-radius:var(--radius2);
+      padding:12px;
+      background:linear-gradient(180deg, #fff, rgba(246,246,243,.35));
+    }
+    .tbl{width:100%; border-collapse:collapse; font-size:13px}
+    .tbl td{padding:8px 0; border-bottom:1px dashed rgba(214,214,214,.8)}
+    .tbl td:first-child{color:var(--muted); width:42%}
+    .variantrow{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px}
+    .variantrow select{width:100%; padding:11px 12px; border-radius:14px; border:1px solid var(--line); outline:none}
+    .variantrow select:focus{box-shadow:var(--focus); border-color:rgba(248,92,88,.45)}
+    .pdpactions{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
+    .pdpactions .btn, .pdpactions .cta{flex:1 1 auto}
+    .warnbox{
+      margin-top:10px;
+      border-left:3px solid var(--accent);
+      padding:10px 12px;
+      border-radius:12px;
+      background:rgba(248,92,88,.07);
+      font-size:13px;
+    }
+    .docs{
+      display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;
+    }
+    .doclink{
+      display:inline-flex; align-items:center; gap:8px;
+      border:1px solid var(--line);
+      background:#fff;
+      border-radius:999px;
+      padding:9px 12px;
+      font-size:13px;
+    }
 
-    /* Compare table */
-    .cmpwrap{overflow:auto}
-    .cmptbl{border-collapse:collapse; width:100%; min-width:780px; border:1px solid rgba(214,214,214,.65); border-radius:16px; overflow:hidden}
-    .cmptbl th, .cmptbl td{padding:10px; border-bottom:1px solid rgba(214,214,214,.5); font-size:13px; vertical-align:top}
-    .cmptbl th{background:rgba(246,246,243,.7); text-align:left}
-    .diff{background:rgba(248,92,88,.08)}
-    .cmphead{display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:10px}
+    /* Checkout section */
+    .checkoutWrap{margin-top:12px}
+    .checkoutHead{display:flex; align-items:flex-end; justify-content:space-between; gap:12px; flex-wrap:wrap}
+    .checkoutHead h2{margin:0; font-size:18px}
+    .checkoutHead p{margin:6px 0 0; color:var(--muted); font-size:13px}
+    .formgrid{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:12px}
+    .field textarea{width:100%; padding:11px 12px; border-radius:14px; border:1px solid var(--line); outline:none; background:#fff}
+    .field textarea:focus{box-shadow:var(--focus); border-color:rgba(248,92,88,.45)}
+    .b2bBox{
+      margin-top:10px;
+      border:1px solid rgba(214,214,214,.75);
+      border-radius:var(--radius2);
+      padding:12px;
+      background:linear-gradient(180deg, #fff, rgba(246,246,243,.35));
+    }
+    .b2bBox .formgrid{margin-top:10px}
+    .file{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      padding:10px 12px;
+      border:1px solid rgba(214,214,214,.75);
+      border-radius:14px;
+      background:#fff;
+    }
+    .file input{max-width:100%}
+    .help{color:var(--muted); font-size:12px; margin-top:8px}
+    /* Убираем подсказки (как ты просил) */
+    .help, #urlHint, #priceHint{display:none !important;}
 
-    /* Floating WA */
-    .float-wa{position:fixed; right:16px; bottom:16px; z-index:220}
+    /* Floating WhatsApp */
+    .float-wa{
+      position:fixed;
+      right:16px;
+      bottom:16px;
+      z-index:220;
+      display:flex; flex-direction:column; gap:10px;
+    }
     .fab{
-      width:56px; height:56px; border-radius:999px;
-      border:none; cursor:pointer; color:#fff;
+      width:56px; height:56px;
+      border-radius:999px;
+      border:none;
+      cursor:pointer;
+      color:#fff;
       background:var(--accent);
       box-shadow: 0 14px 30px rgba(248,92,88,.35);
       display:flex; align-items:center; justify-content:center;
+      transition: transform .12s ease, box-shadow .12s ease;
     }
-    .fab:focus{outline:none; box-shadow:var(--focus), 0 14px 30px rgba(248,92,88,.35)}
+    .fab:hover{transform:translateY(-1px); box-shadow: 0 18px 38px rgba(248,92,88,.38)}
+    .fab:focus{outline:none; box-shadow:var(--focus), 0 18px 38px rgba(248,92,88,.38)}
     .sr{position:absolute; left:-999px; width:1px; height:1px; overflow:hidden}
 
     /* Mobile */
-    @media (max-width: 980px){
-      .products{grid-template-columns: repeat(2, 1fr)}
-      .grid{grid-template-columns:1fr}
+    @media (max-width: 920px){
+      .searchwrap{min-width: 0; flex: 1 1 100%;}
       .hamb{display:inline-flex}
       nav{display:none}
       nav.open{display:block}
-      .searchwrap{display:none}
+      .layout{grid-template-columns: 1fr}
+      .filters{position:static; top:auto}
+      .modal .pane{top:4vh}
       .pdp{grid-template-columns:1fr}
-      .gallery img{height:280px}
-      .modal{top:52%; transform:translateY(-50%);}
     }
-    @media (max-width: 560px){
-      .products{grid-template-columns:1fr}
+    @media (max-width: 520px){
+      .container{padding:0 14px}
+      .iconbtn{width:40px; height:40px}
+      .chip{padding:7px 9px}
+      .float-wa{right:12px; bottom:12px}
+      .btn, .cta{width:100%}
+      .sort{width:100%}
+      .sort select{width:100%}
+      .toolbar .left, .toolbar .right{width:100%}
+      .products{padding:0 12px 12px}
+      .formgrid{grid-template-columns:1fr}
+      .variantrow{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -280,15 +559,15 @@
         <img class="logo" src="images/logo.jpg" alt="Логотип JOHNGALTAZ" />
         <div class="brand-title">
           <b>JOHNGALTAZ</b>
-          <small id="ui-subtitle">Каталог • Фильтры • Заказ</small>
+          <small id="ui-subtitle">Каталог • Фильтры • Оформление</small>
         </div>
       </a>
 
       <div class="searchwrap" role="search">
         <div class="search" aria-label="Поиск по каталогу">
           <span aria-hidden="true">🔎</span>
-          <input id="qTop" placeholder="Поиск: ноутбук, RTX 4060, монитор..." autocomplete="off" />
-          <button class="btn" id="qBtn" type="button">Найти</button>
+          <input id="searchInput" placeholder="Поиск: ноутбук, RTX 4060, монитор..." autocomplete="off" />
+          <button class="btn mini" id="doSearch" type="button">Найти</button>
         </div>
       </div>
 
@@ -325,19 +604,16 @@
       </div>
     </div>
 
-    <nav id="nav" aria-label="Навигация">
+    <nav id="nav" aria-label="Основная навигация">
       <div class="navrow">
         <div class="navlinks">
           <a href="index.html" id="navHome">Главная</a>
-          <a href="catalog.html?cat=laptops" id="navL">Игровые ноутбуки</a>
-          <a href="catalog.html?cat=periphery" id="navP">Периферия</a>
-          <a href="catalog.html?cat=home" id="navH">Бытовая техника</a>
-          <a href="catalog.html?cat=cosmo" id="navC">Косметология</a>
-          <a href="catalog.html?cat=medical" id="navM">Медицина</a>
+          <a href="catalog.html" id="navCatalog">Каталог</a>
+          <a href="#checkout" id="navCheckout">Оформление</a>
         </div>
-        <div class="navlinks">
-          <button class="btn primary" id="openCheckout" type="button">Оформить</button>
-          <button class="btn" id="askWA" type="button">WhatsApp</button>
+        <div class="navright">
+          <button class="btn" id="openCompare" type="button">Сравнение</button>
+          <button class="cta" id="openOneClick" type="button">Купить в 1 клик</button>
         </div>
       </div>
     </nav>
@@ -345,106 +621,318 @@
 </header>
 
 <main id="main" class="container">
-  <div class="grid">
+  <div class="pagehead">
+    <div>
+      <div class="crumbs" id="crumbs">Главная → Каталог</div>
+      <h1 id="pageTitle">Каталог товаров</h1>
+      <p id="pageDesc">Фильтры работают быстро, сравнение до 4 товаров, избранное и корзина. Для предзаказа показываем сроки “~8 дней до Алматы + доставка”.</p>
+    </div>
+    <div class="pill" id="activePill">Активные фильтры: 0</div>
+  </div>
+
+  <div class="layout">
     <!-- Filters -->
-    <aside class="card pad filters" aria-label="Фильтры">
-      <h2 id="fTitle">Фильтры</h2>
-
-      <div class="field">
-        <label for="catSel" id="fCatL">Категория</label>
-        <select id="catSel"></select>
+    <aside class="card pad filters" id="filtersCard" aria-label="Фильтры каталога">
+      <div class="fhead">
+        <b>Фильтры</b>
+        <button class="btn mini" type="button" id="resetBtn">Сброс</button>
       </div>
 
-      <div class="field">
-        <label for="q" id="fSearchL">Поиск</label>
-        <input id="q" placeholder="например: RTX 4060 / монитор" />
-      </div>
-
-      <div class="field">
-        <label id="fPriceL">Цена (KZT, базовая)</label>
-        <div class="range2">
-          <input id="pMin" inputmode="numeric" placeholder="Мин" />
-          <input id="pMax" inputmode="numeric" placeholder="Макс" />
+      <div class="group">
+        <div class="gtitle">
+          <b>Категория</b>
+          <button type="button" data-toggle="cat">▾</button>
         </div>
-        <div class="small" id="priceHint" style="margin-top:6px"></div>
+        <div class="rows" data-box="cat">
+          <div class="field">
+            <label for="catSel">Выбор</label>
+            <select id="catSel">
+              <option value="">Все категории</option>
+              <option value="laptops">Игровые ноутбуки</option>
+              <option value="periphery">Периферия</option>
+              <option value="home">Мелко-бытовая техника</option>
+              <option value="cosmo">Косметическое оборудование</option>
+              <option value="medical">Медицинское оборудование</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="subSel">Подкатегория</label>
+            <select id="subSel">
+              <option value="">Все</option>
+            </select>
+          </div>
+        </div>
       </div>
 
-      <div class="field">
-        <label for="brandSel" id="fBrandL">Бренд</label>
-        <select id="brandSel"></select>
+      <div class="group">
+        <div class="gtitle">
+          <b>Цена</b>
+          <button type="button" data-toggle="price">▾</button>
+        </div>
+        <div class="rows" data-box="price">
+          <div class="range2">
+            <div class="field">
+              <label for="minPrice">Мин (KZT)</label>
+              <input id="minPrice" inputmode="numeric" placeholder="0" />
+            </div>
+            <div class="field">
+              <label for="maxPrice">Макс (KZT)</label>
+              <input id="maxPrice" inputmode="numeric" placeholder="∞" />
+            </div>
+          </div>
+          <div class="rangeval" id="priceHint">Подсказка по цене</div>
+        </div>
       </div>
 
-      <div class="field">
-        <label for="stockSel" id="fStockL">Наличие</label>
-        <select id="stockSel">
-          <option value="">Любое</option>
-          <option value="in">В наличии</option>
-          <option value="pre">Под заказ/Предзаказ</option>
-        </select>
+      <div class="group">
+        <div class="gtitle">
+          <b>Бренд</b>
+          <button type="button" data-toggle="brand">▾</button>
+        </div>
+        <div class="rows" data-box="brand">
+          <div class="field">
+            <label for="brandSel">Выбор</label>
+            <select id="brandSel">
+              <option value="">Все</option>
+            </select>
+          </div>
+        </div>
       </div>
 
-      <div id="laptopFilters">
-        <div class="hr"></div>
-        <div class="small muted" id="lfTitle">Фильтры для ноутбуков</div>
-
-        <div class="field"><label for="cpuSel">CPU</label><select id="cpuSel"></select></div>
-        <div class="field"><label for="gpuSel">GPU</label><select id="gpuSel"></select></div>
-        <div class="field"><label for="ramSel">RAM</label><select id="ramSel"></select></div>
-        <div class="field"><label for="ssdSel">SSD</label><select id="ssdSel"></select></div>
-        <div class="field"><label for="screenSel">Диагональ</label><select id="screenSel"></select></div>
-        <div class="field"><label for="hzSel">Частота экрана</label><select id="hzSel"></select></div>
-        <div class="field"><label for="matrixSel">Тип матрицы</label><select id="matrixSel"></select></div>
-        <div class="field"><label for="osSel">ОС</label><select id="osSel"></select></div>
+      <div class="group">
+        <div class="gtitle">
+          <b>Наличие</b>
+          <button type="button" data-toggle="stock">▾</button>
+        </div>
+        <div class="rows" data-box="stock">
+          <div class="switch">
+            <span>Только “В наличии”</span>
+            <input type="checkbox" id="onlyInStock" />
+          </div>
+          <div class="switch">
+            <span>Показывать “Предзаказ”</span>
+            <input type="checkbox" id="showPreorder" checked />
+          </div>
+        </div>
       </div>
 
-      <div class="hr"></div>
-      <div class="field">
-        <button class="btn primary" id="applyBtn" type="button">Применить</button>
-        <button class="btn" id="resetBtn" type="button">Сброс</button>
+      <!-- Laptop-only -->
+      <div class="group" id="laptopFilters" style="display:none">
+        <div class="gtitle">
+          <b>Ноутбуки: характеристики</b>
+          <button type="button" data-toggle="laptop">▾</button>
+        </div>
+        <div class="rows" data-box="laptop">
+          <div class="field">
+            <label for="cpuSel">CPU</label>
+            <select id="cpuSel"><option value="">Любой</option></select>
+          </div>
+          <div class="field">
+            <label for="gpuSel">GPU</label>
+            <select id="gpuSel"><option value="">Любой</option></select>
+          </div>
+          <div class="field">
+            <label for="ramSel">RAM</label>
+            <select id="ramSel"><option value="">Любая</option></select>
+          </div>
+          <div class="field">
+            <label for="ssdSel">SSD</label>
+            <select id="ssdSel"><option value="">Любой</option></select>
+          </div>
+          <div class="field">
+            <label for="inchSel">Экран (дюймы)</label>
+            <select id="inchSel"><option value="">Любой</option></select>
+          </div>
+          <div class="field">
+            <label for="hzSel">Частота (Hz)</label>
+            <select id="hzSel"><option value="">Любая</option></select>
+          </div>
+          <div class="field">
+            <label for="osSel">ОС</label>
+            <select id="osSel"><option value="">Любая</option></select>
+          </div>
+          <div class="field">
+            <label for="panelSel">Матрица</label>
+            <select id="panelSel"><option value="">Любая</option></select>
+          </div>
+        </div>
       </div>
 
-      <div class="small muted" id="urlHint">
-        URL обновляется параметрами фильтра (в пределах статического сайта).
+      <div class="group">
+        <div class="gtitle">
+          <b>Быстрые категории</b>
+          <button type="button" data-toggle="quick">▾</button>
+        </div>
+        <div class="tagrow" data-box="quick">
+          <span class="tag" data-qcat="laptops">Игровые ноутбуки</span>
+          <span class="tag" data-qcat="periphery">Периферия</span>
+          <span class="tag" data-qcat="home">Бытовая техника</span>
+          <span class="tag" data-qcat="cosmo">Космо</span>
+          <span class="tag" data-qcat="medical">Мед</span>
+          <span class="tag" data-qreset="1">Все</span>
+        </div>
+      </div>
+
+      <div class="group">
+        <div class="rows">
+          <button class="cta" type="button" id="applyBtn">Применить</button>
+          <div class="rangeval" id="urlHint">Подсказка по URL</div>
+        </div>
       </div>
     </aside>
 
-    <!-- List -->
-    <section>
+    <!-- Results -->
+    <section class="card" aria-label="Список товаров">
       <div class="toolbar">
         <div class="left">
-          <span class="pill" id="crumb">Каталог</span>
-          <span class="count" id="count">0 товаров</span>
+          <span class="count" id="countText">Найдено: 0</span>
+          <span class="pill" id="queryPill">Запрос: —</span>
         </div>
         <div class="right">
-          <span class="pill" id="preHint">Предзаказ: ~8 дней до Алматы</span>
-          <select id="sortSel" class="btn" aria-label="Сортировка">
-            <option value="pop">Популярности</option>
-            <option value="new">Новизне</option>
-            <option value="priceAsc">Цене ↑</option>
-            <option value="priceDesc">Цене ↓</option>
-          </select>
+          <div class="sort">
+            <span class="count">Сортировка</span>
+            <select id="sortSel" aria-label="Сортировка">
+              <option value="pop">Популярность</option>
+              <option value="new">Новизна</option>
+              <option value="price_asc">Цена: по возрастанию</option>
+              <option value="price_desc">Цена: по убыванию</option>
+            </select>
+          </div>
+          <button class="btn mini" type="button" id="openFiltersMobile">Фильтры</button>
         </div>
       </div>
 
-      <div class="products" id="products" aria-live="polite"></div>
-      <div class="small muted" id="emptyMsg" style="margin-top:10px; display:none">Ничего не найдено. Попробуйте изменить фильтры.</div>
+      <div class="products" id="products"></div>
     </section>
   </div>
+
+  <!-- Checkout -->
+  <section id="checkout" class="checkoutWrap">
+    <div class="checkoutHead">
+      <div>
+        <h2>Оформление заказа / заявки</h2>
+        <p>Заполняется за 1–2 минуты. В тестовой версии заявка отправляется в WhatsApp администратору.</p>
+      </div>
+      <div class="pill" id="cartMini">В корзине: 0</div>
+    </div>
+
+    <div class="card pad" style="margin-top:12px">
+      <form id="checkoutForm">
+        <div class="formgrid">
+          <div class="field">
+            <label for="cName">ФИО</label>
+            <input id="cName" required placeholder="Например: Иван Иванов" />
+          </div>
+          <div class="field">
+            <label for="cPhone">Телефон</label>
+            <input id="cPhone" required placeholder="+7 ..." />
+          </div>
+          <div class="field">
+            <label for="cCity">Город</label>
+            <input id="cCity" required placeholder="Алматы / Астана / ..." />
+          </div>
+          <div class="field">
+            <label for="cAddr">Адрес</label>
+            <input id="cAddr" required placeholder="Улица, дом, квартира" />
+          </div>
+          <div class="field">
+            <label for="cShip">Способ доставки</label>
+            <select id="cShip" required>
+              <option value="curier">Курьер</option>
+              <option value="pickup">Самовывоз</option>
+              <option value="post">Казпочта / доставка</option>
+              <option value="sdek">СДЭК</option>
+              <option value="boxberry">Boxberry</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="cPay">Способ оплаты</label>
+            <select id="cPay" required>
+              <option value="kaspi">Kaspi</option>
+              <option value="card">Карта</option>
+              <option value="transfer">Перевод</option>
+              <option value="online">Онлайн-эквайринг (когда будет)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field" style="margin-top:10px">
+          <label for="cComment">Комментарий (опционально)</label>
+          <textarea id="cComment" rows="3" placeholder="Например: удобное время доставки, уточнения по комплектации..."></textarea>
+        </div>
+
+        <div class="b2bBox">
+          <div class="switch" style="margin:0">
+            <span><b>Юр. лицо</b> (B2B)</span>
+            <input type="checkbox" id="isB2B" />
+          </div>
+
+          <div id="b2bFields" style="display:none">
+            <div class="formgrid">
+              <div class="field">
+                <label for="bCompany">Компания</label>
+                <input id="bCompany" placeholder="ТОО ..." />
+              </div>
+              <div class="field">
+                <label for="bBin">БИН/ИНН</label>
+                <input id="bBin" placeholder="..." />
+              </div>
+              <div class="field">
+                <label for="bAddr">Юр. адрес</label>
+                <input id="bAddr" placeholder="..." />
+              </div>
+              <div class="field">
+                <label for="bEmail">Email для счёта</label>
+                <input id="bEmail" type="email" placeholder="..." />
+              </div>
+            </div>
+
+            <div class="file" style="margin-top:10px">
+              <div>
+                <b style="font-size:13px">Реквизиты файлом (опционально)</b>
+                <div class="help">Подсказка</div>
+              </div>
+              <input id="bFile" type="file" />
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap">
+          <button class="cta" type="submit">Отправить заявку/заказ в WhatsApp</button>
+          <button class="btn" type="button" id="openCartFromCheckout">Открыть корзину</button>
+        </div>
+      </form>
+    </div>
+  </section>
 </main>
 
-<!-- Modal -->
+<!-- Overlay + Drawer (cart/wish/compare) -->
 <div class="overlay" id="overlay" tabindex="-1" aria-hidden="true"></div>
 
-<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Окно">
-  <div class="mhead">
-    <h3 id="mTitle">Окно</h3>
-    <button class="close" id="mClose" type="button" aria-label="Закрыть">✕</button>
+<aside class="drawer" id="drawer" aria-label="Панель">
+  <header class="row">
+    <h3 id="drawerTitle">Панель</h3>
+    <button class="close" id="drawerClose" type="button" aria-label="Закрыть">✕</button>
+  </header>
+  <div class="content" id="drawerContent"></div>
+  <div class="totals" id="drawerTotals" style="display:none"></div>
+</aside>
+
+<!-- Product modal -->
+<div class="modal" id="modal" aria-hidden="true">
+  <div class="overlay show" id="modalOverlay" style="display:block"></div>
+  <div class="pane" role="dialog" aria-modal="true" aria-label="Карточка товара">
+    <div class="mhead">
+      <b id="mTitle">Товар</b>
+      <button class="close" id="mClose" type="button" aria-label="Закрыть">✕</button>
+    </div>
+    <div class="mbody" id="mBody"></div>
   </div>
-  <div class="mbody" id="mBody"></div>
 </div>
 
 <!-- Floating WA -->
-<div class="float-wa">
+<div class="float-wa" aria-label="Быстрые кнопки">
   <button class="fab" id="fabWA" type="button" aria-label="WhatsApp">
     <span aria-hidden="true">💬</span>
     <span class="sr">WhatsApp</span>
@@ -453,145 +941,87 @@
 
 <script>
 /* ===========================
-   Catalog app (2 files)
+   Catalog mini-app (2 files)
    =========================== */
 
-const ADMIN_WA = "+77470436747";
+const ADMIN_WA = "+77470436747"; // из ТЗ
 const STORE_KEY = "jg_store_v1";
 
+/* I18N (минимально для UI-ядра) */
 const I18N = {
   ru: {
-    subtitle: "Каталог • Фильтры • Заказ",
-    filters: "Фильтры",
-    apply: "Применить",
-    reset: "Сброс",
-    any: "Любое",
-    inStock: "В наличии",
-    preorder: "Под заказ/Предзаказ",
-    preorderHint: "Поставка до Алматы ~ 8 дней + доставка по городу/в регионы",
-    addCart: "В корзину",
-    buyNow: "Купить сейчас",
-    oneClick: "В 1 клик",
-    ask: "Задать вопрос",
-    wish: "В избранное",
-    cmp: "Сравнить",
-    remove: "Убрать",
-    details: "Подробнее",
-    specs: "Характеристики",
-    desc: "Описание",
-    docs: "Документы",
-    important: "Важно/предупреждение",
-    also: "С этим покупают",
-    similar: "Похожие товары",
-    requestQuote: "Запрос КП",
+    subtitle: "Каталог • Фильтры • Оформление",
+    empty: "Пока пусто",
     cart: "Корзина",
     wishlist: "Избранное",
     compare: "Сравнение",
-    checkout: "Оформление заказа",
-    empty: "Пока пусто",
+    checkout: "Оформить (в WhatsApp)",
+    in: "В наличии",
+    pre: "Под заказ / Предзаказ",
+    preorderLine: "Поставка до Алматы ~ 8 дней + доставка по городу/в регионы",
+    ask: "Задать вопрос",
+    quote: "Запрос КП",
+    buy: "В корзину",
+    buyNow: "Купить сейчас",
+    oneClick: "Купить в 1 клик",
+    open: "Открыть",
+    remove: "Убрать",
+    del: "Удалить",
     total: "Итого",
-    b2b: "Юр. лицо",
-    send: "Отправить в WhatsApp",
-    city: "Город",
-    address: "Адрес",
-    delivery: "Способ доставки",
-    pay: "Способ оплаты",
-    comment: "Комментарий",
-    company: "Компания",
-    bin: "БИН/ИНН",
-    email: "Email для счёта",
-    contact: "Контактное лицо",
-    attach: "Реквизиты (файл)",
+    goCheckout: "Перейти к оформлению",
+    diff: "Показать отличия",
   },
   kz: {
-    subtitle: "Каталог • Сүзгілер • Тапсырыс",
-    filters: "Сүзгілер",
-    apply: "Қолдану",
-    reset: "Тазалау",
-    any: "Кез келген",
-    inStock: "Қоймада бар",
-    preorder: "Тапсырыспен/Алдын ала",
-    preorderHint: "Алматыға ~ 8 күн + қала/аймаққа жеткізу",
-    addCart: "Себетке",
-    buyNow: "Қазір алу",
-    oneClick: "1 шерту",
-    ask: "Сұрақ қою",
-    wish: "Таңдаулыға",
-    cmp: "Салыстыру",
-    remove: "Жою",
-    details: "Толығырақ",
-    specs: "Сипаттама",
-    desc: "Сипаттама (мәтін)",
-    docs: "Құжаттар",
-    important: "Маңызды/ескерту",
-    also: "Қосымша",
-    similar: "Ұқсас",
-    requestQuote: "КП сұрау",
+    subtitle: "Каталог • Сүзгілер • Рәсімдеу",
+    empty: "Әзірге бос",
     cart: "Себет",
     wishlist: "Таңдаулылар",
     compare: "Салыстыру",
-    checkout: "Тапсырыс рәсімдеу",
-    empty: "Әзірге бос",
-    total: "Жиыны",
-    b2b: "Заңды тұлға",
-    send: "WhatsApp жіберу",
-    city: "Қала",
-    address: "Мекенжай",
-    delivery: "Жеткізу тәсілі",
-    pay: "Төлем тәсілі",
-    comment: "Пікір",
-    company: "Компания",
-    bin: "БИН/ИНН",
-    email: "Шотқа email",
-    contact: "Байланыс тұлғасы",
-    attach: "Реквизит (файл)",
+    checkout: "WhatsApp-қа жіберу",
+    in: "Бар",
+    pre: "Алдын ала тапсырыс",
+    preorderLine: "Алматыға ~ 8 күн + қала/аймақ жеткізуі",
+    ask: "Сұрақ қою",
+    quote: "КП сұрау",
+    buy: "Себетке",
+    buyNow: "Қазір сатып алу",
+    oneClick: "1 шерту",
+    open: "Ашу",
+    remove: "Алу",
+    del: "Өшіру",
+    total: "Барлығы",
+    goCheckout: "Рәсімдеуге өту",
+    diff: "Айырмашылық",
   },
   en: {
-    subtitle: "Catalog • Filters • Order",
-    filters: "Filters",
-    apply: "Apply",
-    reset: "Reset",
-    any: "Any",
-    inStock: "In stock",
-    preorder: "Preorder",
-    preorderHint: "~8 days to Almaty + local/regions delivery",
-    addCart: "Add to cart",
-    buyNow: "Buy now",
-    oneClick: "1-click",
-    ask: "Ask",
-    wish: "Wishlist",
-    cmp: "Compare",
-    remove: "Remove",
-    details: "Details",
-    specs: "Specs",
-    desc: "Description",
-    docs: "Documents",
-    important: "Important / warnings",
-    also: "Frequently bought together",
-    similar: "Similar items",
-    requestQuote: "Request a quote",
+    subtitle: "Catalog • Filters • Checkout",
+    empty: "It’s empty for now",
     cart: "Cart",
     wishlist: "Wishlist",
     compare: "Compare",
-    checkout: "Checkout",
-    empty: "It’s empty for now",
+    checkout: "Send via WhatsApp",
+    in: "In stock",
+    pre: "Preorder",
+    preorderLine: "~8 days to Almaty + local/regional delivery",
+    ask: "Ask",
+    quote: "Request quote",
+    buy: "Add to cart",
+    buyNow: "Buy now",
+    oneClick: "1-click",
+    open: "Open",
+    remove: "Remove",
+    del: "Delete",
     total: "Total",
-    b2b: "Business",
-    send: "Send to WhatsApp",
-    city: "City",
-    address: "Address",
-    delivery: "Delivery method",
-    pay: "Payment method",
-    comment: "Comment",
-    company: "Company",
-    bin: "Tax ID",
-    email: "Invoice email",
-    contact: "Contact person",
-    attach: "Company details (file)",
+    goCheckout: "Go to checkout",
+    diff: "Highlight diffs",
   }
 };
 
-const FX = { KZT:1, RUB:0.20, USD:0.0022 };
+const FX = { // тестовые курсы
+  KZT: 1,
+  RUB: 0.20,
+  USD: 0.0022
+};
 
 function loadState(){
   const raw = localStorage.getItem(STORE_KEY);
@@ -614,1204 +1044,1376 @@ function openWA(text){
 }
 
 const state = loadState();
-document.getElementById("langSel").value = state.lang;
-document.getElementById("curSel").value = state.cur;
 
-/* ===== Data: 50 товаров (пример) =====
-   Картинки: images/tovar1.jpg ... images/tovar50.jpg
-   ЛОГИКА: 1 файл catalog.html хранит витрину данных (потом можно заменить на JSON/админку).
-*/
-const CATEGORIES = [
-  { id:"",        name:{ru:"Все категории", kz:"Барлық санаттар", en:"All categories"}, kind:"any" },
-  { id:"laptops", name:{ru:"Игровые ноутбуки", kz:"Ойын ноутбуктары", en:"Gaming laptops"}, kind:"laptop" },
-  { id:"periphery", name:{ru:"Периферия", kz:"Периферия", en:"Peripherals"}, kind:"other" },
-  { id:"home", name:{ru:"Мелко-бытовая техника", kz:"Тұрмыстық техника", en:"Home appliances"}, kind:"other" },
-  { id:"cosmo", name:{ru:"Косметическое оборудование", kz:"Косметология жабдығы", en:"Cosmetology equipment"}, kind:"docs" },
-  { id:"medical", name:{ru:"Медицинское оборудование", kz:"Медициналық жабдық", en:"Medical equipment"}, kind:"docs" },
+/* ===========================
+   Data (50 товаров)
+   - картинки: images/tovar1.jpg ... tovar50.jpg
+   =========================== */
+
+function mkLaptop(i, brand, cpu, gpu, ram, ssd, inch, hz, panel, os, price, oldPrice, stock){
+  return {
+    id: i,
+    sku: `LAP-${String(i).padStart(3,"0")}`,
+    name: `${brand} Gaming ${inch}" (${cpu} / ${gpu})`,
+    cat: "laptops",
+    sub: "gaming",
+    brand,
+    priceKZT: price,
+    oldPriceKZT: oldPrice || null,
+    stock, // "in" | "pre"
+    leadDays: stock==="pre" ? 8 : 0,
+    img: `tovar${i}.jpg`,
+    popularity: 100 - i,
+    created: 1000 - i,
+    flags: { quoteOnly:false },
+    specs: { cpu, gpu, ram, ssd, inch, hz, panel, os, weight: (2.1 + (i%7)*0.05).toFixed(2) + " kg", backlight: (i%2===0) ? "Да" : "Опц." }
+  };
+}
+
+function mkSimple(i, cat, sub, brand, name, price, oldPrice, stock, quoteOnly=false){
+  return {
+    id: i,
+    sku: `${cat.toUpperCase().slice(0,3)}-${String(i).padStart(3,"0")}`,
+    name: name,
+    cat, sub,
+    brand,
+    priceKZT: price,
+    oldPriceKZT: oldPrice || null,
+    stock,
+    leadDays: stock==="pre" ? 8 : 0,
+    img: `tovar${i}.jpg`,
+    popularity: 80 - (i%30),
+    created: 900 - i,
+    flags: { quoteOnly: !!quoteOnly },
+    specs: {}
+  };
+}
+
+/* Собираем ровно 50 */
+const PRODUCTS = [];
+// 1..20 laptops
+const brandsL = ["THUNDEROBOT","ASUS","Acer","MSI","Lenovo"];
+const cpus = ["Intel i5-13420H","Intel i7-13620H","Ryzen 5 7640HS","Ryzen 7 7840HS","Intel i9-13900H"];
+const gpus = ["RTX 4050","RTX 4060","RTX 4070","RTX 4080","RTX 3050"];
+const rams = ["16GB","32GB","64GB"];
+const ssds = ["512GB NVMe","1TB NVMe","2TB NVMe"];
+const inches = ["15.6","16","17.3"];
+const hzs = ["144","165","240"];
+const panels = ["IPS","VA","Mini-LED"];
+const oss = ["Windows 11","Без ОС","Linux"];
+
+for(let i=1;i<=20;i++){
+  const brand = brandsL[i%brandsL.length];
+  const cpu = cpus[i%cpus.length];
+  const gpu = gpus[i%gpus.length];
+  const ram = rams[i%rams.length];
+  const ssd = ssds[i%ssds.length];
+  const inch = inches[i%inches.length];
+  const hz = hzs[i%hzs.length];
+  const panel = panels[i%panels.length];
+  const os = oss[i%oss.length];
+  const price = 420000 + i*28000;
+  const oldP = (i%4===0) ? Math.round(price*1.12) : null;
+  const stock = (i%3===0) ? "pre" : "in";
+  PRODUCTS.push(mkLaptop(i, brand, cpu, gpu, ram, ssd, inch, hz, panel, os, price, oldP, stock));
+}
+
+// 21..35 periphery + home
+const perBrands = ["Logitech","Razer","HyperX","SteelSeries","AOC"];
+const homeBrands = ["Xiaomi","Philips","Tefal","Samsung","LG"];
+
+const perSubs = [
+  ["mice","Мышь игровая"],
+  ["keyboards","Клавиатура механическая"],
+  ["headsets","Гарнитура"],
+  ["monitors","Монитор"],
+  ["pads","Коврик"]
 ];
 
-const BRANDS = ["THUNDEROBOT","ASUS","MSI","Acer","Lenovo","HP","Logitech","Razer","Philips","Xiaomi","Beurer","Omron"];
-const CPU = ["Intel i5","Intel i7","Intel i9","Ryzen 5","Ryzen 7","Ryzen 9"];
-const GPU = ["RTX 4050","RTX 4060","RTX 4070","RTX 4080","RTX 4090"];
-const RAM = ["16 GB","32 GB","64 GB"];
-const SSD = ["512 GB","1 TB","2 TB"];
-const SCREEN = ["15.6\"","16\"","17.3\""];
-const HZ = ["144 Hz","165 Hz","240 Hz"];
-const MATRIX = ["IPS","OLED"];
-const OS = ["Windows 11","Без ОС"];
-
-function pick(arr, i){ return arr[i % arr.length]; }
-function randBetween(min,max, i){ // детерминированно по i
-  const x = Math.sin((i+1)*999) * 10000;
-  const r = x - Math.floor(x);
-  return Math.floor(min + r*(max-min+1));
+for(let i=21;i<=30;i++){
+  const b = perBrands[i%perBrands.length];
+  const [sub, base] = perSubs[i%perSubs.length];
+  const name = `${b} ${base} Pro ${i}`;
+  const price = 12000 + (i-20)*9000;
+  const oldP = (i%5===0) ? Math.round(price*1.18) : null;
+  const stock = (i%4===0) ? "pre" : "in";
+  PRODUCTS.push(mkSimple(i, "periphery", sub, b, name, price, oldP, stock, false));
 }
 
-function genProducts(){
-  const items = [];
-  let skuNum = 1;
+const homeSubs = [
+  ["kitchen","Техника для кухни"],
+  ["care","Уход/гигиена"],
+  ["climate","Климат"],
+  ["clean","Уборка"],
+  ["iron","Утюг/пар"]
+];
 
-  // 25 laptops
-  for(let i=1;i<=25;i++){
-    const brand = pick(BRANDS.slice(0,6), i);
-    const cpu = pick(CPU, i);
-    const gpu = pick(GPU, i);
-    const ram = pick(RAM, i);
-    const ssd = pick(SSD, i);
-    const screen = pick(SCREEN, i);
-    const hz = pick(HZ, i);
-    const matrix = pick(MATRIX, i);
-    const os = pick(OS, i);
-    const base = randBetween(420000, 1650000, i);
-    const sale = (i%5===0) ? Math.round(base*1.12) : null; // старая цена
-    const stock = (i%3===0) ? "pre" : "in";
-    const leadDays = stock==="pre" ? 8 : 0;
-
-    const model = `Gaming ${brand} ${gpu} (${screen} ${hz})`;
-
-    // варианты как конфигурации (пример)
-    const variants = [
-      { vid:1, name:`${ram} / ${ssd}`, priceKZT: base, stock },
-      { vid:2, name:`${ram==="16 GB"?"32 GB":"64 GB"} / ${ssd}`, priceKZT: Math.round(base*1.12), stock: (i%4===0)?"pre":"in" },
-    ];
-
-    items.push({
-      id: `JG-${String(skuNum++).padStart(4,"0")}`,
-      cat: "laptops",
-      brand,
-      name: { ru: model, kz: model, en: model },
-      img: `tovar${i}.jpg`,
-      priceKZT: base,
-      oldPriceKZT: sale,
-      stock,
-      leadDays,
-      popularity: randBetween(1,100, i*3),
-      createdAt: Date.now() - randBetween(1, 120, i)*86400000,
-      laptop: { cpu, gpu, ram, ssd, screen, hz, matrix, os, skuNote:`SKU-${i}` },
-      desc: {
-        ru: `Кому подойдёт: игры и работа. Преимущества: ${gpu}, ${hz}, быстрый SSD. Комплектация: ноутбук, зарядка, документы.`,
-        kz: `Ойын және жұмысқа. Артықшылықтары: ${gpu}, ${hz}, жылдам SSD. Жиынтық: ноутбук, зарядтағыш, құжаттар.`,
-        en: `For gaming and work. Highlights: ${gpu}, ${hz}, fast SSD. Box: laptop, charger, docs.`
-      },
-      docs: [],
-      warning: "",
-      quoteOnly: false,
-      variants
-    });
-  }
-
-  // 10 periphery (tovar26-35)
-  for(let i=26;i<=35;i++){
-    const brand = pick(BRANDS.slice(6,9), i);
-    const base = randBetween(12000, 280000, i);
-    const stock = (i%4===0) ? "pre" : "in";
-    items.push({
-      id:`JG-${String(skuNum++).padStart(4,"0")}`,
-      cat:"periphery",
-      brand,
-      name:{ru:`${brand} аксессуар #${i-25}`, kz:`${brand} аксессуар #${i-25}`, en:`${brand} accessory #${i-25}`},
-      img:`tovar${i}.jpg`,
-      priceKZT: base,
-      oldPriceKZT: (i%6===0) ? Math.round(base*1.15) : null,
-      stock,
-      leadDays: stock==="pre"?8:0,
-      popularity: randBetween(1,100, i*2),
-      createdAt: Date.now() - randBetween(1, 120, i)*86400000,
-      laptop:null,
-      desc:{
-        ru:"Короткое описание товара периферии. Добавим характеристики позже.",
-        kz:"Периферия сипаттамасы (қысқаша). Кейін толықтырамыз.",
-        en:"Peripheral item short description. Specs can be added later."
-      },
-      docs:[],
-      warning:"",
-      quoteOnly:false,
-      variants:[{vid:1,name:"Стандарт",priceKZT:base,stock}]
-    });
-  }
-
-  // 7 home (tovar36-42)
-  for(let i=36;i<=42;i++){
-    const brand = pick(BRANDS.slice(8,10), i);
-    const base = randBetween(18000, 240000, i);
-    const stock = (i%5===0) ? "pre" : "in";
-    items.push({
-      id:`JG-${String(skuNum++).padStart(4,"0")}`,
-      cat:"home",
-      brand,
-      name:{ru:`${brand} техника #${i-35}`, kz:`${brand} техника #${i-35}`, en:`${brand} appliance #${i-35}`},
-      img:`tovar${i}.jpg`,
-      priceKZT: base,
-      oldPriceKZT: null,
-      stock,
-      leadDays: stock==="pre"?8:0,
-      popularity: randBetween(1,100, i),
-      createdAt: Date.now() - randBetween(1, 120, i)*86400000,
-      laptop:null,
-      desc:{
-        ru:"Мелко-бытовая техника. Добавим характеристики и варианты позже.",
-        kz:"Тұрмыстық техника. Кейін сипаттамаларды қосамыз.",
-        en:"Small home appliance. Specs/variants can be added later."
-      },
-      docs:[],
-      warning:"",
-      quoteOnly:false,
-      variants:[{vid:1,name:"Стандарт",priceKZT:base,stock}]
-    });
-  }
-
-  // 4 cosmo (tovar43-46) — quoteOnly
-  for(let i=43;i<=46;i++){
-    const brand = pick(BRANDS.slice(10,12), i);
-    const base = randBetween(250000, 2200000, i);
-    const stock = "pre";
-    items.push({
-      id:`JG-${String(skuNum++).padStart(4,"0")}`,
-      cat:"cosmo",
-      brand,
-      name:{ru:`${brand} косметология #${i-42}`, kz:`${brand} косметология #${i-42}`, en:`${brand} cosmetology #${i-42}`},
-      img:`tovar${i}.jpg`,
-      priceKZT: base,
-      oldPriceKZT: null,
-      stock,
-      leadDays: 8,
-      popularity: randBetween(1,100, i),
-      createdAt: Date.now() - randBetween(1, 120, i)*86400000,
-      laptop:null,
-      desc:{
-        ru:"Оборудование для косметологии. Продажа/условия — через консультацию и КП.",
-        kz:"Косметология жабдығы. Сату/шарттар — кеңес және КП арқылы.",
-        en:"Cosmetology equipment. Sold via consultation / quote."
-      },
-      docs:[
-        {name:"Сертификат соответствия (пример)", note:"PDF / JPG (заглушка)"},
-        {name:"Инструкция (пример)", note:"PDF (заглушка)"}
-      ],
-      warning:"Перед использованием необходима консультация специалиста. Возможны противопоказания. Точный перечень требований задаётся из админки (в будущем).",
-      quoteOnly:true,
-      variants:[{vid:1,name:"Комплектация 1",priceKZT:base,stock}]
-    });
-  }
-
-  // 4 medical (tovar47-50) — quoteOnly
-  for(let i=47;i<=50;i++){
-    const brand = pick(BRANDS.slice(10,12), i+1);
-    const base = randBetween(180000, 2500000, i);
-    const stock = "pre";
-    items.push({
-      id:`JG-${String(skuNum++).padStart(4,"0")}`,
-      cat:"medical",
-      brand,
-      name:{ru:`${brand} медицина #${i-46}`, kz:`${brand} медицина #${i-46}`, en:`${brand} medical #${i-46}`},
-      img:`tovar${i}.jpg`,
-      priceKZT: base,
-      oldPriceKZT: null,
-      stock,
-      leadDays: 8,
-      popularity: randBetween(1,100, i),
-      createdAt: Date.now() - randBetween(1, 120, i)*86400000,
-      laptop:null,
-      desc:{
-        ru:"Медицинское оборудование. Документы и требования — обязательно.",
-        kz:"Медициналық жабдық. Құжаттар мен талаптар міндетті.",
-        en:"Medical equipment. Documents and requirements are required."
-      },
-      docs:[
-        {name:"Регистрационное удостоверение (пример)", note:"PDF (заглушка)"},
-        {name:"Сертификат/инструкция (пример)", note:"PDF (заглушка)"}
-      ],
-      warning:"Важно: изделие может иметь противопоказания и требования к эксплуатации. Текст предупреждения задаётся из админки (в будущем).",
-      quoteOnly:true,
-      variants:[{vid:1,name:"Комплектация 1",priceKZT:base,stock}]
-    });
-  }
-
-  return items;
+for(let i=31;i<=35;i++){
+  const b = homeBrands[i%homeBrands.length];
+  const [sub, base] = homeSubs[i%homeSubs.length];
+  const name = `${b} ${base} Model ${i}`;
+  const price = 25000 + (i-30)*25000;
+  const oldP = (i%2===0) ? Math.round(price*1.15) : null;
+  const stock = (i%3===0) ? "pre" : "in";
+  PRODUCTS.push(mkSimple(i, "home", sub, b, name, price, oldP, stock, false));
 }
 
-const PRODUCTS = genProducts();
+// 36..50 cosmo + medical (часть quoteOnly)
+const cosBrands = ["LumiPro","DermaLine","BeautyTech","SkinLab"];
+const medBrands = ["MedCare","BioPulse","ClinicPro","HealthLine"];
 
-/* ===== Helpers ===== */
-function t(key){ return (I18N[state.lang]||I18N.ru)[key] || key; }
-function productName(p){ return p.name?.[state.lang] || p.name?.ru || p.id; }
-function stockPill(p){
-  if(p.stock==="in") return `<span class="pill ok">${t("inStock")}</span>`;
-  return `<span class="pill warn">${t("preorder")}</span>`;
+const cosSubs = [
+  ["laser","Лазер/эпиляция"],
+  ["rf","RF-лифтинг"],
+  ["hydra","Гидропилинг"],
+  ["massage","Массаж/вакуум"]
+];
+const medSubs = [
+  ["diagnostics","Диагностика"],
+  ["therapy","Терапия"],
+  ["steril","Стерилизация"],
+  ["consum","Расходники/аксесс."]
+];
+
+for(let i=36;i<=42;i++){
+  const b = cosBrands[i%cosBrands.length];
+  const [sub, base] = cosSubs[i%cosSubs.length];
+  const quoteOnly = (i%2===0); // часть — только запрос КП
+  const name = `${b} ${base} System ${i}`;
+  const price = 220000 + (i-35)*65000;
+  const oldP = null;
+  const stock = "pre";
+  PRODUCTS.push(mkSimple(i, "cosmo", sub, b, name, price, oldP, stock, quoteOnly));
 }
-function preorderNote(p){
-  return p.stock==="pre" ? `<span class="pill accent">${t("preorderHint")}</span>` : "";
+
+for(let i=43;i<=50;i++){
+  const b = medBrands[i%medBrands.length];
+  const [sub, base] = medSubs[i%medSubs.length];
+  const quoteOnly = (i%3!==0); // чаще через КП
+  const name = `${b} ${base} Unit ${i}`;
+  const price = 180000 + (i-42)*80000;
+  const oldP = (i%4===0) ? Math.round(price*1.10) : null;
+  const stock = (i%2===0) ? "pre" : "in";
+  PRODUCTS.push(mkSimple(i, "medical", sub, b, name, price, oldP, stock, quoteOnly));
 }
+
+/* Добавим “универсальные” спеки для non-laptops */
+function enrichSimpleSpecs(p){
+  if(p.cat==="periphery"){
+    p.specs = {
+      type: p.sub,
+      connection: (p.id%2===0) ? "Беспроводное" : "Проводное",
+      warranty: "12 мес",
+      color: (p.id%3===0) ? "Black" : "Black/Red"
+    };
+  }
+  if(p.cat==="home"){
+    p.specs = {
+      type: p.sub,
+      power: (800 + (p.id%6)*150) + " W",
+      warranty: "12 мес",
+      weight: (1.2 + (p.id%5)*0.2).toFixed(1) + " kg"
+    };
+  }
+  if(p.cat==="cosmo"){
+    p.specs = {
+      type: p.sub,
+      mode: "Профессиональный",
+      docs: "Сертификаты/инструкции (по запросу)",
+      warranty: "12 мес"
+    };
+    p.warning = "Важно: имеются противопоказания/требования. Уточняйте у менеджера перед покупкой.";
+    p.docs = ["Сертификат соответствия (пример)", "Инструкция (пример)"];
+  }
+  if(p.cat==="medical"){
+    p.specs = {
+      type: p.sub,
+      docs: "Рег. удостоверение/сертификаты (если есть)",
+      warranty: "12 мес",
+      service: "Сервис/обучение (опц.)"
+    };
+    p.warning = "Важно: медицинское оборудование требует корректной эксплуатации и может иметь ограничения. Запросите консультацию.";
+    p.docs = ["Сертификат (пример)", "Паспорт изделия (пример)"];
+  }
+  return p;
+}
+PRODUCTS.forEach(enrichSimpleSpecs);
+
+/* ===========================
+   Helpers / URL state
+   =========================== */
+
+function qsParse(){
+  const u = new URL(location.href);
+  const q = {};
+  u.searchParams.forEach((v,k)=> q[k]=v);
+  return q;
+}
+function qsSet(params){
+  const u = new URL(location.href);
+  Object.keys(params).forEach(k=>{
+    const v = params[k];
+    if(v===undefined || v===null || v==="") u.searchParams.delete(k);
+    else u.searchParams.set(k, String(v));
+  });
+  history.replaceState({}, "", u.toString());
+}
+function uniq(arr){ return Array.from(new Set(arr)).filter(Boolean); }
+
 function setCounts(){
   document.getElementById("wishCount").textContent = state.wish.length;
   document.getElementById("cmpCount").textContent = state.cmp.length;
   document.getElementById("cartCount").textContent = state.cart.reduce((a,i)=>a+i.qty,0);
+  document.getElementById("cartMini").textContent = "В корзине: " + state.cart.reduce((a,i)=>a+i.qty,0);
 }
+
 function applyI18N(){
-  document.getElementById("ui-subtitle").textContent = t("subtitle");
-  document.getElementById("fTitle").textContent = t("filters");
-  document.getElementById("applyBtn").textContent = t("apply");
-  document.getElementById("resetBtn").textContent = t("reset");
-  document.getElementById("preHint").textContent = t("preorderHint");
-}
-function qsParse(){
-  const p = new URLSearchParams(location.search);
-  const obj = {};
-  for(const [k,v] of p.entries()) obj[k]=v;
-  return obj;
-}
-function qsSet(obj){
-  const p = new URLSearchParams();
-  Object.entries(obj).forEach(([k,v])=>{
-    if(v!==undefined && v!==null && String(v).trim()!=="") p.set(k, v);
-  });
-  const url = location.pathname + "?" + p.toString();
-  history.replaceState(null,"",url);
-}
-function uniqueOptions(list, getter){
-  const set = new Set();
-  list.forEach(x=>{ const v=getter(x); if(v) set.add(v); });
-  return ["", ...Array.from(set).sort((a,b)=>String(a).localeCompare(String(b)))];
-}
-function fillSelect(sel, options, labelAny){
-  sel.innerHTML = "";
-  options.forEach((opt,i)=>{
-    const o=document.createElement("option");
-    o.value = opt;
-    o.textContent = opt==="" ? (labelAny ?? t("any")) : opt;
-    sel.appendChild(o);
-  });
-}
-function clampNum(v, min, max){
-  const n = Number(v);
-  if(Number.isNaN(n)) return null;
-  return Math.min(max, Math.max(min, n));
+  const t = I18N[state.lang] || I18N.ru;
+  document.getElementById("ui-subtitle").textContent = t.subtitle;
 }
 
-/* ===== Filters UI init ===== */
-const catSel = document.getElementById("catSel");
-catSel.innerHTML = CATEGORIES.map(c=>`<option value="${c.id}">${c.name[state.lang]||c.name.ru}</option>`).join("");
+/* ===========================
+   Drawer UI (cart/wish/compare)
+   =========================== */
 
-function refreshCatNames(){
-  catSel.innerHTML = CATEGORIES.map(c=>`<option value="${c.id}">${c.name[state.lang]||c.name.ru}</option>`).join("");
-}
+function drawerOpen(title, html, totalsHtml=null){
+  const overlay = document.getElementById("overlay");
+  const drawer = document.getElementById("drawer");
+  document.getElementById("drawerTitle").textContent = title;
+  document.getElementById("drawerContent").innerHTML = html;
 
-const brandSel = document.getElementById("brandSel");
-const cpuSel = document.getElementById("cpuSel");
-const gpuSel = document.getElementById("gpuSel");
-const ramSel = document.getElementById("ramSel");
-const ssdSel = document.getElementById("ssdSel");
-const screenSel = document.getElementById("screenSel");
-const hzSel = document.getElementById("hzSel");
-const matrixSel = document.getElementById("matrixSel");
-const osSel = document.getElementById("osSel");
-
-fillSelect(brandSel, uniqueOptions(PRODUCTS, p=>p.brand), t("any"));
-fillSelect(cpuSel, uniqueOptions(PRODUCTS.filter(p=>p.cat==="laptops"), p=>p.laptop?.cpu));
-fillSelect(gpuSel, uniqueOptions(PRODUCTS.filter(p=>p.cat==="laptops"), p=>p.laptop?.gpu));
-fillSelect(ramSel, uniqueOptions(PRODUCTS.filter(p=>p.cat==="laptops"), p=>p.laptop?.ram));
-fillSelect(ssdSel, uniqueOptions(PRODUCTS.filter(p=>p.cat==="laptops"), p=>p.laptop?.ssd));
-fillSelect(screenSel, uniqueOptions(PRODUCTS.filter(p=>p.cat==="laptops"), p=>p.laptop?.screen));
-fillSelect(hzSel, uniqueOptions(PRODUCTS.filter(p=>p.cat==="laptops"), p=>p.laptop?.hz));
-fillSelect(matrixSel, uniqueOptions(PRODUCTS.filter(p=>p.cat==="laptops"), p=>p.laptop?.matrix));
-fillSelect(osSel, uniqueOptions(PRODUCTS.filter(p=>p.cat==="laptops"), p=>p.laptop?.os));
-
-/* ===== Rendering products ===== */
-function filterProducts(params){
-  let list = PRODUCTS.slice();
-
-  // category
-  if(params.cat) list = list.filter(p=>p.cat===params.cat);
-
-  // search
-  const q = (params.q || "").trim().toLowerCase();
-  if(q){
-    list = list.filter(p=>{
-      const s = (productName(p)+" "+p.brand+" "+(p.laptop?Object.values(p.laptop).join(" "):"")).toLowerCase();
-      return s.includes(q);
-    });
+  const totals = document.getElementById("drawerTotals");
+  if(totalsHtml){
+    totals.style.display="block";
+    totals.innerHTML = totalsHtml;
+  } else {
+    totals.style.display="none";
+    totals.innerHTML = "";
   }
 
-  // price (base KZT)
-  const minP = params.pMin ? Number(params.pMin) : null;
-  const maxP = params.pMax ? Number(params.pMax) : null;
-  if(minP!==null && !Number.isNaN(minP)) list = list.filter(p=>p.priceKZT>=minP);
-  if(maxP!==null && !Number.isNaN(maxP)) list = list.filter(p=>p.priceKZT<=maxP);
-
-  // brand
-  if(params.brand) list = list.filter(p=>p.brand===params.brand);
-
-  // stock
-  if(params.stock==="in") list = list.filter(p=>p.stock==="in");
-  if(params.stock==="pre") list = list.filter(p=>p.stock==="pre");
-
-  // laptop filters
-  const laptopKeys = ["cpu","gpu","ram","ssd","screen","hz","matrix","os"];
-  laptopKeys.forEach(k=>{
-    if(params[k]) list = list.filter(p=>p.laptop && p.laptop[k]===params[k]);
-  });
-
-  // sort
-  const sort = params.sort || "pop";
-  if(sort==="pop") list.sort((a,b)=>(b.popularity||0)-(a.popularity||0));
-  if(sort==="new") list.sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
-  if(sort==="priceAsc") list.sort((a,b)=>a.priceKZT-b.priceKZT);
-  if(sort==="priceDesc") list.sort((a,b)=>b.priceKZT-a.priceKZT);
-
-  return list;
-}
-
-function renderList(params){
-  const list = filterProducts(params);
-  const wrap = document.getElementById("products");
-  const empty = document.getElementById("emptyMsg");
-  wrap.innerHTML = "";
-
-  document.getElementById("count").textContent = `${list.length} товаров`;
-
-  // crumb
-  const catObj = CATEGORIES.find(c=>c.id===params.cat) || CATEGORIES[0];
-  document.getElementById("crumb").textContent = catObj.name[state.lang] || catObj.name.ru;
-
-  if(!list.length){
-    empty.style.display = "block";
-    return;
-  }
-  empty.style.display = "none";
-
-  list.forEach(p=>{
-    const isWish = state.wish.includes(p.id);
-    const isCmp = state.cmp.includes(p.id);
-    const laptop = p.laptop;
-
-    const keySpecs = laptop ? `
-      <div class="specs">
-        <span class="pill">${laptop.cpu}</span>
-        <span class="pill">${laptop.gpu}</span>
-        <span class="pill">${laptop.ram}</span>
-        <span class="pill">${laptop.ssd}</span>
-        <span class="pill">${laptop.screen} • ${laptop.hz}</span>
-      </div>` : `<div class="specs"><span class="pill">${p.brand}</span></div>`;
-
-    const priceHtml = `
-      <div class="price">
-        <b>${fmtMoney(p.priceKZT, state.cur)}</b>
-        ${p.oldPriceKZT ? `<s>${fmtMoney(p.oldPriceKZT, state.cur)}</s>` : ""}
-      </div>`;
-
-    const actionPrimary = p.quoteOnly
-      ? `<button class="btn primary" type="button" data-act="quote" data-id="${p.id}">${t("requestQuote")}</button>`
-      : `<button class="btn primary" type="button" data-act="add" data-id="${p.id}">${t("addCart")}</button>`;
-
-    const card = document.createElement("article");
-    card.className = "card p";
-    card.innerHTML = `
-      <img class="pimg" src="images/${p.img}" alt="${productName(p)}" loading="lazy">
-      <div class="pbody">
-        <div class="meta">
-          ${stockPill(p)}
-          ${p.stock==="pre" ? `<span class="pill accent">~${p.leadDays||8} дней</span>` : ""}
-        </div>
-        <div class="pname">${productName(p)}</div>
-        ${priceHtml}
-        ${keySpecs}
-        ${p.stock==="pre" ? `<div class="small muted">${t("preorderHint")}</div>` : ""}
-        <div class="pactions">
-          ${actionPrimary}
-          <button class="btn" type="button" data-act="one" data-id="${p.id}">${t("oneClick")}</button>
-          <button class="mini ${isWish?"on":""}" type="button" data-act="wish" data-id="${p.id}" aria-label="${t("wish")}">❤</button>
-          <button class="mini ${isCmp?"on":""}" type="button" data-act="cmp" data-id="${p.id}" aria-label="${t("cmp")}">≡</button>
-          <button class="btn ghost" type="button" data-act="open" data-id="${p.id}">${t("details")}</button>
-        </div>
-      </div>
-    `;
-    wrap.appendChild(card);
-  });
-}
-
-/* ===== Modal / overlay ===== */
-const overlay = document.getElementById("overlay");
-const modal = document.getElementById("modal");
-const mTitle = document.getElementById("mTitle");
-const mBody = document.getElementById("mBody");
-
-function modalOpen(title, html){
-  mTitle.textContent = title;
-  mBody.innerHTML = html;
   overlay.classList.add("show");
-  modal.classList.add("show");
+  drawer.classList.add("show");
   overlay.setAttribute("aria-hidden","false");
   overlay.focus();
 }
-function modalClose(){
-  overlay.classList.remove("show");
-  modal.classList.remove("show");
-  overlay.setAttribute("aria-hidden","true");
-  mBody.innerHTML = "";
+function drawerClose(){
+  document.getElementById("overlay").classList.remove("show");
+  document.getElementById("drawer").classList.remove("show");
+  document.getElementById("overlay").setAttribute("aria-hidden","true");
 }
-document.getElementById("mClose").addEventListener("click", modalClose);
-overlay.addEventListener("click", modalClose);
+document.getElementById("drawerClose").addEventListener("click", drawerClose);
+document.getElementById("overlay").addEventListener("click", drawerClose);
 
-/* ===== Cart / wishlist / compare storage ===== */
-function cartKey(id, vid){ return id + "::" + String(vid||1); }
-function addToCart(p, vid){
-  const v = p.variants.find(x=>String(x.vid)===String(vid)) || p.variants[0];
-  if(p.quoteOnly){
-    requestQuote(p, v);
+function renderCart(){
+  const t = I18N[state.lang] || I18N.ru;
+  if(!state.cart.length){
+    drawerOpen(t.cart, `<p class="muted">${t.empty}</p>`);
     return;
   }
-  const key = cartKey(p.id, v.vid);
-  const idx = state.cart.findIndex(x=>x.key===key);
-  if(idx>=0) state.cart[idx].qty += 1;
-  else state.cart.push({
-    key,
-    sku: p.id,
-    name: productName(p),
-    img: p.img,
-    qty: 1,
-    vid: v.vid,
-    variantName: v.name,
-    priceKZT: v.priceKZT,
-    stock: (v.stock==="in") ? t("inStock") : t("preorder")
-  });
-  saveState(state); setCounts();
-}
-function toggleWish(id){
-  const i = state.wish.indexOf(id);
-  if(i>=0) state.wish.splice(i,1);
-  else state.wish.push(id);
-  saveState(state); setCounts();
-}
-function toggleCmp(id){
-  const i = state.cmp.indexOf(id);
-  if(i>=0) state.cmp.splice(i,1);
-  else {
-    if(state.cmp.length>=4){
-      alert("Можно сравнить до 4 товаров.");
-      return;
-    }
-    state.cmp.push(id);
-  }
-  saveState(state); setCounts();
-}
 
-/* ===== PDP (product modal) ===== */
-function renderPDP(p){
-  const tdesc = p.desc?.[state.lang] || p.desc?.ru || "";
-  const laptop = p.laptop;
-  const specsRows = [];
-  specsRows.push(["SKU", p.id]);
-  specsRows.push(["Бренд", p.brand]);
-  if(laptop){
-    specsRows.push(["CPU", laptop.cpu]);
-    specsRows.push(["GPU", laptop.gpu]);
-    specsRows.push(["RAM", laptop.ram]);
-    specsRows.push(["SSD", laptop.ssd]);
-    specsRows.push(["Экран", `${laptop.screen} / ${laptop.hz} / ${laptop.matrix}`]);
-    specsRows.push(["ОС", laptop.os]);
-  } else {
-    specsRows.push(["Категория", (CATEGORIES.find(c=>c.id===p.cat)?.name[state.lang] || p.cat)]);
-  }
-  specsRows.push(["Наличие", p.stock==="in" ? t("inStock") : t("preorder")]);
-  if(p.stock==="pre") specsRows.push(["Срок", t("preorderHint")]);
-
-  const docsHtml = (p.docs && p.docs.length)
-    ? p.docs.map(d=>`<div class="doclink"><div><b>${d.name}</b><small>${d.note||""}</small></div><span class="muted">↗</span></div>`).join("")
-    : `<div class="small muted">${t("empty")}</div>`;
-
-  const warnHtml = p.warning ? `<div class="warnbox"><b>${t("important")}:</b><div class="small" style="margin-top:6px">${p.warning}</div></div>` : "";
-
-  const variants = p.variants || [{vid:1,name:"Стандарт",priceKZT:p.priceKZT,stock:p.stock}];
-  const vOpts = variants.map(v=>`<option value="${v.vid}">${v.name} — ${fmtMoney(v.priceKZT, state.cur)} • ${v.stock==="in"?t("inStock"):t("preorder")}</option>`).join("");
-
-  const actionPrimary = p.quoteOnly
-    ? `<button class="btn primary" type="button" data-act="quoteNow" data-id="${p.id}">${t("requestQuote")}</button>`
-    : `<button class="btn primary" type="button" data-act="addNow" data-id="${p.id}">${t("addCart")}</button>`;
-
-  const html = `
-    <div class="pdp">
-      <div class="gallery">
-        <img src="images/${p.img}" alt="${productName(p)}">
+  const rows = state.cart.map(it => `
+    <div class="item">
+      <div>
+        <img class="thumb" src="images/${it.img || "tovar1.jpg"}" alt="">
       </div>
       <div>
-        <h1>${productName(p)}</h1>
-        <div class="meta">
-          ${stockPill(p)}
-          ${p.stock==="pre" ? `<span class="pill accent">~${p.leadDays||8} дней</span>` : ""}
-          ${p.quoteOnly ? `<span class="pill accent">${t("requestQuote")}</span>` : ""}
-        </div>
-
-        <div class="price" style="margin:8px 0 10px">
-          <b id="pdpPrice">${fmtMoney(p.priceKZT, state.cur)}</b>
-          ${p.oldPriceKZT ? `<s>${fmtMoney(p.oldPriceKZT, state.cur)}</s>` : ""}
-        </div>
-
-        ${p.stock==="pre" ? `<div class="small muted" style="margin-bottom:10px">${t("preorderHint")}</div>` : ""}
-
-        <div class="field">
-          <label>Вариант / конфигурация</label>
-          <select id="variantSel">${vOpts}</select>
-        </div>
-
-        <div class="tabs" role="tablist" aria-label="Вкладки">
-          <button class="tab on" type="button" data-tab="specs">${t("specs")}</button>
-          <button class="tab" type="button" data-tab="desc">${t("desc")}</button>
-          <button class="tab" type="button" data-tab="docs">${t("docs")}</button>
-        </div>
-
-        <div id="tab-specs">
-          <table class="tbl">
-            ${specsRows.map(r=>`<tr><td class="muted">${r[0]}</td><td><b>${r[1]}</b></td></tr>`).join("")}
-          </table>
-          <div style="margin-top:10px">${warnHtml}</div>
-        </div>
-
-        <div id="tab-desc" style="display:none">
-          <div class="small">${tdesc}</div>
-        </div>
-
-        <div id="tab-docs" style="display:none">
-          ${docsHtml}
-        </div>
-
-        <div style="margin-top:12px; display:flex; gap:8px; flex-wrap:wrap">
-          ${actionPrimary}
-          <button class="btn" type="button" data-act="buyNow" data-id="${p.id}">${t("buyNow")}</button>
-          <button class="btn" type="button" data-act="oneNow" data-id="${p.id}">${t("oneClick")}</button>
-          <button class="btn" type="button" data-act="askNow" data-id="${p.id}">${t("ask")}</button>
-        </div>
-
-        <div class="small muted" style="margin-top:10px">
-          Доставка/оплата/гарантия — уточняются при подтверждении заказа.
+        <b>${it.name || it.sku}</b>
+        <small>${it.variantName ? it.variantName : ""}</small>
+        <small class="muted">${it.stock || ""}</small>
+        <div class="qty">
+          <button type="button" data-act="dec" data-sku="${it.sku}" data-vid="${it.vid}">−</button>
+          <input value="${it.qty}" inputmode="numeric" data-act="qty" data-sku="${it.sku}" data-vid="${it.vid}">
+          <button type="button" data-act="inc" data-sku="${it.sku}" data-vid="${it.vid}">+</button>
+          <button class="btn mini" type="button" data-act="rm" data-sku="${it.sku}" data-vid="${it.vid}">${t.del}</button>
         </div>
       </div>
     </div>
-  `;
-  modalOpen(productName(p), html);
+  `).join("");
 
-  // tabs
-  mBody.querySelectorAll(".tab").forEach(btn=>{
-    btn.addEventListener("click", ()=>{
-      mBody.querySelectorAll(".tab").forEach(x=>x.classList.remove("on"));
-      btn.classList.add("on");
-      const tab = btn.dataset.tab;
-      ["specs","desc","docs"].forEach(k=>{
-        const el = mBody.querySelector("#tab-"+k);
-        if(el) el.style.display = (k===tab) ? "block" : "none";
-      });
-    });
-  });
+  const totalKZT = state.cart.reduce((sum,it)=>sum + (it.priceKZT||0)*it.qty, 0);
 
-  // variants price update
-  const variantSel = mBody.querySelector("#variantSel");
-  const priceEl = mBody.querySelector("#pdpPrice");
-  variantSel.addEventListener("change", ()=>{
-    const vid = variantSel.value;
-    const v = p.variants.find(x=>String(x.vid)===String(vid)) || p.variants[0];
-    priceEl.textContent = fmtMoney(v.priceKZT, state.cur);
-  });
+  drawerOpen(
+    t.cart,
+    rows,
+    `
+      <div class="row" style="margin-bottom:10px">
+        <div class="muted">${t.total}</div>
+        <div><b>${fmtMoney(totalKZT, state.cur)}</b></div>
+      </div>
+      <button class="cta" id="goCheckout" type="button">${t.goCheckout}</button>
+    `
+  );
 
-  // actions in pdp
-  mBody.addEventListener("click", (e)=>{
-    const b = e.target.closest("button");
-    if(!b) return;
-    const act = b.dataset.act;
+  document.getElementById("drawerContent").addEventListener("click", (e)=>{
+    const btn = e.target.closest("button");
+    if(!btn) return;
+    const act = btn.dataset.act;
     if(!act) return;
-    const vid = mBody.querySelector("#variantSel")?.value || 1;
+    const sku = btn.dataset.sku;
+    const vid = btn.dataset.vid;
+    const idx = state.cart.findIndex(x=>x.sku===sku && String(x.vid)===String(vid));
+    if(idx<0) return;
+    if(act==="inc") state.cart[idx].qty += 1;
+    if(act==="dec") state.cart[idx].qty = Math.max(1, state.cart[idx].qty - 1);
+    if(act==="rm") state.cart.splice(idx,1);
+    saveState(state); setCounts(); renderCart();
+  }, { once:true });
 
-    if(act==="addNow"){ addToCart(p, vid); alert("Добавлено в корзину"); }
-    if(act==="quoteNow"){ requestQuote(p, p.variants.find(x=>String(x.vid)===String(vid))||p.variants[0]); }
-    if(act==="buyNow"){ addToCart(p, vid); openCart(); }
-    if(act==="oneNow"){ openOneClick(p, vid); }
-    if(act==="askNow"){ openWA(`Здравствуйте! Вопрос по товару: ${productName(p)} (${p.id}).`); }
+  document.getElementById("goCheckout").addEventListener("click", ()=>{
+    drawerClose();
+    document.getElementById("checkout").scrollIntoView({behavior:"smooth"});
   });
 }
 
-/* ===== One-click ===== */
-function openOneClick(p, vid){
-  const v = p.variants.find(x=>String(x.vid)===String(vid)) || p.variants[0];
-  const html = `
-    <div class="card pad" style="box-shadow:none; border:none">
-      <div class="small muted" style="margin-bottom:10px">Купить в 1 клик — имя и телефон</div>
-      <div class="field"><label>Имя</label><input id="ocName" placeholder="Например: Салтанат"></div>
-      <div class="field"><label>Телефон</label><input id="ocPhone" placeholder="+7 ..."></div>
-      <div class="field"><label>Комментарий</label><input id="ocComm" placeholder="Город, удобное время звонка..."></div>
-      <button class="btn primary" id="ocSend" type="button">${t("send")}</button>
-      <div class="small muted" style="margin-top:8px">Товар: <b>${productName(p)}</b> • Вариант: <b>${v.name}</b></div>
-    </div>
-  `;
-  modalOpen(t("oneClick"), html);
-  document.getElementById("ocSend").addEventListener("click", ()=>{
-    const name = document.getElementById("ocName").value.trim();
-    const phone = document.getElementById("ocPhone").value.trim();
-    const comm = document.getElementById("ocComm").value.trim();
-    const text =
-`Заявка: Купить в 1 клик
-Товар: ${productName(p)} (${p.id})
-Вариант: ${v.name}
-Цена (база): ${p.priceKZT} KZT
-Имя: ${name}
-Телефон: ${phone}
-Комментарий: ${comm||"-"}
-Наличие: ${p.stock==="in"?t("inStock"):t("preorder")}
-${p.stock==="pre" ? ("Срок: "+t("preorderHint")) : ""}
-(Сайт JOHNGALTAZ)`;
-    openWA(text);
-  });
-}
-
-/* ===== Quote request (for medical/cosmo, or manual) ===== */
-function requestQuote(p, v){
-  const text =
-`Запрос КП / консультация
-Товар: ${productName(p)} (${p.id})
-Вариант: ${v?.name || "-"}
-Цена (если ориентир): ${p.priceKZT} KZT
-Категория: ${(CATEGORIES.find(c=>c.id===p.cat)?.name.ru || p.cat)}
-Комментарий: Прошу КП, сроки и условия.
-(Сайт JOHNGALTAZ)`;
-  openWA(text);
-}
-
-/* ===== Cart & Checkout ===== */
-function openCart(){
-  const lang = state.lang;
-  if(!state.cart.length){
-    modalOpen(t("cart"), `<p class="muted">${t("empty")}</p>`);
+function renderWish(){
+  const t = I18N[state.lang] || I18N.ru;
+  if(!state.wish.length){
+    drawerOpen(t.wishlist, `<p class="muted">${t.empty}</p>`);
     return;
   }
-  const rows = state.cart.map(it=>{
-    const p = PRODUCTS.find(x=>x.id===it.sku);
-    const img = p?.img || it.img || "tovar1.jpg";
-    const name = p ? productName(p) : it.name || it.sku;
-    const line = (it.priceKZT||0)*it.qty;
-    const lead = (p && p.stock==="pre") ? `<div class="small muted">${t("preorderHint")}</div>` : "";
+  const html = state.wish.map(sku=>{
+    const p = PRODUCTS.find(x=>x.sku===sku);
     return `
-      <div class="card pad" style="margin-bottom:10px">
-        <div style="display:grid; grid-template-columns:76px 1fr; gap:10px; align-items:center">
-          <img src="images/${img}" style="width:76px;height:76px;border-radius:16px;object-fit:cover;border:1px solid rgba(214,214,214,.65)" alt="">
-          <div>
-            <b>${name}</b>
-            <div class="small muted">${it.variantName||""}</div>
-            ${lead}
-            <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-top:8px">
-              <button class="btn" type="button" data-act="dec" data-key="${it.key}">−</button>
-              <input value="${it.qty}" data-act="qty" data-key="${it.key}" style="width:68px; text-align:center; padding:10px 12px; border-radius:14px; border:1px solid var(--line)">
-              <button class="btn" type="button" data-act="inc" data-key="${it.key}">+</button>
-              <button class="btn" type="button" data-act="rm" data-key="${it.key}">${t("remove")}</button>
-              <span style="margin-left:auto"><b>${fmtMoney(line, state.cur)}</b></span>
-            </div>
+      <div class="item">
+        <img class="thumb" src="images/${p?.img || "tovar1.jpg"}" alt="">
+        <div>
+          <b>${p?.name || sku}</b>
+          <small class="muted">${p ? fmtMoney(p.priceKZT, state.cur) : ""}</small>
+          <div class="qty">
+            <button class="btn mini" type="button" data-open="${sku}">${t.open}</button>
+            <button class="btn mini" type="button" data-rm="${sku}">${t.remove}</button>
           </div>
         </div>
       </div>
     `;
   }).join("");
+  drawerOpen(t.wishlist, html);
 
-  const totalKZT = state.cart.reduce((sum,it)=>sum + (it.priceKZT||0)*it.qty, 0);
-
-  const html = `
-    <div class="cmphead">
-      <div>
-        <b>${t("cart")}</b>
-        <div class="small muted">${state.cart.length} позиций</div>
-      </div>
-      <div>
-        <span class="pill">${t("total")}: <b>${fmtMoney(totalKZT, state.cur)}</b></span>
-      </div>
-    </div>
-    ${rows}
-    <button class="btn primary" id="toCheckout" type="button">${t("checkout")}</button>
-  `;
-
-  modalOpen(t("cart"), html);
-
-  // cart actions
-  mBody.addEventListener("click", (e)=>{
-    const b = e.target.closest("button");
-    if(!b) return;
-    const act = b.dataset.act;
-    const key = b.dataset.key;
-    if(!act || !key) return;
-    const idx = state.cart.findIndex(x=>x.key===key);
-    if(idx<0) return;
-    if(act==="inc") state.cart[idx].qty += 1;
-    if(act==="dec") state.cart[idx].qty = Math.max(1, state.cart[idx].qty - 1);
-    if(act==="rm") state.cart.splice(idx,1);
-    saveState(state); setCounts(); openCart();
-  });
-
-  document.getElementById("toCheckout").addEventListener("click", openCheckout);
+  document.getElementById("drawerContent").addEventListener("click",(e)=>{
+    const bOpen = e.target.closest("button[data-open]");
+    const bRm = e.target.closest("button[data-rm]");
+    if(bOpen){
+      const sku = bOpen.dataset.open;
+      drawerClose();
+      openProduct(sku);
+    }
+    if(bRm){
+      const sku = bRm.dataset.rm;
+      const i = state.wish.indexOf(sku);
+      if(i>=0) state.wish.splice(i,1);
+      saveState(state); setCounts(); renderWish();
+    }
+  }, { once:true });
 }
 
-function openCheckout(){
-  if(!state.cart.length){
-    modalOpen(t("checkout"), `<p class="muted">${t("empty")}</p>`);
-    return;
-  }
-  const totalKZT = state.cart.reduce((sum,it)=>sum + (it.priceKZT||0)*it.qty, 0);
-
-  const html = `
-    <div class="pdp" style="grid-template-columns:1fr 1fr">
-      <div>
-        <b>${t("checkout")}</b>
-        <div class="small muted" style="margin-top:6px">Заполните поля — заказ/заявка уйдёт в WhatsApp администратору.</div>
-        <div class="hr"></div>
-
-        <div class="field"><label>ФИО</label><input id="chName" placeholder="Фамилия Имя"></div>
-        <div class="field"><label>Телефон</label><input id="chPhone" placeholder="+7 ..."></div>
-        <div class="field"><label>${t("city")}</label><input id="chCity" placeholder="Алматы / Астана / ..."></div>
-        <div class="field"><label>${t("address")}</label><input id="chAddr" placeholder="Улица, дом, кв"></div>
-
-        <div class="field"><label>${t("delivery")}</label>
-          <select id="chDel">
-            <option>Курьер</option>
-            <option>Самовывоз</option>
-            <option>СДЭК</option>
-            <option>Boxberry</option>
-            <option>Казпочта</option>
-          </select>
-        </div>
-
-        <div class="field"><label>${t("pay")}</label>
-          <select id="chPay">
-            <option>Kaspi (по готовности)</option>
-            <option>Карта</option>
-            <option>Перевод</option>
-            <option>Наличные</option>
-          </select>
-        </div>
-
-        <div class="field"><label>${t("comment")}</label><input id="chComm" placeholder="Комментарий (опционально)"></div>
-
-        <div class="field">
-          <label style="display:flex; align-items:center; gap:10px">
-            <input type="checkbox" id="chB2B">
-            <span><b>${t("b2b")}</b> (B2B)</span>
-          </label>
-        </div>
-
-        <div id="b2bFields" style="display:none">
-          <div class="field"><label>${t("company")}</label><input id="chCompany" placeholder="ТОО ..."></div>
-          <div class="field"><label>${t("bin")}</label><input id="chBIN" placeholder="БИН/ИНН"></div>
-          <div class="field"><label>${t("email")}</label><input id="chEmail" placeholder="accounting@company.kz"></div>
-          <div class="field"><label>${t("contact")}</label><input id="chContact" placeholder="Контактное лицо"></div>
-          <div class="field"><label>${t("attach")}</label><input type="file" id="chFile" /></div>
-          <div class="small muted">Файл на статике не отправляется автоматически — укажите, что готовы выслать реквизиты, и админ запросит.</div>
-        </div>
-
-        <div class="hr"></div>
-        <button class="btn primary" id="chSend" type="button">${t("send")}</button>
-      </div>
-
-      <div>
-        <b>${t("cart")}</b>
-        <div class="small muted" style="margin-top:6px">${state.cart.length} позиций • ${t("total")}: <b>${fmtMoney(totalKZT, state.cur)}</b></div>
-        <div class="hr"></div>
-        ${state.cart.map(it=>{
-          const p = PRODUCTS.find(x=>x.id===it.sku);
-          const name = p ? productName(p) : it.name;
-          const lead = (p && p.stock==="pre") ? ` • (~${p.leadDays||8}d)` : "";
-          return `<div class="doclink"><div><b>${name}</b><small>${it.variantName||""}${lead}</small></div><small>${it.qty} шт</small></div>`;
-        }).join("")}
-        <div class="hr"></div>
-        <div class="warnbox">
-          <b>Статусы заказа (макет):</b>
-          <div class="small" style="margin-top:6px">новый → в обработке → подтвержден → отправлен → завершен / отменен</div>
-        </div>
-      </div>
-    </div>
-  `;
-
-  modalOpen(t("checkout"), html);
-
-  const b2b = document.getElementById("chB2B");
-  b2b.addEventListener("change", ()=>{
-    document.getElementById("b2bFields").style.display = b2b.checked ? "block" : "none";
-  });
-
-  document.getElementById("chSend").addEventListener("click", ()=>{
-    const name = document.getElementById("chName").value.trim();
-    const phone = document.getElementById("chPhone").value.trim();
-    const city = document.getElementById("chCity").value.trim();
-    const addr = document.getElementById("chAddr").value.trim();
-    const del = document.getElementById("chDel").value;
-    const pay = document.getElementById("chPay").value;
-    const comm = document.getElementById("chComm").value.trim();
-
-    let text =
-`Заказ (новый)
-ФИО: ${name}
-Телефон: ${phone}
-Город: ${city}
-Адрес: ${addr}
-Доставка: ${del}
-Оплата: ${pay}
-Комментарий: ${comm || "-"}
-Состав:`;
-
-    state.cart.forEach(it=>{
-      const p = PRODUCTS.find(x=>x.id===it.sku);
-      const lead = (p && p.stock==="pre") ? ` | предзаказ (~${p.leadDays||8} дней)` : "";
-      text += `\n- ${it.sku}: ${ (p?productName(p):it.name) } | ${it.variantName||""} | qty: ${it.qty} | цена: ${it.priceKZT} KZT${lead}`;
-    });
-
-    text += `\nИтого (база): ${totalKZT} KZT`;
-
-    if(b2b.checked){
-      const company = document.getElementById("chCompany").value.trim();
-      const bin = document.getElementById("chBIN").value.trim();
-      const email = document.getElementById("chEmail").value.trim();
-      const contact = document.getElementById("chContact").value.trim();
-      text += `\n\nB2B: Да
-Компания: ${company}
-БИН/ИНН: ${bin}
-Email: ${email}
-Контактное лицо: ${contact}
-Реквизиты: файл не прикрепляется на сайте (запросите у клиента)`;
-    }
-
-    text += `\n(Сайт JOHNGALTAZ)`;
-
-    openWA(text);
-  });
-}
-
-/* ===== Wishlist ===== */
-function openWishlist(){
-  if(!state.wish.length){
-    modalOpen(t("wishlist"), `<p class="muted">${t("empty")}</p>`);
-    return;
-  }
-  const list = state.wish.map(id=>PRODUCTS.find(p=>p.id===id)).filter(Boolean);
-  const html = `
-    <div class="cmphead">
-      <div><b>${t("wishlist")}</b><div class="small muted">${list.length} товаров</div></div>
-      <div><button class="btn" type="button" id="wishClear">${t("reset")}</button></div>
-    </div>
-    ${list.map(p=>`
-      <div class="doclink">
-        <div>
-          <b>${productName(p)}</b>
-          <small>${p.brand} • ${p.stock==="in"?t("inStock"):t("preorder")}</small>
-        </div>
-        <div style="display:flex; gap:8px; align-items:center">
-          <button class="btn" type="button" data-act="open" data-id="${p.id}">${t("details")}</button>
-          <button class="btn" type="button" data-act="rmWish" data-id="${p.id}">${t("remove")}</button>
-        </div>
-      </div>
-    `).join("")}
-  `;
-  modalOpen(t("wishlist"), html);
-
-  document.getElementById("wishClear").addEventListener("click", ()=>{
-    state.wish = [];
-    saveState(state); setCounts(); openWishlist();
-  });
-
-  mBody.addEventListener("click", (e)=>{
-    const b = e.target.closest("button");
-    if(!b) return;
-    const id = b.dataset.id;
-    if(b.dataset.act==="open" && id){
-      const p = PRODUCTS.find(x=>x.id===id);
-      if(p) renderPDP(p);
-    }
-    if(b.dataset.act==="rmWish" && id){
-      toggleWish(id);
-      openWishlist();
-    }
-  });
-}
-
-/* ===== Compare ===== */
-function openCompare(){
+function renderCompare(){
+  const t = I18N[state.lang] || I18N.ru;
   if(!state.cmp.length){
-    modalOpen(t("compare"), `<p class="muted">${t("empty")}</p>`);
+    drawerOpen(t.compare, `<p class="muted">${t.empty}</p>`);
     return;
   }
-  const list = state.cmp.map(id=>PRODUCTS.find(p=>p.id===id)).filter(Boolean);
-  const cols = list.length;
+  const items = state.cmp.map(sku=>PRODUCTS.find(x=>x.sku===sku)).filter(Boolean).slice(0,4);
 
-  // Auto spec grouping: collect keys
-  const baseKeys = ["brand","stock"];
-  const lapKeys = ["cpu","gpu","ram","ssd","screen","hz","matrix","os"];
-  const rows = [];
+  const allKeys = uniq(items.flatMap(p=>{
+    const base = (p.cat==="laptops")
+      ? ["brand","cpu","gpu","ram","ssd","inch","hz","panel","os","weight","backlight"]
+      : Object.keys(p.specs || {});
+    return base;
+  }));
 
-  rows.push(["Название", ...list.map(p=>productName(p))]);
-  rows.push(["Цена", ...list.map(p=>fmtMoney(p.priceKZT, state.cur))]);
-  rows.push(["Наличие", ...list.map(p=>p.stock==="in"?t("inStock"):t("preorder"))]);
-
-  // for laptops
-  const anyLaptop = list.some(p=>p.laptop);
-  if(anyLaptop){
-    lapKeys.forEach(k=>{
-      rows.push([k.toUpperCase(), ...list.map(p=>p.laptop ? (p.laptop[k]||"-") : "-")]);
-    });
-  } else {
-    rows.push(["Категория", ...list.map(p=>CATEGORIES.find(c=>c.id===p.cat)?.name[state.lang] || p.cat)]);
+  function val(p,k){
+    if(p.cat==="laptops"){
+      const s = p.specs || {};
+      const map = { brand:p.brand, cpu:s.cpu, gpu:s.gpu, ram:s.ram, ssd:s.ssd, inch:s.inch, hz:s.hz, panel:s.panel, os:s.os, weight:s.weight, backlight:s.backlight };
+      return map[k] ?? "—";
+    }
+    return (p.specs && p.specs[k]) ? p.specs[k] : "—";
   }
 
-  // diff highlight
-  const htmlRows = rows.map(r=>{
-    const vals = r.slice(1);
-    const isDiff = new Set(vals).size > 1;
-    return `
-      <tr class="${isDiff ? "diff" : ""}">
-        <th>${r[0]}</th>
-        ${vals.map(v=>`<td>${v}</td>`).join("")}
-      </tr>
-    `;
-  }).join("");
+  const head = `
+    <div class="row" style="margin-bottom:10px">
+      <div class="muted">Товаров: ${items.length}/4</div>
+      <button class="btn mini" type="button" id="cmpDiff">${t.diff}</button>
+    </div>
+  `;
+
+  const cols = items.map(p=>`
+    <div class="card pad" style="box-shadow:none; border-radius:16px; border:1px solid rgba(214,214,214,.75)">
+      <b style="font-size:13px">${p.name}</b>
+      <small class="muted">${fmtMoney(p.priceKZT, state.cur)}</small>
+      <div class="qty" style="margin-top:8px">
+        <button class="btn mini" type="button" data-open="${p.sku}">${t.open}</button>
+        <button class="btn mini" type="button" data-rm="${p.sku}">${t.remove}</button>
+      </div>
+    </div>
+  `).join("");
+
+  const table = `
+    <div style="display:grid; grid-template-columns: repeat(${items.length}, minmax(0,1fr)); gap:10px; margin-bottom:12px">
+      ${cols}
+    </div>
+    <div class="card pad" style="box-shadow:none; border-radius:16px; border:1px solid rgba(214,214,214,.75)">
+      <table class="tbl" id="cmpTbl">
+        ${allKeys.map(k=>`
+          <tr data-k="${k}">
+            <td>${k.toUpperCase()}</td>
+            <td style="display:none"></td>
+          </tr>
+        `).join("")}
+      </table>
+      <div style="display:grid; grid-template-columns: repeat(${items.length}, minmax(0,1fr)); gap:10px; margin-top:10px" id="cmpGrid">
+        ${items.map(p=>`
+          <div class="box" style="border-radius:16px">
+            ${allKeys.map(k=>`<div style="display:flex; justify-content:space-between; gap:10px; padding:7px 0; border-bottom:1px dashed rgba(214,214,214,.8)">
+              <span class="muted" style="font-size:12px">${k.toUpperCase()}</span>
+              <b style="font-size:12px; text-align:right">${val(p,k)}</b>
+            </div>`).join("")}
+          </div>
+        `).join("")}
+      </div>
+    </div>
+  `;
+
+  drawerOpen(t.compare, head + table);
+
+  const dc = document.getElementById("drawerContent");
+  dc.addEventListener("click",(e)=>{
+    const bOpen = e.target.closest("button[data-open]");
+    const bRm = e.target.closest("button[data-rm]");
+    if(bOpen){
+      const sku = bOpen.dataset.open;
+      drawerClose();
+      openProduct(sku);
+    }
+    if(bRm){
+      const sku = bRm.dataset.rm;
+      const i = state.cmp.indexOf(sku);
+      if(i>=0) state.cmp.splice(i,1);
+      saveState(state); setCounts(); renderCompare();
+    }
+  }, { once:true });
+
+  document.getElementById("cmpDiff").addEventListener("click", ()=>{
+    // подсветка отличий: скрываем строки, где все значения одинаковые
+    const boxes = Array.from(document.querySelectorAll("#cmpGrid .box"));
+    const rowsCount = allKeys.length;
+    for(let r=0; r<rowsCount; r++){
+      const k = allKeys[r];
+      const vals = items.map(p=>String(val(p,k)));
+      const allSame = vals.every(v=>v===vals[0]);
+      if(allSame){
+        boxes.forEach(b=>{
+          const row = b.children[r];
+          if(row) row.style.display = "none";
+        });
+      } else {
+        boxes.forEach(b=>{
+          const row = b.children[r];
+          if(row) row.style.display = "";
+        });
+      }
+    }
+  });
+}
+
+/* ===========================
+   Modal (PDP + variants)
+   =========================== */
+
+function modalOpen(title, html){
+  const m = document.getElementById("modal");
+  document.getElementById("mTitle").textContent = title;
+  document.getElementById("mBody").innerHTML = html;
+  m.classList.add("show");
+  m.setAttribute("aria-hidden","false");
+}
+function modalClose(){
+  const m = document.getElementById("modal");
+  m.classList.remove("show");
+  m.setAttribute("aria-hidden","true");
+}
+document.getElementById("mClose").addEventListener("click", modalClose);
+document.getElementById("modalOverlay").addEventListener("click", modalClose);
+
+function skuInList(list, sku){ return list.includes(sku); }
+
+function addToWish(sku){
+  const i = state.wish.indexOf(sku);
+  if(i>=0) state.wish.splice(i,1);
+  else state.wish.push(sku);
+  saveState(state); setCounts(); render();
+}
+function addToCmp(sku){
+  const i = state.cmp.indexOf(sku);
+  if(i>=0) state.cmp.splice(i,1);
+  else {
+    if(state.cmp.length>=4){ alert("Можно сравнить до 4 товаров."); return; }
+    state.cmp.push(sku);
+  }
+  saveState(state); setCounts(); render();
+}
+
+function addToCart(item, qty=1, vid="base", variantName=""){
+  const existing = state.cart.find(x=>x.sku===item.sku && String(x.vid)===String(vid));
+  const stockLabel = (item.stock==="in") ? (I18N[state.lang].in) : (I18N[state.lang].pre);
+  if(existing) existing.qty += qty;
+  else {
+    state.cart.push({
+      sku: item.sku,
+      name: item.name,
+      priceKZT: item.priceKZT,
+      img: item.img,
+      qty,
+      vid,
+      variantName,
+      stock: stockLabel + (item.stock==="pre" ? " • ~8 дней" : "")
+    });
+  }
+  saveState(state); setCounts();
+}
+
+function openProduct(sku){
+  const t = I18N[state.lang] || I18N.ru;
+  const p = PRODUCTS.find(x=>x.sku===sku);
+  if(!p){ alert("Товар не найден"); return; }
+
+  // variants (для ноутбуков имитируем конфиги: RAM/SSD)
+  const variants = [];
+  if(p.cat==="laptops"){
+    const baseRam = p.specs.ram;
+    const baseSsd = p.specs.ssd;
+    const altRam = (baseRam==="16GB") ? "32GB" : "16GB";
+    const altSsd = (baseSsd.includes("512")) ? "1TB NVMe" : "512GB NVMe";
+    variants.push({ id:"v1", ram:baseRam, ssd:baseSsd, priceKZT:p.priceKZT, stock:p.stock });
+    variants.push({ id:"v2", ram:altRam, ssd:baseSsd, priceKZT:Math.round(p.priceKZT*1.08), stock:(p.id%2===0)?"pre":"in" });
+    variants.push({ id:"v3", ram:baseRam, ssd:altSsd, priceKZT:Math.round(p.priceKZT*1.06), stock:"pre" });
+  } else {
+    variants.push({ id:"base", priceKZT:p.priceKZT, stock:p.stock });
+  }
+
+  const stockChip = (p.stock==="in")
+    ? `<span class="chip2 ok">✅ ${t.in}</span>`
+    : `<span class="chip2 warn">⏳ ${t.pre}</span>`;
+
+  const preorderLine = (p.stock==="pre")
+    ? `<div class="preorderline">${t.preorderLine}</div>`
+    : "";
+
+  const specsRows = (p.cat==="laptops")
+    ? [
+      ["Бренд", p.brand],
+      ["CPU", p.specs.cpu],
+      ["GPU", p.specs.gpu],
+      ["RAM", p.specs.ram],
+      ["SSD", p.specs.ssd],
+      ["Экран", `${p.specs.inch}" • ${p.specs.hz}Hz • ${p.specs.panel}`],
+      ["ОС", p.specs.os],
+      ["Вес", p.specs.weight],
+      ["Подсветка", p.specs.backlight],
+      ["SKU", p.sku],
+    ]
+    : [
+      ["Бренд", p.brand],
+      ["Тип", p.specs.type || p.sub || "—"],
+      ["Документы", p.specs.docs || "—"],
+      ["Гарантия", p.specs.warranty || "—"],
+      ["SKU", p.sku],
+    ];
+
+  const warningBlock = (p.warning)
+    ? `<div class="warnbox">⚠️ <b>Важно:</b> ${p.warning}</div>`
+    : "";
+
+  const docsBlock = (p.docs && p.docs.length)
+    ? `<div style="margin-top:10px">
+         <b style="font-size:13px">Документы</b>
+         <div class="docs">
+           ${p.docs.map(d=>`<a class="doclink" href="#" onclick="alert('Заглушка документа: ${d}'); return false;">📄 ${d}</a>`).join("")}
+         </div>
+       </div>`
+    : "";
+
+  const quoteOnly = !!(p.flags && p.flags.quoteOnly);
 
   const html = `
-    <div class="cmphead">
+    <div class="pdp">
+      <div class="gal">
+        <img src="images/${p.img}" alt="">
+      </div>
+
       <div>
-        <b>${t("compare")}</b>
-        <div class="small muted">до 4 товаров • отличия подсвечены</div>
-      </div>
-      <div style="display:flex; gap:8px; flex-wrap:wrap">
-        <button class="btn" type="button" id="cmpClear">${t("reset")}</button>
-        <button class="btn primary" type="button" id="cmpToCart">${t("addCart")}</button>
-      </div>
-    </div>
-    <div class="cmpwrap">
-      <table class="cmptbl">
-        <thead>
-          <tr>
-            <th>Параметр</th>
-            ${list.map(p=>`<th>${p.id}</th>`).join("")}
-          </tr>
-        </thead>
-        <tbody>
-          ${htmlRows}
-        </tbody>
-      </table>
-    </div>
-    <div class="small muted" style="margin-top:10px">Можно открыть товар из списка ниже:</div>
-    ${list.map(p=>`
-      <div class="doclink">
-        <div><b>${productName(p)}</b><small>${p.brand}</small></div>
-        <div style="display:flex; gap:8px; align-items:center">
-          <button class="btn" type="button" data-act="open" data-id="${p.id}">${t("details")}</button>
-          <button class="btn" type="button" data-act="rmCmp" data-id="${p.id}">${t("remove")}</button>
+        <h2>${p.name}</h2>
+        <div class="muted" style="margin-top:6px">Артикул/SKU: <b>${p.sku}</b></div>
+
+        <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap; align-items:center">
+          ${stockChip}
+          ${p.oldPriceKZT ? `<span class="chip2">🔥 Акция</span>` : ""}
+          ${quoteOnly ? `<span class="chip2 warn">🧾 ${t.quote}</span>` : ""}
+        </div>
+
+        <div class="price" style="margin-top:10px">
+          <b id="pdpPrice">${fmtMoney(variants[0].priceKZT, state.cur)}</b>
+          ${p.oldPriceKZT ? `<s>${fmtMoney(p.oldPriceKZT, state.cur)}</s>` : ""}
+        </div>
+
+        ${preorderLine}
+
+        <div class="box" style="margin-top:10px">
+          <b style="font-size:13px">Характеристики</b>
+          <table class="tbl" style="margin-top:6px">
+            ${specsRows.map(([k,v])=>`<tr><td>${k}</td><td><b>${v}</b></td></tr>`).join("")}
+          </table>
+        </div>
+
+        ${p.cat==="laptops" ? `
+          <div class="box" style="margin-top:10px">
+            <b style="font-size:13px">Конфигурация (варианты SKU)</b>
+            <div class="variantrow">
+              <div>
+                <label>RAM</label>
+                <select id="vRam"></select>
+              </div>
+              <div>
+                <label>SSD</label>
+                <select id="vSsd"></select>
+              </div>
+            </div>
+            <div class="muted" style="margin-top:8px; font-size:12px" id="vStock"></div>
+          </div>
+        ` : ""}
+
+        ${warningBlock}
+        ${docsBlock}
+
+        <div class="pdpactions">
+          ${quoteOnly
+            ? `<button class="cta" type="button" id="pdpQuote">${t.quote}</button>
+               <button class="btn" type="button" id="pdpAsk">${t.ask}</button>`
+            : `<button class="cta" type="button" id="pdpAdd">${t.buy}</button>
+               <button class="btn" type="button" id="pdpBuyNow">${t.buyNow}</button>
+               <button class="btn" type="button" id="pdpOne">${t.oneClick}</button>`
+          }
+        </div>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px">
+          <button class="btn mini" type="button" id="pdpWish">${skuInList(state.wish,p.sku) ? "★ В избранном" : "☆ В избранное"}</button>
+          <button class="btn mini" type="button" id="pdpCmp">${skuInList(state.cmp,p.sku) ? "✓ В сравнении" : "+ Сравнить"}</button>
         </div>
       </div>
-    `).join("")}
+    </div>
   `;
-  modalOpen(t("compare"), html);
 
-  document.getElementById("cmpClear").addEventListener("click", ()=>{
-    state.cmp = [];
-    saveState(state); setCounts(); openCompare();
+  modalOpen("Карточка товара", html);
+
+  // Variant logic
+  let chosen = variants[0];
+  function updChosen(){
+    const priceEl = document.getElementById("pdpPrice");
+    if(priceEl) priceEl.textContent = fmtMoney(chosen.priceKZT, state.cur);
+    const stockEl = document.getElementById("vStock");
+    if(stockEl){
+      const s = (chosen.stock==="in") ? (t.in) : (t.pre);
+      stockEl.textContent = "Наличие: " + s + (chosen.stock==="pre" ? " • ~8 дней до Алматы" : "");
+    }
+  }
+
+  if(p.cat==="laptops"){
+    const ramSel = document.getElementById("vRam");
+    const ssdSel = document.getElementById("vSsd");
+    const rams = uniq(variants.map(v=>v.ram));
+    const ssds = uniq(variants.map(v=>v.ssd));
+    ramSel.innerHTML = rams.map(x=>`<option value="${x}">${x}</option>`).join("");
+    ssdSel.innerHTML = ssds.map(x=>`<option value="${x}">${x}</option>`).join("");
+    ramSel.value = variants[0].ram;
+    ssdSel.value = variants[0].ssd;
+
+    function selectVariant(){
+      const r = ramSel.value;
+      const s = ssdSel.value;
+      const found = variants.find(v=>v.ram===r && v.ssd===s) || variants[0];
+      chosen = found;
+      updChosen();
+    }
+    ramSel.addEventListener("change", selectVariant);
+    ssdSel.addEventListener("change", selectVariant);
+    updChosen();
+  }
+
+  // Actions
+  const wishBtn = document.getElementById("pdpWish");
+  const cmpBtn  = document.getElementById("pdpCmp");
+  if(wishBtn) wishBtn.addEventListener("click", ()=>{
+    addToWish(p.sku);
+    wishBtn.textContent = skuInList(state.wish,p.sku) ? "★ В избранном" : "☆ В избранное";
+  });
+  if(cmpBtn) cmpBtn.addEventListener("click", ()=>{
+    addToCmp(p.sku);
+    cmpBtn.textContent = skuInList(state.cmp,p.sku) ? "✓ В сравнении" : "+ Сравнить";
   });
 
-  document.getElementById("cmpToCart").addEventListener("click", ()=>{
-    // Добавим первые варианты всех товаров в корзину (если не quoteOnly)
-    list.forEach(p=>{
-      if(!p.quoteOnly) addToCart(p, p.variants[0]?.vid || 1);
-    });
-    alert("Добавлено в корзину (где возможно).");
-    openCart();
-  });
+  const askText = `Здравствуйте! Вопрос по товару:
+${p.name}
+SKU: ${p.sku}
+Категория: ${p.cat}
+Наличие: ${p.stock==="in" ? t.in : t.pre}
+`;
 
-  mBody.addEventListener("click", (e)=>{
-    const b = e.target.closest("button");
-    if(!b) return;
-    const id = b.dataset.id;
-    if(b.dataset.act==="open" && id){
-      const p = PRODUCTS.find(x=>x.id===id);
-      if(p) renderPDP(p);
-    }
-    if(b.dataset.act==="rmCmp" && id){
-      toggleCmp(id);
-      openCompare();
-    }
+  const quoteText = `Здравствуйте! Хочу запросить КП/консультацию:
+${p.name}
+SKU: ${p.sku}
+Категория: ${p.cat}
+`;
+
+  const addBtn = document.getElementById("pdpAdd");
+  const buyNowBtn = document.getElementById("pdpBuyNow");
+  const oneBtn = document.getElementById("pdpOne");
+  const qBtn = document.getElementById("pdpQuote");
+  const aBtn = document.getElementById("pdpAsk");
+
+  if(addBtn) addBtn.addEventListener("click", ()=>{
+    const vid = (p.cat==="laptops") ? chosen.id : "base";
+    const vName = (p.cat==="laptops") ? `${chosen.ram} / ${chosen.ssd}` : "";
+    addToCart(p, 1, vid, vName);
+    alert("Добавлено в корзину");
+  });
+  if(buyNowBtn) buyNowBtn.addEventListener("click", ()=>{
+    const vid = (p.cat==="laptops") ? chosen.id : "base";
+    const vName = (p.cat==="laptops") ? `${chosen.ram} / ${chosen.ssd}` : "";
+    addToCart(p, 1, vid, vName);
+    modalClose();
+    renderCart();
+  });
+  if(oneBtn) oneBtn.addEventListener("click", ()=>{
+    modalClose();
+    openOneClick(p);
+  });
+  if(qBtn) qBtn.addEventListener("click", ()=> openWA(quoteText));
+  if(aBtn) aBtn.addEventListener("click", ()=> openWA(askText));
+}
+
+/* ===========================
+   One-click flow
+   =========================== */
+function openOneClick(product=null){
+  const t = I18N[state.lang] || I18N.ru;
+  const title = product ? `Купить в 1 клик: ${product.name}` : "Купить в 1 клик";
+  const html = `
+    <div class="card pad" style="box-shadow:none; border-radius:16px; border:1px solid rgba(214,214,214,.75)">
+      <b style="font-size:14px">${title}</b>
+      <div class="muted" style="margin-top:6px; font-size:12px">
+        Оставьте имя и телефон — мы свяжемся и уточним наличие/сроки.
+      </div>
+      <div class="formgrid" style="margin-top:12px">
+        <div class="field">
+          <label>Имя</label>
+          <input id="ocName" placeholder="Например: Айбек" />
+        </div>
+        <div class="field">
+          <label>Телефон</label>
+          <input id="ocPhone" placeholder="+7 ..." />
+        </div>
+      </div>
+      <div class="field" style="margin-top:10px">
+        <label>Комментарий</label>
+        <input id="ocNote" placeholder="Например: нужна доставка, удобное время..." />
+      </div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px">
+        <button class="cta" type="button" id="ocSend">Отправить</button>
+        <button class="btn" type="button" id="ocCancel">Отмена</button>
+      </div>
+    </div>
+  `;
+  modalOpen("Купить в 1 клик", html);
+
+  document.getElementById("ocCancel").addEventListener("click", modalClose);
+  document.getElementById("ocSend").addEventListener("click", ()=>{
+    const name = (document.getElementById("ocName").value || "").trim();
+    const phone = (document.getElementById("ocPhone").value || "").trim();
+    const note = (document.getElementById("ocNote").value || "").trim();
+    const pLine = product ? `Товар: ${product.name}\nSKU: ${product.sku}\nЦена: ${fmtMoney(product.priceKZT, state.cur)}\n` : "";
+    const msg =
+`Заявка: Купить в 1 клик
+${pLine}Имя: ${name || "-"}
+Телефон: ${phone || "-"}
+Комментарий: ${note || "-"}
+(Сайт JOHNGALTAZ)`;
+    openWA(msg);
   });
 }
 
-/* ===== Events ===== */
-document.getElementById("langSel").addEventListener("change", (e)=>{
-  state.lang = e.target.value;
-  saveState(state);
-  refreshCatNames();
-  applyI18N();
-  hydrateFromQS(); // перерисуем
-});
-document.getElementById("curSel").addEventListener("change", (e)=>{
-  state.cur = e.target.value;
-  saveState(state);
-  hydrateFromQS();
-});
-document.getElementById("hambBtn").addEventListener("click", ()=>{
-  document.getElementById("nav").classList.toggle("open");
-});
+/* ===========================
+   Filters / rendering
+   =========================== */
 
-document.getElementById("cartBtn").addEventListener("click", openCart);
-document.getElementById("wishBtn").addEventListener("click", openWishlist);
-document.getElementById("cmpBtn").addEventListener("click", openCompare);
-document.getElementById("openCheckout").addEventListener("click", openCheckout);
+const UI = {
+  products: document.getElementById("products"),
+  countText: document.getElementById("countText"),
+  queryPill: document.getElementById("queryPill"),
+  activePill: document.getElementById("activePill"),
 
-document.getElementById("askWA").addEventListener("click", ()=>openWA("Здравствуйте! Нужна консультация по товарам JOHNGALTAZ."));
-document.getElementById("fabWA").addEventListener("click", ()=>openWA("Здравствуйте! Нужна консультация по товарам JOHNGALTAZ."));
+  catSel: document.getElementById("catSel"),
+  subSel: document.getElementById("subSel"),
+  brandSel: document.getElementById("brandSel"),
+  minPrice: document.getElementById("minPrice"),
+  maxPrice: document.getElementById("maxPrice"),
+  onlyInStock: document.getElementById("onlyInStock"),
+  showPreorder: document.getElementById("showPreorder"),
 
-document.getElementById("qBtn").addEventListener("click", ()=>{
-  document.getElementById("q").value = document.getElementById("qTop").value;
-  document.getElementById("applyBtn").click();
-});
-document.getElementById("qTop").addEventListener("keydown", (e)=>{
-  if(e.key==="Enter"){ e.preventDefault(); document.getElementById("qBtn").click(); }
-});
+  laptopFilters: document.getElementById("laptopFilters"),
+  cpuSel: document.getElementById("cpuSel"),
+  gpuSel: document.getElementById("gpuSel"),
+  ramSel: document.getElementById("ramSel"),
+  ssdSel: document.getElementById("ssdSel"),
+  inchSel: document.getElementById("inchSel"),
+  hzSel: document.getElementById("hzSel"),
+  osSel: document.getElementById("osSel"),
+  panelSel: document.getElementById("panelSel"),
 
-document.getElementById("applyBtn").addEventListener("click", ()=>{
-  const params = collectParamsFromUI();
-  qsSet(params);
-  renderList(params);
-});
-document.getElementById("resetBtn").addEventListener("click", ()=>{
-  const params = { sort: document.getElementById("sortSel").value || "pop" };
-  qsSet(params);
-  hydrateFromQS();
-});
+  searchInput: document.getElementById("searchInput"),
+  sortSel: document.getElementById("sortSel"),
+};
 
-document.getElementById("sortSel").addEventListener("change", ()=>{
-  const params = collectParamsFromUI();
-  params.sort = document.getElementById("sortSel").value;
-  qsSet(params);
-  renderList(params);
-});
-
-// Click on product card actions
-document.getElementById("products").addEventListener("click", (e)=>{
-  const btn = e.target.closest("button");
-  if(!btn) return;
-  const act = btn.dataset.act;
-  const id = btn.dataset.id;
-  const p = PRODUCTS.find(x=>x.id===id);
-  if(!act || !p) return;
-
-  if(act==="open") renderPDP(p);
-  if(act==="add") { addToCart(p, 1); alert("Добавлено в корзину"); }
-  if(act==="one") openOneClick(p, 1);
-  if(act==="wish") { toggleWish(id); hydrateFromQS(); }
-  if(act==="cmp") { toggleCmp(id); hydrateFromQS(); }
-  if(act==="quote") requestQuote(p, p.variants[0]);
-});
-
-// Close modal on ESC
-document.addEventListener("keydown", (e)=>{
-  if(e.key==="Escape") modalClose();
-});
-
-/* ===== Collect / hydrate ===== */
-function collectParamsFromUI(){
-  const params = {};
-  params.cat = catSel.value || "";
-  params.q = document.getElementById("q").value.trim();
-  params.pMin = document.getElementById("pMin").value.trim();
-  params.pMax = document.getElementById("pMax").value.trim();
-  params.brand = brandSel.value || "";
-  params.stock = document.getElementById("stockSel").value || "";
-
-  // laptop filters only when category laptops or when some laptop filter set
-  params.cpu = cpuSel.value || "";
-  params.gpu = gpuSel.value || "";
-  params.ram = ramSel.value || "";
-  params.ssd = ssdSel.value || "";
-  params.screen = screenSel.value || "";
-  params.hz = hzSel.value || "";
-  params.matrix = matrixSel.value || "";
-  params.os = osSel.value || "";
-
-  params.sort = document.getElementById("sortSel").value || "pop";
-  return params;
+function fillSelect(sel, values, firstLabel="Все"){
+  sel.innerHTML = `<option value="">${firstLabel}</option>` + values.map(v=>`<option value="${v}">${v}</option>`).join("");
 }
 
-function hydrateFromQS(){
-  const params = qsParse();
+function syncSubcats(cat){
+  const subs = uniq(PRODUCTS.filter(p=>!cat || p.cat===cat).map(p=>p.sub));
+  fillSelect(UI.subSel, subs, "Все");
+}
 
-  // if passed from index
-  state.lang = (params.lang && I18N[params.lang]) ? params.lang : state.lang;
-  state.cur = (params.cur && FX[params.cur]!=null) ? params.cur : state.cur;
+function syncBrands(cat){
+  const brands = uniq(PRODUCTS.filter(p=>!cat || p.cat===cat).map(p=>p.brand));
+  fillSelect(UI.brandSel, brands, "Все");
+}
+
+function syncLaptopFacetOptions(){
+  const ls = PRODUCTS.filter(p=>p.cat==="laptops");
+  fillSelect(UI.cpuSel, uniq(ls.map(p=>p.specs.cpu)), "Любой");
+  fillSelect(UI.gpuSel, uniq(ls.map(p=>p.specs.gpu)), "Любой");
+  fillSelect(UI.ramSel, uniq(ls.map(p=>p.specs.ram)), "Любая");
+  fillSelect(UI.ssdSel, uniq(ls.map(p=>p.specs.ssd)), "Любой");
+  fillSelect(UI.inchSel, uniq(ls.map(p=>p.specs.inch)), "Любой");
+  fillSelect(UI.hzSel, uniq(ls.map(p=>p.specs.hz)), "Любая");
+  fillSelect(UI.osSel, uniq(ls.map(p=>p.specs.os)), "Любая");
+  fillSelect(UI.panelSel, uniq(ls.map(p=>p.specs.panel)), "Любая");
+}
+
+function getFilters(){
+  const q = (UI.searchInput.value || "").trim();
+  const cat = UI.catSel.value;
+  const sub = UI.subSel.value;
+  const brand = UI.brandSel.value;
+  const minP = parseInt((UI.minPrice.value||"").replace(/\s/g,""), 10);
+  const maxP = parseInt((UI.maxPrice.value||"").replace(/\s/g,""), 10);
+  const onlyIn = UI.onlyInStock.checked;
+  const showPre = UI.showPreorder.checked;
+  const sort = UI.sortSel.value;
+
+  const laptop = {
+    cpu: UI.cpuSel.value,
+    gpu: UI.gpuSel.value,
+    ram: UI.ramSel.value,
+    ssd: UI.ssdSel.value,
+    inch: UI.inchSel.value,
+    hz: UI.hzSel.value,
+    os: UI.osSel.value,
+    panel: UI.panelSel.value,
+  };
+
+  return { q, cat, sub, brand, minP: isNaN(minP)?null:minP, maxP: isNaN(maxP)?null:maxP, onlyIn, showPre, sort, laptop };
+}
+
+function setFromQS(){
+  const p = qsParse();
+  if(p.lang){ state.lang = p.lang; saveState(state); }
+  if(p.cur){ state.cur = p.cur; saveState(state); }
 
   document.getElementById("langSel").value = state.lang;
   document.getElementById("curSel").value = state.cur;
 
-  refreshCatNames();
-  applyI18N();
-  setCounts();
+  UI.searchInput.value = p.q || "";
+  UI.catSel.value = p.cat || "";
+  syncSubcats(UI.catSel.value);
+  UI.subSel.value = p.sub || "";
+  syncBrands(UI.catSel.value);
+  UI.brandSel.value = p.brand || "";
+  UI.minPrice.value = p.min || "";
+  UI.maxPrice.value = p.max || "";
+  UI.onlyInStock.checked = (p.onlyIn==="1");
+  UI.showPreorder.checked = (p.showPre==="0") ? false : true; // default true
+  UI.sortSel.value = p.sort || "pop";
 
-  // set UI from params
-  catSel.value = params.cat || "";
-  document.getElementById("q").value = params.q || "";
-  document.getElementById("qTop").value = params.q || "";
+  // laptop facets
+  syncLaptopFacetOptions();
+  UI.cpuSel.value = p.cpu || "";
+  UI.gpuSel.value = p.gpu || "";
+  UI.ramSel.value = p.ram || "";
+  UI.ssdSel.value = p.ssd || "";
+  UI.inchSel.value = p.inch || "";
+  UI.hzSel.value = p.hz || "";
+  UI.osSel.value = p.os || "";
+  UI.panelSel.value = p.panel || "";
 
-  document.getElementById("pMin").value = params.pMin || "";
-  document.getElementById("pMax").value = params.pMax || "";
-  brandSel.value = params.brand || "";
-  document.getElementById("stockSel").value = params.stock || "";
+  // open drawers/modal
+  if(p.open==="cart") renderCart();
+  if(p.open==="oneclick") openOneClick(null);
 
-  cpuSel.value = params.cpu || "";
-  gpuSel.value = params.gpu || "";
-  ramSel.value = params.ram || "";
-  ssdSel.value = params.ssd || "";
-  screenSel.value = params.screen || "";
-  hzSel.value = params.hz || "";
-  matrixSel.value = params.matrix || "";
-  osSel.value = params.os || "";
+  // direct open product/wish/cmp
+  if(p.wish) openProduct(p.wish);
+  if(p.cmp) openProduct(p.cmp);
+}
 
-  document.getElementById("sortSel").value = params.sort || "pop";
+function applyToQS(){
+  const f = getFilters();
+  qsSet({
+    q: f.q || "",
+    cat: f.cat || "",
+    sub: f.sub || "",
+    brand: f.brand || "",
+    min: f.minP ?? "",
+    max: f.maxP ?? "",
+    onlyIn: f.onlyIn ? "1" : "",
+    showPre: f.showPre ? "" : "0",
+    sort: f.sort || "",
+    // laptop
+    cpu: (f.cat==="laptops") ? (f.laptop.cpu || "") : "",
+    gpu: (f.cat==="laptops") ? (f.laptop.gpu || "") : "",
+    ram: (f.cat==="laptops") ? (f.laptop.ram || "") : "",
+    ssd: (f.cat==="laptops") ? (f.laptop.ssd || "") : "",
+    inch:(f.cat==="laptops") ? (f.laptop.inch|| "") : "",
+    hz:  (f.cat==="laptops") ? (f.laptop.hz  || "") : "",
+    os:  (f.cat==="laptops") ? (f.laptop.os  || "") : "",
+    panel:(f.cat==="laptops") ? (f.laptop.panel|| "") : "",
+    // settings
+    lang: state.lang,
+    cur: state.cur
+  });
+}
 
-  // show/hide laptop filters
-  const showLaptop = (catSel.value==="laptops") || ["cpu","gpu","ram","ssd","screen","hz","matrix","os"].some(k=>params[k]);
-  document.getElementById("laptopFilters").style.display = showLaptop ? "block" : "none";
+function filterProducts(){
+  const f = getFilters();
+  const t = I18N[state.lang] || I18N.ru;
+  let list = PRODUCTS.slice();
 
-  // price hint
-  const relevant = filterProducts({cat: params.cat || "", q: params.q || "", brand: params.brand || "" , stock: params.stock || ""});
-  const prices = relevant.map(p=>p.priceKZT);
-  const min = prices.length ? Math.min(...prices) : 0;
-  const max = prices.length ? Math.max(...prices) : 0;
-  document.getElementById("priceHint").textContent = prices.length ? `Диапазон по текущей выборке: ${min} — ${max} KZT` : "";
+  // category/sub/brand
+  if(f.cat) list = list.filter(p=>p.cat===f.cat);
+  if(f.sub) list = list.filter(p=>p.sub===f.sub);
+  if(f.brand) list = list.filter(p=>p.brand===f.brand);
 
-  renderList(params);
+  // stock
+  if(f.onlyIn) list = list.filter(p=>p.stock==="in");
+  if(!f.showPre) list = list.filter(p=>p.stock!=="pre");
 
-  // optional open panels
-  if(params.open==="cart") openCart();
-  if(params.open==="oneclick"){
-    // открываем 1-клик без товара — как общую заявку
-    modalOpen(t("oneClick"), `
-      <div class="card pad" style="box-shadow:none; border:none">
-        <div class="small muted" style="margin-bottom:10px">Купить в 1 клик — общая заявка</div>
-        <div class="field"><label>Имя</label><input id="ocName" placeholder="Например: Салтанат"></div>
-        <div class="field"><label>Телефон</label><input id="ocPhone" placeholder="+7 ..."></div>
-        <div class="field"><label>Комментарий</label><input id="ocComm" placeholder="Какой товар нужен?"></div>
-        <button class="btn primary" id="ocSend" type="button">${t("send")}</button>
-      </div>
-    `);
-    document.getElementById("ocSend").addEventListener("click", ()=>{
-      const name = document.getElementById("ocName").value.trim();
-      const phone = document.getElementById("ocPhone").value.trim();
-      const comm = document.getElementById("ocComm").value.trim();
-      openWA(`Заявка: Купить в 1 клик (общая)\nИмя: ${name}\nТелефон: ${phone}\nКомментарий: ${comm||"-"}\n(Сайт JOHNGALTAZ)`);
+  // price
+  if(f.minP!=null) list = list.filter(p=>p.priceKZT>=f.minP);
+  if(f.maxP!=null) list = list.filter(p=>p.priceKZT<=f.maxP);
+
+  // query
+  if(f.q){
+    const q = f.q.toLowerCase();
+    list = list.filter(p=>{
+      const blob = (p.name+" "+p.sku+" "+p.brand+" "+(p.cat||"")+" "+(p.sub||"")+" "+JSON.stringify(p.specs||{})).toLowerCase();
+      return blob.includes(q);
     });
   }
 
-  // open by SKU from index drawer links
-  if(params.wish){
-    const p = PRODUCTS.find(x=>x.id===params.wish);
-    if(p) renderPDP(p);
+  // laptop facets
+  if(f.cat==="laptops"){
+    if(f.laptop.cpu) list = list.filter(p=>p.specs.cpu===f.laptop.cpu);
+    if(f.laptop.gpu) list = list.filter(p=>p.specs.gpu===f.laptop.gpu);
+    if(f.laptop.ram) list = list.filter(p=>p.specs.ram===f.laptop.ram);
+    if(f.laptop.ssd) list = list.filter(p=>p.specs.ssd===f.laptop.ssd);
+    if(f.laptop.inch) list = list.filter(p=>p.specs.inch===f.laptop.inch);
+    if(f.laptop.hz) list = list.filter(p=>p.specs.hz===f.laptop.hz);
+    if(f.laptop.os) list = list.filter(p=>p.specs.os===f.laptop.os);
+    if(f.laptop.panel) list = list.filter(p=>p.specs.panel===f.laptop.panel);
   }
-  if(params.cmp){
-    const p = PRODUCTS.find(x=>x.id===params.cmp);
-    if(p) renderPDP(p);
-  }
+
+  // sort
+  if(f.sort==="price_asc") list.sort((a,b)=>a.priceKZT-b.priceKZT);
+  if(f.sort==="price_desc") list.sort((a,b)=>b.priceKZT-a.priceKZT);
+  if(f.sort==="new") list.sort((a,b)=>b.created-a.created);
+  if(f.sort==="pop") list.sort((a,b)=>b.popularity-a.popularity);
+
+  // UI text
+  UI.queryPill.textContent = "Запрос: " + (f.q ? `"${f.q}"` : "—");
+  UI.countText.textContent = "Найдено: " + list.length;
+
+  // active filter count
+  const active = [
+    f.q, f.cat, f.sub, f.brand,
+    (f.minP!=null ? "min" : ""),
+    (f.maxP!=null ? "max" : ""),
+    (f.onlyIn ? "onlyIn" : ""),
+    (!f.showPre ? "noPre" : ""),
+    (f.cat==="laptops" ? f.laptop.cpu : ""),
+    (f.cat==="laptops" ? f.laptop.gpu : ""),
+    (f.cat==="laptops" ? f.laptop.ram : ""),
+    (f.cat==="laptops" ? f.laptop.ssd : ""),
+    (f.cat==="laptops" ? f.laptop.inch : ""),
+    (f.cat==="laptops" ? f.laptop.hz : ""),
+    (f.cat==="laptops" ? f.laptop.os : ""),
+    (f.cat==="laptops" ? f.laptop.panel : ""),
+  ].filter(Boolean).length;
+  UI.activePill.textContent = "Активные фильтры: " + active;
+
+  return list;
 }
 
-// init from URL
-setCounts();
-applyI18N();
-hydrateFromQS();
+function cardHTML(p){
+  const t = I18N[state.lang] || I18N.ru;
 
-// persist language/currency to state when page loads
-saveState(state);
+  const stockChip = (p.stock==="in")
+    ? `<span class="chip2 ok">✅ ${t.in}</span>`
+    : `<span class="chip2 warn">⏳ ${t.pre}</span>`;
+
+  const keySpecs = (p.cat==="laptops")
+    ? [
+      `CPU: ${p.specs.cpu}`,
+      `GPU: ${p.specs.gpu}`,
+      `RAM: ${p.specs.ram}`,
+      `SSD: ${p.specs.ssd}`,
+      `${p.specs.inch}" • ${p.specs.hz}Hz`
+    ]
+    : [
+      p.specs.type ? `Тип: ${p.specs.type}` : "",
+      p.specs.power ? `Мощность: ${p.specs.power}` : "",
+      p.specs.connection ? `Связь: ${p.specs.connection}` : "",
+      p.specs.warranty ? `Гарантия: ${p.specs.warranty}` : "",
+      p.specs.docs ? `Документы: есть` : "",
+    ].filter(Boolean).slice(0,4);
+
+  const preorderLine = (p.stock==="pre")
+    ? `<div class="preorderline">${t.preorderLine}</div>`
+    : "";
+
+  const sale = p.oldPriceKZT ? Math.round((1 - p.priceKZT/p.oldPriceKZT)*100) : null;
+
+  return `
+    <article class="p" data-sku="${p.sku}">
+      <div style="position:relative">
+        ${sale ? `<div class="sticker">-${Math.abs(sale)}%</div>` : ""}
+        <img class="pimg" src="images/${p.img}" alt="${p.name}">
+      </div>
+
+      <div class="pbody">
+        <h3 class="pname">${p.name}</h3>
+        <div class="psku">SKU: <b>${p.sku}</b></div>
+
+        <div class="pmeta">
+          ${stockChip}
+          <span class="chip2">🏷️ ${p.brand}</span>
+          ${p.flags.quoteOnly ? `<span class="chip2 warn">🧾 ${t.quote}</span>` : ""}
+        </div>
+
+        ${keySpecs.length ? `
+          <div class="specs">
+            ${keySpecs.map(s=>`<div>${s}</div>`).join("")}
+          </div>
+        ` : ""}
+
+        <div class="price">
+          <b>${fmtMoney(p.priceKZT, state.cur)}</b>
+          ${p.oldPriceKZT ? `<s>${fmtMoney(p.oldPriceKZT, state.cur)}</s>` : ""}
+        </div>
+
+        ${preorderLine}
+
+        <div class="pactions">
+          ${p.flags.quoteOnly
+            ? `<button class="cta" type="button" data-act="quote">Запрос КП</button>`
+            : `<button class="cta" type="button" data-act="add">В корзину</button>`
+          }
+          <button class="btn" type="button" data-act="open">Открыть</button>
+        </div>
+
+        <div class="iconbar">
+          <button class="iconbtn" type="button" data-act="wish" aria-label="В избранное">
+            ${state.wish.includes(p.sku) ? "★" : "☆"}
+          </button>
+          <button class="iconbtn" type="button" data-act="cmp" aria-label="Сравнить">
+            ${state.cmp.includes(p.sku) ? "✓" : "+"}
+          </button>
+          <button class="iconbtn" type="button" data-act="one" aria-label="Купить в 1 клик">⚡</button>
+        </div>
+      </div>
+    </article>
+  `;
+}
+
+function render(){
+  applyI18N();
+  setCounts();
+
+  // show/hide laptop filters
+  const cat = UI.catSel.value;
+  UI.laptopFilters.style.display = (cat==="laptops") ? "block" : "none";
+
+  // sync selects on category
+  syncSubcats(cat);
+  syncBrands(cat);
+
+  const list = filterProducts();
+  UI.products.innerHTML = list.map(cardHTML).join("");
+
+  // Update crumbs/title
+  const mapName = {
+    "": "Каталог товаров",
+    "laptops": "Игровые ноутбуки",
+    "periphery": "Периферия",
+    "home": "Мелко-бытовая техника",
+    "cosmo": "Косметическое оборудование",
+    "medical": "Медицинское оборудование"
+  };
+  document.getElementById("pageTitle").textContent = mapName[cat || ""] || "Каталог товаров";
+}
+
+/* ===========================
+   Events
+   =========================== */
+
+document.getElementById("langSel").value = state.lang;
+document.getElementById("curSel").value = state.cur;
+
+document.getElementById("langSel").addEventListener("change", (e)=>{
+  state.lang = e.target.value;
+  saveState(state);
+  applyToQS();
+  render();
+});
+document.getElementById("curSel").addEventListener("change", (e)=>{
+  state.cur = e.target.value;
+  saveState(state);
+  applyToQS();
+  render();
+});
+
+document.getElementById("hambBtn").addEventListener("click", ()=>{
+  const nav = document.getElementById("nav");
+  nav.classList.toggle("open");
+});
+
+document.getElementById("doSearch").addEventListener("click", ()=>{
+  applyToQS();
+  render();
+});
+document.getElementById("searchInput").addEventListener("keydown",(e)=>{
+  if(e.key==="Enter"){ e.preventDefault(); document.getElementById("doSearch").click(); }
+});
+
+document.getElementById("sortSel").addEventListener("change", ()=>{
+  applyToQS();
+  render();
+});
+
+document.getElementById("applyBtn").addEventListener("click", ()=>{
+  applyToQS();
+  render();
+});
+
+document.getElementById("resetBtn").addEventListener("click", ()=>{
+  UI.searchInput.value = "";
+  UI.catSel.value = "";
+  syncSubcats("");
+  UI.subSel.value = "";
+  syncBrands("");
+  UI.brandSel.value = "";
+  UI.minPrice.value = "";
+  UI.maxPrice.value = "";
+  UI.onlyInStock.checked = false;
+  UI.showPreorder.checked = true;
+  UI.sortSel.value = "pop";
+
+  UI.cpuSel.value = "";
+  UI.gpuSel.value = "";
+  UI.ramSel.value = "";
+  UI.ssdSel.value = "";
+  UI.inchSel.value = "";
+  UI.hzSel.value = "";
+  UI.osSel.value = "";
+  UI.panelSel.value = "";
+
+  applyToQS();
+  render();
+});
+
+UI.catSel.addEventListener("change", ()=>{
+  syncSubcats(UI.catSel.value);
+  syncBrands(UI.catSel.value);
+  render();
+});
+
+document.getElementById("openFiltersMobile").addEventListener("click", ()=>{
+  // на мобилке просто скроллим к фильтрам
+  document.getElementById("filtersCard").scrollIntoView({behavior:"smooth"});
+});
+
+document.querySelectorAll(".gtitle button[data-toggle]").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    const key = btn.dataset.toggle;
+    const box = document.querySelector(`[data-box="${key}"]`);
+    if(!box) return;
+    const isHidden = box.style.display==="none";
+    box.style.display = isHidden ? "" : "none";
+    btn.textContent = isHidden ? "▾" : "▸";
+  });
+});
+
+document.querySelectorAll(".tagrow .tag").forEach(tag=>{
+  tag.addEventListener("click", ()=>{
+    const qcat = tag.dataset.qcat;
+    const reset = tag.dataset.qreset;
+    if(reset){
+      UI.catSel.value = "";
+    } else if(qcat){
+      UI.catSel.value = qcat;
+    }
+    syncSubcats(UI.catSel.value);
+    syncBrands(UI.catSel.value);
+    applyToQS();
+    render();
+  });
+});
+
+document.getElementById("cartBtn").addEventListener("click", renderCart);
+document.getElementById("wishBtn").addEventListener("click", renderWish);
+document.getElementById("cmpBtn").addEventListener("click", renderCompare);
+document.getElementById("openCompare").addEventListener("click", renderCompare);
+document.getElementById("openOneClick").addEventListener("click", ()=>openOneClick(null));
+
+document.getElementById("openCartFromCheckout").addEventListener("click", renderCart);
+
+document.getElementById("fabWA").addEventListener("click", ()=>{
+  openWA("Здравствуйте! Нужна консультация по товарам JOHNGALTAZ.");
+});
+
+document.getElementById("products").addEventListener("click", (e)=>{
+  const card = e.target.closest(".p");
+  if(!card) return;
+  const sku = card.dataset.sku;
+  const p = PRODUCTS.find(x=>x.sku===sku);
+  if(!p) return;
+
+  const actBtn = e.target.closest("button[data-act]");
+  if(!actBtn){
+    // клик по карточке не на кнопке — открываем
+    openProduct(sku);
+    return;
+  }
+  const act = actBtn.dataset.act;
+  if(act==="open") openProduct(sku);
+  if(act==="wish") addToWish(sku);
+  if(act==="cmp") addToCmp(sku);
+  if(act==="one") openOneClick(p);
+
+  if(act==="add"){
+    addToCart(p, 1, "base", "");
+    alert("Добавлено в корзину");
+  }
+  if(act==="quote"){
+    openWA(`Здравствуйте! Хочу запросить КП/консультацию:\n${p.name}\nSKU: ${p.sku}\nКатегория: ${p.cat}\n(Сайт JOHNGALTAZ)`);
+  }
+});
+
+document.getElementById("isB2B").addEventListener("change", (e)=>{
+  document.getElementById("b2bFields").style.display = e.target.checked ? "block" : "none";
+});
+
+document.getElementById("checkoutForm").addEventListener("submit", (e)=>{
+  e.preventDefault();
+  const t = I18N[state.lang] || I18N.ru;
+
+  if(!state.cart.length){
+    alert("Корзина пустая. Добавьте товары.");
+    return;
+  }
+
+  const name = document.getElementById("cName").value.trim();
+  const phone = document.getElementById("cPhone").value.trim();
+  const city = document.getElementById("cCity").value.trim();
+  const addr = document.getElementById("cAddr").value.trim();
+  const ship = document.getElementById("cShip").value;
+  const pay = document.getElementById("cPay").value;
+  const comment = document.getElementById("cComment").value.trim();
+
+  const isB2B = document.getElementById("isB2B").checked;
+  const bCompany = document.getElementById("bCompany").value.trim();
+  const bBin = document.getElementById("bBin").value.trim();
+  const bAddr = document.getElementById("bAddr").value.trim();
+  const bEmail = document.getElementById("bEmail").value.trim();
+  const file = document.getElementById("bFile").files[0];
+
+  const shipMap = { curier:"Курьер", pickup:"Самовывоз", post:"Казпочта/доставка", sdek:"СДЭК", boxberry:"Boxberry" };
+  const payMap = { kaspi:"Kaspi", card:"Карта", transfer:"Перевод", online:"Онлайн-эквайринг" };
+
+  const lines = state.cart.map((it, idx)=> {
+    const p = PRODUCTS.find(x=>x.sku===it.sku);
+    const lead = (p && p.stock==="pre") ? " • ~8 дней до Алматы" : "";
+    return `${idx+1}) ${it.name} (${it.sku}) ${it.variantName?("["+it.variantName+"]"):""} — ${it.qty} шт — ${fmtMoney(it.priceKZT, state.cur)}${lead}`;
+  });
+
+  const totalKZT = state.cart.reduce((sum,it)=>sum + (it.priceKZT||0)*it.qty, 0);
+
+  const b2bBlock = isB2B ? `
+Юр. лицо: Да
+Компания: ${bCompany || "-"}
+БИН/ИНН: ${bBin || "-"}
+Юр. адрес: ${bAddr || "-"}
+Email: ${bEmail || "-"}
+Файл реквизитов: ${file ? file.name : "нет"}
+` : `Юр. лицо: Нет`;
+
+  const msg =
+`Заказ / заявка (JOHNGALTAZ)
+ФИО: ${name}
+Телефон: ${phone}
+Город: ${city}
+Адрес: ${addr}
+Доставка: ${shipMap[ship] || ship}
+Оплата: ${payMap[pay] || pay}
+Комментарий: ${comment || "-"}
+${b2bBlock}
+
+Состав заказа:
+${lines.join("\n")}
+
+Итого: ${fmtMoney(totalKZT, state.cur)}
+
+Статус: новый (тестовый сайт)
+`;
+
+  openWA(msg);
+});
+
+/* ===========================
+   Init
+   =========================== */
+function initFacets(){
+  syncLaptopFacetOptions();
+  syncSubcats("");
+  syncBrands("");
+}
+initFacets();
+setFromQS();
+applyI18N();
+setCounts();
+render();
+
+/* Apply settings + deep links from QS after render */
+(function(){
+  const p = qsParse();
+  if(p.cat){ UI.catSel.value = p.cat; syncSubcats(p.cat); syncBrands(p.cat); }
+  // search pill
+  const qv = (UI.searchInput.value||"").trim();
+  UI.queryPill.textContent = "Запрос: " + (qv ? `"${qv}"` : "—");
+
+  // open product by sku
+  if(p.sku){ openProduct(p.sku); }
+
+  // if external wants to open cart/oneclick already handled in setFromQS
+})();
+
 </script>
 </body>
 </html>
