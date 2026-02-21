@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JOHNGALTAZ | Современная техника и оборудование</title>
+    <title>JOHNGALTAZ | Магазин</title>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <style>
         :root {
@@ -13,334 +13,334 @@
             --neutral-light: #D6D6D6;
             --neutral-dark: #666666;
             --card-bg: #FFFFFF;
-            --radius: 12px;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --radius: 8px;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        
-        body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--primary);
-            line-height: 1.5;
-            overflow-x: hidden;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--primary); }
+        a { color: inherit; text-decoration: none; }
+        ul { list-style: none; }
 
-        /* --- Типографика и Кнопки --- */
-        h1, h2, h3 { font-weight: 700; margin-bottom: 1rem; }
-        
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 12px 24px;
-            border-radius: var(--radius);
-            border: none;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        
-        .btn-accent {
-            background-color: var(--accent);
-            color: #fff;
-        }
-        
-        .btn-accent:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(248, 92, 88, 0.3);
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            border: 1px solid var(--neutral-light);
-            color: var(--primary);
-        }
-
+        /* --- Кнопки --- */
+        .btn { padding: 10px 20px; border-radius: var(--radius); border: none; cursor: pointer; font-weight: 600; transition: 0.2s; display: inline-flex; align-items: center; gap: 8px; }
+        .btn-accent { background: var(--accent); color: white; }
+        .btn-accent:hover { opacity: 0.9; transform: translateY(-1px); }
+        .btn-outline { border: 1px solid var(--neutral-light); background: transparent; }
         .btn-outline:hover { border-color: var(--primary); }
+        .btn-block { width: 100%; justify-content: center; }
 
-        /* --- Header --- */
-        header {
-            background: rgba(246, 246, 243, 0.9);
-            backdrop-filter: blur(10px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid var(--neutral-light);
-            padding: 1rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo { font-size: 1.5rem; font-weight: 900; letter-spacing: 1px; color: var(--primary); text-decoration: none; }
+        /* --- Шапка --- */
+        header { background: rgba(246, 246, 243, 0.95); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--neutral-light); padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 900; }
         .logo span { color: var(--accent); }
+        .nav-links { display: flex; gap: 20px; font-weight: 600; cursor: pointer; }
+        .nav-links li:hover { color: var(--accent); }
+        .cart-icon { position: relative; cursor: pointer; font-size: 1.5rem; }
+        .cart-badge { position: absolute; top: -5px; right: -10px; background: var(--accent); color: white; font-size: 0.7rem; padding: 2px 6px; border-radius: 10px; }
 
-        .nav-icons { display: flex; gap: 20px; font-size: 1.5rem; cursor: pointer; }
-        .nav-icons i:hover { color: var(--accent); transition: var(--transition); }
-
-        /* --- Layout: Каталог --- */
-        .container {
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 2rem;
-            padding: 2rem 5%;
-            max-width: 1440px;
-            margin: 0 auto;
-        }
-
-        /* --- Фильтры (Sidebar) --- */
-        .sidebar {
-            background: var(--card-bg);
-            padding: 1.5rem;
-            border-radius: var(--radius);
-            height: fit-content;
-            border: 1px solid var(--neutral-light);
-        }
-
-        .filter-group { margin-bottom: 1.5rem; }
-        .filter-group h4 { margin-bottom: 0.5rem; font-size: 1rem; }
-        
-        .checkbox-label {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 8px;
-            color: var(--neutral-dark);
-            cursor: pointer;
-        }
+        /* --- Контейнер --- */
+        .container { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; min-height: 70vh; }
+        .page { display: none; animation: fadeIn 0.3s ease; }
+        .page.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         /* --- Сетка товаров --- */
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; }
+        .card { background: var(--card-bg); padding: 1rem; border-radius: var(--radius); border: 1px solid var(--neutral-light); display: flex; flex-direction: column; cursor: pointer; transition: 0.2s; }
+        .card:hover { border-color: var(--primary); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .card img { width: 100%; height: 180px; object-fit: contain; margin-bottom: 1rem; }
+        .card-title { font-size: 1.1rem; margin-bottom: 0.5rem; flex-grow: 1; }
+        .card-price { font-size: 1.2rem; font-weight: bold; margin-bottom: 1rem; }
+        .old-price { text-decoration: line-through; color: var(--neutral-dark); font-size: 0.9rem; margin-left: 10px; }
+        .stock-status { font-size: 0.8rem; margin-bottom: 10px; font-weight: 600; }
+        .in-stock { color: #2ecc71; }
+        .preorder { color: #f39c12; }
 
-        .product-card {
-            background: var(--card-bg);
-            border-radius: var(--radius);
-            padding: 1rem;
-            border: 1px solid var(--neutral-light);
-            transition: var(--transition);
-            position: relative;
-            display: flex;
-            flex-direction: column;
-        }
+        /* --- Карточка товара (Детальная) --- */
+        .product-detail { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+        .product-detail img { width: 100%; border-radius: var(--radius); border: 1px solid var(--neutral-light); background: #fff; }
+        .specs-table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+        .specs-table td { padding: 8px; border-bottom: 1px solid var(--neutral-light); }
+        .specs-table td:first-child { color: var(--neutral-dark); width: 40%; }
 
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            border-color: var(--primary);
-        }
-
-        .badge {
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            background: var(--accent);
-            color: white;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: bold;
-        }
-
-        .product-image {
-            width: 100%;
-            height: 200px;
-            object-fit: contain;
-            margin-bottom: 1rem;
-            border-radius: 8px;
-            background: var(--bg-color);
-        }
-
-        .product-title { font-size: 1.1rem; margin-bottom: 0.5rem; flex-grow: 1; }
+        /* --- Корзина и Чекаут --- */
+        .cart-item { display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 1rem; border-radius: var(--radius); margin-bottom: 1rem; border: 1px solid var(--neutral-light); }
+        .cart-item-info { display: flex; gap: 1rem; align-items: center; }
+        .cart-item img { width: 60px; height: 60px; object-fit: contain; }
+        .cart-controls { display: flex; align-items: center; gap: 10px; }
+        .qty-btn { background: var(--bg-color); border: 1px solid var(--neutral-light); width: 30px; height: 30px; border-radius: 4px; cursor: pointer; }
         
-        .product-specs {
-            font-size: 0.8rem;
-            color: var(--neutral-dark);
-            margin-bottom: 1rem;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 4px;
-        }
+        .checkout-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; }
+        .form-group { margin-bottom: 1rem; }
+        .form-group label { display: block; margin-bottom: 5px; font-size: 0.9rem; font-weight: 600; }
+        .form-group input, .form-group select { width: 100%; padding: 10px; border: 1px solid var(--neutral-light); border-radius: 4px; }
+        .b2b-fields { display: none; background: #f9f9f9; padding: 1rem; border-radius: var(--radius); margin-top: 1rem; border: 1px dashed var(--neutral-dark); }
+        .b2b-fields.active { display: block; }
 
-        .spec-tag {
-            background: var(--bg-color);
-            padding: 2px 6px;
-            border-radius: 4px;
-            border: 1px solid var(--neutral-light);
-        }
-
-        .product-price {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .old-price {
-            font-size: 0.9rem;
-            color: var(--neutral-dark);
-            text-decoration: line-through;
-            margin-left: 8px;
-        }
-
-        .card-actions { display: grid; grid-template-columns: 1fr auto; gap: 8px; }
-
-        /* --- Плавающие кнопки связи --- */
-        .floating-contacts {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            z-index: 1000;
-        }
-
-        .float-btn {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: white;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-
-        .float-wa { background: #25D366; }
-        .float-tg { background: #0088cc; }
-        .float-btn:hover { transform: scale(1.1); }
-
-        /* Адаптив */
         @media (max-width: 768px) {
-            .container { grid-template-columns: 1fr; }
-            .sidebar { display: none; /* В реальном проекте тут нужна кнопка вызова мобильных фильтров */ }
+            .product-detail, .checkout-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="#" class="logo">JOHN<span>GALTAZ</span></a>
-        <div class="nav-icons">
-            <i class="ph ph-magnifying-glass"></i>
-            <i class="ph ph-heart"></i>
+        <a href="#" class="logo" onclick="app.navigate('catalog')">JOHN<span>GALTAZ</span></a>
+        <ul class="nav-links">
+            <li onclick="app.navigate('catalog')">Каталог</li>
+            <li>Доставка</li>
+            <li>Контакты</li>
+        </ul>
+        <div class="cart-icon" onclick="app.navigate('cart')">
             <i class="ph ph-shopping-cart"></i>
-            <i class="ph ph-user"></i>
+            <span class="cart-badge" id="cartCount">0</span>
         </div>
     </header>
 
     <div class="container">
-        <aside class="sidebar">
-            <div class="filter-group">
-                <h4>Категории</h4>
-                <label class="checkbox-label"><input type="checkbox" checked> Игровые ноутбуки</label>
-                <label class="checkbox-label"><input type="checkbox"> Периферия</label>
-                <label class="checkbox-label"><input type="checkbox"> Мед. оборудование</label>
-            </div>
-            <div class="filter-group">
-                <h4>Наличие</h4>
-                <label class="checkbox-label"><input type="checkbox"> В наличии</label>
-                <label class="checkbox-label"><input type="checkbox"> Под заказ</label>
-            </div>
-            <div class="filter-group">
-                <h4>Цена</h4>
-                <input type="range" min="0" max="100" style="width: 100%; accent-color: var(--accent);">
-            </div>
-        </aside>
+        <div id="page-catalog" class="page active">
+            <h2>Каталог товаров</h2>
+            <br>
+            <div class="grid" id="catalogGrid"></div>
+        </div>
 
-        <main>
-            <div class="products-grid" id="productGrid">
+        <div id="page-product" class="page">
+            <button class="btn btn-outline" onclick="app.navigate('catalog')" style="margin-bottom: 1rem;">
+                <i class="ph ph-arrow-left"></i> Назад
+            </button>
+            <div id="productContent"></div>
+        </div>
+
+        <div id="page-cart" class="page">
+            <h2>Оформление заказа</h2>
+            <br>
+            <div class="checkout-grid">
+                <div>
+                    <h3>Ваши данные</h3><br>
+                    <div class="form-group">
+                        <label><input type="checkbox" id="b2bToggle" onchange="app.toggleB2B()"> Покупаю как Юр. лицо</label>
+                    </div>
+                    
+                    <div class="form-group"><label>ФИО</label><input type="text" placeholder="Иванов Иван"></div>
+                    <div class="form-group"><label>Телефон</label><input type="tel" placeholder="+7 (...)"></div>
+                    <div class="form-group"><label>Город</label><input type="text" placeholder="Алматы"></div>
+
+                    <div id="b2bForm" class="b2b-fields">
+                        <div class="form-group"><label>Название компании</label><input type="text" placeholder="ТОО Пример"></div>
+                        <div class="form-group"><label>БИН / ИНН</label><input type="text" placeholder="123456789012"></div>
+                    </div>
+
+                    <br><h3>Доставка и Оплата</h3><br>
+                    <div class="form-group">
+                        <label>Способ доставки</label>
+                        <select><option>Курьером до двери</option><option>Самовывоз</option></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Способ оплаты</label>
+                        <select><option>Картой онлайн</option><option>При получении</option><option>Счет на оплату (B2B)</option></select>
+                    </div>
                 </div>
-        </main>
-    </div>
 
-    <div class="floating-contacts">
-        <a href="#" class="float-btn float-wa"><i class="ph ph-whatsapp-logo"></i></a>
-        <a href="#" class="float-btn float-tg"><i class="ph ph-telegram-logo"></i></a>
+                <div style="background: var(--card-bg); padding: 1.5rem; border-radius: var(--radius); border: 1px solid var(--neutral-light); height: fit-content;">
+                    <h3>Корзина</h3><br>
+                    <div id="cartItemsList"></div>
+                    <hr style="border: 0; border-top: 1px solid var(--neutral-light); margin: 1rem 0;">
+                    <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 1.2rem; margin-bottom: 1rem;">
+                        <span>Итого:</span>
+                        <span id="cartTotalSum">0 ₸</span>
+                    </div>
+                    <button class="btn btn-accent btn-block" onclick="alert('Заказ сформирован! В реальном проекте тут отправка на сервер.')">Подтвердить заказ</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
-        // База данных товаров (Имитация бэкенда)
+        // --- 1. БАЗА ДАННЫХ ТОВАРОВ ---
         const products = [
             {
-                id: 1,
-                title: "Игровой ноутбук ASUS ROG Strix G16",
-                category: "laptops",
-                price: "850 000 ₸",
-                oldPrice: "920 000 ₸",
-                stock: "В наличии",
-                badge: "ХИТ",
-                image: "https://placehold.co/400x300/F6F6F3/0B1416?text=ASUS+ROG",
-                specs: ["i9-13980HX", "RTX 4070", "32GB RAM", "1TB SSD", "240Hz"]
+                id: 1, category: "Игровые ноутбуки", title: "ASUS ROG Strix G16",
+                price: 850000, oldPrice: 920000, stock: "В наличии",
+                img: "https://placehold.co/600x400/F6F6F3/0B1416?text=ASUS+ROG",
+                specs: { "CPU": "Intel i9-13980HX", "GPU": "RTX 4070 8GB", "RAM": "32GB DDR5", "SSD": "1TB NVMe", "Экран": "16' 240Hz 2K" },
+                desc: "Идеальная машина для киберспорта и AAA-игр. Максимальная производительность в стильном корпусе."
             },
             {
-                id: 2,
-                title: "Аппарат лазерной эпиляции FG 2000B",
-                category: "cosmetic",
-                price: "По запросу",
-                stock: "Предзаказ",
-                badge: null,
-                image: "https://placehold.co/400x300/F6F6F3/0B1416?text=Laser+FG",
-                specs: ["808 нм", "Диодный", "Требует лицензию"]
+                id: 2, category: "Мед. оборудование", title: "Диодный лазер FG 2000B",
+                price: 2100000, oldPrice: null, stock: "Под заказ (14 дней)",
+                img: "https://placehold.co/600x400/F6F6F3/0B1416?text=Laser+FG",
+                specs: { "Длина волны": "808 нм", "Мощность": "2000W", "Ресурс": "20 млн вспышек", "Тип": "Профессиональный" },
+                desc: "ВНИМАНИЕ: Требуется медицинская лицензия. Профессиональный аппарат для эпиляции."
             },
             {
-                id: 3,
-                title: "Механическая клавиатура Keychron Q1 Pro",
-                category: "peripherals",
-                price: "95 000 ₸",
-                oldPrice: null,
-                stock: "В наличии",
-                badge: "Новинка",
-                image: "https://placehold.co/400x300/F6F6F3/0B1416?text=Keychron",
-                specs: ["Wireless", "Hot-swap", "RGB"]
+                id: 3, category: "Периферия", title: "Мышь Logitech G Pro X Superlight",
+                price: 75000, oldPrice: 85000, stock: "В наличии",
+                img: "https://placehold.co/600x400/F6F6F3/0B1416?text=Logitech+G+Pro",
+                specs: { "Сенсор": "HERO 25K", "Вес": "63 г", "Подключение": "Lightspeed Wireless" },
+                desc: "Легкая и точная беспроводная мышь для профессиональных геймеров."
+            },
+            {
+                id: 4, category: "Мелко-бытовая техника", title: "Dyson Supersonic HD07",
+                price: 240000, oldPrice: null, stock: "В наличии",
+                img: "https://placehold.co/600x400/F6F6F3/0B1416?text=Dyson",
+                specs: { "Мощность": "1600 Вт", "Насадки": "5 шт", "Ионизация": "Есть" },
+                desc: "Интеллектуальный контроль температуры для защиты волос от экстремального нагрева."
+            },
+            {
+                id: 5, category: "Игровые ноутбуки", title: "Lenovo Legion Pro 7",
+                price: 1150000, oldPrice: 1250000, stock: "В наличии",
+                img: "https://placehold.co/600x400/F6F6F3/0B1416?text=Legion+Pro",
+                specs: { "CPU": "Ryzen 9 7945HX", "GPU": "RTX 4080 12GB", "RAM": "32GB", "Экран": "16' 240Hz" },
+                desc: "Ультимативное решение для любых задач."
             }
         ];
 
-        // Функция рендера карточек
-        function renderProducts() {
-            const grid = document.getElementById('productGrid');
-            grid.innerHTML = products.map(product => `
-                <div class="product-card">
-                    ${product.badge ? `<span class="badge">${product.badge}</span>` : ''}
-                    <img src="${product.image}" alt="${product.title}" class="product-image">
-                    
-                    <h3 class="product-title">${product.title}</h3>
-                    
-                    <div class="product-specs">
-                        ${product.specs.map(spec => `<span class="spec-tag">${spec}</span>`).join('')}
-                    </div>
-                    
-                    <div class="product-price">
-                        ${product.price} 
-                        ${product.oldPrice ? `<span class="old-price">${product.oldPrice}</span>` : ''}
-                    </div>
-                    
-                    <p style="font-size: 0.8rem; color: ${product.stock === 'В наличии' ? '#25D366' : 'var(--accent)'}; margin-bottom: 1rem;">
-                        <i class="ph ${product.stock === 'В наличии' ? 'ph-check-circle' : 'ph-clock'}"></i> ${product.stock}
-                    </p>
+        // --- 2. ЛОГИКА ПРИЛОЖЕНИЯ ---
+        const app = {
+            cart: JSON.parse(localStorage.getItem('johngaltaz_cart')) || [],
+            
+            // Навигация (Роутинг)
+            navigate(pageId, productId = null) {
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                document.getElementById(`page-${pageId}`).classList.add('active');
+                window.scrollTo(0, 0);
 
-                    <div class="card-actions">
-                        ${product.price === 'По запросу' 
-                            ? `<button class="btn btn-outline" style="grid-column: span 2;">Запросить КП</button>`
-                            : `<button class="btn btn-accent">В корзину</button>
-                               <button class="btn btn-outline"><i class="ph ph-heart"></i></button>`
-                        }
-                    </div>
-                </div>
-            `).join('');
-        }
+                if (pageId === 'catalog') this.renderCatalog();
+                if (pageId === 'product' && productId) this.renderProduct(productId);
+                if (pageId === 'cart') this.renderCart();
+            },
 
-        // Запуск при загрузке
-        document.addEventListener('DOMContentLoaded', renderProducts);
+            formatPrice(price) {
+                return new Intl.NumberFormat('ru-RU').format(price) + ' ₸';
+            },
+
+            // Отрисовка каталога
+            renderCatalog() {
+                const grid = document.getElementById('catalogGrid');
+                grid.innerHTML = products.map(p => `
+                    <div class="card" onclick="app.navigate('product', ${p.id})">
+                        <img src="${p.img}" alt="${p.title}">
+                        <div class="stock-status ${p.stock.includes('В наличии') ? 'in-stock' : 'preorder'}">${p.stock}</div>
+                        <div class="card-title">${p.title}</div>
+                        <div class="card-price">
+                            ${this.formatPrice(p.price)}
+                            ${p.oldPrice ? `<span class="old-price">${this.formatPrice(p.oldPrice)}</span>` : ''}
+                        </div>
+                        <button class="btn btn-accent btn-block" onclick="event.stopPropagation(); app.addToCart(${p.id})">
+                            <i class="ph ph-shopping-cart"></i> В корзину
+                        </button>
+                    </div>
+                `).join('');
+            },
+
+            // Отрисовка страницы товара
+            renderProduct(id) {
+                const p = products.find(x => x.id === id);
+                const content = document.getElementById('productContent');
+                
+                const specsHtml = Object.entries(p.specs).map(([k, v]) => `<tr><td>${k}</td><td><strong>${v}</strong></td></tr>`).join('');
+
+                content.innerHTML = `
+                    <div class="product-detail">
+                        <div><img src="${p.img}" alt="${p.title}"></div>
+                        <div>
+                            <div class="stock-status ${p.stock.includes('В наличии') ? 'in-stock' : 'preorder'}">${p.stock}</div>
+                            <h1 style="font-size: 2rem; margin-bottom: 1rem;">${p.title}</h1>
+                            <div style="font-size: 2rem; font-weight: bold; margin-bottom: 2rem; color: var(--accent);">
+                                ${this.formatPrice(p.price)}
+                                ${p.oldPrice ? `<span class="old-price" style="font-size: 1.2rem;">${this.formatPrice(p.oldPrice)}</span>` : ''}
+                            </div>
+                            
+                            <div style="display: flex; gap: 1rem; margin-bottom: 2rem;">
+                                <button class="btn btn-accent" style="flex: 1; padding: 15px;" onclick="app.addToCart(${p.id})">В корзину</button>
+                                <button class="btn btn-outline" style="padding: 15px;"><i class="ph ph-heart"></i></button>
+                            </div>
+
+                            <p style="color: var(--neutral-dark); line-height: 1.6;">${p.desc}</p>
+                            
+                            <h3 style="margin-top: 2rem;">Характеристики</h3>
+                            <table class="specs-table">${specsHtml}</table>
+                        </div>
+                    </div>
+                `;
+            },
+
+            // Управление корзиной
+            addToCart(id) {
+                const item = this.cart.find(x => x.id === id);
+                if (item) item.qty++;
+                else this.cart.push({ id, qty: 1 });
+                this.saveCart();
+                alert('Товар добавлен в корзину!');
+            },
+
+            updateQty(id, delta) {
+                const item = this.cart.find(x => x.id === id);
+                if (item) {
+                    item.qty += delta;
+                    if (item.qty <= 0) this.cart = this.cart.filter(x => x.id !== id);
+                    this.saveCart();
+                    this.renderCart();
+                }
+            },
+
+            saveCart() {
+                localStorage.setItem('johngaltaz_cart', JSON.stringify(this.cart));
+                this.updateCartBadge();
+            },
+
+            updateCartBadge() {
+                const count = this.cart.reduce((sum, item) => sum + item.qty, 0);
+                document.getElementById('cartCount').innerText = count;
+            },
+
+            // Отрисовка корзины (Чекаут)
+            renderCart() {
+                const list = document.getElementById('cartItemsList');
+                let total = 0;
+
+                if (this.cart.length === 0) {
+                    list.innerHTML = '<p>Корзина пуста</p>';
+                    document.getElementById('cartTotalSum').innerText = '0 ₸';
+                    return;
+                }
+
+                list.innerHTML = this.cart.map(cartItem => {
+                    const p = products.find(x => x.id === cartItem.id);
+                    total += p.price * cartItem.qty;
+                    return `
+                        <div class="cart-item">
+                            <div class="cart-item-info">
+                                <img src="${p.img}">
+                                <div>
+                                    <div style="font-weight: 600;">${p.title}</div>
+                                    <div style="color: var(--accent); font-weight: bold;">${this.formatPrice(p.price)}</div>
+                                </div>
+                            </div>
+                            <div class="cart-controls">
+                                <button class="qty-btn" onclick="app.updateQty(${p.id}, -1)">-</button>
+                                <span>${cartItem.qty}</span>
+                                <button class="qty-btn" onclick="app.updateQty(${p.id}, 1)">+</button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                document.getElementById('cartTotalSum').innerText = this.formatPrice(total);
+            },
+
+            // Переключение B2B формы
+            toggleB2B() {
+                const form = document.getElementById('b2bForm');
+                const isChecked = document.getElementById('b2bToggle').checked;
+                isChecked ? form.classList.add('active') : form.classList.remove('active');
+            }
+        };
+
+        // Инициализация при загрузке
+        app.updateCartBadge();
+        app.renderCatalog();
     </script>
 </body>
 </html>
