@@ -5,11 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0B1416" />
   <title>JOHNGALTAZ — интернет-магазин</title>
-  <meta name="description" content="JOHNGALTAZ — игровые ноутбуки, периферия, мелко-бытовая техника, косметическое и медицинское оборудование." />
+  <meta name="description" content="JOHNGALTAZ — игровые ноутбуки, периферия, мелко-бытовая техника, косметическое оборудование." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      /* Палитра из ТЗ */
+      /* ТЗ */
       --primary:#0B1416;
       --accent:#F85C58;
       --bg:#F6F6F3;
@@ -17,27 +21,44 @@
       --neutral-600:#666666;
 
       /* UI */
-      --white:#ffffff;
       --card:#ffffff;
-      --shadow: 0 18px 45px rgba(11,20,22,.10);
-      --shadow2: 0 10px 25px rgba(11,20,22,.08);
-      --radius: 18px;
-      --radius2: 22px;
-      --ring: 0 0 0 4px rgba(248,92,88,.18);
+      --card2: rgba(255,255,255,.85);
+      --line: rgba(11,20,22,.10);
+      --muted: rgba(11,20,22,.66);
+      --muted2: rgba(11,20,22,.52);
+
+      --shadow: 0 22px 60px rgba(11,20,22,.10);
+      --shadow2: 0 14px 36px rgba(11,20,22,.08);
+      --shadow3: 0 10px 24px rgba(11,20,22,.07);
+
+      --r12: 12px;
+      --r14: 14px;
+      --r16: 16px;
+      --r18: 18px;
+      --r22: 22px;
+
       --max: 1180px;
-      --speed: 180ms;
-      --speed2: 280ms;
+
+      --t1: 140ms;
+      --t2: 220ms;
+      --t3: 340ms;
+
+      --ring: 0 0 0 4px rgba(248,92,88,.18);
     }
 
     *{ box-sizing:border-box; }
     html,body{ height:100%; }
     body{
       margin:0;
-      background: var(--bg);
+      font-family: "Manrope", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      line-height: 1.45;
+      background:
+        radial-gradient(900px 420px at 18% -10%, rgba(248,92,88,.16), transparent 60%),
+        radial-gradient(820px 520px at 95% 8%, rgba(11,20,22,.06), transparent 62%),
+        radial-gradient(760px 520px at 12% 105%, rgba(248,92,88,.10), transparent 65%),
+        var(--bg);
       color: var(--primary);
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      line-height:1.35;
-      overflow-x:hidden; /* критично: без горизонтального скролла */
+      overflow-x: hidden; /* важно: без горизонтального скролла */
     }
 
     img,svg{ max-width:100%; height:auto; }
@@ -57,109 +78,110 @@
       white-space:nowrap; border:0;
     }
 
-    /* focus */
     :focus-visible{
       outline:none;
       box-shadow: var(--ring);
-      border-radius: 12px;
+      border-radius: var(--r12);
     }
 
-    /* ====== Top Notice ====== */
+    /* ========= Top bar ========= */
     .topbar{
-      background: linear-gradient(90deg, rgba(248,92,88,.12), rgba(11,20,22,.04));
       border-bottom: 1px solid rgba(11,20,22,.08);
+      background: rgba(246,246,243,.72);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
     .topbar__inner{
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:12px;
+      gap: 12px;
       padding: 10px 0;
-      flex-wrap:wrap;
+      flex-wrap: wrap;
     }
-    .chip{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: rgba(11,20,22,.06);
-      border: 1px solid rgba(11,20,22,.10);
-      font-weight: 800;
-      font-size: 13px;
-      color: rgba(11,20,22,.88);
-    }
-    .dot{
-      width:8px; height:8px;
-      border-radius:999px;
-      background: var(--accent);
-      box-shadow: 0 0 0 4px rgba(248,92,88,.15);
-    }
-    .topbar__right{
+    .brandline{
       display:flex;
       align-items:center;
       gap:10px;
-      flex-wrap:wrap;
-      color: rgba(11,20,22,.78);
-      font-weight:700;
+      font-weight: 800;
+      letter-spacing: .2px;
+      color: rgba(11,20,22,.86);
       font-size: 13px;
     }
-    .topbar__link{
+    .dot{
+      width: 9px; height: 9px;
+      border-radius: 3px;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(248,92,88,.14);
+      transform: rotate(8deg);
+      flex: 0 0 auto;
+    }
+    .toplinks{
+      display:flex;
+      align-items:center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .tlink{
       display:inline-flex;
       align-items:center;
-      gap:8px;
-      padding: 6px 10px;
-      border-radius: 999px;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: var(--r14);
       border: 1px solid rgba(11,20,22,.10);
-      background: rgba(255,255,255,.7);
-      transition: transform var(--speed) ease, background var(--speed) ease;
+      background: rgba(255,255,255,.70);
+      color: rgba(11,20,22,.84);
+      font-weight: 800;
+      font-size: 13px;
+      transition: transform var(--t2) ease, background var(--t2) ease;
+      user-select:none;
     }
-    .topbar__link:hover{ transform: translateY(-1px); background: var(--white); }
+    .tlink:hover{ transform: translateY(-1px); background: #fff; }
 
-    /* ====== Header ====== */
+    /* ========= Header ========= */
     .header{
       position: sticky;
       top: 0;
       z-index: 60;
-      background: rgba(246,246,243,.82);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(11,20,22,.08);
+      background: rgba(246,246,243,.82);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
     .header__inner{
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:12px;
+      gap: 12px;
       padding: 14px 0;
     }
 
     .brand{
       display:flex;
       align-items:center;
-      gap:12px;
-      min-width: 220px;
+      gap: 12px;
+      min-width: 240px;
     }
     .brand__mark{
       width: 42px; height: 42px;
-      border-radius: 14px;
+      border-radius: var(--r16);
       background:
-        radial-gradient(circle at 30% 30%, rgba(255,255,255,.75), rgba(255,255,255,0) 55%),
+        radial-gradient(circle at 25% 30%, rgba(255,255,255,.55), transparent 52%),
         linear-gradient(135deg, rgba(248,92,88,1), rgba(248,92,88,.55));
-      box-shadow: 0 14px 30px rgba(248,92,88,.18);
+      box-shadow: 0 16px 30px rgba(248,92,88,.20);
       position: relative;
       overflow:hidden;
     }
     .brand__mark::after{
       content:"";
       position:absolute;
-      inset: -30%;
-      background: radial-gradient(circle, rgba(255,255,255,.35), transparent 55%);
-      transform: rotate(25deg);
-      opacity:.75;
+      inset:-40%;
+      background: radial-gradient(circle, rgba(255,255,255,.35), transparent 60%);
+      transform: rotate(22deg);
+      opacity:.85;
     }
     .brand__name{
-      font-weight: 1000;
+      font-weight: 900;
       letter-spacing: .4px;
       font-size: 16px;
       line-height: 1.1;
@@ -167,41 +189,41 @@
     .brand__sub{
       display:block;
       margin-top: 2px;
-      font-size: 12px;
+      color: var(--muted);
       font-weight: 700;
-      color: rgba(11,20,22,.62);
+      font-size: 12px;
     }
 
     .nav{
       display:flex;
       align-items:center;
-      gap: 6px;
-      flex: 1;
       justify-content:center;
+      gap: 8px;
+      flex: 1;
       min-width: 0;
     }
     .nav a{
       padding: 10px 12px;
-      border-radius: 999px;
-      font-weight: 900;
+      border-radius: var(--r14);
+      font-weight: 800;
       font-size: 14px;
-      color: rgba(11,20,22,.78);
+      color: rgba(11,20,22,.76);
       border: 1px solid transparent;
-      transition: background var(--speed) ease, transform var(--speed) ease, border-color var(--speed) ease;
+      transition: background var(--t2) ease, transform var(--t2) ease, border-color var(--t2) ease;
       white-space: nowrap;
     }
     .nav a:hover{
-      background: rgba(11,20,22,.05);
-      border-color: rgba(11,20,22,.08);
+      background: rgba(11,20,22,.04);
+      border-color: rgba(11,20,22,.07);
       transform: translateY(-1px);
     }
     .nav a.is-active{
       background: rgba(248,92,88,.10);
-      border-color: rgba(248,92,88,.28);
+      border-color: rgba(248,92,88,.22);
       color: rgba(11,20,22,.92);
     }
 
-    .header__actions{
+    .actions{
       display:flex;
       align-items:center;
       gap: 10px;
@@ -211,113 +233,213 @@
       display:flex;
       align-items:center;
       gap: 8px;
-      padding: 8px 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.85);
+      padding: 10px 12px;
+      border-radius: var(--r16);
       border: 1px solid rgba(11,20,22,.10);
-      width: min(420px, 40vw);
-      box-shadow: 0 10px 22px rgba(11,20,22,.06);
+      background: rgba(255,255,255,.80);
+      box-shadow: var(--shadow3);
+      width: min(420px, 38vw);
     }
     .search input{
       border:0;
       outline:none;
       background: transparent;
-      width:100%;
+      width: 100%;
       min-width: 0;
       font-weight: 700;
-      color: rgba(11,20,22,.86);
+      color: rgba(11,20,22,.84);
     }
-    .search input::placeholder{ color: rgba(11,20,22,.45); }
+    .search input::placeholder{ color: rgba(11,20,22,.46); }
 
     .iconbtn{
       width: 44px; height: 44px;
-      border-radius: 14px;
+      border-radius: var(--r16);
       border: 1px solid rgba(11,20,22,.10);
-      background: rgba(255,255,255,.85);
+      background: rgba(255,255,255,.80);
+      box-shadow: var(--shadow3);
       display:grid;
       place-items:center;
-      box-shadow: 0 10px 22px rgba(11,20,22,.06);
-      transition: transform var(--speed) ease, background var(--speed) ease;
+      cursor:pointer;
+      transition: transform var(--t2) ease, background var(--t2) ease;
       position: relative;
+      user-select:none;
     }
-    .iconbtn:hover{ transform: translateY(-1px); background: var(--white); }
+    .iconbtn:hover{ transform: translateY(-1px); background: #fff; }
+
     .badge{
       position:absolute;
-      top: -6px; right: -6px;
+      top: -7px; right: -7px;
       min-width: 20px;
       height: 20px;
       padding: 0 6px;
-      border-radius: 999px;
+      border-radius: 10px;
       background: var(--accent);
       color: #fff;
-      font-weight: 1000;
+      font-weight: 900;
       font-size: 12px;
       display:flex;
       align-items:center;
       justify-content:center;
-      box-shadow: 0 10px 20px rgba(248,92,88,.25);
       border: 2px solid var(--bg);
+      box-shadow: 0 14px 26px rgba(248,92,88,.25);
     }
 
     .burger{
       display:none;
       width: 44px; height: 44px;
-      border-radius: 14px;
+      border-radius: var(--r16);
       border: 1px solid rgba(11,20,22,.10);
-      background: rgba(255,255,255,.85);
-      box-shadow: 0 10px 22px rgba(11,20,22,.06);
+      background: rgba(255,255,255,.80);
+      box-shadow: var(--shadow3);
       cursor:pointer;
       padding: 10px;
     }
     .burger span{
       display:block;
       height:2px;
-      background: rgba(11,20,22,.88);
-      border-radius: 10px;
+      background: rgba(11,20,22,.86);
+      border-radius: 4px;
       margin: 5px 0;
     }
 
-    /* ====== Main ====== */
-    main{ padding: 18px 0 34px; }
-    .fade{
-      animation: fadeIn var(--speed2) ease both;
+    /* ========= Mobile Drawer ========= */
+    .drawer{
+      position: fixed;
+      inset: 0;
+      z-index: 90;
+      display:none;
     }
-    @keyframes fadeIn{
-      from{ opacity:0; transform: translateY(6px); }
+    .drawer.is-open{ display:block; }
+    .drawer__backdrop{
+      position:absolute;
+      inset:0;
+      background: rgba(11,20,22,.35);
+      animation: fadeIn var(--t2) ease both;
+    }
+    .drawer__panel{
+      position:absolute;
+      right: 0;
+      top: 0;
+      height: 100%;
+      width: min(420px, 92vw);
+      background: rgba(246,246,243,.96);
+      border-left: 1px solid rgba(11,20,22,.10);
+      box-shadow: -20px 0 60px rgba(11,20,22,.18);
+      padding: 14px;
+      display:flex;
+      flex-direction:column;
+      gap: 12px;
+      animation: slideIn var(--t3) cubic-bezier(.2,.8,.2,1) both;
+    }
+    @keyframes slideIn{
+      from{ transform: translateX(16px); opacity: 0; }
+      to{ transform: translateX(0); opacity: 1; }
+    }
+    .drawer__top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+    }
+    .drawer__close{
+      width: 44px; height: 44px;
+      border-radius: var(--r16);
+      border: 1px solid rgba(11,20,22,.10);
+      background: rgba(255,255,255,.70);
+      cursor:pointer;
+    }
+    .drawer__nav{
+      display:grid;
+      gap: 8px;
+      margin-top: 6px;
+    }
+    .drawer__nav a{
+      padding: 12px 12px;
+      border-radius: var(--r16);
+      border: 1px solid rgba(11,20,22,.10);
+      background: rgba(255,255,255,.70);
+      font-weight: 900;
+      color: rgba(11,20,22,.86);
+    }
+    .drawer__nav a:hover{ background: #fff; }
+    .drawer__actions{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin-top:auto;
+    }
+
+    /* ========= Main ========= */
+    main{ padding: 18px 0 34px; }
+    .page{
+      animation: fadeUp var(--t3) ease both;
+    }
+    @keyframes fadeIn{ from{opacity:0} to{opacity:1} }
+    @keyframes fadeUp{
+      from{ opacity:0; transform: translateY(8px); }
       to{ opacity:1; transform: translateY(0); }
     }
 
-    /* ====== Hero ====== */
+    /* ========= Hero ========= */
     .hero{
-      border-radius: var(--radius2);
-      background:
-        radial-gradient(900px 450px at 20% 0%, rgba(248,92,88,.18), transparent 60%),
-        radial-gradient(900px 500px at 95% 20%, rgba(11,20,22,.08), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.70));
+      border-radius: var(--r22);
       border: 1px solid rgba(11,20,22,.10);
+      background:
+        radial-gradient(900px 420px at 20% 0%, rgba(248,92,88,.16), transparent 62%),
+        radial-gradient(820px 520px at 95% 30%, rgba(11,20,22,.07), transparent 65%),
+        linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.72));
       box-shadow: var(--shadow);
       overflow:hidden;
     }
     .hero__inner{
       display:grid;
-      grid-template-columns: 1.15fr .85fr;
+      grid-template-columns: 1.12fr .88fr;
       gap: 18px;
       padding: 22px;
       align-items:center;
     }
-    .h1{
-      margin:0;
-      font-size: clamp(26px, 3.2vw, 44px);
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: var(--r14);
+      background: rgba(11,20,22,.04);
+      border: 1px solid rgba(11,20,22,.08);
+      color: rgba(11,20,22,.78);
+      font-weight: 800;
+      font-size: 12px;
       letter-spacing: .2px;
-      line-height: 1.08;
-      font-weight: 1100;
+    }
+    .h1{
+      margin: 10px 0 0;
+      font-size: clamp(30px, 3.6vw, 50px);
+      line-height: 1.05;
+      font-weight: 900;
+      letter-spacing: .2px;
+    }
+    .h1 .accent{
+      color: var(--accent);
+      position: relative;
+      display:inline-block;
+    }
+    .h1 .accent::after{
+      content:"";
+      position:absolute;
+      left: 2px;
+      right: 2px;
+      bottom: -6px;
+      height: 8px;
+      border-radius: 6px;
+      background: rgba(248,92,88,.20);
+      z-index: -1;
     }
     .lead{
-      margin: 12px 0 0;
+      margin: 14px 0 0;
       color: rgba(11,20,22,.72);
-      font-weight: 750;
+      font-weight: 700;
       font-size: 15px;
-      max-width: 60ch;
+      max-width: 62ch;
     }
     .hero__cta{
       margin-top: 16px;
@@ -325,91 +447,84 @@
       gap: 10px;
       flex-wrap: wrap;
     }
+
     .btn{
       border: 1px solid rgba(11,20,22,.12);
-      background: var(--primary);
-      color: #fff;
-      border-radius: 14px;
+      border-radius: var(--r16);
       padding: 12px 14px;
-      font-weight: 1000;
+      font-weight: 900;
       cursor:pointer;
-      transition: transform var(--speed) ease, filter var(--speed) ease, background var(--speed) ease;
-      box-shadow: 0 16px 34px rgba(11,20,22,.12);
+      user-select:none;
+      transition: transform var(--t2) ease, filter var(--t2) ease, background var(--t2) ease;
       display:inline-flex;
       align-items:center;
       gap: 10px;
-      user-select:none;
     }
-    .btn:hover{ transform: translateY(-1px); filter: brightness(1.05); }
+    .btn:hover{ transform: translateY(-1px); filter: brightness(1.02); }
     .btn:active{ transform: translateY(0); }
 
     .btn--accent{
       background: var(--accent);
+      color: #fff;
       border-color: rgba(248,92,88,.55);
       box-shadow: 0 18px 36px rgba(248,92,88,.22);
     }
-    .btn--ghost{
-      background: rgba(255,255,255,.70);
-      color: var(--primary);
-      border-color: rgba(11,20,22,.12);
+    .btn--dark{
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 18px 36px rgba(11,20,22,.14);
+    }
+    .btn--light{
+      background: rgba(255,255,255,.78);
+      color: rgba(11,20,22,.92);
       box-shadow: none;
     }
 
-    .hero__card{
-      border-radius: 18px;
+    .hero__side{
+      border-radius: var(--r18);
       border: 1px solid rgba(11,20,22,.10);
-      background: rgba(255,255,255,.75);
-      padding: 16px;
+      background: rgba(255,255,255,.78);
       box-shadow: var(--shadow2);
-      position: relative;
+      padding: 16px;
       overflow:hidden;
+      position: relative;
     }
-    .hero__card::before{
+    .hero__side::before{
       content:"";
       position:absolute;
-      inset:-40%;
-      background: radial-gradient(circle, rgba(248,92,88,.18), transparent 55%);
-      transform: rotate(18deg);
+      inset:-50%;
+      background: radial-gradient(circle, rgba(248,92,88,.16), transparent 60%);
+      transform: rotate(14deg);
       opacity:.9;
     }
-    .hero__card > *{ position: relative; }
-    .hero__stats{
+    .hero__side > *{ position: relative; }
+
+    .benefits{
+      margin-top: 10px;
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
-      margin-top: 10px;
     }
-    .stat{
-      padding: 12px;
-      border-radius: 16px;
+    .benefit{
+      border-radius: var(--r16);
       border: 1px solid rgba(11,20,22,.10);
-      background: rgba(255,255,255,.78);
+      background: rgba(255,255,255,.86);
+      padding: 12px;
+      min-width: 0;
     }
-    .stat__v{
-      font-weight: 1100;
-      font-size: 18px;
-      line-height:1.1;
+    .benefit__v{
+      font-weight: 900;
+      font-size: 16px;
+      line-height: 1.1;
     }
-    .stat__k{
+    .benefit__k{
       margin-top: 4px;
-      color: rgba(11,20,22,.62);
-      font-weight: 800;
-      font-size: 12px;
-    }
-    .kicker{
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: rgba(248,92,88,.10);
-      border: 1px solid rgba(248,92,88,.22);
-      color: rgba(11,20,22,.86);
-      font-weight: 1000;
+      color: var(--muted);
+      font-weight: 700;
       font-size: 12px;
     }
 
-    /* ====== Sections ====== */
+    /* ========= Sections ========= */
     .section{ margin-top: 18px; }
     .section__head{
       display:flex;
@@ -422,35 +537,47 @@
     .h2{
       margin:0;
       font-size: 18px;
-      font-weight: 1100;
+      font-weight: 900;
       letter-spacing: .2px;
     }
-    .muted{ color: rgba(11,20,22,.62); font-weight: 750; }
+    .hint{
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 13px;
+    }
 
-    /* ====== Category Cards ====== */
+    /* ========= Category Cards ========= */
     .cats{
       display:grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 12px;
     }
     .cat{
-      border-radius: 18px;
-      background: var(--card);
+      text-align:left;
+      border-radius: var(--r18);
       border: 1px solid rgba(11,20,22,.10);
+      background: rgba(255,255,255,.88);
       box-shadow: var(--shadow2);
       padding: 14px;
       min-width: 0;
-      transition: transform var(--speed) ease, box-shadow var(--speed) ease;
       cursor:pointer;
-      display:flex;
-      flex-direction:column;
-      gap: 10px;
+      transition: transform var(--t2) ease, box-shadow var(--t2) ease;
       position: relative;
       overflow:hidden;
     }
+    .cat::before{
+      content:"";
+      position:absolute;
+      inset:-60%;
+      background: radial-gradient(circle, rgba(248,92,88,.12), transparent 62%);
+      transform: rotate(18deg);
+      opacity: .8;
+      pointer-events:none;
+    }
+    .cat > *{ position: relative; }
     .cat:hover{
       transform: translateY(-2px);
-      box-shadow: 0 24px 50px rgba(11,20,22,.12);
+      box-shadow: 0 26px 60px rgba(11,20,22,.12);
     }
     .cat__top{
       display:flex;
@@ -459,118 +586,124 @@
       gap: 10px;
     }
     .cat__icon{
-      width: 44px; height: 44px;
-      border-radius: 16px;
+      width: 46px; height: 46px;
+      border-radius: var(--r16);
       display:grid;
       place-items:center;
       background: rgba(248,92,88,.10);
-      border: 1px solid rgba(248,92,88,.22);
+      border: 1px solid rgba(248,92,88,.18);
       flex: 0 0 auto;
     }
     .cat__title{
-      margin:0;
-      font-weight: 1100;
+      margin: 10px 0 0;
+      font-weight: 900;
       font-size: 14px;
       line-height: 1.2;
+      letter-spacing: .15px;
     }
     .cat__desc{
-      margin:0;
-      color: rgba(11,20,22,.62);
-      font-weight: 750;
-      font-size: 12px;
-      line-height:1.35;
-      min-height: 34px;
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 12.5px;
+      line-height: 1.45;
+      min-height: 40px;
     }
-    .cat__btn{
-      margin-top: auto;
+    .cat__footer{
+      margin-top: 12px;
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap: 10px;
-      padding-top: 8px;
+      padding-top: 10px;
       border-top: 1px solid rgba(11,20,22,.08);
-      color: rgba(11,20,22,.78);
-      font-weight: 1000;
+      font-weight: 900;
       font-size: 13px;
+      color: rgba(11,20,22,.78);
     }
     .arrow{
-      width: 28px; height: 28px;
-      border-radius: 999px;
-      border: 1px solid rgba(11,20,22,.12);
+      width: 30px; height: 30px;
+      border-radius: var(--r12);
+      border: 1px solid rgba(11,20,22,.10);
       display:grid;
       place-items:center;
       background: rgba(11,20,22,.03);
       flex: 0 0 auto;
     }
 
-    /* ====== Catalog page ====== */
+    /* ========= Catalog ========= */
     .crumbs{
       display:flex;
       align-items:center;
       gap: 10px;
       flex-wrap: wrap;
-      color: rgba(11,20,22,.62);
-      font-weight: 850;
+      color: var(--muted);
+      font-weight: 800;
       font-size: 12px;
-      margin: 6px 0 10px;
+      margin: 4px 0 10px;
     }
     .crumbs a:hover{ text-decoration: underline; }
+
     .title{
       margin: 0;
-      font-size: clamp(22px, 2.6vw, 34px);
-      font-weight: 1100;
-      letter-spacing:.2px;
-      line-height: 1.12;
+      font-size: clamp(24px, 2.8vw, 36px);
+      font-weight: 900;
+      letter-spacing: .2px;
+      line-height: 1.1;
     }
+    .subtitle{
+      margin: 10px 0 0;
+      color: rgba(11,20,22,.70);
+      font-weight: 700;
+      font-size: 14px;
+      max-width: 70ch;
+    }
+
     .toolbar{
-      margin-top: 12px;
+      margin-top: 14px;
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap: 12px;
       flex-wrap: wrap;
       padding: 12px;
-      border-radius: var(--radius);
+      border-radius: var(--r18);
       border: 1px solid rgba(11,20,22,.10);
-      background: rgba(255,255,255,.78);
+      background: rgba(255,255,255,.85);
       box-shadow: var(--shadow2);
     }
-    .chips{
+
+    .tabs{
       display:flex;
       gap: 8px;
       flex-wrap: wrap;
       align-items:center;
     }
-    .chip2{
-      padding: 8px 12px;
-      border-radius: 999px;
+    .tab{
+      padding: 10px 12px;
+      border-radius: var(--r14);
       border: 1px solid rgba(11,20,22,.10);
       background: rgba(11,20,22,.03);
-      font-weight: 1000;
+      font-weight: 900;
       font-size: 13px;
       cursor:pointer;
-      transition: transform var(--speed) ease, background var(--speed) ease;
       user-select:none;
+      transition: transform var(--t2) ease, background var(--t2) ease;
     }
-    .chip2:hover{ transform: translateY(-1px); background: rgba(11,20,22,.05); }
-    .chip2.is-active{
+    .tab:hover{ transform: translateY(-1px); background: rgba(11,20,22,.05); }
+    .tab.is-active{
       background: rgba(248,92,88,.12);
-      border-color: rgba(248,92,88,.28);
+      border-color: rgba(248,92,88,.22);
     }
-    .righttools{
-      display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      align-items:center;
-    }
+
     .select{
-      border-radius: 14px;
+      border-radius: var(--r14);
       padding: 10px 12px;
       border: 1px solid rgba(11,20,22,.12);
-      background: rgba(255,255,255,.92);
-      font-weight: 850;
-      min-width: 220px;
-      box-shadow: 0 10px 18px rgba(11,20,22,.05);
+      background: rgba(255,255,255,.95);
+      font-weight: 800;
+      min-width: 230px;
+      box-shadow: var(--shadow3);
     }
 
     .layout{
@@ -580,18 +713,20 @@
       gap: 12px;
       align-items:start;
     }
+
     .panel{
-      border-radius: var(--radius);
+      border-radius: var(--r18);
       border: 1px solid rgba(11,20,22,.10);
-      background: rgba(255,255,255,.82);
+      background: rgba(255,255,255,.86);
       box-shadow: var(--shadow2);
       padding: 12px;
       min-width: 0;
     }
-    .panel h3{
+    .panel__title{
       margin: 0 0 10px;
       font-size: 14px;
-      font-weight: 1100;
+      font-weight: 900;
+      letter-spacing:.15px;
     }
     .field{
       display:flex;
@@ -600,16 +735,16 @@
       margin-bottom: 10px;
     }
     .field label{
-      font-weight: 950;
+      font-weight: 900;
       font-size: 12px;
-      color: rgba(11,20,22,.68);
+      color: rgba(11,20,22,.70);
     }
     .input{
-      border-radius: 14px;
+      border-radius: var(--r14);
       padding: 10px 12px;
       border: 1px solid rgba(11,20,22,.12);
-      background: rgba(255,255,255,.92);
-      font-weight: 850;
+      background: rgba(255,255,255,.96);
+      font-weight: 800;
       outline: none;
     }
     .row2{
@@ -617,34 +752,39 @@
       grid-template-columns: 1fr 1fr;
       gap: 10px;
     }
-    .checks{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 6px;
-      margin-top: 6px;
-    }
+    .checks{ display:grid; gap: 6px; margin-top: 6px; }
     .check{
       display:flex;
       align-items:center;
       gap: 10px;
-      padding: 8px 10px;
-      border-radius: 14px;
+      padding: 9px 10px;
+      border-radius: var(--r14);
       border: 1px solid rgba(11,20,22,.08);
       background: rgba(11,20,22,.02);
       cursor:pointer;
       user-select:none;
+      font-weight: 800;
+      color: rgba(11,20,22,.82);
     }
     .check input{ transform: translateY(1px); }
     .check:hover{ background: rgba(11,20,22,.04); }
 
+    .applyrow{
+      display:flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .applyrow .btn{ justify-content:center; width:100%; }
+
+    /* products */
     .grid{
       display:grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 12px;
       min-width: 0;
     }
-    .cardp{
-      border-radius: 18px;
+    .p{
+      border-radius: var(--r18);
       border: 1px solid rgba(11,20,22,.10);
       background: rgba(255,255,255,.92);
       box-shadow: var(--shadow2);
@@ -652,17 +792,17 @@
       display:flex;
       flex-direction:column;
       min-width: 0;
-      transition: transform var(--speed) ease, box-shadow var(--speed) ease;
+      transition: transform var(--t2) ease, box-shadow var(--t2) ease;
     }
-    .cardp:hover{
+    .p:hover{
       transform: translateY(-2px);
-      box-shadow: 0 26px 52px rgba(11,20,22,.12);
+      box-shadow: 0 28px 70px rgba(11,20,22,.12);
     }
     .ph{
       height: 150px;
       background:
-        radial-gradient(140px 90px at 20% 25%, rgba(248,92,88,.22), transparent 60%),
-        radial-gradient(220px 140px at 90% 10%, rgba(11,20,22,.10), transparent 60%),
+        radial-gradient(140px 90px at 20% 25%, rgba(248,92,88,.20), transparent 60%),
+        radial-gradient(220px 140px at 90% 15%, rgba(11,20,22,.08), transparent 60%),
         linear-gradient(180deg, rgba(11,20,22,.06), rgba(11,20,22,.02));
       border-bottom: 1px solid rgba(11,20,22,.08);
       position: relative;
@@ -670,13 +810,13 @@
     .sticker{
       position:absolute;
       top: 12px; left: 12px;
-      padding: 6px 10px;
-      border-radius: 999px;
+      padding: 7px 10px;
+      border-radius: var(--r14);
       background: var(--accent);
       color:#fff;
-      font-weight: 1100;
+      font-weight: 900;
       font-size: 12px;
-      box-shadow: 0 14px 24px rgba(248,92,88,.22);
+      box-shadow: 0 14px 26px rgba(248,92,88,.22);
     }
     .pbody{
       padding: 12px;
@@ -686,73 +826,65 @@
       min-width: 0;
     }
     .ptitle{
-      margin:0;
-      font-weight: 1100;
+      margin: 0;
+      font-weight: 900;
       font-size: 14px;
       line-height: 1.25;
+      letter-spacing: .12px;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow:hidden;
     }
     .pmeta{
+      color: rgba(11,20,22,.64);
+      font-weight: 800;
+      font-size: 12px;
       display:flex;
       gap: 8px;
       flex-wrap: wrap;
-      color: rgba(11,20,22,.62);
-      font-weight: 850;
-      font-size: 12px;
     }
     .price{
       display:flex;
       gap: 10px;
       align-items: baseline;
       flex-wrap: wrap;
+      margin-top: 2px;
     }
-    .price__now{ font-weight: 1200; font-size: 16px; }
-    .price__old{ color: rgba(11,20,22,.50); text-decoration: line-through; font-weight: 900; font-size: 12px; }
+    .price__now{ font-weight: 900; font-size: 16px; }
+    .price__old{ color: rgba(11,20,22,.48); text-decoration: line-through; font-weight: 900; font-size: 12px; }
     .pactions{
-      margin-top: 4px;
+      margin-top: 6px;
       display:grid;
       grid-template-columns: 1fr 44px 44px;
       gap: 8px;
     }
     .btnsm{
-      border-radius: 14px;
+      border-radius: var(--r14);
       border: 1px solid rgba(11,20,22,.12);
-      background: var(--primary);
-      color:#fff;
       padding: 10px 12px;
-      font-weight: 1100;
+      font-weight: 900;
       cursor:pointer;
-      transition: transform var(--speed) ease, filter var(--speed) ease;
+      transition: transform var(--t2) ease, filter var(--t2) ease, background var(--t2) ease;
+      user-select:none;
       display:flex;
       align-items:center;
       justify-content:center;
       gap: 8px;
-      user-select:none;
     }
-    .btnsm:hover{ transform: translateY(-1px); filter: brightness(1.05); }
-    .btnsm--ghost{
-      background: rgba(11,20,22,.03);
-      color: rgba(11,20,22,.90);
-    }
-
-    .note{
-      margin-top: 12px;
-      padding: 12px;
-      border-radius: var(--radius);
-      border: 1px solid rgba(248,92,88,.22);
-      background: rgba(248,92,88,.08);
-      color: rgba(11,20,22,.80);
-      font-weight: 850;
+    .btnsm:hover{ transform: translateY(-1px); }
+    .btnsm--dark{ background: var(--primary); color:#fff; }
+    .btnsm--ghost{ background: rgba(11,20,22,.03); color: rgba(11,20,22,.92); }
+    .btnsm.is-on{
+      background: rgba(248,92,88,.12);
+      border-color: rgba(248,92,88,.25);
     }
 
-    /* ====== Footer ====== */
+    /* ========= Footer ========= */
     .footer{
       margin-top: 18px;
       border-top: 1px solid rgba(11,20,22,.08);
-      background: rgba(255,255,255,.45);
+      background: rgba(255,255,255,.38);
     }
     .footer__inner{
       padding: 18px 0 14px;
@@ -761,15 +893,15 @@
       gap: 12px;
     }
     .footer__title{
-      margin:0 0 8px;
-      font-weight: 1100;
+      margin:0 0 10px;
+      font-weight: 900;
       font-size: 14px;
     }
     .footer a{
       display:block;
       padding: 7px 0;
       color: rgba(11,20,22,.72);
-      font-weight: 850;
+      font-weight: 800;
     }
     .footer a:hover{ color: rgba(11,20,22,.92); text-decoration: underline; }
     .footer__bottom{
@@ -781,11 +913,11 @@
       gap: 12px;
       flex-wrap: wrap;
       color: rgba(11,20,22,.62);
-      font-weight: 850;
+      font-weight: 800;
       font-size: 12px;
     }
 
-    /* ====== Floating buttons ====== */
+    /* ========= Floating buttons ========= */
     .float{
       position: fixed;
       right: 16px;
@@ -796,62 +928,109 @@
       z-index: 80;
     }
     .fab{
-      width: 52px; height: 52px;
-      border-radius: 18px;
+      width: 54px; height: 54px;
+      border-radius: var(--r18);
       border: 1px solid rgba(11,20,22,.12);
       background: rgba(255,255,255,.92);
-      box-shadow: 0 22px 40px rgba(11,20,22,.14);
+      box-shadow: 0 22px 50px rgba(11,20,22,.14);
       display:grid;
       place-items:center;
       cursor:pointer;
-      transition: transform var(--speed) ease, background var(--speed) ease;
+      transition: transform var(--t2) ease, background var(--t2) ease;
+      user-select:none;
     }
-    .fab:hover{ transform: translateY(-2px); background: var(--white); }
-    .fab--wa{ border-color: rgba(37,211,102,.28); }
-    .fab--tg{ border-color: rgba(34,158,217,.28); }
+    .fab:hover{ transform: translateY(-2px); background: #fff; }
 
-    /* ====== Mobile ====== */
+    /* ========= Toast ========= */
+    .toastwrap{
+      position: fixed;
+      left: 50%;
+      bottom: 16px;
+      transform: translateX(-50%);
+      z-index: 120;
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+      pointer-events:none;
+    }
+    .toast{
+      pointer-events:auto;
+      min-width: min(520px, calc(100vw - 28px));
+      border-radius: var(--r16);
+      border: 1px solid rgba(11,20,22,.12);
+      background: rgba(255,255,255,.92);
+      box-shadow: 0 26px 70px rgba(11,20,22,.18);
+      padding: 12px 14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      animation: toastIn var(--t3) cubic-bezier(.2,.8,.2,1) both;
+    }
+    @keyframes toastIn{
+      from{ opacity:0; transform: translateY(10px) scale(.98); }
+      to{ opacity:1; transform: translateY(0) scale(1); }
+    }
+    .toast__text{
+      font-weight: 800;
+      color: rgba(11,20,22,.86);
+    }
+    .toast__btn{
+      border-radius: var(--r14);
+      border: 1px solid rgba(11,20,22,.12);
+      background: rgba(11,20,22,.03);
+      padding: 10px 12px;
+      cursor:pointer;
+      font-weight: 900;
+    }
+
+    /* ========= Responsive ========= */
     @media (max-width: 1100px){
-      .cats{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .hero__inner{ grid-template-columns: 1fr; }
+      .benefits{ grid-template-columns: 1fr 1fr; }
+      .cats{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .footer__inner{ grid-template-columns: 1fr 1fr; }
-      .hero__inner{ grid-template-columns: 1fr; }
-      .search{ width: min(520px, 55vw); }
+      .search{ width: min(520px, 56vw); }
     }
     @media (max-width: 980px){
       .nav{ display:none; }
       .burger{ display:block; }
-      .search{ width: min(520px, 52vw); }
       .layout{ grid-template-columns: 1fr; }
+      .search{ width: min(520px, 52vw); }
     }
     @media (max-width: 640px){
       .container{ width: min(var(--max), calc(100% - 24px)); }
-      .header__inner{ padding: 12px 0; }
       .brand__sub{ display:none; }
       .search{ width: 100%; }
-      .header__actions{ gap: 8px; }
       .cats{ grid-template-columns: 1fr; }
       .grid{ grid-template-columns: 1fr; }
       .row2{ grid-template-columns: 1fr; }
       .footer__inner{ grid-template-columns: 1fr; }
+      .benefits{ grid-template-columns: 1fr 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce){
+      *{ animation: none !important; transition: none !important; scroll-behavior: auto !important; }
     }
   </style>
 </head>
 
 <body>
-  <!-- TOP BAR -->
+  <!-- TOPBAR -->
   <div class="topbar">
     <div class="container topbar__inner">
-      <div class="chip"><span class="dot" aria-hidden="true"></span> Официальный магазин JOHNGALTAZ</div>
-      <div class="topbar__right">
-        <a class="topbar__link" href="tel:+77470436747" aria-label="Позвонить">
+      <div class="brandline"><span class="dot" aria-hidden="true"></span> Официальный магазин JOHNGALTAZ</div>
+
+      <div class="toplinks" aria-label="Контакты">
+        <a class="tlink" href="tel:+77470436747" aria-label="Позвонить">
           <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M6.6 10.8c1.4 2.6 3.5 4.7 6.1 6.1l2-2c.3-.3.8-.4 1.2-.2 1.2.4 2.5.6 3.8.6.7 0 1.3.6 1.3 1.3V20c0 .7-.6 1.3-1.3 1.3C10.6 21.3 2.7 13.4 2.7 3.3 2.7 2.6 3.3 2 4 2h3.5c.7 0 1.3.6 1.3 1.3 0 1.3.2 2.6.6 3.8.1.4 0 .9-.2 1.2l-2 2Z"
                   fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
           </svg>
           +7 747 043 67 47
         </a>
-        <a class="topbar__link" href="#/contacts" aria-label="Контакты">
+
+        <a class="tlink" href="#/contacts" aria-label="Открыть контакты">
           <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M12 22s8-4.5 8-12A8 8 0 1 0 4 10c0 7.5 8 12 8 12Z" fill="none" stroke="currentColor" stroke-width="2"/>
             <circle cx="12" cy="10" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/>
@@ -867,9 +1046,9 @@
     <div class="container header__inner">
       <a class="brand" href="#/" aria-label="JOHNGALTAZ — главная">
         <span class="brand__mark" aria-hidden="true"></span>
-        <span class="brand__text">
+        <span>
           <span class="brand__name">JOHNGALTAZ</span>
-          <span class="brand__sub">Игровые ноутбуки • Периферия • Оборудование</span>
+          <span class="brand__sub">Игровая техника • Электроника • Оборудование</span>
         </span>
       </a>
 
@@ -881,14 +1060,14 @@
         <a data-link href="#/contacts">Контакты</a>
       </nav>
 
-      <div class="header__actions">
-        <form class="search" role="search" aria-label="Поиск по сайту" onsubmit="return false;">
+      <div class="actions">
+        <form class="search" role="search" aria-label="Поиск" onsubmit="return false;">
           <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M10.5 18.5a8 8 0 1 1 5.3-14.1 8 8 0 0 1-5.3 14.1Z" fill="none" stroke="currentColor" stroke-width="2"/>
             <path d="M21 21l-5.4-5.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
           </svg>
           <label class="sr-only" for="q">Поиск</label>
-          <input id="q" type="search" placeholder="Поиск по товарам (скоро)" autocomplete="off" />
+          <input id="q" type="search" placeholder="Поиск" autocomplete="off" />
         </form>
 
         <a class="iconbtn" href="#/wishlist" aria-label="Избранное">
@@ -896,7 +1075,7 @@
             <path d="M12 21s-7-4.6-9.2-8.7C1 9.4 2.7 6.5 6 6.2c1.7-.2 3.2.7 4 2 0 0 1.5-2.2 4-2 3.3.3 5 3.2 3.2 6.1C19 16.4 12 21 12 21Z"
                   fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
           </svg>
-          <span class="badge" aria-label="2">2</span>
+          <span class="badge" id="bWish" aria-label="0">0</span>
         </a>
 
         <a class="iconbtn" href="#/cart" aria-label="Корзина">
@@ -906,15 +1085,58 @@
             <circle cx="9" cy="20" r="1.5" />
             <circle cx="18" cy="20" r="1.5" />
           </svg>
-          <span class="badge" aria-label="1">1</span>
+          <span class="badge" id="bCart" aria-label="0">0</span>
         </a>
 
-        <button class="burger" type="button" aria-label="Меню" id="burger">
+        <button class="burger" type="button" aria-label="Открыть меню" id="burger">
           <span></span><span></span><span></span>
         </button>
       </div>
     </div>
   </header>
+
+  <!-- Drawer -->
+  <div class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer__backdrop" id="drawerBackdrop"></div>
+    <div class="drawer__panel" role="dialog" aria-modal="true" aria-label="Меню">
+      <div class="drawer__top">
+        <div class="brandline"><span class="dot" aria-hidden="true"></span> JOHNGALTAZ</div>
+        <button class="drawer__close" id="drawerClose" aria-label="Закрыть меню">✕</button>
+      </div>
+      <div class="drawer__nav">
+        <a href="#/">Главная</a>
+        <a href="#/catalog">Каталог</a>
+        <a href="#/delivery">Доставка и оплата</a>
+        <a href="#/warranty">Гарантия</a>
+        <a href="#/contacts">Контакты</a>
+        <a href="#/b2b">Юр. лица</a>
+        <a href="#/privacy">Политика</a>
+      </div>
+
+      <div class="drawer__actions">
+        <a class="iconbtn" href="#/wishlist" aria-label="Избранное (мобильное)">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 21s-7-4.6-9.2-8.7C1 9.4 2.7 6.5 6 6.2c1.7-.2 3.2.7 4 2 0 0 1.5-2.2 4-2 3.3.3 5 3.2 3.2 6.1C19 16.4 12 21 12 21Z"
+                  fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a class="iconbtn" href="#/compare" aria-label="Сравнение (мобильное)">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M10 3v18M6 7h8M6 17h8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M18 7v14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </a>
+        <a class="iconbtn" href="#/cart" aria-label="Корзина (мобильное)">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 7h15l-1.5 9h-12L6 7Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M6 7 5 3H2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="9" cy="20" r="1.5" />
+            <circle cx="18" cy="20" r="1.5" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
 
   <!-- APP ROOT -->
   <main class="container" id="app" role="main"></main>
@@ -924,7 +1146,9 @@
     <div class="container footer__inner">
       <div>
         <h3 class="footer__title">JOHNGALTAZ</h3>
-        <div class="muted">Современный магазин техники и оборудования. Дальше подключим: товары (50), фильтры, корзину, checkout, сравнение, избранное.</div>
+        <div style="color: rgba(11,20,22,.72); font-weight: 700;">
+          Интернет-магазин техники и косметического оборудования.
+        </div>
       </div>
       <div>
         <h3 class="footer__title">Покупателям</h3>
@@ -937,6 +1161,7 @@
         <a href="#/catalog?cat=laptops">Игровые ноутбуки</a>
         <a href="#/catalog?cat=periphery">Периферия</a>
         <a href="#/catalog?cat=appliances">Мелко-бытовая техника</a>
+        <a href="#/catalog?cat=cosmo">Косметическое оборудование</a>
       </div>
       <div>
         <h3 class="footer__title">Контакты</h3>
@@ -947,13 +1172,14 @@
     </div>
     <div class="container footer__bottom">
       <span>© <span id="year"></span> JOHNGALTAZ</span>
-      <span>Сделано под адаптив • без горизонтальной прокрутки</span>
+      <span style="color: rgba(11,20,22,.62);">Все элементы кликабельны • Адаптив</span>
     </div>
   </footer>
 
-  <!-- Floating WhatsApp / Telegram -->
+  <!-- Floating -->
   <div class="float" aria-label="Быстрая связь">
-    <a class="fab fab--wa" href="#" aria-label="WhatsApp (подключим ссылку)">
+    <!-- Вставьте вашу WhatsApp ссылку вида: https://wa.me/77066603023 -->
+    <a class="fab" href="#" aria-label="WhatsApp">
       <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
         <path d="M12 2a9.5 9.5 0 0 0-8.1 14.5L3 22l5.7-1.8A9.5 9.5 0 1 0 12 2Z"
               fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
@@ -961,7 +1187,8 @@
               fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
       </svg>
     </a>
-    <a class="fab fab--tg" href="#" aria-label="Telegram (опционально)">
+    <!-- Telegram опционально -->
+    <a class="fab" href="#" aria-label="Telegram">
       <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
         <path d="M21.5 4.5 3.6 11.8c-.8.3-.8 1.4.1 1.7l4.6 1.6 1.8 5.7c.2.7 1.1.9 1.6.4l2.6-2.6 4.9 3.5c.6.4 1.5.1 1.6-.7l2.1-17c.1-.8-.7-1.4-1.4-1.1Z"
               fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
@@ -970,87 +1197,63 @@
     </a>
   </div>
 
+  <div class="toastwrap" id="toastwrap" aria-live="polite" aria-atomic="true"></div>
+
   <script>
-    // ===== Basic SPA Router (один index.html, "страницы" без дублирования) =====
+    /* ========= Data (без мед. категории) ========= */
     const CATEGORIES = [
-      {
-        id: "laptops",
-        title: "Игровые ноутбуки",
-        desc: "RTX/CPU/RAM/SSD/экран — дальше подключим фильтры.",
-        icon: "laptop"
-      },
-      {
-        id: "periphery",
-        title: "Периферия",
-        desc: "Мыши, клавиатуры, гарнитуры, мониторы и т.д.",
-        icon: "peripheral"
-      },
-      {
-        id: "appliances",
-        title: "Мелко-бытовая техника",
-        desc: "Компактные устройства для дома и офиса.",
-        icon: "home"
-      },
-      {
-        id: "cosmo",
-        title: "Косметическое оборудование",
-        desc: "Аппараты и аксессуары — позже добавим предупреждения/КП.",
-        icon: "spark"
-      },
-      {
-        id: "medical",
-        title: "Медицинское оборудование",
-        desc: "Сертификаты/документы — добавим блоки на PDP.",
-        icon: "med"
-      }
+      { id:"laptops",   title:"Игровые ноутбуки",        desc:"Подбор по железу и экрану.", icon:"laptop" },
+      { id:"periphery", title:"Периферия",               desc:"Мыши, клавиатуры, гарнитуры, мониторы.", icon:"peripheral" },
+      { id:"appliances",title:"Мелко-бытовая техника",   desc:"Компактные решения для дома и офиса.", icon:"home" },
+      { id:"cosmo",     title:"Косметическое оборудование", desc:"Аппараты и аксессуары для кабинета.", icon:"spark" }
     ];
 
-    const SAMPLE = {
+    const PRODUCTS = {
       laptops: [
-        { title:"Ноутбук 15.6\" • RTX • 16GB • 512GB", price:"529 900 ₸", old:"589 900 ₸", sticker:"−10%", meta:"В наличии • 1–3 дня" },
-        { title:"Ноутбук 16\" • RTX • 32GB • 1TB", price:"899 900 ₸", old:"", sticker:"Хит", meta:"В наличии • бесплатно" },
-        { title:"Ноутбук 17\" • RTX • 16GB • 1TB", price:"749 900 ₸", old:"", sticker:"Топ", meta:"Под заказ • 5–10 дней" },
-        { title:"Ноутбук 14\" • RTX • 16GB • 512GB", price:"599 900 ₸", old:"629 900 ₸", sticker:"−5%", meta:"В наличии • 2–4 дня" },
-        { title:"Ноутбук 15.6\" • RTX • 8GB • 512GB", price:"469 900 ₸", old:"", sticker:"Новинка", meta:"В наличии • самовывоз" },
-        { title:"Ноутбук 16\" • RTX • 16GB • 1TB", price:"699 900 ₸", old:"", sticker:"", meta:"В наличии • 1–2 дня" },
+        { id:"lp1", title:"Ноутбук 15.6\" • RTX • 16GB • 512GB", price:529900, old:589900, tag:"−10%", meta:"В наличии • 1–3 дня" },
+        { id:"lp2", title:"Ноутбук 16\" • RTX • 32GB • 1TB",      price:899900, old:null,  tag:"Хит",  meta:"В наличии • Бесплатно" },
+        { id:"lp3", title:"Ноутбук 17\" • RTX • 16GB • 1TB",      price:749900, old:null,  tag:null,   meta:"Под заказ • 5–10 дней" },
+        { id:"lp4", title:"Ноутбук 14\" • RTX • 16GB • 512GB",    price:599900, old:629900,tag:"−5%",  meta:"В наличии • 2–4 дня" },
+        { id:"lp5", title:"Ноутбук 15.6\" • RTX • 8GB • 512GB",   price:469900, old:null,  tag:"Новый", meta:"В наличии • Самовывоз" },
+        { id:"lp6", title:"Ноутбук 16\" • RTX • 16GB • 1TB",      price:699900, old:null,  tag:null,   meta:"В наличии • 1–2 дня" },
       ],
       periphery: [
-        { title:"Игровая мышь • 12 000 DPI • 6 кнопок", price:"19 900 ₸", old:"", sticker:"Новинка", meta:"В наличии" },
-        { title:"Клавиатура механическая • RGB • Hot-swap", price:"34 900 ₸", old:"40 900 ₸", sticker:"−15%", meta:"В наличии" },
-        { title:"Гарнитура • 7.1 • USB • микрофон", price:"24 900 ₸", old:"", sticker:"Хит", meta:"Под заказ" },
-        { title:"Монитор 27\" • 165Hz • IPS", price:"119 900 ₸", old:"129 900 ₸", sticker:"−7%", meta:"В наличии" },
-        { title:"Коврик XXL • ткань • прошивка", price:"7 900 ₸", old:"", sticker:"", meta:"В наличии" },
-        { title:"Микрофон • USB • шумоподавление", price:"29 900 ₸", old:"", sticker:"", meta:"В наличии" },
+        { id:"pf1", title:"Игровая мышь • 12 000 DPI • 6 кнопок",  price:19900,  old:null,  tag:"Новый", meta:"В наличии" },
+        { id:"pf2", title:"Клавиатура механическая • RGB",         price:34900,  old:40900, tag:"−15%",  meta:"В наличии" },
+        { id:"pf3", title:"Гарнитура • 7.1 • USB",                  price:24900,  old:null,  tag:"Хит",   meta:"Под заказ" },
+        { id:"pf4", title:"Монитор 27\" • 165Hz • IPS",             price:119900, old:129900,tag:"−7%",   meta:"В наличии" },
+        { id:"pf5", title:"Микрофон • USB • шумоподавление",        price:29900,  old:null,  tag:null,    meta:"В наличии" },
+        { id:"pf6", title:"Коврик XXL • прошитый край",             price:7900,   old:null,  tag:null,    meta:"В наличии" },
       ],
       appliances: [
-        { title:"Компактное устройство • дом/офис", price:"27 900 ₸", old:"", sticker:"Хит", meta:"В наличии" },
-        { title:"Мини-устройство • экономия места", price:"19 900 ₸", old:"", sticker:"", meta:"В наличии" },
-        { title:"Устройство • базовый набор", price:"14 900 ₸", old:"", sticker:"", meta:"Под заказ" },
-        { title:"Устройство • расширенная комплектация", price:"39 900 ₸", old:"44 900 ₸", sticker:"−10%", meta:"В наличии" },
-        { title:"Устройство • компакт • тихое", price:"22 900 ₸", old:"", sticker:"", meta:"В наличии" },
-        { title:"Устройство • усиленный режим", price:"49 900 ₸", old:"", sticker:"", meta:"Под заказ" },
+        { id:"ap1", title:"Устройство • компактное",                price:27900,  old:null,  tag:"Хит",   meta:"В наличии" },
+        { id:"ap2", title:"Устройство • экономия места",            price:19900,  old:null,  tag:null,    meta:"В наличии" },
+        { id:"ap3", title:"Устройство • базовая комплектация",      price:14900,  old:null,  tag:null,    meta:"Под заказ" },
+        { id:"ap4", title:"Устройство • расширенная комплектация",  price:39900,  old:44900, tag:"−10%",  meta:"В наличии" },
+        { id:"ap5", title:"Устройство • тихий режим",               price:22900,  old:null,  tag:null,    meta:"В наличии" },
+        { id:"ap6", title:"Устройство • усиленный режим",           price:49900,  old:null,  tag:null,    meta:"Под заказ" },
       ],
       cosmo: [
-        { title:"Космо аппарат • портативный", price:"149 900 ₸", old:"169 900 ₸", sticker:"−12%", meta:"Под заказ • 5–10 дней" },
-        { title:"Космо аппарат • салонный", price:"399 900 ₸", old:"", sticker:"КП", meta:"По запросу" },
-        { title:"Космо аппарат • базовый", price:"99 900 ₸", old:"", sticker:"", meta:"В наличии" },
-        { title:"Космо аппарат • расширенный", price:"249 900 ₸", old:"", sticker:"", meta:"Под заказ" },
-        { title:"Космо аксессуар • насадки", price:"29 900 ₸", old:"", sticker:"", meta:"В наличии" },
-        { title:"Космо набор • расходники", price:"19 900 ₸", old:"", sticker:"", meta:"В наличии" },
-      ],
-      medical: [
-        { title:"Мед. оборудование • базовое", price:"199 900 ₸", old:"", sticker:"Док.", meta:"В наличии" },
-        { title:"Мед. оборудование • расширенное", price:"599 900 ₸", old:"", sticker:"", meta:"Под заказ" },
-        { title:"Мед. прибор • точный", price:"129 900 ₸", old:"", sticker:"", meta:"В наличии" },
-        { title:"Мед. прибор • проф.", price:"349 900 ₸", old:"", sticker:"", meta:"Под заказ" },
-        { title:"Мед. аксессуар • комплект", price:"24 900 ₸", old:"", sticker:"", meta:"В наличии" },
-        { title:"Мед. расходники • набор", price:"14 900 ₸", old:"", sticker:"", meta:"В наличии" },
+        { id:"cs1", title:"Аппарат • портативный",                  price:149900, old:169900,tag:"−12%",  meta:"Под заказ • 5–10 дней" },
+        { id:"cs2", title:"Аппарат • салонный",                     price:399900, old:null,  tag:"КП",    meta:"По запросу" },
+        { id:"cs3", title:"Аппарат • базовый",                      price:99900,  old:null,  tag:null,    meta:"В наличии" },
+        { id:"cs4", title:"Аппарат • расширенный",                  price:249900, old:null,  tag:null,    meta:"Под заказ" },
+        { id:"cs5", title:"Насадки • комплект",                     price:29900,  old:null,  tag:null,    meta:"В наличии" },
+        { id:"cs6", title:"Расходники • набор",                     price:19900,  old:null,  tag:null,    meta:"В наличии" },
       ],
     };
 
-    const $app = document.getElementById("app");
-    const $year = document.getElementById("year");
-    $year.textContent = new Date().getFullYear();
+    /* ========= Helpers ========= */
+    const $ = (s, r=document) => r.querySelector(s);
+    const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
+
+    const app = $("#app");
+    $("#year").textContent = new Date().getFullYear();
+
+    function fmtMoney(n){
+      const s = String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+      return s + " ₸";
+    }
 
     function icon(name){
       const common = 'fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"';
@@ -1078,100 +1281,147 @@
           <path d="M5 14l.9 2.8L9 18l-3.1 1.2L5 22l-.9-2.8L1 18l3.1-1.2L5 14Z" ${common}></path>
         </svg>`;
       }
-      if(name==="med"){
-        return `<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M10 3h4v6h6v4h-6v8h-4v-8H4V9h6z" ${common}></path>
-        </svg>`;
-      }
       return "";
     }
 
-    function parseRoute(){
-      const h = location.hash || "#/";
-      const [pathRaw, queryRaw] = h.replace(/^#/, "").split("?");
-      const path = pathRaw.startsWith("/") ? pathRaw : "/" + pathRaw;
-      const query = new URLSearchParams(queryRaw || "");
-      return { path, query };
+    /* ========= Local state ========= */
+    const KEY = "jg_store_v1";
+    function loadStore(){
+      try{
+        const raw = localStorage.getItem(KEY);
+        if(!raw) return { cart:[], wish:[], compare:[] };
+        const s = JSON.parse(raw);
+        return {
+          cart: Array.isArray(s.cart) ? s.cart : [],
+          wish: Array.isArray(s.wish) ? s.wish : [],
+          compare: Array.isArray(s.compare) ? s.compare : [],
+        };
+      }catch(e){
+        return { cart:[], wish:[], compare:[] };
+      }
+    }
+    function saveStore(s){ localStorage.setItem(KEY, JSON.stringify(s)); }
+    function updateBadges(){
+      const s = loadStore();
+      $("#bCart").textContent = s.cart.length;
+      $("#bWish").textContent = s.wish.length;
+      $("#bCart").setAttribute("aria-label", String(s.cart.length));
+      $("#bWish").setAttribute("aria-label", String(s.wish.length));
+    }
+    updateBadges();
+
+    /* ========= Toast ========= */
+    const toastwrap = $("#toastwrap");
+    function toast(text, actionText=null, actionHref=null){
+      const el = document.createElement("div");
+      el.className = "toast";
+      el.innerHTML = `
+        <div class="toast__text">${text}</div>
+        ${actionText ? `<a class="toast__btn" href="${actionHref || "#/"}">${actionText}</a>` : `<button class="toast__btn" type="button">Ок</button>`}
+      `;
+      toastwrap.appendChild(el);
+      const btn = el.querySelector(".toast__btn");
+      btn.addEventListener("click", () => el.remove(), { once:true });
+      setTimeout(() => { if(el.isConnected) el.remove(); }, 2600);
     }
 
+    /* ========= Router ========= */
+    function parseRoute(){
+      const h = location.hash || "#/";
+      const [pRaw, qRaw] = h.replace(/^#/, "").split("?");
+      const path = (pRaw.startsWith("/") ? pRaw : "/" + pRaw).replace(/\/+$/,"") || "/";
+      const query = new URLSearchParams(qRaw || "");
+      return { path, query };
+    }
     function setActiveNav(path){
-      document.querySelectorAll("[data-link]").forEach(a=>{
+      $$("[data-link]").forEach(a=>{
         a.classList.remove("is-active");
         const href = a.getAttribute("href") || "";
-        const p = (href.split("?")[0] || "").replace(/^#/, "");
-        if(p === path) a.classList.add("is-active");
+        const base = (href.split("?")[0] || "").replace(/^#/, "");
+        if((base || "/") === path) a.classList.add("is-active");
       });
     }
 
+    /* ========= Drawer ========= */
+    const drawer = $("#drawer");
+    const openDrawer = () => {
+      drawer.classList.add("is-open");
+      drawer.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    };
+    const closeDrawer = () => {
+      drawer.classList.remove("is-open");
+      drawer.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    };
+    $("#burger").addEventListener("click", openDrawer);
+    $("#drawerClose").addEventListener("click", closeDrawer);
+    $("#drawerBackdrop").addEventListener("click", closeDrawer);
+    window.addEventListener("hashchange", closeDrawer);
+
+    /* ========= Views ========= */
     function viewHome(){
       setActiveNav("/");
-
-      const catsHtml = CATEGORIES.map(c => `
-        <button class="cat" type="button" data-cat="${c.id}" aria-label="Открыть категорию ${c.title}">
+      const catsHtml = CATEGORIES.map(c=>`
+        <button class="cat" type="button" data-cat="${c.id}">
           <div class="cat__top">
             <div class="cat__icon" aria-hidden="true">${icon(c.icon)}</div>
             <div class="arrow" aria-hidden="true">
               <svg width="16" height="16" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
           </div>
-          <h3 class="cat__title">${c.title}</h3>
-          <p class="cat__desc">${c.desc}</p>
-          <div class="cat__btn">
-            <span>Перейти в каталог</span>
+          <div class="cat__title">${c.title}</div>
+          <div class="cat__desc">${c.desc}</div>
+          <div class="cat__footer">
+            <span>Открыть</span>
             <span aria-hidden="true">→</span>
           </div>
         </button>
       `).join("");
 
-      $app.innerHTML = `
-        <div class="fade">
+      app.innerHTML = `
+        <div class="page">
           <section class="hero" aria-label="Главный блок">
             <div class="hero__inner">
               <div>
                 <span class="kicker">Надёжно • Быстро • Современно</span>
-                <h1 class="h1">Интернет-магазин <span style="color:var(--accent)">JOHNGALTAZ</span></h1>
+                <h1 class="h1">Интернет-магазин <span class="accent">JOHNGALTAZ</span></h1>
                 <p class="lead">
-                  Структура сайта готова: главная → каталог (вторая страница) без отдельного файла.
-                  Дальше подключим: 50 товаров, фильтры по категориям, карточку товара, корзину и checkout.
+                  Игровые ноутбуки, периферия, мелко-бытовая техника и косметическое оборудование.
+                  Удобная навигация, аккуратная типографика и лёгкие анимации.
                 </p>
                 <div class="hero__cta">
-                  <button class="btn btn--accent" type="button" id="goCatalog">
-                    <span>Открыть каталог</span>
+                  <a class="btn btn--accent" href="#/catalog">Открыть каталог
                     <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
                       <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                  </button>
-                  <a class="btn btn--ghost" href="#/b2b">
-                    <span>Юр. лица (B2B)</span>
-                    <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="M4 21V7l8-4 8 4v14H4Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-                      <path d="M9 21v-9h6v9" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-                    </svg>
                   </a>
+                  <a class="btn btn--dark" href="#/b2b">Юр. лица (B2B)</a>
+                  <a class="btn btn--light" href="#/contacts">Контакты</a>
                 </div>
               </div>
 
-              <aside class="hero__card" aria-label="Преимущества">
-                <div style="font-weight:1100; font-size:14px;">Почему JOHNGALTAZ</div>
-                <div class="muted" style="margin-top:6px;">
-                  Чистый интерфейс • Адаптив • Быстрая навигация • Готово для SEO-структуры
+              <aside class="hero__side" aria-label="Преимущества">
+                <div style="font-weight:900; font-size:14px; letter-spacing:.15px;">Почему выбирают JOHNGALTAZ</div>
+                <div style="margin-top:8px; color: rgba(11,20,22,.70); font-weight:700;">
+                  Быстрый выбор категории, понятная структура, чистый визуал без перегруза.
                 </div>
-                <div class="hero__stats">
-                  <div class="stat">
-                    <div class="stat__v">5 категорий</div>
-                    <div class="stat__k">Разные фильтры далее</div>
+                <div class="benefits">
+                  <div class="benefit">
+                    <div class="benefit__v">4 категории</div>
+                    <div class="benefit__k">Техника и оборудование</div>
                   </div>
-                  <div class="stat">
-                    <div class="stat__v">1 файл</div>
-                    <div class="stat__k">index.html (SPA)</div>
+                  <div class="benefit">
+                    <div class="benefit__v">Адаптив</div>
+                    <div class="benefit__k">Моб./планшет/ПК</div>
                   </div>
-                  <div class="stat">
-                    <div class="stat__v">Адаптив</div>
-                    <div class="stat__k">без горизонт. скролла</div>
+                  <div class="benefit">
+                    <div class="benefit__v">Интерфейс</div>
+                    <div class="benefit__k">Воздух и контраст</div>
                   </div>
-                  <div class="stat">
-                    <div class="stat__v">UI</div>
-                    <div class="stat__k">современные иконки</div>
+                  <div class="benefit">
+                    <div class="benefit__v">Навигация</div>
+                    <div class="benefit__k">Страницы без дублей</div>
                   </div>
                 </div>
               </aside>
@@ -1181,43 +1431,17 @@
           <section class="section" aria-label="Категории">
             <div class="section__head">
               <h2 class="h2">Категории</h2>
-              <div class="muted">Нажмите категорию — попадёте на “вторую страницу” каталога</div>
+              <div class="hint">Нажмите, чтобы перейти в каталог по выбранной категории</div>
             </div>
             <div class="cats">
               ${catsHtml}
             </div>
           </section>
-
-          <section class="section" aria-label="Дальнейшие страницы">
-            <div class="section__head">
-              <h2 class="h2">Страницы (структура)</h2>
-              <div class="muted">Пока — каркас. Дальше подключим функционал.</div>
-            </div>
-
-            <div class="panel">
-              <div class="muted" style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px;">
-                <div>• Главная</div>
-                <div>• Каталог</div>
-                <div>• Карточка товара (PDP)</div>
-                <div>• Поиск</div>
-                <div>• Сравнение</div>
-                <div>• Избранное</div>
-                <div>• Корзина</div>
-                <div>• Оформление заказа</div>
-                <div>• Доставка / Гарантия / Контакты</div>
-              </div>
-            </div>
-          </section>
         </div>
       `;
 
-      // actions
-      document.getElementById("goCatalog").addEventListener("click", () => {
-        location.hash = "#/catalog";
-      });
-
-      document.querySelectorAll(".cat[data-cat]").forEach(btn=>{
-        btn.addEventListener("click", () => {
+      $$("button.cat[data-cat]").forEach(btn=>{
+        btn.addEventListener("click", ()=>{
           const cat = btn.getAttribute("data-cat");
           location.hash = `#/catalog?cat=${encodeURIComponent(cat)}`;
         });
@@ -1229,91 +1453,94 @@
       const current = query.get("cat") || "laptops";
       const currentCat = CATEGORIES.find(c=>c.id===current) || CATEGORIES[0];
 
-      const chips = CATEGORIES.map(c => `
-        <span class="chip2 ${c.id===current ? "is-active":""}" data-cat="${c.id}" role="button" tabindex="0">
+      const tabs = CATEGORIES.map(c=>`
+        <div class="tab ${c.id===currentCat.id ? "is-active":""}" data-cat="${c.id}" role="button" tabindex="0">
           ${c.title}
-        </span>
+        </div>
       `).join("");
 
-      const products = (SAMPLE[currentCat.id] || []).map(p => `
-        <article class="cardp">
-          <div class="ph">
-            ${p.sticker ? `<div class="sticker">${p.sticker}</div>` : ``}
-          </div>
-          <div class="pbody">
-            <h3 class="ptitle">${p.title}</h3>
-            <div class="pmeta">${p.meta}</div>
-            <div class="price">
-              <span class="price__now">${p.price}</span>
-              ${p.old ? `<span class="price__old">${p.old}</span>` : ``}
+      const items = (PRODUCTS[currentCat.id] || []).map(p=>{
+        const s = loadStore();
+        const onWish = s.wish.includes(p.id);
+        const onCompare = s.compare.includes(p.id);
+        return `
+          <article class="p" data-id="${p.id}" data-cat="${currentCat.id}">
+            <div class="ph">
+              ${p.tag ? `<div class="sticker">${p.tag}</div>` : ``}
             </div>
-            <div class="pactions">
-              <button class="btnsm" type="button">В корзину</button>
-              <button class="btnsm btnsm--ghost" type="button" aria-label="В избранное">
-                <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M12 21s-7-4.6-9.2-8.7C1 9.4 2.7 6.5 6 6.2c1.7-.2 3.2.7 4 2 0 0 1.5-2.2 4-2 3.3.3 5 3.2 3.2 6.1C19 16.4 12 21 12 21Z"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-                </svg>
-              </button>
-              <button class="btnsm btnsm--ghost" type="button" aria-label="Сравнить">
-                <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M10 3v18M6 7h8M6 17h8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                  <path d="M18 7v14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-              </button>
+            <div class="pbody">
+              <h3 class="ptitle">${p.title}</h3>
+              <div class="pmeta">${p.meta}</div>
+              <div class="price">
+                <span class="price__now">${fmtMoney(p.price)}</span>
+                ${p.old ? `<span class="price__old">${fmtMoney(p.old)}</span>` : ``}
+              </div>
+              <div class="pactions">
+                <button class="btnsm btnsm--dark" type="button" data-action="cart">В корзину</button>
+                <button class="btnsm btnsm--ghost ${onWish ? "is-on":""}" type="button" data-action="wish" aria-label="В избранное">
+                  <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 21s-7-4.6-9.2-8.7C1 9.4 2.7 6.5 6 6.2c1.7-.2 3.2.7 4 2 0 0 1.5-2.2 4-2 3.3.3 5 3.2 3.2 6.1C19 16.4 12 21 12 21Z"
+                          fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+                <button class="btnsm btnsm--ghost ${onCompare ? "is-on":""}" type="button" data-action="compare" aria-label="Сравнить">
+                  <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M10 3v18M6 7h8M6 17h8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M18 7v14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+              </div>
             </div>
-          </div>
-        </article>
-      `).join("");
+          </article>
+        `;
+      }).join("");
 
-      $app.innerHTML = `
-        <div class="fade">
+      app.innerHTML = `
+        <div class="page">
           <div class="crumbs" aria-label="Хлебные крошки">
             <a href="#/">Главная</a>
             <span aria-hidden="true">/</span>
             <span>Каталог</span>
           </div>
 
-          <h1 class="title">Каталог: ${currentCat.title}</h1>
-          <div class="muted" style="margin-top:6px;">
-            Сейчас здесь дизайн и структура. Далее подключим: разные фильтры/характеристики по категориям, URL-параметры, быстрые фильтры без перезагрузки.
-          </div>
+          <h1 class="title">${currentCat.title}</h1>
+          <p class="subtitle">Выберите подкатегорию через вкладки и используйте фильтры слева.</p>
 
-          <div class="toolbar" aria-label="Панель управления каталогом">
-            <div class="chips" aria-label="Категории">
-              ${chips}
+          <div class="toolbar" aria-label="Панель управления">
+            <div class="tabs" aria-label="Категории">
+              ${tabs}
             </div>
-            <div class="righttools">
+            <div>
               <label class="sr-only" for="sort">Сортировка</label>
               <select id="sort" class="select">
-                <option>Популярные</option>
-                <option>Сначала дешевле</option>
-                <option>Сначала дороже</option>
-                <option>Новинки</option>
+                <option value="popular">Популярные</option>
+                <option value="cheap">Сначала дешевле</option>
+                <option value="expensive">Сначала дороже</option>
+                <option value="new">Новинки</option>
               </select>
             </div>
           </div>
 
-          <div class="layout" aria-label="Каталог с фильтрами">
+          <div class="layout">
             <aside class="panel" aria-label="Фильтры">
-              <h3>Фильтры (каркас)</h3>
+              <h3 class="panel__title">Фильтры</h3>
 
               <div class="field">
                 <label>Цена, ₸</label>
                 <div class="row2">
-                  <input class="input" type="number" inputmode="numeric" placeholder="От">
-                  <input class="input" type="number" inputmode="numeric" placeholder="До">
+                  <input class="input" type="number" inputmode="numeric" placeholder="От" id="pmin">
+                  <input class="input" type="number" inputmode="numeric" placeholder="До" id="pmax">
                 </div>
               </div>
 
               <div class="field">
                 <label>Бренд</label>
                 <div class="checks">
-                  <label class="check"><input type="checkbox"> ASUS</label>
-                  <label class="check"><input type="checkbox"> Lenovo</label>
-                  <label class="check"><input type="checkbox"> HP</label>
-                  <label class="check"><input type="checkbox"> MSI</label>
-                  <label class="check"><input type="checkbox"> Acer</label>
+                  <label class="check"><input type="checkbox" data-brand="ASUS"> ASUS</label>
+                  <label class="check"><input type="checkbox" data-brand="Lenovo"> Lenovo</label>
+                  <label class="check"><input type="checkbox" data-brand="HP"> HP</label>
+                  <label class="check"><input type="checkbox" data-brand="MSI"> MSI</label>
+                  <label class="check"><input type="checkbox" data-brand="Acer"> Acer</label>
                 </div>
               </div>
 
@@ -1325,84 +1552,252 @@
                 </div>
               </div>
 
-              <button class="btn btn--accent" type="button" style="width:100%; justify-content:center;">
-                Применить (позже)
-              </button>
-
-              <div class="note">
-                Для каждой категории будут свои фильтры/характеристики. Сейчас — только каркас и дизайн.
+              <div class="applyrow">
+                <button class="btn btn--dark" type="button" id="resetFilters">Сбросить</button>
+                <button class="btn btn--accent" type="button" id="applyFilters">Применить</button>
               </div>
             </aside>
 
-            <section aria-label="Список товаров">
-              <div class="grid">
-                ${products}
+            <section aria-label="Товары">
+              <div class="grid" id="plist">
+                ${items}
               </div>
             </section>
           </div>
         </div>
       `;
 
-      // chip events
-      document.querySelectorAll(".chip2[data-cat]").forEach(el=>{
-        const go = () => location.hash = `#/catalog?cat=${encodeURIComponent(el.getAttribute("data-cat"))}`;
-        el.addEventListener("click", go);
-        el.addEventListener("keydown", (e)=>{ if(e.key==="Enter" || e.key===" "){ e.preventDefault(); go(); }});
+      // Tabs
+      $$(".tab[data-cat]").forEach(t=>{
+        const go = () => location.hash = `#/catalog?cat=${encodeURIComponent(t.getAttribute("data-cat"))}`;
+        t.addEventListener("click", go);
+        t.addEventListener("keydown", (e)=>{ if(e.key==="Enter" || e.key===" "){ e.preventDefault(); go(); }});
+      });
+
+      // Filter buttons (UI only)
+      $("#resetFilters").addEventListener("click", ()=>{
+        $("#pmin").value = "";
+        $("#pmax").value = "";
+        $$("#app .checks input[type='checkbox']").forEach(ch => ch.checked = false);
+        toast("Фильтры сброшены");
+      });
+      $("#applyFilters").addEventListener("click", ()=>{
+        toast("Фильтры применены");
+      });
+
+      // Product actions
+      $("#plist").addEventListener("click", (e)=>{
+        const btn = e.target.closest("button[data-action]");
+        if(!btn) return;
+        const card = e.target.closest(".p");
+        if(!card) return;
+        const id = card.getAttribute("data-id");
+        const action = btn.getAttribute("data-action");
+        const s = loadStore();
+
+        if(action === "cart"){
+          s.cart.push(id);
+          saveStore(s);
+          updateBadges();
+          toast("Добавлено в корзину", "Открыть", "#/cart");
+          return;
+        }
+
+        if(action === "wish"){
+          const i = s.wish.indexOf(id);
+          if(i >= 0){ s.wish.splice(i,1); btn.classList.remove("is-on"); toast("Удалено из избранного"); }
+          else { s.wish.push(id); btn.classList.add("is-on"); toast("Добавлено в избранное", "Открыть", "#/wishlist"); }
+          saveStore(s);
+          updateBadges();
+          return;
+        }
+
+        if(action === "compare"){
+          const i = s.compare.indexOf(id);
+          if(i >= 0){ s.compare.splice(i,1); btn.classList.remove("is-on"); toast("Удалено из сравнения"); }
+          else { s.compare.push(id); btn.classList.add("is-on"); toast("Добавлено в сравнение", "Открыть", "#/compare"); }
+          saveStore(s);
+          return;
+        }
       });
     }
 
-    function viewStub(path, title){
+    function viewSimple(path, title, contentHtml){
       setActiveNav(path);
-      $app.innerHTML = `
-        <div class="fade">
-          <div class="crumbs" aria-label="Хлебные крошки">
-            <a href="#/">Главная</a>
-            <span aria-hidden="true">/</span>
-            <span>${title}</span>
+      app.innerHTML = `
+        <div class="page">
+          <div class="crumbs">
+            <a href="#/">Главная</a><span aria-hidden="true">/</span><span>${title}</span>
           </div>
           <h1 class="title">${title}</h1>
           <div class="panel" style="margin-top:12px;">
-            <div class="muted">
-              Это страница-каркас. Дальше добавим контент и логику по вашему ТЗ.
-            </div>
-            <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
-              <a class="btn btn--accent" href="#/catalog">Открыть каталог</a>
-              <a class="btn btn--ghost" href="#/">На главную</a>
-            </div>
+            ${contentHtml}
           </div>
         </div>
       `;
     }
 
+    function viewCart(){
+      const s = loadStore();
+      const count = s.cart.length;
+      viewSimple("/cart", "Корзина", `
+        <div style="font-weight:800; color: rgba(11,20,22,.82);">
+          Товаров: <b>${count}</b>
+        </div>
+        <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn btn--accent" href="#/catalog">Продолжить покупки</a>
+          <button class="btn btn--dark" type="button" id="clearCart">Очистить</button>
+        </div>
+      `);
+      const btn = $("#clearCart");
+      if(btn){
+        btn.addEventListener("click", ()=>{
+          const ns = loadStore();
+          ns.cart = [];
+          saveStore(ns);
+          updateBadges();
+          toast("Корзина очищена");
+          location.hash = "#/cart";
+        });
+      }
+    }
+
+    function viewWish(){
+      const s = loadStore();
+      viewSimple("/wishlist", "Избранное", `
+        <div style="font-weight:800; color: rgba(11,20,22,.82);">
+          Позиций: <b>${s.wish.length}</b>
+        </div>
+        <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn btn--accent" href="#/catalog">Открыть каталог</a>
+          <button class="btn btn--dark" type="button" id="clearWish">Очистить</button>
+        </div>
+      `);
+      const btn = $("#clearWish");
+      if(btn){
+        btn.addEventListener("click", ()=>{
+          const ns = loadStore();
+          ns.wish = [];
+          saveStore(ns);
+          updateBadges();
+          toast("Избранное очищено");
+          location.hash = "#/wishlist";
+        });
+      }
+    }
+
+    function viewCompare(){
+      const s = loadStore();
+      viewSimple("/compare", "Сравнение", `
+        <div style="font-weight:800; color: rgba(11,20,22,.82);">
+          В сравнении: <b>${s.compare.length}</b>
+        </div>
+        <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn btn--accent" href="#/catalog">Открыть каталог</a>
+          <button class="btn btn--dark" type="button" id="clearCompare">Очистить</button>
+        </div>
+      `);
+      const btn = $("#clearCompare");
+      if(btn){
+        btn.addEventListener("click", ()=>{
+          const ns = loadStore();
+          ns.compare = [];
+          saveStore(ns);
+          toast("Сравнение очищено");
+          location.hash = "#/compare";
+        });
+      }
+    }
+
     function render(){
       const { path, query } = parseRoute();
 
-      // simple mobile burger behavior (визуально; меню можно расширить позже)
-      const burger = document.getElementById("burger");
-      burger.onclick = () => {
-        // пока просто скроллим к навигации на мобилке (на десктопе нав скрыт)
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      };
+      // default
+      if(!location.hash) location.hash = "#/";
 
-      if(path === "/") return viewHome();
-      if(path === "/catalog") return viewCatalog(query);
+      if(path === "/"){ viewHome(); return; }
+      if(path === "/catalog"){ viewCatalog(query); return; }
 
-      // stubs for structure (чтобы было "многостранично" внутри одного index.html)
-      if(path === "/delivery") return viewStub("/delivery", "Доставка и оплата");
-      if(path === "/warranty") return viewStub("/warranty", "Гарантия и возврат");
-      if(path === "/contacts") return viewStub("/contacts", "Контакты");
-      if(path === "/privacy") return viewStub("/privacy", "Политика конфиденциальности");
-      if(path === "/cart") return viewStub("/cart", "Корзина");
-      if(path === "/wishlist") return viewStub("/wishlist", "Избранное");
-      if(path === "/compare") return viewStub("/compare", "Сравнение");
-      if(path === "/b2b") return viewStub("/b2b", "Юр. лица (B2B)");
+      if(path === "/delivery"){
+        viewSimple("/delivery", "Доставка и оплата", `
+          <div style="display:grid; gap:10px; color: rgba(11,20,22,.78); font-weight:700;">
+            <div><b>Доставка по Казахстану</b> — курьер/пункт выдачи/самовывоз.</div>
+            <div><b>Оплата</b> — наличными, перевод, безнал для юр. лиц.</div>
+            <div>Сроки и стоимость зависят от города и категории товара.</div>
+          </div>
+          <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn btn--accent" href="#/catalog">Перейти в каталог</a>
+            <a class="btn btn--light" href="#/contacts">Уточнить у менеджера</a>
+          </div>
+        `);
+        return;
+      }
+
+      if(path === "/warranty"){
+        viewSimple("/warranty", "Гарантия и возврат", `
+          <div style="display:grid; gap:10px; color: rgba(11,20,22,.78); font-weight:700;">
+            <div><b>Гарантия</b> — согласно условиям производителя и поставщика.</div>
+            <div><b>Возврат</b> — при сохранении товарного вида и комплектации.</div>
+            <div>По вопросам сервиса — напишите или позвоните.</div>
+          </div>
+          <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn btn--accent" href="#/contacts">Контакты</a>
+            <a class="btn btn--light" href="#/catalog">Каталог</a>
+          </div>
+        `);
+        return;
+      }
+
+      if(path === "/contacts"){
+        viewSimple("/contacts", "Контакты", `
+          <div style="display:grid; gap:10px; color: rgba(11,20,22,.78); font-weight:700;">
+            <div><b>Телефон:</b> <a href="tel:+77470436747" style="text-decoration:underline;">+7 747 043 67 47</a></div>
+            <div><b>Город:</b> Астана, Казахстан</div>
+            <div><b>Часы:</b> ежедневно 10:00–20:00</div>
+          </div>
+          <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn btn--accent" href="#/catalog">Каталог</a>
+            <a class="btn btn--dark" href="#/b2b">Юр. лица</a>
+          </div>
+        `);
+        return;
+      }
+
+      if(path === "/b2b"){
+        viewSimple("/b2b", "Юр. лица (B2B)", `
+          <div style="display:grid; gap:10px; color: rgba(11,20,22,.78); font-weight:700;">
+            <div><b>Безналичный расчёт</b>, счёт/договор/закрывающие документы.</div>
+            <div>Для запроса КП — свяжитесь с менеджером удобным способом.</div>
+          </div>
+          <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn btn--accent" href="#/contacts">Связаться</a>
+            <a class="btn btn--light" href="#/catalog?cat=cosmo">Косметическое оборудование</a>
+          </div>
+        `);
+        return;
+      }
+
+      if(path === "/privacy"){
+        viewSimple("/privacy", "Политика конфиденциальности", `
+          <div style="color: rgba(11,20,22,.78); font-weight:700; display:grid; gap:10px;">
+            <div>Мы используем данные только для обработки заказа и связи с клиентом.</div>
+            <div>Контактные данные не передаются третьим лицам без законных оснований.</div>
+          </div>
+        `);
+        return;
+      }
+
+      if(path === "/cart"){ viewCart(); return; }
+      if(path === "/wishlist"){ viewWish(); return; }
+      if(path === "/compare"){ viewCompare(); return; }
 
       // fallback
-      viewStub(path, "Страница");
+      viewSimple(path, "Страница", `<div style="color: rgba(11,20,22,.78); font-weight:700;">Страница не найдена.</div>`);
     }
 
     window.addEventListener("hashchange", render);
     render();
+    updateBadges();
   </script>
 </body>
 </html>
