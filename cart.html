@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Корзина — JOHNGALTAZ</title>
+  <meta name="description" content="Корзина JOHNGALTAZ: количество, итог, сроки предзаказа." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+  <header class="header header--compact">
+    <div class="container header__row">
+      <a class="logo" href="./index.html" aria-label="JOHNGALTAZ">
+        <span class="logo__mark"></span>
+        <span class="logo__text">JOHNGALTAZ</span>
+      </a>
+
+      <nav class="nav" aria-label="Основная навигация">
+        <a href="./catalog.html" class="nav__link">Каталог</a>
+        <a href="./policy.html" class="nav__link">Гарантия</a>
+        <a href="./index.html#contacts" class="nav__link">Контакты</a>
+      </nav>
+
+      <div class="header__actions">
+        <div class="select">
+          <label class="sr" for="lang">Язык</label>
+          <select id="lang" class="select__field" aria-label="Язык">
+            <option value="ru" selected>RU</option>
+            <option value="kz">KZ</option>
+            <option value="en">EN</option>
+          </select>
+        </div>
+
+        <div class="select">
+          <label class="sr" for="cur">Валюта</label>
+          <select id="cur" class="select__field" aria-label="Валюта">
+            <option value="KZT" selected>KZT</option>
+            <option value="RUB">RUB</option>
+            <option value="USD">USD</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <div class="pageHead">
+        <div>
+          <h1 class="h2">Корзина</h1>
+          <div class="muted" id="cartHint">Сроки и наличие отображаются по каждой позиции.</div>
+        </div>
+        <a class="btn btn--ghost" href="./catalog.html">Продолжить покупки</a>
+      </div>
+
+      <div class="cartLayout">
+        <section class="cartItems">
+          <div id="cartList"></div>
+
+          <div class="empty" id="cartEmpty" hidden>
+            <div class="empty__t">Корзина пуста</div>
+            <div class="empty__s">Добавьте товары из каталога.</div>
+            <a class="btn btn--primary" href="./catalog.html">Открыть каталог</a>
+          </div>
+        </section>
+
+        <aside class="cartSummary">
+          <div class="card">
+            <div class="card__title">Итого</div>
+            <div class="sumRow">
+              <span>Товары</span>
+              <strong id="sumItems">0</strong>
+            </div>
+            <div class="sumRow">
+              <span>Сумма</span>
+              <strong id="sumTotal">0</strong>
+            </div>
+
+            <div class="divider"></div>
+
+            <form id="checkoutForm" class="form">
+              <div class="grid2">
+                <div>
+                  <label class="fLabel" for="fio">ФИО</label>
+                  <input class="field" id="fio" required />
+                </div>
+                <div>
+                  <label class="fLabel" for="phone">Телефон</label>
+                  <input class="field" id="phone" inputmode="tel" required />
+                </div>
+              </div>
+
+              <div class="grid2">
+                <div>
+                  <label class="fLabel" for="city">Город</label>
+                  <input class="field" id="city" required />
+                </div>
+                <div>
+                  <label class="fLabel" for="delivery">Доставка</label>
+                  <select class="field" id="delivery">
+                    <option value="courier">Курьер</option>
+                    <option value="pickup">Самовывоз</option>
+                    <option value="cdek">СДЭК</option>
+                    <option value="post">Казпочта</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label class="fLabel" for="address">Адрес</label>
+                <input class="field" id="address" required />
+              </div>
+
+              <div class="grid2">
+                <div>
+                  <label class="fLabel" for="payment">Оплата</label>
+                  <select class="field" id="payment">
+                    <option value="kaspi">Kaspi</option>
+                    <option value="card">Карта</option>
+                    <option value="transfer">Перевод</option>
+                  </select>
+                </div>
+                <div class="checkRow">
+                  <label class="check">
+                    <input type="checkbox" id="b2b" />
+                    <span>Юр. лицо (B2B)</span>
+                  </label>
+                </div>
+              </div>
+
+              <div id="b2bFields" hidden>
+                <div class="grid2">
+                  <div>
+                    <label class="fLabel" for="company">Компания</label>
+                    <input class="field" id="company" />
+                  </div>
+                  <div>
+                    <label class="fLabel" for="bin">БИН/ИНН</label>
+                    <input class="field" id="bin" inputmode="numeric" />
+                  </div>
+                </div>
+                <div class="grid2">
+                  <div>
+                    <label class="fLabel" for="email">Email для счета</label>
+                    <input class="field" id="email" type="email" />
+                  </div>
+                  <div>
+                    <label class="fLabel" for="legalAddr">Юр. адрес</label>
+                    <input class="field" id="legalAddr" />
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <label class="fLabel" for="comment">Комментарий (опционально)</label>
+                <textarea class="field" id="comment" rows="3"></textarea>
+              </div>
+
+              <button class="btn btn--primary btn--wide" type="submit">Оформить заказ</button>
+
+              <div class="mutedSmall">
+                В этом MVP заявка открывается в WhatsApp администратору.
+              </div>
+            </form>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer footer--compact">
+    <div class="container footer__row">
+      <div class="footer__left">
+        <div class="footer__brand">JOHNGALTAZ</div>
+        <div class="footer__muted">© <span id="year"></span></div>
+      </div>
+      <div class="footer__right">
+        <a href="./catalog.html">Каталог</a>
+        <a href="./policy.html">Политики</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
