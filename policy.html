@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Политики — JOHNGALTAZ</title>
+  <meta name="description" content="Политика конфиденциальности, пользовательское соглашение, cookie." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="header header--compact">
+    <div class="container header__row">
+      <a class="logo" href="./index.html" aria-label="JOHNGALTAZ">
+        <span class="logo__mark"></span>
+        <span class="logo__text">JOHNGALTAZ</span>
+      </a>
+      <nav class="nav" aria-label="Основная навигация">
+        <a href="./catalog.html" class="nav__link">Каталог</a>
+        <a href="./cart.html" class="nav__link">Корзина</a>
+      </nav>
+      <div class="header__actions">
+        <div class="select">
+          <label class="sr" for="lang">Язык</label>
+          <select id="lang" class="select__field" aria-label="Язык">
+            <option value="ru" selected>RU</option>
+            <option value="kz">KZ</option>
+            <option value="en">EN</option>
+          </select>
+        </div>
+        <div class="select">
+          <label class="sr" for="cur">Валюта</label>
+          <select id="cur" class="select__field" aria-label="Валюта">
+            <option value="KZT" selected>KZT</option>
+            <option value="RUB">RUB</option>
+            <option value="USD">USD</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container prose">
+      <h1 class="h2">Политика и условия</h1>
+      <p class="muted">MVP-страница. Тексты заполним окончательно после согласования юридических формулировок.</p>
+
+      <h2 class="h3">Политика конфиденциальности</h2>
+      <p>Мы обрабатываем данные для оформления заказа/заявки и обратной связи. Перед запуском подключим детальный документ.</p>
+
+      <h2 class="h3">Пользовательское соглашение</h2>
+      <p>Условия использования сайта, порядок оплаты/доставки/возврата и ответственность сторон.</p>
+
+      <h2 class="h3">Cookie</h2>
+      <p>Используем cookie/LocalStorage для сохранения корзины, избранного и настроек языка/валюты.</p>
+
+      <div class="divider"></div>
+
+      <a class="btn btn--primary" href="./index.html">На главную</a>
+    </div>
+  </main>
+
+  <footer class="footer footer--compact">
+    <div class="container footer__row">
+      <div class="footer__left">
+        <div class="footer__brand">JOHNGALTAZ</div>
+        <div class="footer__muted">© <span id="year"></span></div>
+      </div>
+      <div class="footer__right">
+        <a href="./catalog.html">Каталог</a>
+        <a href="./cart.html">Корзина</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
