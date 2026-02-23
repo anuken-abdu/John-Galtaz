@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Товар — JOHNGALTAZ</title>
+  <meta name="description" content="Карточка товара JOHNGALTAZ: характеристики, варианты, документы, предзаказ." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+  <header class="header header--compact">
+    <div class="container header__row">
+      <a class="logo" href="./index.html" aria-label="JOHNGALTAZ">
+        <span class="logo__mark"></span>
+        <span class="logo__text">JOHNGALTAZ</span>
+      </a>
+
+      <nav class="nav" aria-label="Основная навигация">
+        <a href="./catalog.html" class="nav__link">Каталог</a>
+        <a href="./policy.html" class="nav__link">Гарантия</a>
+        <a href="./index.html#contacts" class="nav__link">Контакты</a>
+      </nav>
+
+      <div class="header__actions">
+        <div class="select">
+          <label class="sr" for="lang">Язык</label>
+          <select id="lang" class="select__field" aria-label="Язык">
+            <option value="ru" selected>RU</option>
+            <option value="kz">KZ</option>
+            <option value="en">EN</option>
+          </select>
+        </div>
+
+        <div class="select">
+          <label class="sr" for="cur">Валюта</label>
+          <select id="cur" class="select__field" aria-label="Валюта">
+            <option value="KZT" selected>KZT</option>
+            <option value="RUB">RUB</option>
+            <option value="USD">USD</option>
+          </select>
+        </div>
+
+        <a class="iconbtn" href="./cart.html" aria-label="Корзина">
+          <span class="iconbtn__dot" id="cartDot" hidden></span>
+          <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M7 4h-2l-1 2v2h2l3.6 7.6-1.35 2.44A1.99 1.99 0 0 0 10 22h10v-2H10l1.1-2h7.45c.75 0 1.41-.41 1.75-1.03L23 10H7.42L6.2 7H21V5H7z"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <div class="crumbs">
+        <a href="./catalog.html">Каталог</a>
+        <span>→</span>
+        <a href="./catalog.html" id="crumbCat">Категория</a>
+        <span>→</span>
+        <span id="crumbTitle">Товар</span>
+      </div>
+
+      <div class="pdp" id="pdp">
+        <div class="pdp__media">
+          <div class="mediaBox" id="mediaBox">
+            <div class="mediaBox__img" id="mediaImg" aria-hidden="true"></div>
+            <div class="mediaBox__badges" id="mediaBadges"></div>
+          </div>
+          <div class="mediaThumbs" id="thumbs"></div>
+        </div>
+
+        <div class="pdp__main">
+          <h1 class="h2" id="title"></h1>
+
+          <div class="pdp__meta">
+            <div class="sku">SKU: <span id="sku"></span></div>
+            <div class="stock" id="stock"></div>
+          </div>
+
+          <div class="priceRow">
+            <div class="price" id="price"></div>
+            <div class="oldPrice" id="oldPrice" hidden></div>
+          </div>
+
+          <div class="preorder" id="preorder" hidden>
+            <div class="preorder__t">Предзаказ</div>
+            <div class="preorder__s">Поставка до Алматы ~ <span id="leadDays">8</span> дней + доставка по городу/в регионы.</div>
+          </div>
+
+          <div class="variantBox" id="variantBox" hidden>
+            <div class="variantBox__title">Варианты (SKU)</div>
+            <div class="variantGrid" id="variantGrid"></div>
+          </div>
+
+          <div class="actionsRow" id="actionsRow">
+            <button class="btn btn--primary" id="addToCartBtn" type="button">В корзину</button>
+            <button class="btn btn--ghost" id="buy1clickBtn" type="button">Купить в 1 клик</button>
+            <a class="btn btn--ghost" id="askBtn" target="_blank" rel="noopener" href="https://wa.me/77470436747">Задать вопрос</a>
+          </div>
+
+          <div class="notice" id="notice" hidden>
+            <div class="notice__t">Важно / предупреждение</div>
+            <div class="notice__s" id="noticeText"></div>
+          </div>
+
+          <div class="tabs">
+            <button class="tab tab--active" data-tab="spec">Характеристики</button>
+            <button class="tab" data-tab="desc">Описание</button>
+            <button class="tab" data-tab="docs" id="docsTab" hidden>Документы</button>
+          </div>
+
+          <div class="tabPanel tabPanel--active" id="tab-spec"></div>
+          <div class="tabPanel" id="tab-desc"></div>
+          <div class="tabPanel" id="tab-docs"></div>
+        </div>
+      </div>
+
+      <section class="section section--tight">
+        <div class="section__head">
+          <h2 class="h3">Похожие товары</h2>
+          <p class="muted">Подборка по категории.</p>
+        </div>
+        <div class="grid" id="related"></div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer footer--compact">
+    <div class="container footer__row">
+      <div class="footer__left">
+        <div class="footer__brand">JOHNGALTAZ</div>
+        <div class="footer__muted">© <span id="year"></span></div>
+      </div>
+      <div class="footer__right">
+        <a href="./catalog.html">Каталог</a>
+        <a href="./policy.html">Политики</a>
+        <a href="./cart.html">Корзина</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
