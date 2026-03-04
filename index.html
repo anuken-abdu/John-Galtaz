@@ -1,268 +1,1362 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>JOHNGALTAZ — Интернет-магазин</title>
-  <meta name="description" content="JOHNGALTAZ — игровой ноутбуки, периферия, мелко-бытовая техника, косметическое и медицинское оборудование. Быстрый каталог, гарантия, предзаказ." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>JOHNGALTAZ — Игровые ноутбуки и электроника в Казахстане</title>
+<style>
+:root{--p:#0B1416;--a:#F85C58;--bg:#F6F6F3;--nl:#D6D6D6;--nd:#666;--w:#fff;--r:8px;--sh:0 2px 16px rgba(11,20,22,.09);--ok:#27ae60}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,Arial,sans-serif;background:var(--bg);color:var(--p);min-height:100vh}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;border:none;font-family:inherit;background:none}
+input,select,textarea{font-family:inherit}
+.container{max-width:1280px;margin:0 auto;padding:0 20px}
+.btn{padding:10px 22px;border-radius:var(--r);font-weight:600;font-size:14px;transition:all .2s;display:inline-flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;border:2px solid transparent}
+.btn-primary{background:var(--a);color:#fff;border-color:var(--a)}.btn-primary:hover{background:#d9403c;border-color:#d9403c}
+.btn-outline{background:transparent;border-color:var(--p);color:var(--p)}.btn-outline:hover{background:var(--p);color:#fff}
+.btn-ghost{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.4)}.btn-ghost:hover{background:rgba(255,255,255,.22)}
+
+/* HEADER */
+header{background:var(--p);color:#fff;position:sticky;top:0;z-index:1000;box-shadow:0 2px 12px rgba(0,0,0,.35)}
+.hdr-top{display:flex;align-items:center;gap:14px;padding:11px 0}
+.logo{font-size:21px;font-weight:800;letter-spacing:.5px;color:#fff;cursor:pointer;flex-shrink:0}
+.logo span{color:var(--a)}
+.search-box{flex:1;display:flex;min-width:0}
+.search-box input{flex:1;padding:9px 16px;border:none;border-radius:var(--r) 0 0 var(--r);font-size:14px;outline:none;min-width:0}
+.search-box button{background:var(--a);color:#fff;padding:9px 16px;border-radius:0 var(--r) var(--r) 0;font-size:16px;flex-shrink:0}
+.search-box button:hover{background:#d9403c}
+.hdr-actions{display:flex;gap:6px;flex-shrink:0}
+.hdr-btn{background:rgba(255,255,255,.1);color:#fff;border-radius:var(--r);padding:7px 13px;display:flex;align-items:center;gap:5px;font-size:12px;font-weight:500;transition:background .2s;position:relative;cursor:pointer}
+.hdr-btn:hover{background:rgba(255,255,255,.2)}
+.badge{background:var(--a);color:#fff;border-radius:50%;min-width:17px;height:17px;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;position:absolute;top:-5px;right:-5px;padding:0 3px}
+.hdr-nav{border-top:1px solid rgba(255,255,255,.1);padding:7px 0;display:flex;gap:2px;flex-wrap:wrap}
+.nav-link{color:rgba(255,255,255,.78);padding:5px 11px;border-radius:6px;font-size:13px;font-weight:500;transition:all .2s;cursor:pointer;white-space:nowrap}
+.nav-link:hover,.nav-link.active{color:#fff;background:rgba(255,255,255,.16)}
+
+/* PAGES */
+.page{display:none}.page.active{display:block}
+
+/* HOME */
+.hero{background:linear-gradient(135deg,var(--p) 0%,#1c3545 60%,#0f2030 100%);color:#fff;padding:64px 0;text-align:center}
+.hero h1{font-size:clamp(26px,4.5vw,52px);font-weight:800;margin-bottom:16px;line-height:1.14}
+.hero h1 span{color:var(--a)}
+.hero p{font-size:16px;opacity:.78;margin-bottom:32px;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.6}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.section-title{font-size:24px;font-weight:800;margin-bottom:24px}
+.cats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+.cat-card{background:var(--w);border-radius:14px;padding:28px 24px;box-shadow:var(--sh);cursor:pointer;transition:all .25s;display:flex;flex-direction:column;gap:10px;border:2px solid transparent}
+.cat-card:hover{border-color:var(--a);transform:translateY(-4px);box-shadow:0 10px 30px rgba(248,92,88,.18)}
+.cat-icon{font-size:42px;line-height:1}
+.cat-card h3{font-size:18px;font-weight:700}
+.cat-card p{font-size:13px;color:var(--nd);line-height:1.5}
+.cat-count{font-size:12px;color:var(--a);font-weight:700}
+.feats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:20px}
+.feat{text-align:center;padding:20px}
+.feat .fi{font-size:34px;margin-bottom:12px}
+.feat h4{font-size:15px;font-weight:700;margin-bottom:6px}
+.feat p{font-size:13px;opacity:.7}
+
+/* CATALOG */
+.catalog-layout{display:grid;grid-template-columns:248px 1fr;gap:24px;padding:28px 0;align-items:start}
+.filters-panel{background:var(--w);border-radius:12px;padding:20px;box-shadow:var(--sh);position:sticky;top:74px}
+.filter-title{font-size:15px;font-weight:700;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center}
+.filter-group{margin-bottom:18px}
+.flabel{font-size:11px;font-weight:700;color:var(--nd);text-transform:uppercase;letter-spacing:.6px;display:block;margin-bottom:8px}
+.filter-group select,.filter-group input[type=number]{width:100%;padding:8px 10px;border:1.5px solid var(--nl);border-radius:6px;font-size:13px;outline:none;background:var(--bg);color:var(--p)}
+.filter-group select:focus,.filter-group input:focus{border-color:var(--a)}
+.range-row{display:flex;gap:8px;align-items:center;font-size:12px;color:var(--nd)}
+.range-row input{flex:1;width:0}
+.check-list{display:flex;flex-direction:column;gap:6px;max-height:180px;overflow-y:auto}
+.check-item{display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px;line-height:1.3}
+.check-item input{accent-color:var(--a);cursor:pointer}
+.btn-reset{width:100%;padding:8px;border-radius:6px;border:1.5px solid var(--nl);background:none;font-size:13px;color:var(--nd);cursor:pointer;transition:all .2s;margin-top:6px}
+.btn-reset:hover{border-color:var(--a);color:var(--a)}
+.cat-header{padding:20px 0 4px}
+.cat-title{font-size:26px;font-weight:800;margin-bottom:4px}
+.cat-breadcrumb{display:flex;gap:6px;align-items:center;font-size:13px;color:var(--nd);margin-bottom:0;flex-wrap:wrap}
+.cat-breadcrumb a{color:var(--nd);cursor:pointer;transition:color .2s}.cat-breadcrumb a:hover{color:var(--a)}
+.catalog-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;gap:12px;flex-wrap:wrap}
+.results-count{font-size:13px;color:var(--nd)}
+.sort-select{padding:8px 12px;border:1.5px solid var(--nl);border-radius:6px;font-size:13px;outline:none;background:var(--w)}
+.sort-select:focus{border-color:var(--a)}
+.plp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px}
+
+/* PRODUCT CARD */
+.product-card{background:var(--w);border-radius:12px;overflow:hidden;box-shadow:var(--sh);transition:all .25s;cursor:pointer;display:flex;flex-direction:column}
+.product-card:hover{transform:translateY(-5px);box-shadow:0 10px 32px rgba(0,0,0,.15)}
+.pc-img{height:175px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.pc-img .emoji{font-size:60px;filter:drop-shadow(0 4px 12px rgba(0,0,0,.3))}
+.badge-sale{position:absolute;top:10px;left:10px;background:var(--a);color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;z-index:1}
+.badge-new{position:absolute;top:10px;left:10px;background:#1565C0;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;z-index:1}
+.badge-order{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.55);color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;z-index:1}
+.pc-body{padding:13px 13px 8px;flex:1;display:flex;flex-direction:column;gap:7px}
+.pc-name{font-size:13px;font-weight:600;line-height:1.35;flex:1}
+.pc-specs{font-size:11px;color:var(--nd);line-height:1.55}
+.pc-avail{font-size:11px;font-weight:500}
+.pc-price{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.price-cur{font-size:16px;font-weight:800}
+.price-old{font-size:12px;color:var(--nd);text-decoration:line-through}
+.pc-actions{display:grid;grid-template-columns:1fr auto;gap:6px;padding:8px 13px 13px}
+.pc-btn-cart{background:var(--a);color:#fff;padding:8px 12px;border-radius:6px;font-size:12px;font-weight:700;transition:all .2s;flex:1}
+.pc-btn-cart:hover{background:#d9403c}
+.pc-btn-fav{background:var(--bg);color:var(--nd);border:1.5px solid var(--nl);padding:8px 10px;border-radius:6px;font-size:14px;transition:all .2s}
+.pc-btn-fav:hover,.pc-btn-fav.active{border-color:var(--a);color:var(--a)}
+.pc-btn-1c{background:var(--p);color:#fff;padding:7px 12px;border-radius:6px;font-size:11px;font-weight:600;grid-column:1/-1;transition:all .2s}
+.pc-btn-1c:hover{background:#1c3545}
+.pc-btn-cmp{background:var(--bg);color:var(--nd);border:1.5px solid var(--nl);padding:7px 10px;border-radius:6px;font-size:11px;font-weight:600;transition:all .2s}
+.pc-btn-cmp:hover,.pc-btn-cmp.active{border-color:var(--a);color:var(--a)}
+
+/* PDP */
+.pdp{padding:28px 0}
+.pdp-breadcrumb{display:flex;gap:7px;align-items:center;margin-bottom:22px;font-size:13px;color:var(--nd);flex-wrap:wrap}
+.pdp-breadcrumb a{color:var(--nd);cursor:pointer;transition:color .2s}.pdp-breadcrumb a:hover{color:var(--a)}
+.pdp-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.pdp-gallery{border-radius:12px;overflow:hidden;background:var(--w);box-shadow:var(--sh)}
+.pdp-main-img{height:360px;display:flex;align-items:center;justify-content:center}
+.pdp-main-img .emoji{font-size:110px;filter:drop-shadow(0 8px 24px rgba(0,0,0,.25))}
+.pdp-thumbs{display:flex;gap:8px;padding:12px;border-top:1px solid var(--bg)}
+.pdp-thumb{width:64px;height:52px;background:var(--bg);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:24px;cursor:pointer;border:2px solid transparent;transition:border-color .2s}
+.pdp-thumb.active{border-color:var(--a)}
+.pdp-info{display:flex;flex-direction:column;gap:14px}
+.pdp-title{font-size:22px;font-weight:800;line-height:1.28}
+.pdp-meta{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:13px;color:var(--nd)}
+.stock-badge{padding:4px 11px;border-radius:20px;font-size:12px;font-weight:600}
+.stock-in{background:#e5f9ee;color:#1a7a3c}
+.stock-pre{background:#fff3cd;color:#7a5400}
+.pdp-price-box{background:var(--bg);border-radius:10px;padding:16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.pdp-price-cur{font-size:30px;font-weight:800}
+.pdp-price-old{font-size:14px;color:var(--nd);text-decoration:line-through}
+.pdp-disc{background:var(--a);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:5px}
+.vs-label{font-size:13px;font-weight:600;margin-bottom:8px}
+.variants-row{display:flex;gap:7px;flex-wrap:wrap}
+.var-btn{padding:7px 14px;border-radius:7px;border:2px solid var(--nl);font-size:12px;font-weight:600;background:var(--bg);cursor:pointer;transition:all .2s}
+.var-btn.active,.var-btn:hover{border-color:var(--a);color:var(--a);background:#fff5f4}
+.pdp-actions{display:flex;flex-direction:column;gap:9px}
+.pdp-actions .btn{padding:13px;font-size:14px;font-weight:700}
+.pdp-delivery{background:var(--w);border-radius:10px;padding:16px;font-size:13px;box-shadow:var(--sh)}
+.pdp-delivery h4{font-size:14px;font-weight:700;margin-bottom:10px}
+.del-row{display:flex;align-items:flex-start;gap:9px;padding:6px 0;border-bottom:1px solid var(--bg);color:var(--nd);font-size:13px}
+.del-row:last-child{border:none}.del-row .di{font-size:17px;flex-shrink:0;margin-top:1px}
+.pdp-warning{background:#fff8e1;border-left:4px solid #f59e0b;padding:13px 16px;border-radius:8px;font-size:13px;color:#7a5400;line-height:1.55}
+.tabs-header{display:flex;border-bottom:2px solid var(--nl);margin-bottom:22px;overflow-x:auto;gap:0}
+.tab-btn{padding:11px 20px;font-size:14px;font-weight:600;color:var(--nd);border-bottom:3px solid transparent;margin-bottom:-2px;cursor:pointer;white-space:nowrap;transition:all .2s;border-left:none;border-right:none;border-top:none;background:none}
+.tab-btn.active{color:var(--a);border-bottom-color:var(--a)}.tab-btn:hover:not(.active){color:var(--p)}
+.tab-panel{display:none}.tab-panel.active{display:block}
+.specs-table{width:100%;border-collapse:collapse;font-size:14px}
+.specs-table tr:nth-child(even) td{background:var(--bg)}
+.specs-table td{padding:10px 14px;border-bottom:1px solid #eee}
+.specs-table td:first-child{color:var(--nd);width:45%;font-weight:500}
+.desc-text{font-size:15px;line-height:1.78;color:#2c2c2c}
+.related-sec{margin-top:40px;padding-top:32px;border-top:2px solid var(--nl)}
+
+/* CART */
+.cart-page{padding:28px 0}
+.cart-layout{display:grid;grid-template-columns:1fr 360px;gap:24px;align-items:start}
+.cart-items-wrap{background:var(--w);border-radius:12px;box-shadow:var(--sh);overflow:hidden}
+.cart-hdr{padding:16px 18px;border-bottom:1px solid var(--bg);font-size:15px;font-weight:700}
+.cart-item{display:grid;grid-template-columns:80px 1fr auto;gap:14px;padding:15px 18px;border-bottom:1px solid var(--bg);align-items:center}
+.cart-item:last-child{border:none}
+.ci-img{width:80px;height:68px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:34px}
+.ci-name{font-size:13px;font-weight:600;margin-bottom:3px;line-height:1.3}
+.ci-spec{font-size:11px;color:var(--nd)}
+.ci-right{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.qty-row{display:flex;align-items:center;gap:8px}
+.qty-btn{width:28px;height:28px;border-radius:50%;background:var(--bg);border:1.5px solid var(--nl);font-size:16px;display:flex;align-items:center;justify-content:center;font-weight:700;cursor:pointer;transition:all .2s}
+.qty-btn:hover{border-color:var(--a);color:var(--a)}
+.qty-val{font-size:14px;font-weight:700;min-width:20px;text-align:center}
+.ci-price{font-size:15px;font-weight:700}
+.ci-remove{color:var(--nd);font-size:16px;cursor:pointer;padding:4px;transition:color .2s}
+.ci-remove:hover{color:var(--a)}
+.cart-summary-box{background:var(--w);border-radius:12px;padding:20px;box-shadow:var(--sh);display:flex;flex-direction:column;gap:0}
+.cs-row{display:flex;justify-content:space-between;padding:9px 0;font-size:14px;border-bottom:1px solid var(--bg)}
+.cs-row.total{border:none;font-size:17px;font-weight:800;padding-top:13px}
+
+/* CHECKOUT */
+.checkout-page{padding:28px 0}
+.checkout-grid{display:grid;grid-template-columns:1fr 340px;gap:24px;align-items:start}
+.checkout-form{background:var(--w);border-radius:12px;padding:28px;box-shadow:var(--sh)}
+.fs-title{font-size:15px;font-weight:700;margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid var(--bg);display:flex;align-items:center;gap:8px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:12px}
+.form-group{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
+.form-group label{font-size:12px;font-weight:600;color:var(--nd);text-transform:uppercase;letter-spacing:.3px}
+.form-group input,.form-group select,.form-group textarea{padding:10px 14px;border:1.5px solid var(--nl);border-radius:8px;font-size:14px;outline:none;background:var(--bg);color:var(--p);transition:border-color .2s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--a);background:#fff}
+.b2b-toggle{display:flex;align-items:center;gap:10px;cursor:pointer;font-size:14px;font-weight:600;padding:12px;background:var(--bg);border-radius:8px;margin-bottom:18px;user-select:none}
+.b2b-toggle input{accent-color:var(--a);width:18px;height:18px;cursor:pointer}
+.b2b-fields{display:none}.b2b-fields.show{display:block}
+.delivery-opts,.payment-opts{display:flex;flex-direction:column;gap:8px}
+.radio-item{display:flex;align-items:center;gap:10px;cursor:pointer;padding:10px 14px;border-radius:8px;border:1.5px solid var(--nl);transition:all .2s;font-size:14px}
+.radio-item:hover{border-color:var(--a)}.radio-item.sel{border-color:var(--a);background:#fff5f4}
+.radio-item input{accent-color:var(--a);cursor:pointer}
+.order-sidebar{background:var(--w);border-radius:12px;padding:20px;box-shadow:var(--sh);position:sticky;top:74px}
+
+/* COMPARE */
+.compare-page{padding:28px 0}
+.compare-wrap{overflow-x:auto;border-radius:12px;box-shadow:var(--sh)}
+.compare-table{width:100%;border-collapse:collapse;font-size:13px;background:var(--w)}
+.compare-table th{background:var(--p);color:#fff;padding:14px;text-align:center;font-size:13px;font-weight:600}
+.compare-table th:first-child{text-align:left;min-width:160px}
+.compare-table td{padding:10px 14px;border-bottom:1px solid var(--bg)}
+.compare-table td:not(:first-child){text-align:center}
+.compare-table tr:nth-child(even) td{background:var(--bg)}
+.diff-row td{background:#fff5f4!important;font-weight:600}
+.ct-icon{font-size:38px;display:block;margin-bottom:4px}
+
+/* STATIC */
+.static-page{padding:48px 0}
+.static-page h1{font-size:32px;font-weight:800;margin-bottom:24px}
+.static-page h2{font-size:20px;font-weight:700;margin:24px 0 12px}
+.static-page p{font-size:15px;line-height:1.75;color:#2c2c2c;margin-bottom:14px}
+.static-page ul{margin-left:20px;line-height:1.9;font-size:15px;color:#2c2c2c;margin-bottom:14px}
+.info-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:20px;margin-top:20px}
+.info-card{background:var(--w);border-radius:12px;padding:24px;box-shadow:var(--sh)}
+.info-card h3{font-size:15px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.info-card ul{margin-left:16px;font-size:14px;line-height:1.85;color:#2c2c2c}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:28px}
+.contact-form{background:var(--w);border-radius:12px;padding:28px;box-shadow:var(--sh)}
+.contact-form h2{font-size:20px;font-weight:700;margin-bottom:20px}
+
+/* MODALS */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:2000;display:none;align-items:center;justify-content:center;padding:16px}
+.overlay.open{display:flex}
+.modal{background:var(--w);border-radius:16px;padding:32px;width:100%;max-width:470px;position:relative;box-shadow:0 20px 72px rgba(0,0,0,.28);max-height:90vh;overflow-y:auto}
+.modal h2{font-size:20px;font-weight:700;margin-bottom:18px}
+.modal-close{position:absolute;top:14px;right:14px;font-size:22px;color:var(--nd);cursor:pointer;padding:4px;line-height:1}
+.modal-close:hover{color:var(--a)}
+.form-col{display:flex;flex-direction:column;gap:12px}
+.form-col input,.form-col select,.form-col textarea{padding:11px 14px;border:1.5px solid var(--nl);border-radius:8px;font-size:14px;outline:none;background:var(--bg);color:var(--p)}
+.form-col input:focus,.form-col select:focus,.form-col textarea:focus{border-color:var(--a);background:#fff}
+.success-state{display:none;text-align:center;padding:16px 0}
+.success-state .si{font-size:52px;margin-bottom:10px}
+
+/* TOAST */
+.toast{position:fixed;bottom:20px;right:20px;background:var(--p);color:#fff;padding:12px 18px;border-radius:10px;font-size:13px;font-weight:500;z-index:3000;transform:translateY(80px);opacity:0;transition:all .3s;max-width:300px;box-shadow:0 6px 24px rgba(0,0,0,.28);pointer-events:none}
+.toast.show{transform:translateY(0);opacity:1}
+
+/* FLOATING */
+.floating{position:fixed;bottom:22px;left:20px;display:flex;flex-direction:column;gap:10px;z-index:1500}
+.fb{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 4px 16px rgba(0,0,0,.22);transition:transform .2s;cursor:pointer}
+.fb:hover{transform:scale(1.12)}
+.fb-wa{background:#25D366}.fb-tg{background:#2CA5E0}
+
+/* ORDER SUCCESS */
+.order-ok{text-align:center;padding:72px 20px;max-width:480px;margin:0 auto}
+.order-ok .ok-icon{font-size:80px;margin-bottom:16px}
+.order-ok h2{font-size:28px;font-weight:800;margin-bottom:12px}
+.order-ok p{font-size:15px;color:var(--nd);line-height:1.65;margin-bottom:6px}
+
+/* FOOTER */
+footer{background:var(--p);color:#fff;padding:44px 0 20px;margin-top:64px}
+.footer-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:32px;margin-bottom:36px}
+.fc h4{font-size:15px;font-weight:700;margin-bottom:14px;color:#fff}
+.fc ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.fc ul li a{font-size:13px;color:rgba(255,255,255,.6);transition:color .2s;cursor:pointer}
+.fc ul li a:hover{color:#fff}
+.footer-logo{font-size:20px;font-weight:800;letter-spacing:.5px;margin-bottom:10px}
+.footer-logo span{color:var(--a)}
+.footer-desc{font-size:13px;color:rgba(255,255,255,.55);line-height:1.65}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:18px;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:rgba(255,255,255,.45);flex-wrap:wrap;gap:8px}
+
+/* PAGINATION */
+.pagination{display:flex;gap:6px;justify-content:center;margin-top:30px;flex-wrap:wrap}
+.pg-btn{min-width:36px;height:36px;padding:0 8px;border-radius:7px;border:1.5px solid var(--nl);background:var(--w);font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center}
+.pg-btn:hover,.pg-btn.active{background:var(--a);color:#fff;border-color:var(--a)}
+
+/* EMPTY */
+.empty-st{text-align:center;padding:60px 20px;color:var(--nd);grid-column:1/-1}
+.empty-st .ei{font-size:60px;margin-bottom:14px}
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  .catalog-layout,.cart-layout,.checkout-grid{grid-template-columns:1fr}
+  .filters-panel{position:static}
+  .pdp-grid{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+}
+@media(max-width:700px){
+  .hdr-top{flex-wrap:wrap}.search-box{order:3;width:100%}
+  .form-row{grid-template-columns:1fr}
+  .plp-grid{grid-template-columns:repeat(auto-fill,minmax(156px,1fr))}
+}
+</style>
 </head>
-
 <body>
-  <a class="skip" href="#main">Перейти к содержимому</a>
 
-  <header class="header">
-    <div class="container header__row">
-      <a class="logo" href="./index.html" aria-label="JOHNGALTAZ">
-        <span class="logo__mark"></span>
-        <span class="logo__text">JOHNGALTAZ</span>
-      </a>
+<!-- HEADER -->
+<header>
+  <div class="container">
+    <div class="hdr-top">
+      <div class="logo" onclick="go('home')">JOHN<span>GALT</span>AZ</div>
+      <div class="search-box">
+        <input type="text" id="searchQ" placeholder="Поиск по товарам, брендам..." onkeydown="if(event.key==='Enter')doSearch()">
+        <button onclick="doSearch()">🔍</button>
+      </div>
+      <div class="hdr-actions">
+        <button class="hdr-btn" onclick="go('compare')" title="Сравнение">⚖️ <span id="cmpCount">0</span><span class="badge" id="cmpBadge" style="display:none">0</span></button>
+        <button class="hdr-btn" onclick="go('wishlist')" title="Избранное">♡<span class="badge" id="wlBadge" style="display:none">0</span></button>
+        <button class="hdr-btn" onclick="go('cart')">🛒 Корзина<span class="badge" id="cartBadge" style="display:none">0</span></button>
+      </div>
+    </div>
+    <nav class="hdr-nav">
+      <span class="nav-link" onclick="go('home')">Главная</span>
+      <span class="nav-link" onclick="openCat(0)">💻 Ноутбуки</span>
+      <span class="nav-link" onclick="openCat(1)">🖱️ Периферия</span>
+      <span class="nav-link" onclick="openCat(2)">🏠 Техника</span>
+      <span class="nav-link" onclick="openCat(3)">✨ Косметика</span>
+      <span class="nav-link" onclick="go('compare')">Сравнение</span>
+      <span class="nav-link" onclick="go('wishlist')">Избранное</span>
+      <span class="nav-link" onclick="go('delivery')">Доставка</span>
+      <span class="nav-link" onclick="go('about')">О нас</span>
+      <span class="nav-link" onclick="go('contacts')">Контакты</span>
+      <span class="nav-link" onclick="go('b2b')">Юр. лицам</span>
+    </nav>
+  </div>
+</header>
 
-      <nav class="nav" aria-label="Основная навигация">
-        <a href="./catalog.html" class="nav__link">Каталог</a>
-        <a href="./catalog.html?cat=laptops" class="nav__link">Ноутбуки</a>
-        <a href="./catalog.html?cat=periphery" class="nav__link">Периферия</a>
-        <a href="./catalog.html?cat=home" class="nav__link">Техника</a>
-        <a href="#trust" class="nav__link">Гарантия</a>
-        <a href="#contacts" class="nav__link">Контакты</a>
-      </nav>
+<main>
 
-      <div class="header__actions">
-        <div class="select">
-          <label class="sr" for="lang">Язык</label>
-          <select id="lang" class="select__field" aria-label="Язык">
-            <option value="ru" selected>RU</option>
-            <option value="kz">KZ</option>
-            <option value="en">EN</option>
+<!-- HOME -->
+<div class="page active" id="page-home">
+  <section class="hero">
+    <div class="container">
+      <h1>Лучшие <span>игровые ноутбуки</span><br>и электроника в Казахстане</h1>
+      <p>Честные цены, официальная гарантия и быстрая доставка по всему Казахстану. Предзаказ — поставка до Алматы ~8 дней.</p>
+      <div class="hero-btns">
+        <button class="btn btn-primary" onclick="openCat(0)">💻 Смотреть ноутбуки</button>
+        <button class="btn btn-ghost" onclick="openModal('m-picker')">🎯 Подбор ноутбука</button>
+      </div>
+    </div>
+  </section>
+  <section style="padding:48px 0"><div class="container">
+    <h2 class="section-title">Категории товаров</h2>
+    <div class="cats-grid" id="homeCats"></div>
+  </div></section>
+  <section style="padding:0 0 48px"><div class="container">
+    <h2 class="section-title">🔥 Хиты продаж</h2>
+    <div class="plp-grid" id="homeHits"></div>
+  </div></section>
+  <section style="background:var(--p);padding:48px 0"><div class="container">
+    <div class="feats-grid">
+      <div class="feat"><div class="fi">🚀</div><h4>Быстрая доставка</h4><p>По Алматы 1–2 дня, по Казахстану 3–10 дней</p></div>
+      <div class="feat"><div class="fi">🛡️</div><h4>Официальная гарантия</h4><p>Гарантия производителя на все товары</p></div>
+      <div class="feat"><div class="fi">✅</div><h4>Только оригиналы</h4><p>Все товары от проверенных поставщиков</p></div>
+      <div class="feat"><div class="fi">💬</div><h4>Поддержка 7 дней</h4><p>WhatsApp и Telegram для быстрой связи</p></div>
+      <div class="feat"><div class="fi">🏦</div><h4>Удобная оплата</h4><p>Kaspi, карта, перевод, наличные, рассрочка</p></div>
+    </div>
+  </div></section>
+</div>
+
+<!-- CATALOG -->
+<div class="page" id="page-catalog">
+  <div class="container">
+    <div class="cat-header">
+      <div class="cat-breadcrumb" id="catBC"></div>
+      <h1 class="cat-title" id="catTitle"></h1>
+    </div>
+    <div class="catalog-layout">
+      <aside class="filters-panel" id="filtersPanel">
+        <div class="filter-title">Фильтры <button class="btn-reset" style="width:auto;padding:4px 10px;margin:0" onclick="resetFilters()">↺ Сбросить</button></div>
+        <div class="filter-group">
+          <span class="flabel">Цена (₸)</span>
+          <div class="range-row">
+            <input type="number" id="fMin" placeholder="От" oninput="applyF()">
+            <span>—</span>
+            <input type="number" id="fMax" placeholder="До" oninput="applyF()">
+          </div>
+        </div>
+        <div class="filter-group">
+          <span class="flabel">Бренд</span>
+          <div class="check-list" id="fBrands"></div>
+        </div>
+        <div class="filter-group">
+          <span class="flabel">Наличие</span>
+          <label class="check-item"><input type="checkbox" id="fIn" onchange="applyF()"> В наличии</label>
+          <label class="check-item" style="margin-top:4px"><input type="checkbox" id="fPre" onchange="applyF()"> Предзаказ</label>
+        </div>
+        <div id="fExtra"></div>
+      </aside>
+      <div>
+        <div class="catalog-header">
+          <span class="results-count" id="resCount"></span>
+          <select class="sort-select" id="sortSel" onchange="applyF()">
+            <option value="def">По умолчанию</option>
+            <option value="pa">Цена: по возрастанию</option>
+            <option value="pd">Цена: по убыванию</option>
+            <option value="nm">По названию</option>
+            <option value="nw">Новинки</option>
           </select>
         </div>
-
-        <div class="select">
-          <label class="sr" for="cur">Валюта</label>
-          <select id="cur" class="select__field" aria-label="Валюта">
-            <option value="KZT" selected>KZT</option>
-            <option value="RUB">RUB</option>
-            <option value="USD">USD</option>
-          </select>
-        </div>
-
-        <a class="iconbtn" href="./cart.html" aria-label="Корзина">
-          <span class="iconbtn__dot" id="cartDot" hidden></span>
-          <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M7 4h-2l-1 2v2h2l3.6 7.6-1.35 2.44A1.99 1.99 0 0 0 10 22h10v-2H10l1.1-2h7.45c.75 0 1.41-.41 1.75-1.03L23 10H7.42L6.2 7H21V5H7z"></path>
-          </svg>
-        </a>
-
-        <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
+        <div class="plp-grid" id="catGrid"></div>
+        <div class="pagination" id="catPages"></div>
       </div>
     </div>
+  </div>
+</div>
 
-    <div class="mobileNav" id="mobileNav" hidden>
-      <div class="container mobileNav__inner">
-        <a href="./catalog.html" class="mobileNav__link">Каталог</a>
-        <a href="./catalog.html?cat=laptops" class="mobileNav__link">Игровые ноутбуки</a>
-        <a href="./catalog.html?cat=periphery" class="mobileNav__link">Периферия</a>
-        <a href="./catalog.html?cat=home" class="mobileNav__link">Мелко-бытовая техника</a>
-        <a href="./catalog.html?cat=cosmo" class="mobileNav__link">Косметическое оборудование</a>
-        <a href="./catalog.html?cat=medical" class="mobileNav__link">Медицинское оборудование</a>
-        <a href="#trust" class="mobileNav__link">Гарантия</a>
-        <a href="#contacts" class="mobileNav__link">Контакты</a>
+<!-- PRODUCT PAGE -->
+<div class="page" id="page-product">
+  <div class="container pdp">
+    <div class="pdp-breadcrumb" id="pdpBC"></div>
+    <div class="pdp-grid" id="pdpMain"></div>
+    <div id="pdpTabs" style="margin-top:32px"></div>
+    <div class="related-sec">
+      <h2 class="section-title" style="margin-bottom:20px">Похожие товары</h2>
+      <div class="plp-grid" id="relGrid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SEARCH -->
+<div class="page" id="page-search">
+  <div class="container" style="padding:32px 0">
+    <h1 id="searchTitle" style="font-size:24px;font-weight:800;margin-bottom:24px"></h1>
+    <div class="plp-grid" id="searchGrid"></div>
+  </div>
+</div>
+
+<!-- CART -->
+<div class="page" id="page-cart">
+  <div class="container cart-page">
+    <h1 style="font-size:26px;font-weight:800;margin-bottom:24px">🛒 Корзина</h1>
+    <div id="cartWrap"></div>
+  </div>
+</div>
+
+<!-- CHECKOUT -->
+<div class="page" id="page-checkout">
+  <div class="container checkout-page">
+    <h1 style="font-size:26px;font-weight:800;margin-bottom:24px">📋 Оформление заказа</h1>
+    <div id="checkoutWrap"></div>
+  </div>
+</div>
+
+<!-- ORDER SUCCESS -->
+<div class="page" id="page-order-ok">
+  <div class="container">
+    <div class="order-ok">
+      <div class="ok-icon">✅</div>
+      <h2>Заказ оформлен!</h2>
+      <p>Спасибо за покупку. Менеджер свяжется с вами в ближайшее время для подтверждения.</p>
+      <p style="font-size:13px;margin-top:6px">Номер заказа: <strong id="orderNum" style="color:var(--a)"></strong></p>
+      <div style="display:flex;gap:12px;justify-content:center;margin-top:28px;flex-wrap:wrap">
+        <button class="btn btn-primary" onclick="openCat(0)">Продолжить покупки</button>
+        <button class="btn btn-outline" onclick="go('home')">На главную</button>
       </div>
     </div>
-  </header>
+  </div>
+</div>
 
-  <main id="main">
-    <section class="hero">
-      <div class="container hero__grid">
-        <div class="hero__text">
-          <div class="badge">
-            <span class="badge__dot"></span>
-            <span data-i18n="hero.badge">Каталог + предзаказ + быстрый заказ</span>
-          </div>
+<!-- COMPARE -->
+<div class="page" id="page-compare">
+  <div class="container compare-page">
+    <h1 style="font-size:26px;font-weight:800;margin-bottom:24px">⚖️ Сравнение товаров</h1>
+    <div id="compareWrap"></div>
+  </div>
+</div>
 
-          <h1 class="h1" data-i18n="hero.title">
-            Игровые ноутбуки и техника — с гарантиями и прозрачными сроками
-          </h1>
-          <p class="lead" data-i18n="hero.subtitle">
-            Быстрый поиск по параметрам, сравнение моделей, варианты SKU и предзаказ по умолчанию: поставка до Алматы ~ 8 дней + доставка по городу/в регионы.
-          </p>
+<!-- WISHLIST -->
+<div class="page" id="page-wishlist">
+  <div class="container" style="padding:28px 0">
+    <h1 style="font-size:26px;font-weight:800;margin-bottom:24px">♡ Избранное</h1>
+    <div class="plp-grid" id="wishGrid"></div>
+  </div>
+</div>
 
-          <div class="hero__cta">
-            <a class="btn btn--primary" href="./catalog.html" data-i18n="hero.cta.catalog">Открыть каталог</a>
-            <a class="btn btn--ghost" href="./catalog.html?cat=laptops" data-i18n="hero.cta.laptops">Подобрать ноутбук</a>
-          </div>
+<!-- DELIVERY -->
+<div class="page" id="page-delivery">
+  <div class="container static-page">
+    <h1>🚚 Доставка и оплата</h1>
+    <div class="info-grid">
+      <div class="info-card"><h3>📦 Способы доставки</h3><ul><li>Курьер по Алматы — 1–2 дня (1 500 ₸)</li><li>СДЭК — 3–5 дней (от 2 000 ₸)</li><li>Boxberry — 4–7 дней (от 1 800 ₸)</li><li>Казпочта — 5–10 дней (от 1 200 ₸)</li><li>Самовывоз — бесплатно</li></ul></div>
+      <div class="info-card"><h3>💳 Оплата</h3><ul><li>Kaspi Pay</li><li>Банковская карта</li><li>Банковский перевод</li><li>Наличные при получении</li><li>Рассрочка Kaspi 0–0–24</li></ul></div>
+      <div class="info-card"><h3>📦 Предзаказ</h3><p>Товары под заказ: поставка до Алматы ~8 дней, затем доставка по Казахстану. Точные сроки уточняет менеджер.</p></div>
+      <div class="info-card"><h3>🔄 Гарантия и возврат</h3><p>Гарантия производителя на все товары. Возврат в течение 14 дней согласно законодательству РК при ненадлежащем качестве.</p></div>
+    </div>
+  </div>
+</div>
 
-          <div class="hero__trust">
-            <div class="mini">
-              <div class="mini__k">1–2 мин</div>
-              <div class="mini__t" data-i18n="hero.mini.checkout">оформление заказа</div>
-            </div>
-            <div class="mini">
-              <div class="mini__k">B2B</div>
-              <div class="mini__t" data-i18n="hero.mini.b2b">режим для юр. лиц</div>
-            </div>
-            <div class="mini">
-              <div class="mini__k">Excel</div>
-              <div class="mini__t" data-i18n="hero.mini.import">импорт товаров</div>
-            </div>
-          </div>
+<!-- ABOUT -->
+<div class="page" id="page-about">
+  <div class="container static-page">
+    <h1>🏢 О компании JOHNGALTAZ</h1>
+    <p>JOHNGALTAZ — казахстанский интернет-магазин игровых ноутбуков, периферии, мелкобытовой и косметической техники. Работаем официально как ИП, представлены на Kaspi.kz и Halyk Market.</p>
+    <h2>Наши преимущества</h2>
+    <div class="info-grid">
+      <div class="info-card"><h3>✅ Честные цены</h3><p>Формируем цены без скрытых наценок, регулярно проводим акции и специальные предложения для постоянных клиентов.</p></div>
+      <div class="info-card"><h3>🛡️ Гарантия</h3><p>На все товары — официальная гарантия производителя. Мы сопровождаем клиента на всех этапах покупки.</p></div>
+      <div class="info-card"><h3>🚀 Быстрая поставка</h3><p>Базовый срок поставки до Алматы — 8 дней. Доставка по Казахстану от 1 до 10 рабочих дней.</p></div>
+      <div class="info-card"><h3>💬 Поддержка</h3><p>Менеджеры доступны в WhatsApp и Telegram ежедневно. Помогаем с подбором, оформлением и послепродажным обслуживанием.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACTS -->
+<div class="page" id="page-contacts">
+  <div class="container static-page">
+    <h1>📞 Контакты</h1>
+    <div class="contact-grid">
+      <div>
+        <div class="info-card" style="margin-bottom:18px"><h3>📱 Связь с нами</h3>
+          <p style="font-size:20px;font-weight:800;color:var(--a);margin-bottom:6px">+7 747 043 67 47</p>
+          <p style="font-size:13px;color:var(--nd)">WhatsApp · Telegram · Звонок</p>
         </div>
-
-        <div class="hero__card">
-          <div class="card card--glow">
-            <div class="card__top">
-              <div class="card__title" data-i18n="hero.search.title">Быстрый поиск</div>
-              <div class="pill" data-i18n="hero.search.pill">GPU / CPU / RAM / SSD</div>
-            </div>
-
-            <form class="search" action="./catalog.html" method="get">
-              <input class="search__input" type="search" name="q" placeholder="Например: RTX 4060 16GB 512GB" aria-label="Поиск по каталогу">
-              <button class="btn btn--primary search__btn" type="submit">Найти</button>
-            </form>
-
-            <div class="grid2">
-              <a class="catCard" href="./catalog.html?cat=laptops">
-                <div class="catCard__icon">🎮</div>
-                <div class="catCard__text">
-                  <div class="catCard__t" data-i18n="cats.laptops">Игровые ноутбуки</div>
-                  <div class="catCard__s" data-i18n="cats.laptopsSub">Фильтры по железу</div>
-                </div>
-              </a>
-              <a class="catCard" href="./catalog.html?cat=periphery">
-                <div class="catCard__icon">⌨️</div>
-                <div class="catCard__text">
-                  <div class="catCard__t" data-i18n="cats.periphery">Периферия</div>
-                  <div class="catCard__s" data-i18n="cats.peripherySub">Мыши, клавы, мониторы</div>
-                </div>
-              </a>
-              <a class="catCard" href="./catalog.html?cat=home">
-                <div class="catCard__icon">🏠</div>
-                <div class="catCard__text">
-                  <div class="catCard__t" data-i18n="cats.home">Мелко-бытовая техника</div>
-                  <div class="catCard__s" data-i18n="cats.homeSub">Для дома и кухни</div>
-                </div>
-              </a>
-              <a class="catCard" href="./catalog.html?cat=cosmo">
-                <div class="catCard__icon">💄</div>
-                <div class="catCard__text">
-                  <div class="catCard__t" data-i18n="cats.cosmo">Косметическое</div>
-                  <div class="catCard__s" data-i18n="cats.cosmoSub">Документы и инструкции</div>
-                </div>
-              </a>
-              <a class="catCard" href="./catalog.html?cat=medical">
-                <div class="catCard__icon">🩺</div>
-                <div class="catCard__text">
-                  <div class="catCard__t" data-i18n="cats.medical">Медицинское</div>
-                  <div class="catCard__s" data-i18n="cats.medicalSub">Запрос КП / сертификаты</div>
-                </div>
-              </a>
-              <a class="catCard" href="./catalog.html?cat=all">
-                <div class="catCard__icon">🧾</div>
-                <div class="catCard__text">
-                  <div class="catCard__t" data-i18n="cats.all">Все категории</div>
-                  <div class="catCard__s" data-i18n="cats.allSub">Сортировка и фильтры</div>
-                </div>
-              </a>
-            </div>
-
-            <div class="note" data-i18n="hero.note">
-              Примечание: цены и ассортимент в этом MVP — демонстрационные. Импорт Excel и админ-панель подключаются на следующем этапе.
-            </div>
-          </div>
-        </div>
+        <div class="info-card" style="margin-bottom:18px"><h3>🏬 Реквизиты</h3><p style="font-size:14px;line-height:1.8">ИП «JOHNGALTAZ»<br>БИН: 990819301421<br>г. Алматы, Казахстан</p></div>
+        <div class="info-card"><h3>🕐 Режим работы</h3><p style="font-size:14px;line-height:1.8">Пн–Пт: 9:00–19:00<br>Сб: 10:00–17:00<br>Вс: выходной</p></div>
       </div>
-    </section>
-
-    <section class="section" id="trust">
-      <div class="container">
-        <div class="section__head">
-          <h2 class="h2" data-i18n="trust.title">Доверие: гарантия, документы, прозрачные сроки</h2>
-          <p class="muted" data-i18n="trust.subtitle">
-            Для мед/косм оборудования — отдельный блок “Важно/предупреждения” и документы. Для предзаказа — срок по умолчанию 8 дней до Алматы.
-          </p>
+      <div class="contact-form">
+        <h2>Написать нам</h2>
+        <div class="form-col">
+          <input type="text" placeholder="Ваше имя">
+          <input type="tel" placeholder="+7 xxx xxx xx xx">
+          <input type="email" placeholder="Email (необязательно)">
+          <textarea rows="4" placeholder="Ваше сообщение"></textarea>
+          <button class="btn btn-primary" onclick="toast('✅ Сообщение отправлено! Мы свяжемся с вами.')">Отправить</button>
         </div>
-
-        <div class="cards3">
-          <div class="card">
-            <div class="card__icon">✅</div>
-            <div class="card__title" data-i18n="trust.c1.t">Гарантия и возврат</div>
-            <div class="card__text" data-i18n="trust.c1.s">Показываем наличие, комплектацию и условия.</div>
-          </div>
-          <div class="card">
-            <div class="card__icon">📄</div>
-            <div class="card__title" data-i18n="trust.c2.t">Сертификаты</div>
-            <div class="card__text" data-i18n="trust.c2.s">Документы доступны на карточке товара (если применимо).</div>
-          </div>
-          <div class="card">
-            <div class="card__icon">⏱️</div>
-            <div class="card__title" data-i18n="trust.c3.t">Предзаказ</div>
-            <div class="card__text" data-i18n="trust.c3.s">Поставка до Алматы ~ 8 дней + доставка по региону.</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--soft" id="contacts">
-      <div class="container">
-        <div class="section__head">
-          <h2 class="h2" data-i18n="contacts.title">Контакты</h2>
-          <p class="muted" data-i18n="contacts.subtitle">Связь для заказа, консультации или запроса КП.</p>
-        </div>
-
-        <div class="contactGrid">
-          <div class="card">
-            <div class="card__title" data-i18n="contacts.whatsapp">WhatsApp</div>
-            <div class="card__text">+7 747 043 67 47</div>
-            <a class="btn btn--primary" target="_blank" rel="noopener"
-               href="https://wa.me/77470436747" data-i18n="contacts.write">Написать</a>
-          </div>
-
-          <div class="card">
-            <div class="card__title" data-i18n="contacts.legal">Юр. лица (B2B)</div>
-            <div class="card__text" data-i18n="contacts.legalSub">
-              Запрос КП, счет, реквизиты, оптовые условия.
-            </div>
-            <a class="btn btn--ghost" href="./catalog.html?b2b=1" data-i18n="contacts.openB2b">Открыть режим B2B</a>
-          </div>
-
-          <div class="card">
-            <div class="card__title" data-i18n="contacts.policy">Политики</div>
-            <div class="card__text" data-i18n="contacts.policySub">
-              Конфиденциальность, соглашение, cookie.
-            </div>
-            <a class="btn btn--ghost" href="./policy.html">Открыть</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <a class="fab" href="https://wa.me/77470436747" target="_blank" rel="noopener" aria-label="WhatsApp">
-    <span>WhatsApp</span>
-    <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M20.52 3.48A11.91 11.91 0 0 0 12.01 0C5.38 0 .01 5.37.01 12c0 2.11.55 4.17 1.6 6.01L0 24l6.17-1.58A11.97 11.97 0 0 0 12.01 24C18.63 24 24 18.63 24 12c0-3.2-1.25-6.21-3.48-8.52zM12.01 22a9.9 9.9 0 0 1-5.05-1.39l-.36-.21-3.66.94.98-3.56-.23-.37A9.91 9.91 0 0 1 2.01 12C2.01 6.49 6.5 2 12.01 2c2.65 0 5.14 1.03 7.02 2.91A9.87 9.87 0 0 1 22 12c0 5.51-4.49 10-9.99 10zm5.78-7.44c-.32-.16-1.89-.93-2.19-1.03-.3-.11-.52-.16-.74.16-.21.32-.85 1.03-1.04 1.24-.19.21-.38.24-.7.08-.32-.16-1.34-.49-2.55-1.57-.94-.84-1.58-1.88-1.77-2.2-.19-.32-.02-.49.14-.65.14-.14.32-.38.48-.56.16-.19.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.74-1.78-1.01-2.44-.27-.65-.55-.56-.74-.57l-.64-.01c-.21 0-.56.08-.85.4-.29.32-1.12 1.09-1.12 2.67s1.15 3.11 1.31 3.33c.16.21 2.26 3.45 5.48 4.84.77.33 1.37.53 1.83.68.77.25 1.47.21 2.02.13.62-.09 1.89-.77 2.16-1.51.27-.74.27-1.37.19-1.51-.08-.13-.3-.21-.62-.37z"></path>
-    </svg>
-  </a>
-
-  <footer class="footer">
-    <div class="container footer__row">
-      <div class="footer__left">
-        <div class="footer__brand">JOHNGALTAZ</div>
-        <div class="footer__muted">© <span id="year"></span> Все права защищены.</div>
-      </div>
-      <div class="footer__right">
-        <a href="./policy.html">Политики</a>
-        <a href="./catalog.html">Каталог</a>
-        <a href="./cart.html">Корзина</a>
       </div>
     </div>
-  </footer>
+  </div>
+</div>
 
-  <script src="./app.js"></script>
+<!-- B2B -->
+<div class="page" id="page-b2b">
+  <div class="container static-page">
+    <h1>🏢 Юридическим лицам</h1>
+    <p>Работаем с компаниями и организациями: выставляем счета-фактуры, заключаем договоры поставки, предоставляем полный пакет закрывающих документов.</p>
+    <div class="info-grid" style="margin-bottom:32px">
+      <div class="info-card"><h3>📄 Документооборот</h3><ul><li>Счёт-фактура</li><li>Накладная ТОРГ-12</li><li>Договор поставки</li><li>Акт сверки</li></ul></div>
+      <div class="info-card"><h3>💰 Оплата для юр. лиц</h3><ul><li>Безналичный расчёт</li><li>НДС по запросу</li><li>Рассрочка платежа для партнёров</li></ul></div>
+      <div class="info-card"><h3>📦 Корпоративные заказы</h3><p>Комплектация офисов и учреждений. Оборудование под ключ. Индивидуальные условия для крупных заказов.</p></div>
+    </div>
+    <div class="contact-form" style="max-width:600px">
+      <h2>Запрос коммерческого предложения</h2>
+      <div class="form-col">
+        <input type="text" placeholder="Название компании (ТОО / АО / ИП)">
+        <input type="text" placeholder="БИН / ИНН">
+        <input type="text" placeholder="Контактное лицо (ФИО)">
+        <input type="tel" placeholder="Телефон">
+        <input type="email" placeholder="Email для счёта">
+        <textarea rows="4" placeholder="Опишите потребности: виды товаров, количество, сроки..."></textarea>
+        <button class="btn btn-primary" onclick="toast('✅ Запрос КП отправлен! Мы свяжемся в течение 2 часов.')">Отправить запрос КП</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRIVACY -->
+<div class="page" id="page-privacy">
+  <div class="container static-page">
+    <h1>Политика конфиденциальности</h1>
+    <p>Настоящая Политика описывает, как ИП «JOHNGALTAZ» собирает, использует и защищает персональные данные пользователей.</p>
+    <h2>Сбор данных</h2>
+    <p>Мы собираем данные, предоставляемые вами при оформлении заказа: имя, телефон, email, адрес доставки. Данные используются исключительно для обработки заказов и связи с вами.</p>
+    <h2>Хранение и защита</h2>
+    <p>Данные хранятся на защищённых серверах и не передаются третьим лицам без вашего согласия, за исключением случаев, предусмотренных законодательством РК.</p>
+    <h2>Cookie</h2>
+    <p>Сайт использует технические cookie для корректной работы корзины и сессии пользователя. Аналитика не применяется без вашего согласия.</p>
+  </div>
+</div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="fc">
+        <div class="footer-logo">JOHN<span>GALT</span>AZ</div>
+        <p class="footer-desc">Игровые ноутбуки, периферия и техника в Казахстане. Быстрая доставка, гарантия, честные цены.</p>
+      </div>
+      <div class="fc">
+        <h4>Каталог</h4>
+        <ul>
+          <li><a onclick="openCat(0)">Игровые ноутбуки</a></li>
+          <li><a onclick="openCat(1)">Периферия</a></li>
+          <li><a onclick="openCat(2)">Мелкобытовая техника</a></li>
+          <li><a onclick="openCat(3)">Косметическое оборудование</a></li>
+        </ul>
+      </div>
+      <div class="fc">
+        <h4>Покупателям</h4>
+        <ul>
+          <li><a onclick="go('delivery')">Доставка и оплата</a></li>
+          <li><a onclick="go('delivery')">Гарантия и возврат</a></li>
+          <li><a onclick="go('b2b')">Юридическим лицам</a></li>
+          <li><a onclick="go('about')">О компании</a></li>
+          <li><a onclick="go('privacy')">Конфиденциальность</a></li>
+        </ul>
+      </div>
+      <div class="fc">
+        <h4>Контакты</h4>
+        <ul>
+          <li><a>+7 747 043 67 47</a></li>
+          <li><a>WhatsApp</a></li>
+          <li><a>Telegram: @johngaltaz</a></li>
+          <li><a onclick="go('contacts')">Написать нам</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 JOHNGALTAZ. Все права защищены.</span>
+      <span>ИП «JOHNGALTAZ» · БИН: 990819301421 · г. Алматы</span>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING BUTTONS -->
+<div class="floating">
+  <a class="fb fb-wa" href="https://wa.me/77470436747" target="_blank" title="WhatsApp">📱</a>
+  <a class="fb fb-tg" href="https://t.me/johngaltaz" target="_blank" title="Telegram">✈️</a>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toastEl"></div>
+
+<!-- MODAL: 1 CLICK -->
+<div class="overlay" id="m-1click">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('m-1click')">✕</button>
+    <div id="m1c-form">
+      <h2>⚡ Купить в 1 клик</h2>
+      <p style="font-size:13px;color:var(--nd);margin-bottom:16px" id="m1c-name"></p>
+      <div class="form-col">
+        <input type="text" placeholder="Ваше имя" id="m1c-iname">
+        <input type="tel" placeholder="Телефон" id="m1c-iphone">
+        <button class="btn btn-primary" style="padding:13px" onclick="submit1c()">Жду звонка!</button>
+      </div>
+    </div>
+    <div class="success-state" id="m1c-ok">
+      <div class="si">✅</div>
+      <h3 style="font-size:18px;font-weight:700">Заявка принята!</h3>
+      <p style="font-size:14px;color:var(--nd);margin-top:8px">Менеджер свяжется с вами в ближайшее время.</p>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: QUESTION -->
+<div class="overlay" id="m-question">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('m-question')">✕</button>
+    <h2>❓ Задать вопрос</h2>
+    <div class="form-col">
+      <input type="text" placeholder="Ваше имя">
+      <input type="tel" placeholder="Телефон">
+      <textarea rows="3" placeholder="Ваш вопрос о товаре"></textarea>
+      <button class="btn btn-primary" style="padding:13px" onclick="toast('✅ Вопрос отправлен! Ответим в течение 30 минут.');closeModal('m-question')">Отправить вопрос</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: PICKER -->
+<div class="overlay" id="m-picker">
+  <div class="modal" style="max-width:520px">
+    <button class="modal-close" onclick="closeModal('m-picker')">✕</button>
+    <h2>💻 Подбор ноутбука</h2>
+    <p style="font-size:13px;color:var(--nd);margin-bottom:18px">Ответьте на несколько вопросов — менеджер подберёт идеальный вариант</p>
+    <div class="form-col">
+      <select><option>Цель использования</option><option>Игровой (AAA игры)</option><option>Игровой (киберспорт)</option><option>Работа / учёба</option><option>Универсальный</option></select>
+      <select><option>Бюджет</option><option>До 200 000 ₸</option><option>200 000 — 400 000 ₸</option><option>400 000 — 700 000 ₸</option><option>700 000 ₸ и выше</option></select>
+      <select><option>Диагональ</option><option>Не важно</option><option>15.6"</option><option>16"</option><option>17.3"</option></select>
+      <select><option>Видеокарта</option><option>Не важно</option><option>RTX 4060 / 4060 Ti</option><option>RTX 4070 / 4070 Ti</option><option>RTX 4080 / 4090</option></select>
+      <input type="text" placeholder="Имя">
+      <input type="tel" placeholder="Телефон для связи">
+      <button class="btn btn-primary" style="padding:13px" onclick="toast('✅ Заявка на подбор отправлена!');closeModal('m-picker')">Подобрать ноутбук</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// =============================================
+//  DATA — 200 PRODUCTS (50 per category)
+// =============================================
+const CATS=[
+  {id:0,name:'Игровые ноутбуки',icon:'💻',desc:'Мощные ноутбуки для игр и работы'},
+  {id:1,name:'Периферия',icon:'🖱️',desc:'Мыши, клавиатуры, гарнитуры, мониторы'},
+  {id:2,name:'Мелкобытовая техника',icon:'🏠',desc:'Умная техника для дома и офиса'},
+  {id:3,name:'Косметическое оборудование',icon:'✨',desc:'Профессиональные приборы для ухода'}
+];
+
+function rnd(a,b){return Math.floor(Math.random()*(b-a+1))+a}
+function pick(a){return a[rnd(0,a.length-1)]}
+function rp(v,d){return Math.round(v/d)*d}
+
+const LB=['ASUS','MSI','Lenovo','Acer','THUNDEROBOT','Gigabyte','HP','Dell'];
+const LS=['ROG Strix G','TUF Gaming F','Nitro 5','IdeaPad Gaming 3','Predator Helios Neo','AORUS 15','Pavilion Gaming','G15'];
+const GPUS=['RTX 4050','RTX 4060','RTX 4060 Ti','RTX 4070','RTX 4070 Ti','RTX 4080','RTX 4090','RX 7600M'];
+const CPUS=['i5-13500H','i7-13700H','i9-13900HX','Ryzen 5 7535H','Ryzen 7 7745H','Ryzen 9 7945HX','i7-14700H','i9-14900HX'];
+const RAMS=[16,16,32,32,32,64];
+const SSDS=[512,512,1024,1024,2048];
+const SCRS=[15.6,16,17.3];
+const HZ=[144,165,240,360];
+const MX=['IPS','VA','OLED'];
+const OS=['Windows 11 Home','Windows 11 Pro','Без ОС'];
+const PB=['Logitech','Razer','SteelSeries','Corsair','HyperX','ASUS ROG','Zowie','A4Tech'];
+const PT=['Мышь игровая','Клавиатура механическая','Гарнитура игровая','Монитор','Коврик XL','Веб-камера 4K','Наушники','Микрофон USB'];
+const PI=['🖱️','⌨️','🎧','🖥️','🖱️','📷','🎧','🎤'];
+const HB=['Xiaomi','Dyson','Philips','Bosch','Samsung','LG','Tefal','Redmond'];
+const HT=['Робот-пылесос','Паровой утюг','Блендер','Кофемашина','Увлажнитель воздуха','Мультиварка','Электрочайник','Фен'];
+const HI=['🤖','👔','🥤','☕','💨','🍲','🫖','💇'];
+const CB=['HIFU Pro','CosmoLed','PhotonAge','DermaTech','BeautyPro','SkinCare','LuxDerm','NanoBeauty'];
+const CT=['Аппарат HIFU','Фотоомоложение IPL','RF-лифтинг','Кавитация ультразвук','Лазерная эпиляция','Микродермабразия','LED-маска','Ультразвуковой скрабер'];
+
+function mkProducts(){
+  const all=[];let id=1;
+  // CAT 0 — Laptops
+  for(let i=0;i<50;i++){
+    const br=pick(LB),ser=pick(LS),gpu=pick(GPUS),cpu=pick(CPUS),ram=pick(RAMS),ssd=pick(SSDS),scr=pick(SCRS),hz=pick(HZ),mx=pick(MX),os=pick(OS);
+    const bp=rp(rnd(180,950)*1000,5000);
+    const disc=Math.random()>.58?rnd(5,22):0;
+    const op=disc?rp(bp/(1-disc/100),5000):null;
+    const ins=Math.random()>.42;
+    all.push({id:id++,cat:0,br,
+      name:`${br} ${ser} ${scr}" ${gpu} ${ram}GB/${ssd}GB`,
+      short:`${br} ${ser}`,
+      ico:'💻',
+      bg:`hsl(${rnd(195,240)},${rnd(35,55)}%,${rnd(13,22)}%)`,
+      price:bp,old:op,disc,ins,
+      specs:{'Процессор':cpu,'Видеокарта':gpu,'ОЗУ':ram+'GB','Накопитель':ssd+'GB SSD','Экран':scr+'"','Частота экрана':hz+' Гц','Тип матрицы':mx,'ОС':os,'Вес':rnd(18,29)/10+' кг','Гарантия':'12 месяцев'},
+      ks:`${cpu} · ${gpu} · ${ram}GB RAM · ${ssd}GB · ${scr}" ${hz}Гц`,
+      desc:`Мощный игровой ноутбук ${br} ${ser} на базе ${gpu} и ${cpu}. Яркий ${mx}-дисплей ${scr}" ${hz}Гц обеспечивает плавную картинку в играх и мультимедиа. Ёмкий накопитель ${ssd}GB и ${ram}GB ОЗУ гарантируют высокую производительность.`,
+      dd:ins?2:8,isNew:Math.random()>.76,
+      vars:[{l:`${ram}GB/${ssd}GB`,p:bp,ins},{l:`${ram}GB/${ssd*2}GB`,p:rp(bp+rnd(20,60)*1000,5000),ins:Math.random()>.35},{l:`${ram*2}GB/${ssd}GB`,p:rp(bp+rnd(30,80)*1000,5000),ins:Math.random()>.4}]
+    });
+  }
+  // CAT 1 — Periphery
+  for(let i=0;i<50;i++){
+    const br=pick(PB),ti=rnd(0,PT.length-1),tp=PT[ti],ico=PI[ti];
+    const bp=rp(rnd(12,200)*1000,1000);
+    const disc=Math.random()>.62?rnd(5,25):0;
+    const op=disc?rp(bp/(1-disc/100),1000):null;
+    const ins=Math.random()>.28;
+    const conn=pick(['USB','Беспроводной 2.4GHz','Bluetooth 5.0','USB + Bluetooth']);
+    all.push({id:id++,cat:1,br,name:`${br} ${tp} ${rnd(100,999)}`,short:`${br} ${tp}`,ico,
+      bg:`hsl(${rnd(195,225)},${rnd(25,45)}%,${rnd(13,20)}%)`,
+      price:bp,old:op,disc,ins,
+      specs:{'Тип':tp,'Бренд':br,'Подключение':conn,'Цвет':pick(['Чёрный','Белый','RGB','Серый']),'Гарантия':'12 месяцев'},
+      ks:`${tp} · ${br} · ${conn}`,
+      desc:`Профессиональная ${tp} от ${br} для геймеров и профессионалов. Отличается надёжностью, точностью и удобной эргономикой.`,
+      dd:ins?1:8,isNew:Math.random()>.72,vars:[]
+    });
+  }
+  // CAT 2 — Home
+  for(let i=0;i<50;i++){
+    const br=pick(HB),ti=rnd(0,HT.length-1),tp=HT[ti],ico=HI[ti];
+    const bp=rp(rnd(18,300)*1000,1000);
+    const disc=Math.random()>.6?rnd(5,20):0;
+    const op=disc?rp(bp/(1-disc/100),1000):null;
+    const ins=Math.random()>.32;
+    const pw=rnd(500,3000);
+    all.push({id:id++,cat:2,br,name:`${br} ${tp} ${rnd(1000,9999)}`,short:`${br} ${tp}`,ico,
+      bg:`hsl(${rnd(10,45)},${rnd(28,48)}%,${rnd(14,22)}%)`,
+      price:bp,old:op,disc,ins,
+      specs:{'Тип':tp,'Бренд':br,'Мощность':pw+' Вт','Цвет':pick(['Белый','Чёрный','Серебристый','Красный']),'Гарантия':'12 месяцев'},
+      ks:`${tp} · ${br} · ${pw} Вт`,
+      desc:`Надёжная бытовая техника ${tp} от бренда ${br}. Высокая мощность ${pw} Вт, качественная сборка и продуманная эргономика.`,
+      dd:ins?2:8,isNew:Math.random()>.74,vars:[]
+    });
+  }
+  // CAT 3 — Cosmetic
+  for(let i=0;i<50;i++){
+    const br=pick(CB),tp=pick(CT);
+    const bp=rp(rnd(80,1500)*1000,5000);
+    const disc=Math.random()>.7?rnd(5,15):0;
+    const op=disc?rp(bp/(1-disc/100),5000):null;
+    const ins=Math.random()>.5;
+    all.push({id:id++,cat:3,br,name:`${br} ${tp} Pro-${rnd(100,500)}`,short:`${br} ${tp}`,ico:'✨',
+      bg:`hsl(${rnd(275,325)},${rnd(22,42)}%,${rnd(14,22)}%)`,
+      price:bp,old:op,disc,ins,
+      specs:{'Тип аппарата':tp,'Бренд':br,'Питание':'220В / 50Гц','Класс':pick(['Домашний','Полупрофессиональный','Профессиональный']),'Сертификат':pick(['CE','ISO 13485','FDA']),'Гарантия':'6 месяцев'},
+      ks:`${tp} · ${br} · Профессиональный`,
+      desc:`Профессиональный косметологический аппарат ${tp} от ${br}. Предназначен для косметологических кабинетов и специалистов. Поставляется с сертификатами соответствия.`,
+      warn:'Аппарат предназначен для использования профессиональными косметологами. Перед применением проконсультируйтесь со специалистом. Имеются противопоказания.',
+      dd:ins?3:8,isNew:Math.random()>.8,vars:[],isB2B:true
+    });
+  }
+  return all;
+}
+
+const PRODS=mkProducts();
+
+// =============================================
+//  STATE
+// =============================================
+const S={
+  page:'home',cat:null,prod:null,
+  cart:[],wish:[],cmp:[],
+  curPage:1,perPage:12
+};
+
+// =============================================
+//  ROUTER
+// =============================================
+function go(p){
+  document.querySelectorAll('.page').forEach(el=>el.classList.remove('active'));
+  const el=document.getElementById('page-'+p);
+  if(!el){console.warn('No page:',p);return;}
+  el.classList.add('active');
+  S.page=p;
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(p==='cart')renderCart();
+  if(p==='checkout')renderCheckout();
+  if(p==='compare')renderCompare();
+  if(p==='wishlist')renderWishlist();
+}
+
+function openCat(cid){
+  S.cat=cid;S.curPage=1;
+  // reset filters
+  const ids=['fMin','fMax','fIn','fPre'];
+  ids.forEach(id=>{const el=document.getElementById(id);if(el){if(el.type==='checkbox')el.checked=false;else el.value='';}});
+  document.querySelectorAll('.fBrand').forEach(el=>el.checked=false);
+  ['fGpu','fCpu','fRam','fScr'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  go('catalog');
+  buildFilters();
+  applyF();
+}
+
+function openProd(id){
+  S.prod=id;
+  go('product');
+  renderProd(id);
+}
+
+// =============================================
+//  HOME
+// =============================================
+function renderHome(){
+  document.getElementById('homeCats').innerHTML=CATS.map(c=>`
+    <div class="cat-card" onclick="openCat(${c.id})">
+      <div class="cat-icon">${c.icon}</div>
+      <h3>${c.name}</h3>
+      <p>${c.desc}</p>
+      <span class="cat-count">50 товаров →</span>
+    </div>`).join('');
+  const hits=PRODS.filter(p=>p.disc>=10).sort(()=>Math.random()-.5).slice(0,8);
+  renderGrid(hits,'homeHits');
+}
+
+// =============================================
+//  FILTERS
+// =============================================
+function buildFilters(){
+  const cat=S.cat;
+  const prods=PRODS.filter(p=>p.cat===cat);
+  const brands=[...new Set(prods.map(p=>p.br))].sort();
+  document.getElementById('fBrands').innerHTML=brands.map(b=>
+    `<label class="check-item"><input type="checkbox" class="fBrand" value="${b}" onchange="applyF()"> ${b}</label>`
+  ).join('');
+  const ex=document.getElementById('fExtra');
+  if(cat===0){
+    const uq=k=>[...new Set(prods.map(p=>p.specs[k]))].sort();
+    ex.innerHTML=`
+      <div class="filter-group"><span class="flabel">Видеокарта</span>
+        <select id="fGpu" onchange="applyF()"><option value="">Все</option>${uq('Видеокарта').map(v=>`<option>${v}</option>`).join('')}</select></div>
+      <div class="filter-group"><span class="flabel">Процессор</span>
+        <select id="fCpu" onchange="applyF()"><option value="">Все</option>${uq('Процессор').map(v=>`<option>${v}</option>`).join('')}</select></div>
+      <div class="filter-group"><span class="flabel">ОЗУ</span>
+        <select id="fRam" onchange="applyF()"><option value="">Все</option>${uq('ОЗУ').map(v=>`<option>${v}</option>`).join('')}</select></div>
+      <div class="filter-group"><span class="flabel">Экран</span>
+        <select id="fScr" onchange="applyF()"><option value="">Все</option>${uq('Экран').map(v=>`<option>${v}</option>`).join('')}</select></div>`;
+  }else{ex.innerHTML='';}
+  document.getElementById('catBC').innerHTML=`<a onclick="go('home')">Главная</a><span style="color:var(--nl)">›</span><span>${CATS[cat].name}</span>`;
+  document.getElementById('catTitle').textContent=CATS[cat].icon+' '+CATS[cat].name;
+}
+
+function applyF(){
+  let list=PRODS.filter(p=>p.cat===S.cat);
+  const mn=parseFloat(document.getElementById('fMin')?.value)||0;
+  const mx=parseFloat(document.getElementById('fMax')?.value)||Infinity;
+  if(mn>0)list=list.filter(p=>p.price>=mn);
+  if(mx<Infinity)list=list.filter(p=>p.price<=mx);
+  const brs=[...document.querySelectorAll('.fBrand:checked')].map(el=>el.value);
+  if(brs.length)list=list.filter(p=>brs.includes(p.br));
+  const fin=document.getElementById('fIn')?.checked;
+  const fpr=document.getElementById('fPre')?.checked;
+  if(fin&&!fpr)list=list.filter(p=>p.ins);
+  if(fpr&&!fin)list=list.filter(p=>!p.ins);
+  if(S.cat===0){
+    const gpu=document.getElementById('fGpu')?.value;
+    const cpu=document.getElementById('fCpu')?.value;
+    const ram=document.getElementById('fRam')?.value;
+    const scr=document.getElementById('fScr')?.value;
+    if(gpu)list=list.filter(p=>p.specs['Видеокарта']===gpu);
+    if(cpu)list=list.filter(p=>p.specs['Процессор']===cpu);
+    if(ram)list=list.filter(p=>p.specs['ОЗУ']===ram);
+    if(scr)list=list.filter(p=>p.specs['Экран']===scr);
+  }
+  const sort=document.getElementById('sortSel')?.value||'def';
+  if(sort==='pa')list.sort((a,b)=>a.price-b.price);
+  else if(sort==='pd')list.sort((a,b)=>b.price-a.price);
+  else if(sort==='nm')list.sort((a,b)=>a.name.localeCompare(b.name));
+  else if(sort==='nw')list.sort((a,b)=>+(b.isNew)-+(a.isNew));
+  document.getElementById('resCount').textContent=`Найдено: ${list.length} товаров`;
+  const s=(S.curPage-1)*S.perPage,page=list.slice(s,s+S.perPage);
+  renderGrid(page,'catGrid');
+  renderPages(list.length);
+}
+
+function resetFilters(){
+  ['fMin','fMax'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  ['fIn','fPre'].forEach(id=>{const el=document.getElementById(id);if(el)el.checked=false;});
+  document.querySelectorAll('.fBrand').forEach(el=>el.checked=false);
+  ['fGpu','fCpu','fRam','fScr'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  S.curPage=1;applyF();
+}
+
+function renderPages(total){
+  const pages=Math.ceil(total/S.perPage);
+  const el=document.getElementById('catPages');
+  if(pages<=1){el.innerHTML='';return;}
+  let h='';
+  if(pages<=7){for(let i=1;i<=pages;i++)h+=pgBtn(i);}
+  else{
+    h+=pgBtn(1);
+    if(S.curPage>3)h+='<span style="padding:0 4px;color:var(--nd)">…</span>';
+    for(let i=Math.max(2,S.curPage-1);i<=Math.min(pages-1,S.curPage+1);i++)h+=pgBtn(i);
+    if(S.curPage<pages-2)h+='<span style="padding:0 4px;color:var(--nd)">…</span>';
+    h+=pgBtn(pages);
+  }
+  el.innerHTML=h;
+}
+function pgBtn(i){return`<button class="pg-btn${i===S.curPage?' active':''}" onclick="goPage(${i})">${i}</button>`;}
+function goPage(p){S.curPage=p;applyF();window.scrollTo({top:70,behavior:'smooth'});}
+
+// =============================================
+//  PRODUCT CARD HTML
+// =============================================
+function renderGrid(list,containerId){
+  const el=document.getElementById(containerId);
+  if(!list.length){el.innerHTML=`<div class="empty-st"><div class="ei">🔍</div><p>Товаров не найдено. Измените параметры фильтра.</p></div>`;return;}
+  el.innerHTML=list.map(p=>cardHTML(p)).join('');
+}
+
+function fp(v){return v.toLocaleString('ru-RU')+' ₸'}
+
+function cardHTML(p){
+  const inW=S.wish.includes(p.id),inC=S.cmp.includes(p.id);
+  const topBadge=p.disc?`<span class="badge-sale">−${p.disc}%</span>`:(p.isNew?`<span class="badge-new">Новинка</span>`:'');
+  return`<div class="product-card" onclick="openProd(${p.id})">
+  <div class="pc-img" style="background:${p.bg}">
+    ${topBadge}
+    ${!p.ins?`<span class="badge-order">Предзаказ</span>`:''}
+    <span class="emoji">${p.ico}</span>
+  </div>
+  <div class="pc-body">
+    <div class="pc-name">${p.name}</div>
+    <div class="pc-specs">${p.ks}</div>
+    <div class="pc-avail" style="color:${p.ins?'#1a7a3c':'#7a5400'}">${p.ins?'✅ В наличии':'📦 Предзаказ ~'+p.dd+' дней'}</div>
+    <div class="pc-price">
+      <span class="price-cur">${fp(p.price)}</span>
+      ${p.old?`<span class="price-old">${fp(p.old)}</span>`:''}
+    </div>
+  </div>
+  <div class="pc-actions" onclick="event.stopPropagation()">
+    <button class="pc-btn-cart" onclick="addCart(${p.id})">🛒 В корзину</button>
+    <button class="pc-btn-fav${inW?' active':''}" onclick="togWish(${p.id})" title="В избранное">${inW?'♥':'♡'}</button>
+    <button class="pc-btn-1c" onclick="open1c(${p.id})">⚡ Купить в 1 клик</button>
+    <button class="pc-btn-cmp${inC?' active':''}" onclick="togCmp(${p.id})" style="grid-column:1/-1">⚖️ ${inC?'В сравнении':'Сравнить'}</button>
+  </div>
+</div>`;
+}
+
+// =============================================
+//  PRODUCT PAGE
+// =============================================
+function renderProd(id){
+  const p=PRODS.find(x=>x.id===id);if(!p)return;
+  const inW=S.wish.includes(id),inC=S.cmp.includes(id);
+  document.getElementById('pdpBC').innerHTML=
+    `<a onclick="go('home')">Главная</a><span style="color:var(--nl)">›</span>
+     <a onclick="openCat(${p.cat})">${CATS[p.cat].name}</a><span style="color:var(--nl)">›</span>
+     <span>${p.short}</span>`;
+
+  document.getElementById('pdpMain').innerHTML=`
+  <div class="pdp-gallery">
+    <div class="pdp-main-img" style="background:${p.bg}">
+      <span class="emoji">${p.ico}</span>
+    </div>
+    <div class="pdp-thumbs">
+      <div class="pdp-thumb active">${p.ico}</div>
+      <div class="pdp-thumb">${p.ico}</div>
+      <div class="pdp-thumb">${p.ico}</div>
+    </div>
+  </div>
+  <div class="pdp-info">
+    <h1 class="pdp-title">${p.name}</h1>
+    <div class="pdp-meta">
+      <span>Арт.: <b>JG-${String(id).padStart(5,'0')}</b></span>
+      <span>Бренд: <b>${p.br}</b></span>
+      <span class="stock-badge ${p.ins?'stock-in':'stock-pre'}">${p.ins?'✅ В наличии':'📦 Предзаказ'}</span>
+      ${p.isNew?`<span style="background:#e3edff;color:#1565C0;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:600">Новинка</span>`:''}
+    </div>
+    <div class="pdp-price-box">
+      <div>
+        <div class="pdp-price-cur">${fp(p.price)}</div>
+        ${p.old?`<div class="pdp-price-old">${fp(p.old)}</div>`:''}
+      </div>
+      ${p.disc?`<div class="pdp-disc">Скидка ${p.disc}%</div>`:''}
+    </div>
+    ${p.vars&&p.vars.length?`
+    <div>
+      <div class="vs-label">Конфигурация:</div>
+      <div class="variants-row">
+        ${p.vars.map((v,i)=>`<button class="var-btn${i===0?' active':''}" onclick="selVar(this)">${v.l} — ${fp(v.p)}</button>`).join('')}
+      </div>
+    </div>`:''}
+    <div class="pdp-actions">
+      <button class="btn btn-primary" onclick="addCart(${id});toast('🛒 Товар добавлен в корзину')">🛒 В корзину</button>
+      <button class="btn" style="background:var(--p);color:#fff" onclick="open1c(${id})">⚡ Купить в 1 клик</button>
+      ${p.isB2B?`<button class="btn btn-outline" onclick="go('b2b')">📄 Запросить КП</button>`:''}
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn btn-outline" style="flex:1;min-width:140px" id="wBtn${id}" onclick="togWish(${id})">${inW?'♥ В избранном':'♡ В избранное'}</button>
+        <button class="btn btn-outline" style="flex:1;min-width:120px" id="cBtn${id}" onclick="togCmp(${id})">${inC?'⚖️ В сравнении':'⚖️ Сравнить'}</button>
+        <button class="btn btn-outline" onclick="openModal('m-question')">❓ Вопрос</button>
+      </div>
+    </div>
+    <div class="pdp-delivery">
+      <h4>🚚 Доставка и условия</h4>
+      <div class="del-row"><span class="di">📦</span><span>${p.ins?'По Алматы: 1–2 дня | По РК: 3–10 дней':`Предзаказ: поставка до Алматы ~${p.dd} дней, затем доставка по РК`}</span></div>
+      <div class="del-row"><span class="di">💳</span><span>Kaspi Pay, карта, перевод, наличные</span></div>
+      <div class="del-row"><span class="di">🛡️</span><span>Гарантия: ${p.specs['Гарантия']||'12 месяцев'} · Возврат 14 дней</span></div>
+    </div>
+    ${p.warn?`<div class="pdp-warning"><b>⚠️ Важно:</b> ${p.warn}</div>`:''}
+  </div>`;
+
+  document.getElementById('pdpTabs').innerHTML=`
+  <div class="tabs-header">
+    <button class="tab-btn active" onclick="switchTab(this,'t-specs')">Характеристики</button>
+    <button class="tab-btn" onclick="switchTab(this,'t-desc')">Описание</button>
+    ${p.cat===3?`<button class="tab-btn" onclick="switchTab(this,'t-docs')">Документы</button>`:''}
+  </div>
+  <div class="tab-panel active" id="t-specs">
+    <table class="specs-table">
+      ${Object.entries(p.specs).map(([k,v])=>`<tr><td>${k}</td><td>${v}</td></tr>`).join('')}
+    </table>
+  </div>
+  <div class="tab-panel" id="t-desc">
+    <p class="desc-text">${p.desc}</p>
+    ${p.cat===0?`<div style="margin-top:20px;background:var(--bg);padding:16px;border-radius:10px">
+      <b style="font-size:14px">Для кого этот ноутбук:</b>
+      <p class="desc-text" style="margin-top:8px">Отлично подходит для игр в высоком разрешении, стриминга, работы в 3D-приложениях и программировании. Корпус выдержан в игровом стиле с качественной сборкой.</p>
+    </div>`:''}
+  </div>
+  ${p.cat===3?`<div class="tab-panel" id="t-docs">
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div style="background:var(--bg);padding:14px 18px;border-radius:8px;display:flex;align-items:center;justify-content:space-between;font-size:14px">
+        <span>📄 Сертификат соответствия</span>
+        <button class="btn btn-outline" style="padding:6px 14px;font-size:12px" onclick="toast('📄 Документ доступен по запросу менеджеру')">Запросить</button>
+      </div>
+      <div style="background:var(--bg);padding:14px 18px;border-radius:8px;display:flex;align-items:center;justify-content:space-between;font-size:14px">
+        <span>📋 Инструкция по эксплуатации</span>
+        <button class="btn btn-outline" style="padding:6px 14px;font-size:12px" onclick="toast('📋 Инструкция доступна по запросу менеджеру')">Запросить</button>
+      </div>
+    </div>
+  </div>`:''}`;
+
+  const rel=PRODS.filter(x=>x.cat===p.cat&&x.id!==id).sort(()=>Math.random()-.5).slice(0,4);
+  renderGrid(rel,'relGrid');
+}
+
+function switchTab(btn,tid){
+  btn.closest('.pdp-tabs,div').querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  const el=document.getElementById(tid);if(el)el.classList.add('active');
+}
+function selVar(btn){
+  btn.closest('.variants-row').querySelectorAll('.var-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+// =============================================
+//  CART
+// =============================================
+function addCart(id){
+  const ex=S.cart.find(i=>i.id===id);
+  if(ex)ex.qty++;
+  else{const p=PRODS.find(x=>x.id===id);S.cart.push({id,qty:1,price:p.price});}
+  updateBadges();toast('🛒 Товар добавлен в корзину');
+}
+function rmCart(id){S.cart=S.cart.filter(i=>i.id!==id);updateBadges();renderCart();}
+function chQty(id,d){
+  const it=S.cart.find(i=>i.id===id);if(!it)return;
+  it.qty+=d;if(it.qty<=0)rmCart(id);else{updateBadges();renderCart();}
+}
+function renderCart(){
+  const el=document.getElementById('cartWrap');
+  if(!S.cart.length){
+    el.innerHTML=`<div style="text-align:center;padding:60px;color:var(--nd)"><div style="font-size:60px;margin-bottom:14px">🛒</div><p style="margin-bottom:20px">Корзина пуста</p><button class="btn btn-primary" onclick="go('home')">Перейти к покупкам</button></div>`;
+    return;
+  }
+  const total=S.cart.reduce((s,i)=>s+i.qty*i.price,0);
+  const qty=S.cart.reduce((s,i)=>s+i.qty,0);
+  const hasPre=S.cart.some(i=>!PRODS.find(p=>p.id===i.id).ins);
+  el.innerHTML=`<div class="cart-layout">
+  <div>
+    <div class="cart-items-wrap">
+      <div class="cart-hdr">Товары в корзине (${qty} шт.)</div>
+      ${S.cart.map(it=>{
+        const p=PRODS.find(x=>x.id===it.id);
+        return`<div class="cart-item">
+          <div class="ci-img" style="background:${p.bg}">${p.ico}</div>
+          <div>
+            <div class="ci-name">${p.name}</div>
+            <div class="ci-spec">${p.ks}</div>
+            <div style="font-size:11px;margin-top:4px;color:${p.ins?'#1a7a3c':'#7a5400'}">${p.ins?'✅ В наличии':'📦 Предзаказ ~'+p.dd+' дней'}</div>
+          </div>
+          <div class="ci-right">
+            <button class="ci-remove" onclick="rmCart(${it.id})">✕</button>
+            <div class="qty-row">
+              <button class="qty-btn" onclick="chQty(${it.id},-1)">−</button>
+              <span class="qty-val">${it.qty}</span>
+              <button class="qty-btn" onclick="chQty(${it.id},1)">+</button>
+            </div>
+            <div class="ci-price">${fp(it.qty*it.price)}</div>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>
+    ${hasPre?`<div style="background:#fff8e1;border-radius:10px;padding:14px 16px;margin-top:14px;font-size:13px;color:#7a5400;border-left:4px solid #f59e0b">
+      ⚠️ В корзине есть товары на предзаказ. Итоговые сроки уточнит менеджер при подтверждении.
+    </div>`:''}
+  </div>
+  <div class="cart-summary-box">
+    <h3 style="font-size:16px;font-weight:700;margin-bottom:10px">Итого</h3>
+    <div class="cs-row"><span>Товаров (${qty} шт.)</span><span>${fp(total)}</span></div>
+    <div class="cs-row"><span>Доставка</span><span style="color:var(--nd)">при оформлении</span></div>
+    <div class="cs-row total"><span>К оплате</span><span>${fp(total)}</span></div>
+    <button class="btn btn-primary" style="width:100%;margin-top:16px;padding:14px;font-size:15px" onclick="go('checkout')">Оформить заказ →</button>
+    <button class="btn btn-outline" style="width:100%;margin-top:8px;padding:11px" onclick="openCat(0)">Продолжить покупки</button>
+  </div>
+</div>`;
+}
+
+// =============================================
+//  CHECKOUT
+// =============================================
+function renderCheckout(){
+  if(!S.cart.length){go('cart');return;}
+  const total=S.cart.reduce((s,i)=>s+i.qty*i.price,0);
+  const qty=S.cart.reduce((s,i)=>s+i.qty,0);
+  document.getElementById('checkoutWrap').innerHTML=`
+  <div class="checkout-grid">
+    <div class="checkout-form">
+      <label class="b2b-toggle">
+        <input type="checkbox" id="b2bCk" onchange="document.getElementById('b2bF').classList.toggle('show',this.checked)">
+        Оформляю как юридическое лицо
+      </label>
+      <div class="b2b-fields" id="b2bF">
+        <div class="fs-title">🏢 Реквизиты компании</div>
+        <div class="form-row">
+          <div class="form-group"><label>Название компании</label><input type="text" placeholder="ТОО / АО / ИП"></div>
+          <div class="form-group"><label>БИН / ИНН</label><input type="text"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Email для счёта</label><input type="email" placeholder="buh@firm.kz"></div>
+          <div class="form-group"><label>Контактное лицо</label><input type="text"></div>
+        </div>
+        <div style="margin-bottom:20px"></div>
+      </div>
+      <div class="fs-title">👤 Контактные данные</div>
+      <div class="form-row">
+        <div class="form-group"><label>Имя</label><input type="text" id="coN" placeholder="Ваше имя"></div>
+        <div class="form-group"><label>Телефон</label><input type="tel" id="coP" placeholder="+7 xxx xxx xx xx"></div>
+      </div>
+      <div class="fs-title" style="margin-top:8px">📦 Доставка</div>
+      <div class="form-row">
+        <div class="form-group"><label>Город</label><input type="text" placeholder="Алматы"></div>
+        <div class="form-group"><label>Адрес</label><input type="text" placeholder="ул. Достык, 1"></div>
+      </div>
+      <div class="form-group"><label>Способ доставки</label>
+        <div class="delivery-opts">
+          ${[['courier','🚴 Курьер по Алматы — 1–2 дня (1 500 ₸)'],['sdek','📦 СДЭК — 3–5 дней (от 2 000 ₸)'],['kp','📮 Казпочта — 5–10 дней (от 1 200 ₸)'],['self','🏪 Самовывоз — бесплатно']].map(([v,l],i)=>
+          `<label class="radio-item${i===0?' sel':''}"><input type="radio" name="dlv" value="${v}"${i===0?' checked':''}> ${l}</label>`
+        ).join('')}</div>
+      </div>
+      <div class="fs-title" style="margin-top:8px">💳 Способ оплаты</div>
+      <div class="payment-opts">
+        ${[['kaspi','💚 Kaspi Pay'],['card','💳 Банковская карта'],['transfer','🏦 Банковский перевод'],['cod','💵 При получении']].map(([v,l],i)=>
+        `<label class="radio-item${i===0?' sel':''}"><input type="radio" name="pay" value="${v}"${i===0?' checked':''}> ${l}</label>`
+        ).join('')}
+      </div>
+      <div class="form-group" style="margin-top:16px"><label>Комментарий к заказу</label>
+        <textarea rows="3" placeholder="Дополнительные пожелания..."></textarea>
+      </div>
+      <button class="btn btn-primary" style="width:100%;padding:15px;font-size:15px;margin-top:8px" onclick="submitOrder()">
+        ✅ Оформить заказ — ${fp(total)}
+      </button>
+    </div>
+    <div class="order-sidebar">
+      <div style="font-size:15px;font-weight:700;margin-bottom:14px">Ваш заказ (${qty} поз.)</div>
+      ${S.cart.map(it=>{
+        const p=PRODS.find(x=>x.id===it.id);
+        return`<div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--bg)">
+          <span style="font-size:26px">${p.ico}</span>
+          <div style="flex:1;min-width:0">
+            <div style="font-size:12px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${p.name}</div>
+            <div style="font-size:11px;color:var(--nd)">${it.qty} шт.</div>
+          </div>
+          <span style="font-size:13px;font-weight:700;white-space:nowrap">${fp(it.qty*it.price)}</span>
+        </div>`;
+      }).join('')}
+      <div style="display:flex;justify-content:space-between;padding-top:14px;font-size:16px;font-weight:800">
+        <span>Итого</span><span>${fp(total)}</span>
+      </div>
+    </div>
+  </div>`;
+  // radio highlight
+  document.querySelectorAll('.radio-item input[type=radio]').forEach(inp=>{
+    inp.addEventListener('change',()=>{
+      document.querySelectorAll(`[name="${inp.name}"]`).forEach(x=>x.closest('.radio-item').classList.remove('sel'));
+      inp.closest('.radio-item').classList.add('sel');
+    });
+  });
+}
+function submitOrder(){
+  const n=document.getElementById('coN')?.value.trim();
+  const p=document.getElementById('coP')?.value.trim();
+  if(!n||!p){toast('⚠️ Заполните имя и телефон');return;}
+  document.getElementById('orderNum').textContent='JG-'+Date.now().toString().slice(-6);
+  S.cart=[];updateBadges();go('order-ok');
+}
+
+// =============================================
+//  COMPARE
+// =============================================
+function togCmp(id){
+  const i=S.cmp.indexOf(id);
+  if(i>-1){S.cmp.splice(i,1);toast('Убрано из сравнения');}
+  else if(S.cmp.length>=4){toast('⚠️ Максимум 4 товара для сравнения');}
+  else{S.cmp.push(id);toast('⚖️ Добавлено в сравнение');}
+  updateBadges();
+  const b=document.getElementById('cBtn'+id);
+  if(b)b.textContent=S.cmp.includes(id)?'⚖️ В сравнении':'⚖️ Сравнить';
+}
+function renderCompare(){
+  const el=document.getElementById('compareWrap');
+  if(!S.cmp.length){
+    el.innerHTML=`<div style="text-align:center;padding:60px;color:var(--nd)"><div style="font-size:60px;margin-bottom:14px">⚖️</div><p style="margin-bottom:20px">Нет товаров для сравнения</p><button class="btn btn-primary" onclick="go('home')">В каталог</button></div>`;
+    return;
+  }
+  const prods=S.cmp.map(id=>PRODS.find(p=>p.id===id)).filter(Boolean);
+  const keys=[...new Set(prods.flatMap(p=>Object.keys(p.specs)))];
+  el.innerHTML=`<div class="compare-wrap">
+  <table class="compare-table">
+    <thead><tr>
+      <th>Характеристика</th>
+      ${prods.map(p=>`<th>
+        <span class="ct-icon">${p.ico}</span>
+        <div style="font-size:12px;line-height:1.3;margin-bottom:4px">${p.name}</div>
+        <div style="font-size:13px;font-weight:700;color:var(--a)">${fp(p.price)}</div>
+        <button style="font-size:11px;color:rgba(255,255,255,.6);margin-top:6px;cursor:pointer;background:none;border:none" onclick="togCmp(${p.id});renderCompare()">✕ Убрать</button>
+      </th>`).join('')}
+    </tr></thead>
+    <tbody>
+      <tr><td>Наличие</td>${prods.map(p=>`<td>${p.ins?'✅ В наличии':'📦 Предзаказ'}</td>`).join('')}</tr>
+      ${keys.map(k=>{
+        const vals=prods.map(p=>p.specs[k]||'—');
+        const diff=new Set(vals).size>1;
+        return`<tr${diff?' class="diff-row"':''}><td>${k}</td>${vals.map(v=>`<td>${v}</td>`).join('')}</tr>`;
+      }).join('')}
+    </tbody>
+  </table>
+  </div>
+  <p style="font-size:12px;color:var(--nd);margin-top:10px">Строки с различиями выделены красным фоном</p>`;
+}
+
+// =============================================
+//  WISHLIST
+// =============================================
+function togWish(id){
+  const i=S.wish.indexOf(id);
+  if(i>-1){S.wish.splice(i,1);toast('Убрано из избранного');}
+  else{S.wish.push(id);toast('♥ Добавлено в избранное');}
+  updateBadges();
+  const b=document.getElementById('wBtn'+id);
+  if(b)b.textContent=S.wish.includes(id)?'♥ В избранном':'♡ В избранное';
+}
+function renderWishlist(){
+  const prods=S.wish.map(id=>PRODS.find(p=>p.id===id)).filter(Boolean);
+  const el=document.getElementById('wishGrid');
+  if(!prods.length){
+    el.innerHTML=`<div class="empty-st"><div class="ei">♡</div><p style="margin-bottom:20px">Список избранного пуст</p><button class="btn btn-primary" onclick="go('home')">Перейти к покупкам</button></div>`;
+    return;
+  }
+  renderGrid(prods,'wishGrid');
+}
+
+// =============================================
+//  SEARCH
+// =============================================
+function doSearch(){
+  const q=document.getElementById('searchQ').value.trim().toLowerCase();
+  if(!q){toast('Введите запрос для поиска');return;}
+  const res=PRODS.filter(p=>
+    p.name.toLowerCase().includes(q)||
+    p.br.toLowerCase().includes(q)||
+    p.ks.toLowerCase().includes(q)||
+    CATS[p.cat].name.toLowerCase().includes(q)
+  );
+  document.getElementById('searchTitle').textContent=`Результаты поиска «${q}» — найдено ${res.length} товаров`;
+  go('search');
+  renderGrid(res,'searchGrid');
+}
+
+// =============================================
+//  MODALS
+// =============================================
+function openModal(id){document.getElementById(id).classList.add('open');}
+function closeModal(id){document.getElementById(id).classList.remove('open');}
+document.querySelectorAll('.overlay').forEach(el=>{
+  el.addEventListener('click',e=>{if(e.target===el)el.classList.remove('open');});
+});
+function open1c(id){
+  const p=PRODS.find(x=>x.id===id);
+  document.getElementById('m1c-name').textContent=p?p.name:'';
+  document.getElementById('m1c-form').style.display='';
+  document.getElementById('m1c-ok').style.display='none';
+  openModal('m-1click');
+}
+function submit1c(){
+  const n=document.getElementById('m1c-iname').value.trim();
+  const p=document.getElementById('m1c-iphone').value.trim();
+  if(!n||!p){toast('⚠️ Заполните имя и телефон');return;}
+  document.getElementById('m1c-form').style.display='none';
+  document.getElementById('m1c-ok').style.display='block';
+  setTimeout(()=>{
+    closeModal('m-1click');
+    document.getElementById('m1c-iname').value='';
+    document.getElementById('m1c-iphone').value='';
+  },2800);
+}
+
+// =============================================
+//  TOAST
+// =============================================
+let toastT;
+function toast(msg){
+  const el=document.getElementById('toastEl');
+  el.textContent=msg;el.classList.add('show');
+  clearTimeout(toastT);
+  toastT=setTimeout(()=>el.classList.remove('show'),3200);
+}
+
+// =============================================
+//  BADGES
+// =============================================
+function updateBadges(){
+  const cn=S.cart.reduce((s,i)=>s+i.qty,0);
+  const wn=S.wish.length,cn2=S.cmp.length;
+  const set=(id,n)=>{const el=document.getElementById(id);if(el){el.textContent=n;el.style.display=n?'flex':'none';}};
+  set('cartBadge',cn);set('wlBadge',wn);set('cmpBadge',cn2);
+  const cc=document.getElementById('cmpCount');if(cc)cc.textContent=cn2;
+}
+
+// =============================================
+//  INIT
+// =============================================
+renderHome();
+updateBadges();
+</script>
 </body>
 </html>
