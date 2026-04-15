@@ -128,7 +128,7 @@ main{padding:22px 0 56px}
 /* PRODUCT GRID */
 .pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:30px}
 .pcard{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--r12);overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--sh);transition:box-shadow var(--tr),transform var(--tr),background .3s}.pcard:hover{box-shadow:0 6px 22px rgba(0,0,0,.11);transform:translateY(-2px)}
-.pimg{background:var(--bg2);height:168px;display:flex;align-items:center;justify-content:center;position:relative;cursor:pointer;overflow:hidden}
+.pimg{background:var(--bg2);height:180px;display:flex;align-items:center;justify-content:center;position:relative;cursor:pointer;overflow:hidden;padding:8px}
 .pimg-ph{width:100px;height:66px;background:var(--nd1);border-radius:var(--r6);display:flex;align-items:center;justify-content:center;font-size:10px;color:#999}
 .ptags{position:absolute;top:8px;left:8px;display:flex;gap:4px;flex-wrap:wrap}
 .pwish{position:absolute;top:8px;right:8px;background:rgba(255,255,255,.88);border:none;border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;transition:background var(--tr)}.pwish:hover{background:#fff}.pwish svg{stroke:#aaa;fill:none;transition:stroke var(--tr),fill var(--tr)}.pwish.on svg{stroke:var(--c2);fill:var(--c2)}
@@ -396,11 +396,15 @@ main{padding:22px 0 56px}
       <button class="nav-btn on" onclick="showPage('main');navFilter('all',this)">Все товары</button>
       <button class="nav-btn" onclick="showPage('main');navFilter('laptop',this)">Ноутбуки</button>
       <button class="nav-btn" onclick="showPage('main');navFilter('monitor',this)">Мониторы</button>
+      <button class="nav-btn" onclick="showPage('main');navFilter('audio',this)">Аудио</button>
+      <button class="nav-btn" onclick="showPage('main');navFilter('drone',this)">Дроны</button>
+      <button class="nav-btn" onclick="showPage('main');navFilter('gadget',this)">Гаджеты</button>
+      <button class="nav-btn" onclick="showPage('main');navFilter('pc',this)">PC</button>
       <button class="nav-btn" onclick="showPage('main');navFilter('stand',this)">Подставки</button>
       <button class="nav-btn" onclick="showPage('main');navFilter('tech',this)">Техника</button>
-      <button class="nav-btn" onclick="openQO(null,'consult')">Подбор ноутбука</button>
+      <button class="nav-btn" onclick="openQO(null,'consult')">Подбор</button>
       <button class="nav-btn acc">🔥 Акции</button>
-      <button class="nav-btn" onclick="showPage('b2b')">Юр. лица / КП</button>
+      <button class="nav-btn" onclick="showPage('b2b')">Юр. лица</button>
     </nav>
   </div>
 </header>
@@ -454,9 +458,13 @@ main{padding:22px 0 56px}
       <button class="fc on" onclick="chipFilter('all',this)">Все</button>
       <button class="fc" onclick="chipFilter('laptop',this)">Ноутбуки</button>
       <button class="fc" onclick="chipFilter('monitor',this)">Мониторы</button>
+      <button class="fc" onclick="chipFilter('audio',this)">Аудио</button>
+      <button class="fc" onclick="chipFilter('drone',this)">Дроны</button>
+      <button class="fc" onclick="chipFilter('gadget',this)">Гаджеты</button>
+      <button class="fc" onclick="chipFilter('pc',this)">PC</button>
       <button class="fc" onclick="chipFilter('stand',this)">Подставки</button>
       <button class="fc" onclick="chipFilter('tech',this)">Техника</button>
-      <button class="fc acc" onclick="openQO(null,'consult')">🔍 Подбор по параметрам</button>
+      <button class="fc acc" onclick="openQO(null,'consult')">🔍 Подбор</button>
     </div>
     <div class="pgrid" id="productGrid"></div>
   </section>
@@ -477,22 +485,34 @@ main{padding:22px 0 56px}
   <!-- CATEGORIES -->
   <section>
     <div class="sec-hdr"><h2 data-i18n="categories">Категории</h2></div>
-    <div class="cgrid">
+    <div class="cgrid" style="grid-template-columns:repeat(4,1fr)">
       <div class="ccat feat" onclick="navFilter('laptop',document.querySelectorAll('.nav-btn')[1])">
         <div class="ci"><svg viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="1.5"><rect x="4" y="5" width="24" height="16" rx="2"/><path d="M1 25h30"/><path d="M12 21h8v4h-8z"/></svg></div>
         <div class="cn">Ноутбуки</div><div class="cs">2 модели</div>
       </div>
       <div class="ccat" onclick="navFilter('monitor',document.querySelectorAll('.nav-btn')[2])">
         <div class="ci"><svg viewBox="0 0 32 32" fill="none" stroke="var(--text1)" stroke-width="1.5"><rect x="3" y="4" width="26" height="18" rx="2"/><path d="M16 22v5M10 27h12"/></svg></div>
-        <div class="cn">Мониторы</div><div class="cs">1 модель</div>
+        <div class="cn">Мониторы</div><div class="cs">2 модели</div>
       </div>
-      <div class="ccat" onclick="navFilter('stand',document.querySelectorAll('.nav-btn')[3])">
-        <div class="ci"><svg viewBox="0 0 32 32" fill="none" stroke="var(--text1)" stroke-width="1.5"><path d="M6 20h20v2a2 2 0 01-2 2H8a2 2 0 01-2-2v-2z"/><path d="M9 20v-3a1 1 0 011-1h12a1 1 0 011 1v3"/><circle cx="16" cy="12" r="3"/><path d="M13 12a3 3 0 016 0"/><path d="M10 27l2-3h8l2 3"/></svg></div>
-        <div class="cn">Подставки</div><div class="cs">2 модели</div>
+      <div class="ccat" onclick="navFilter('audio',document.querySelectorAll('.nav-btn')[3])">
+        <div class="ci"><svg viewBox="0 0 32 32" fill="none" stroke="var(--text1)" stroke-width="1.5"><path d="M9 18V5l12-3v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="15" r="3"/></svg></div>
+        <div class="cn">Аудио</div><div class="cs">3 товара</div>
       </div>
-      <div class="ccat" onclick="navFilter('tech',document.querySelectorAll('.nav-btn')[4])">
-        <div class="ci"><svg viewBox="0 0 32 32" fill="none" stroke="var(--text1)" stroke-width="1.5"><path d="M13 2L4.09 12.67a2 2 0 00.3 2.78L12 22"/><path d="M19 2l8.91 10.67a2 2 0 01-.3 2.78L20 22"/><path d="M8 28h16"/><path d="M12 22v6M20 22v6"/><circle cx="16" cy="7" r="2"/></svg></div>
-        <div class="cn">Техника</div><div class="cs">4 товара</div>
+      <div class="ccat" onclick="navFilter('drone',document.querySelectorAll('.nav-btn')[4])">
+        <div class="ci"><svg viewBox="0 0 32 32" fill="none" stroke="var(--text1)" stroke-width="1.5"><circle cx="8" cy="10" r="4"/><circle cx="24" cy="10" r="4"/><circle cx="8" cy="22" r="4"/><circle cx="24" cy="22" r="4"/><rect x="12" y="13" width="8" height="6" rx="1"/><line x1="12" y1="16" x2="8" y2="13"/><line x1="20" y1="16" x2="24" y2="13"/><line x1="12" y1="16" x2="8" y2="19"/><line x1="20" y1="16" x2="24" y2="19"/></svg></div>
+        <div class="cn">Дроны</div><div class="cs">2 модели</div>
+      </div>
+      <div class="ccat" onclick="navFilter('gadget',document.querySelectorAll('.nav-btn')[5])">
+        <div class="ci"><svg viewBox="0 0 32 32" fill="none" stroke="var(--text1)" stroke-width="1.5"><rect x="8" y="2" width="16" height="28" rx="3"/><line x1="8" y1="6" x2="24" y2="6"/><line x1="8" y1="24" x2="24" y2="24"/><circle cx="16" cy="27" r="1.5"/></svg></div>
+        <div class="cn">Гаджеты</div><div class="cs">3 товара</div>
+      </div>
+      <div class="ccat" onclick="navFilter('pc',document.querySelectorAll('.nav-btn')[6])">
+        <div class="ci"><svg viewBox="0 0 32 32" fill="none" stroke="var(--text1)" stroke-width="1.5"><rect x="4" y="6" width="24" height="20" rx="2"/><path d="M4 22h24"/><circle cx="8" cy="25" r="1"/><path d="M20 12h4M20 16h4"/><rect x="10" y="10" width="6" height="8"/></svg></div>
+        <div class="cn">PC-компоненты</div><div class="cs">1 товар</div>
+      </div>
+      <div class="ccat" onclick="navFilter('stand',document.querySelectorAll('.nav-btn')[7])">
+        <div class="ci"><svg viewBox="0 0 32 32" fill="none" stroke="var(--text1)" stroke-width="1.5"><path d="M6 20h20v2a2 2 0 01-2 2H8a2 2 0 01-2-2v-2z"/><path d="M9 20v-3a1 1 0 011-1h12a1 1 0 011 1v3"/><circle cx="16" cy="12" r="3"/><path d="M10 27l2-3h8l2 3"/></svg></div>
+        <div class="cn">Подставки / Техника</div><div class="cs">6 товаров</div>
       </div>
       <div class="ccat" onclick="showPage('b2b')">
         <div class="ci"><svg viewBox="0 0 32 32" fill="none" stroke="var(--text1)" stroke-width="1.5"><rect x="5" y="10" width="22" height="18" rx="2"/><path d="M16 4v6M10 10V7a2 2 0 012-2h8a2 2 0 012 2v3"/><path d="M5 16h22"/><circle cx="16" cy="19" r="2"/></svg></div>
@@ -592,8 +612,9 @@ main{padding:22px 0 56px}
       <div class="fcol"><h4>Каталог</h4><ul>
         <li><a href="#" onclick="showPage('main');navFilter('laptop',document.querySelectorAll('.nav-btn')[1]);return false">Игровые ноутбуки</a></li>
         <li><a href="#" onclick="showPage('main');navFilter('monitor',document.querySelectorAll('.nav-btn')[2]);return false">Мониторы</a></li>
-        <li><a href="#" onclick="showPage('main');navFilter('stand',document.querySelectorAll('.nav-btn')[3]);return false">Подставки</a></li>
-        <li><a href="#" onclick="showPage('main');navFilter('tech',document.querySelectorAll('.nav-btn')[4]);return false">Техника</a></li>
+        <li><a href="#" onclick="showPage('main');navFilter('audio',document.querySelectorAll('.nav-btn')[3]);return false">Аудио</a></li>
+        <li><a href="#" onclick="showPage('main');navFilter('drone',document.querySelectorAll('.nav-btn')[4]);return false">Дроны</a></li>
+        <li><a href="#" onclick="showPage('main');navFilter('gadget',document.querySelectorAll('.nav-btn')[5]);return false">Гаджеты</a></li>
         <li><a href="#" onclick="showPage('main');navFilter('all',document.querySelectorAll('.nav-btn')[0]);return false">Все товары</a></li>
       </ul></div>
       <div class="fcol"><h4>Покупателям</h4><ul>
@@ -725,56 +746,110 @@ main{padding:22px 0 56px}
 <script>
 /* ===== DATA ===== */
 const P = [
+  // === НОУТБУКИ ===
   {id:1,cat:'laptop',brand:'ThundeRobot',name:'ThundeRobot Zero Ultra XT R15',short:'Zero Ultra XT R15 · 15.6" / i9 / RTX 4060',price:969990,kaspi:'40 417 ₸ × 24 мес',reviews:37,inStock:false,
-   tags:['Предзаказ'],keywords:['ноутбук','игровой','thunderobot','intel','i9','rtx 4060','laptop','gaming'],
+   img:'images/laptop-thunderobot-zero-ultra.jpg',tags:['Предзаказ'],keywords:['ноутбук','игровой','thunderobot','intel','i9','rtx 4060','laptop','gaming'],
    specs:['i9-14900HX','32 Гб DDR5','1 ТБ NVMe','RTX 4060 8Гб','165Hz QHD'],
-   table:[['Экран','15.6" · 2560×1440 · IPS · 165 Гц · матовый'],['Процессор','Intel Core i9-14900HX · 24 ядра · до 5800 МГц'],['Оперативная память','32 Гб DDR5 · 2 слота'],['Видеокарта','NVIDIA GeForce RTX 4060 · 8 Гб GDDR5'],['Накопитель','SSD M.2 · 1000 Гб'],['ОС','Windows 11 Pro'],['Wi-Fi / BT','802.11ac · Bluetooth 5.2'],['Интерфейсы','USB Type-C · USB 3.2 Gen2 · DisplayPort · RJ-45'],['Подсветка клавиатуры','Да'],['Цвет','Серый · влагозащищённый'],['Год выпуска','2024']]},
+   table:[['Экран','15.6" · 2560×1440 · IPS · 165 Гц · матовый'],['Процессор','Intel Core i9-14900HX · 24 ядра · до 5800 МГц'],['Оперативная память','32 Гб DDR5 · 2 слота'],['Видеокарта','NVIDIA GeForce RTX 4060 · 8 Гб GDDR5'],['Накопитель','SSD M.2 · 1000 Гб'],['ОС','Windows 11 Pro'],['Wi-Fi / BT','802.11ac · Bluetooth 5.2'],['Интерфейсы','USB Type-C · USB 3.2 Gen2 · DisplayPort · RJ-45'],['Подсветка клавиатуры','Да'],['Цвет','Серый'],['Год выпуска','2024']]},
 
   {id:2,cat:'laptop',brand:'MECHREVO',name:'MECHREVO 16 Pro (RTX 5070Ti)',short:'16 Pro · 16" / Ryzen 9 / RTX 5070Ti',price:1089904,kaspi:'45 413 ₸ × 24 мес',reviews:3,inStock:false,
-   tags:['Предзаказ','RTX 5070Ti'],keywords:['ноутбук','игровой','mechrevo','amd','ryzen','rtx 5070','laptop','gaming'],
+   img:'images/laptop-mechrevo-16pro.jpg',tags:['Предзаказ','RTX 5070Ti'],keywords:['ноутбук','игровой','mechrevo','amd','ryzen','rtx 5070','laptop','gaming'],
    specs:['Ryzen 9 8940HX','32 Гб','1 ТБ M.2','RTX 5070Ti','300Hz QHD+'],
    table:[['Экран','16" · 2560×1600 · IPS · 300 Гц · матовый'],['Процессор','AMD Ryzen 9 8940HX · 16 ядер · до 5300 МГц'],['Оперативная память','32 Гб'],['Видеокарта','RTX 5070Ti (280W SIC)'],['Накопитель','SSD M.2 · 1000 Гб'],['ОС','Windows 11 Pro'],['Подсветка клавиатуры','Да'],['Цвет','Чёрный'],['Вес','4 кг']]},
 
+  // === МОНИТОРЫ ===
   {id:3,cat:'monitor',brand:'ThundeRobot',name:'Монитор ThundeRobot DF27C240L',short:'DF27C240L · 27" / VA / 240Hz / изогнутый',price:189990,kaspi:'7 917 ₸ × 24 мес',reviews:306,inStock:false,
-   tags:['Предзаказ','240Hz'],keywords:['монитор','экран','27','240hz','изогнутый','thunderobot','monitor','display','curved'],
+   img:'images/monitor-thunderobot-df27c240l.jpg',tags:['Предзаказ','240Hz'],keywords:['монитор','экран','27','240hz','изогнутый','thunderobot','monitor','display','curved'],
    specs:['27" VA изогнутый','1920×1080','240 Гц','0.5 мс','HDMI + DP'],
-   table:[['Диагональ','27" · изогнутый экран'],['Разрешение','1920×1080 (FHD)'],['Тип матрицы','TFT VA'],['Частота обновления','240 Гц'],['Время отклика','0.5 мс'],['Яркость','330 кд/м²'],['Контрастность','1 000 : 1 (динам. 1 000 000 : 1)'],['Покрытие','Матовое'],['Подключение','HDMI · DisplayPort'],['Выходы','Разъём для наушников'],['Регулировка по высоте','Да · игровой монитор'],['Питание','36 Вт'],['Вес','4.9 кг']]},
+   table:[['Диагональ','27" · изогнутый экран'],['Разрешение','1920×1080 (FHD)'],['Тип матрицы','TFT VA'],['Частота обновления','240 Гц'],['Время отклика','0.5 мс'],['Яркость','330 кд/м²'],['Контрастность','1 000 : 1 (динам. 1 000 000 : 1)'],['Покрытие','Матовое'],['Подключение','HDMI · DisplayPort'],['Выходы','Разъём для наушников'],['Регулировка по высоте','Да'],['Габариты','612 × 80 × 366 мм'],['Питание','36 Вт'],['Вес','4.9 кг'],['Цвет','Чёрный'],['Комплектация','Монитор, инструкция, DP кабель']]},
 
+  {id:10,cat:'monitor',brand:'ThundeRobot',name:'Монитор ThundeRobot DQ27F300L',short:'DQ27F300L · 27" / IPS / 300Hz / 2K',price:189990,kaspi:'7 917 ₸ × 24 мес',reviews:54,inStock:false,
+   img:'images/monitor-thunderobot-dq27f300l.jpg',tags:['Предзаказ','300Hz'],keywords:['монитор','экран','27','300hz','thunderobot','monitor','display','2k','ips'],
+   specs:['27" IPS','2560×1440','300 Гц','1 мс','HDMI + DP'],
+   table:[['Диагональ','27"'],['Разрешение','2560×1440 (QHD)'],['Тип матрицы','IPS'],['Частота обновления','300 Гц'],['Время отклика','1 мс'],['Яркость','450 кд/м²'],['Контрастность','1500 : 1'],['Покрытие','Матовое'],['Подключение','Аудио стерео · HDMI · DisplayPort'],['Регулировка по высоте','Да'],['Игровой монитор','Да'],['Цвет','Чёрный']]},
+
+  // === ПОДСТАВКИ ===
   {id:4,cat:'stand',brand:'FLYDIGI',name:'Подставка FLYDIGI BS2 Pro',short:'BS2 Pro · активное охл. · до 21" · RGB',price:39168,kaspi:'3 264 ₸ × 12 мес',reviews:48,inStock:false,
-   tags:['Предзаказ'],keywords:['подставка','охлаждение','кулер','flydigi','stand','cooler','cooling'],
+   img:'images/stand-flydigi-bs2pro.jpg',tags:['Предзаказ'],keywords:['подставка','охлаждение','кулер','flydigi','stand','cooler','cooling'],
    specs:['До 21"','120мм вент.','1300–4000 RPM','RGB подсветка','USB Type-C'],
    table:[['Тип','Активное охлаждение'],['Макс. диагональ','21"'],['Вентилятор','1 шт · 120 мм'],['Скорость вращения','1300–4000 RPM'],['Уровень шума','до 57 dB'],['Разъём питания','USB Type-C'],['Подсветка','Да (RGB)'],['Габариты','460 × 260 × 76 мм'],['Вес','1800 г'],['Цвет','Белый']]},
 
   {id:5,cat:'stand',brand:'FLYDIGI',name:'Подставка FLYDIGI BS1',short:'BS1 · активное охл. · до 21" · тихая',price:33234,kaspi:'2 770 ₸ × 12 мес',reviews:37,inStock:false,
-   tags:['Предзаказ'],keywords:['подставка','охлаждение','кулер','flydigi','stand','cooler','cooling'],
+   img:'images/stand-flydigi-bs1.jpg',tags:['Предзаказ'],keywords:['подставка','охлаждение','кулер','flydigi','stand','cooler','cooling'],
    specs:['До 21"','120мм вент.','55dB','RGB подсветка','1800 г'],
    table:[['Тип','Активное охлаждение'],['Макс. диагональ','15.6 / 16 / 17.3 / 21"'],['Вентилятор','1 шт · 120 мм'],['Уровень шума','55 dB'],['Подсветка','Да'],['Габариты','454 × 237 × 77 мм'],['Вес','1800 г'],['Цвет','Белый']]},
 
+  // === ТЕХНИКА / ЭНЕРГИЯ ===
   {id:6,cat:'tech',brand:'EcoFlow',name:'Зарядная станция EcoFlow Delta 3',short:'Delta 3 · 1024Вт·ч / 1800Вт / зарядка 1ч',price:290990,kaspi:'12 125 ₸ × 24 мес',reviews:18,inStock:false,
-   tags:['Предзаказ'],keywords:['зарядная','станция','аккумулятор','ecoflow','powerbank','power station','зарядка','энергия','батарея'],
+   img:'images/station-ecoflow-delta3.jpg',tags:['Предзаказ'],keywords:['зарядная','станция','аккумулятор','ecoflow','powerbank','power station','зарядка','энергия','батарея'],
    specs:['1024 Вт·ч','1800 Вт','Зарядка за 1 ч','3000 циклов','14 кг'],
    table:[['Ёмкость','1024 Вт·ч / 320 000 мАч'],['Мощность','1800 Вт'],['Выходы','220В×4 · USB-A×2 · USB-C×2 · прикуриватель'],['Зарядка','Сеть / солнечная батарея / авто'],['Время зарядки','~1 час'],['Ресурс','3000 циклов'],['Защиты','КЗ · перезаряд · перегрев · перегрузка'],['Размеры','398 × 200 × 284 мм'],['Вес','14 кг']]},
 
+  // === 3D ПЕЧАТЬ ===
   {id:7,cat:'tech',brand:'Creality',name:'Сушилка филамента Creality Dryer Plus',short:'Dryer Plus · 2кг · 1.75 и 2.85мм',price:39878,kaspi:'3 324 ₸ × 12 мес',reviews:29,inStock:false,
-   tags:['Предзаказ'],keywords:['сушилка','филамент','3d','печать','creality','dryer','filament','принтер'],
+   img:'images/dryer-creality-plus.jpg',tags:['Предзаказ'],keywords:['сушилка','филамент','3d','печать','creality','dryer','filament','принтер'],
    specs:['2 кг пластика','1.75 мм','2.85 мм','343×300 мм','2500 г'],
    table:[['Тип','Сушилка филамента'],['Совместимость','Пластик 1.75 мм и 2.85 мм'],['Объём камеры','2 кг пластика'],['Ширина × Высота','343 × 300 мм'],['Вес','2500 г']]},
 
   {id:8,cat:'tech',brand:'Anycubic',name:'3D-принтер Anycubic Photon Mono 4',short:'Photon Mono 4 · LCD 10K · закрытая камера',price:140000,kaspi:'5 834 ₸ × 24 мес',reviews:30,inStock:false,
-   tags:['Предзаказ'],keywords:['3d','принтер','печать','anycubic','photon','3д','printer','фотополимер'],
+   img:'images/printer-anycubic-photon4.jpg',tags:['Предзаказ'],keywords:['3d','принтер','печать','anycubic','photon','3д','printer','фотополимер'],
    specs:['LCD 10K','153×165×87мм','Слой 0.03–0.15мм','Фотополимер','4 кг'],
    table:[['Технология','LCD / фотополимер'],['Экран','7" · разрешение 10K'],['Рабочая зона','153 × 165 × 87 мм'],['Высота слоя','0.03–0.15 мм (макс. слой 300 мкм)'],['Конструкция','Закрытая камера'],['Применение','Дом · медицина · дизайн · промышленность'],['Габариты корпуса','235 × 391 × 230 мм'],['Вес','4 кг']]},
 
-  {id:9,cat:'tech',brand:'iWord',name:'Ударная установка iWord G3001',short:'G3001 · 6 барабанов · USB · влагозащита',price:20993,kaspi:'3 499 ₸ × 6 мес',reviews:23,inStock:false,
-   tags:['Предзаказ'],keywords:['барабаны','ударная','установка','музыка','iword','drums','music','электронная'],
+  // === АУДИО ===
+  {id:9,cat:'audio',brand:'iWord',name:'Ударная установка iWord G3001',short:'G3001 · 6 барабанов · USB · влагозащита',price:20993,kaspi:'3 499 ₸ × 6 мес',reviews:23,inStock:false,
+   img:'images/drums-iword-g3001.jpg',tags:['Предзаказ'],keywords:['барабаны','ударная','установка','музыка','iword','drums','music','электронная'],
    specs:['6 барабанов','AUX / USB','Встроенный динамик','Влагозащита','430×310мм'],
    table:[['Тип','Электронная ударная установка'],['Барабанов','6 (бас · том · малый · пэды)'],['Размер площадки','430 × 310 × 60 мм'],['Разъёмы','Наушники · AUX · USB'],['Дополнительно','Встроенный динамик · влагозащита'],['Материал','Пластик'],['Цвет','Чёрный']]},
+
+  {id:11,cat:'audio',brand:'Yongmei',name:'Синтезатор Yongmei MK61823-AD',short:'MK61823-AD · 61 клавиша · 300 тембров',price:50990,kaspi:'4 249 ₸ × 12 мес',reviews:15,inStock:false,
+   img:'images/synth-yongmei-mk61823.jpg',tags:['Предзаказ'],keywords:['синтезатор','пианино','клавиши','музыка','yongmei','keyboard','piano','midi'],
+   specs:['61 клавиша','300 тембров','MIDI + USB','30 демо','4 кг'],
+   table:[['Тип','Синтезатор'],['Количество клавиш','61'],['Жёсткость клавиатуры','Невзвешенная'],['Количество тембров','300'],['Запись песен','Да'],['Обучение','Да'],['Функции','Метроном · реверберация · транспонирование · сустейн'],['Разъёмы','Наушники · микрофон · MIDI · USB'],['Интерфейс','USB Type B'],['Демо-композиций','30'],['Размеры','94 × 36 × 10 см'],['Вес','4 кг'],['Цвет','Чёрный']]},
+
+  {id:12,cat:'audio',brand:'Audio-Technica',name:'Наушники Audio-Technica ATH-M50xBT2',short:'ATH-M50xBT2 · Bluetooth · 50 ч · складные',price:146990,kaspi:'6 125 ₸ × 24 мес',reviews:87,inStock:false,
+   img:'images/headphones-audio-technica-m50x.jpg',tags:['Предзаказ'],keywords:['наушники','bluetooth','audio-technica','headphones','беспроводные','аудио','студийные','мониторные'],
+   specs:['Bluetooth 5.0','50 ч работы','15–28000 Гц','38 Ом','315 г'],
+   table:[['Тип','Полноразмерные · гарнитура'],['Подключение','Беспроводное (Bluetooth 5.0) + проводное'],['Частота воспроизведения','15–28 000 Гц'],['Импеданс','38 Ом'],['Чувствительность','99 дБ'],['Конструкция','Складная · регулятор громкости'],['Время работы','50 часов'],['Разъём зарядки','USB Type-C'],['Разъём наушников','Mini jack 3.5 мм'],['Микрофон','Да'],['Радиус действия','10 м'],['Совместимость','iOS · Android · BlackBerry'],['Комплектация','Наушники · инструкция · кабель · чехол'],['Вес','315 г'],['Цвет','Чёрный']]},
+
+  // === ДРОНЫ ===
+  {id:13,cat:'drone',brand:'ZLL',name:'Дрон ZLL SG603 PRO',short:'SG603 PRO · 4K фото · GPS · 25 мин полёта',price:125990,kaspi:'5 250 ₸ × 24 мес',reviews:42,inStock:false,
+   img:'images/drone-zll-sg603-pro.jpg',tags:['Предзаказ'],keywords:['дрон','квадрокоптер','drone','zll','коптер','камера','полёт','gps'],
+   specs:['4K фото / 1080p видео','GPS','25 мин полёта','3 км дальность','3800 мАч'],
+   table:[['Тип','Квадрокоптер (4 винта)'],['Макс. высота полёта','300 м'],['Макс. подъёмный вес','0.5 кг'],['Датчики','GPS · датчик высоты · гироскоп · ИК-датчик'],['Аккумулятор','3800 мАч'],['Время полёта','до 25 мин'],['Камера','Встроенная · 3840×2160 фото · 1080p видео'],['Угол обзора','90°'],['Управление камерой','3 оси'],['Дальность управления','до 3 км'],['Автопилот','Да'],['Следование за оператором','Да'],['Возврат к точке взлёта','Да'],['Карта памяти','Да'],['Комплектация','Дрон · пульт · запасные лопасти · 3 акк. · USB · сумка'],['Цвет','Чёрный']]},
+
+  {id:14,cat:'drone',brand:'LYZ',name:'Дрон LYZ L900 PRO SE MAX',short:'L900 PRO SE MAX · 1080p · 60 мин · 2 км',price:79190,kaspi:'6 599 ₸ × 12 мес',reviews:31,inStock:false,
+   img:'images/drone-lyz-l900-pro.jpg',tags:['Предзаказ'],keywords:['дрон','квадрокоптер','drone','lyz','коптер','камера','полёт','бюджетный'],
+   specs:['8 Мпикс / 1080p','GPS','60 мин полёта','2 км дальность','3 акк.'],
+   table:[['Тип','Квадрокоптер (4 винта)'],['Макс. высота полёта','120 м'],['Датчики','GPS · акселерометр · датчик высоты · гироскоп · компас'],['Аккумулятор','3 штуки в комплекте'],['Время полёта','до 60 мин'],['Камера','Внешняя · 8 Мпикс · 1080p видео'],['Управление камерой','1 ось'],['Дальность управления','2000 м'],['Дальность трансляции','2000 м'],['Автопилот','Да'],['Следование за оператором','Да'],['Возврат к точке взлёта','Да'],['Поддержка ОС','Windows Phone · iOS · Android'],['Комплектация','Сумка · дрон · пульт ДУ · 3 акк. · запасные лопасти · кабель'],['Цвет','Оранжевый']]},
+
+  // === ГАДЖЕТЫ ===
+  {id:15,cat:'gadget',brand:'Anker',name:'Внешний аккумулятор Anker A1289 24000 мАч',short:'Anker A1289 · 24000 мАч · 140 Вт · быстрая зарядка',price:65990,kaspi:'5 499 ₸ × 12 мес',reviews:64,inStock:false,
+   img:'images/powerbank-anker-a1289.jpg',tags:['Предзаказ'],keywords:['аккумулятор','powerbank','повербанк','зарядка','anker','батарея','внешний','портативный'],
+   specs:['24000 мАч','140 Вт','USB-C + micro USB','Быстрая зарядка','630 г'],
+   table:[['Ёмкость','24 000 мАч'],['Макс. выходная мощность','140 Вт'],['Выходы','micro USB · USB Type-C'],['Вход','USB Type-C'],['USB портов','3'],['Назначение','Смартфон · ноутбук'],['Быстрая зарядка','Да'],['Тип батареи','Li-Polymer'],['Зарядка устройств','3 одновременно'],['Защиты','КЗ · перегрузка · перегрев'],['Размеры','156 × 55 × 50 мм'],['Вес','630 г'],['Комплектация','Аккумулятор · кабель USB-C'],['Цвет','Чёрный']]},
+
+  {id:16,cat:'gadget',brand:'Coros',name:'Смарт-часы Coros Pace 3',short:'Coros Pace 3 · GPS · мониторинг · 39 г',price:179990,kaspi:'7 500 ₸ × 24 мес',reviews:52,inStock:false,
+   img:'images/watch-coros-pace3.jpg',tags:['Предзаказ'],keywords:['часы','смарт','умные','watch','coros','фитнес','спорт','gps','трекер'],
+   specs:['GPS','Android + iOS','Пульсометр + SpO2','WR50 защита','39 г'],
+   table:[['Тип','Умные часы'],['Поддержка платформ','Android 6.0+ · iOS 9.0+'],['Уведомления','Звонки · SMS · почта · Facebook · Instagram · WhatsApp'],['Мониторинг','Сон · калории · активность · местоположение · SpO2'],['Датчики','Акселерометр · компас · термометр · высотомер · пульсометр · барометр · шагомер'],['GPS','Да'],['Водозащита','WR50 (5 атм)'],['Интерфейсы','Bluetooth · USB'],['Экран','Сенсорный ЖК · с подсветкой'],['Размер корпуса','42 мм'],['Форма корпуса','Круглая'],['Вес','39 г'],['Цвет','Чёрный']]},
+
+  {id:17,cat:'gadget',brand:'LTDevice',name:'Туалет-домик автоматический',short:'Авто-туалет · самоочистка · приложение',price:118790,kaspi:'4 950 ₸ × 24 мес',reviews:19,inStock:false,
+   img:'images/cat-toilet-auto.jpg',tags:['Предзаказ'],keywords:['туалет','кошка','питомец','авто','самоочистка','cat','pet','умный','лоток'],
+   specs:['Самоочистка','Антибактер.','С сеткой','Приложение','51×48×50.5 см'],
+   table:[['Тип','Туалет-лоток · туалет-домик'],['Вид животного','Кошки'],['Особенности','Самоочищающийся · с сеткой · антибактериальный'],['Управление','Приложение на смартфоне'],['Материал','Пластик'],['Размер животного','Средний'],['Длина','51 см'],['Ширина','48 см'],['Высота','50.5 см'],['Цвет','Белый'],['Производитель','LTDevice (Китай)']]},
+
+  // === PC-КОМПОНЕНТЫ ===
+  {id:18,cat:'pc',brand:'PELADN',name:'Видеокарта PELADN RTX 3050 6 GB',short:'RTX 3050 6 Гб · GDDR6 · HDMI/DP/DVI',price:148490,kaspi:'6 187 ₸ × 24 мес',reviews:25,inStock:false,
+   img:'images/gpu-peladn-rtx3050.jpg',tags:['Предзаказ'],keywords:['видеокарта','gpu','rtx','nvidia','3050','pc','компьютер','gaming','графика','geforce'],
+   specs:['RTX 3050 6 Гб','GDDR6','GA107','HDMI/DP/DVI','200 мм'],
+   table:[['Серия','GeForce RTX 30 Series'],['Графический процессор','GA107'],['Интерфейс','PCI-E 4.0'],['Техпроцесс','8 нм'],['Объём видеопамяти','6 Гб GDDR6'],['Частота памяти','1750 МГц'],['Шина','96 бит'],['Частота GPU','1042 МГц (Boost 1470 МГц)'],['CUDA ядер','2304'],['Разъёмы','HDMI · DisplayPort · DVI'],['Мониторов','до 3'],['Охлаждение','Активное · 2 вентилятора'],['Рекомендуемый БП','500 Вт'],['Размер','200 × 114 × 39 мм'],['Производитель GPU','NVIDIA']]},
 ];
 
 /* ===== STATE ===== */
 let cart=[], favorites=[], compareList=[], curCat='all', currentLang='ru';
-const TIT={all:'Все товары',laptop:'Игровые ноутбуки',monitor:'Мониторы',stand:'Подставки',tech:'Техника'};
-const CHIP_LBL={all:'Все',laptop:'Ноутбуки',monitor:'Мониторы',stand:'Подставки',tech:'Техника'};
+const TIT={all:'Все товары',laptop:'Игровые ноутбуки',monitor:'Мониторы',stand:'Подставки',tech:'Техника',audio:'Аудио',drone:'Дроны',gadget:'Гаджеты',pc:'PC-компоненты'};
+const CHIP_LBL={all:'Все',laptop:'Ноутбуки',monitor:'Мониторы',stand:'Подставки',tech:'Техника',audio:'Аудио',drone:'Дроны',gadget:'Гаджеты',pc:'PC'};
 
 /* ===== I18N ===== */
 const I18N = {
@@ -913,7 +988,7 @@ function render(list){
         <button class="pwish${favorites.includes(p.id)?' on':''}" onclick="event.stopPropagation();toggleWish(${p.id},this)" aria-label="В избранное">
           <svg width="14" height="14" viewBox="0 0 24 24" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
         </button>
-        <div class="pimg-ph">Фото товара</div>
+        ${p.img?`<img src="${p.img}" alt="${p.name}" style="max-height:100%;max-width:100%;object-fit:contain" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/><div class="pimg-ph" style="display:none">Фото товара</div>`:'<div class="pimg-ph">Фото товара</div>'}
         <button class="pcmp${compareList.includes(p.id)?' on':''}" onclick="event.stopPropagation();toggleCompare(${p.id},this)" title="Сравнить">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 6-10"/></svg>
         </button>
