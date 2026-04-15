@@ -10,9 +10,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--c1:#0B1416;--c2:#F85C58;--bg:#F6F6F3;--nd1:#D6D6D6;--nd2:#666;--wh:#fff;--ok:#22a06b;--fh:'Syne',sans-serif;--fb:'Inter',sans-serif;--r4:4px;--r6:6px;--r8:8px;--r12:12px;--sh:0 1px 6px rgba(0,0,0,.08);--tr:.17s ease}
+:root{
+  --c1:#0B1416;--c2:#F85C58;--bg:#F6F6F3;--nd1:#D6D6D6;--nd2:#666;--wh:#fff;--ok:#22a06b;
+  --fh:'Syne',sans-serif;--fb:'Inter',sans-serif;
+  --r4:4px;--r6:6px;--r8:8px;--r12:12px;
+  --sh:0 1px 6px rgba(0,0,0,.08);--tr:.17s ease;
+  --card-bg:#fff;--border:#EAEAE8;--bg2:#F0F0EE;--bg3:#F9F9F7;--text1:#0B1416;--text2:#666;--text3:#aaa;
+  --topbar-bg:#0B1416;--hdr-bg:#fff;--hdr-border:#E5E5E2;
+}
+
+[data-theme="dark"]{
+  --bg:#111518;--wh:#1a1f23;--c1:#e8e8e8;--nd1:#3a3f44;--nd2:#9aa0a6;
+  --card-bg:#1a1f23;--border:#2a2f34;--bg2:#22272b;--bg3:#1e2226;--text1:#e8e8e8;--text2:#9aa0a6;--text3:#666;
+  --topbar-bg:#0a0d0f;--hdr-bg:#141920;--hdr-border:#2a2f34;--sh:0 1px 6px rgba(0,0,0,.3);
+}
+
 html{scroll-behavior:smooth}
-body{font-family:var(--fb);background:var(--bg);color:var(--c1);font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+body{font-family:var(--fb);background:var(--bg);color:var(--text1);font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
 a{text-decoration:none;color:inherit}
 ul{list-style:none}
 button{cursor:pointer;font-family:var(--fb)}
@@ -22,55 +36,68 @@ img{display:block;max-width:100%}
 /* BUTTONS */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:none;border-radius:var(--r6);font-size:13px;font-weight:500;white-space:nowrap;transition:all var(--tr);cursor:pointer}
 .btn-red{background:var(--c2);color:#fff;padding:10px 22px}.btn-red:hover{background:#d94946;transform:translateY(-1px)}.btn-red:active{transform:none}
-.btn-dark{background:var(--c1);color:#fff;padding:10px 22px}.btn-dark:hover{background:#1d2f33}
-.btn-outline{background:transparent;color:var(--c1);border:1.5px solid var(--c1);padding:9px 20px}.btn-outline:hover{background:var(--c1);color:#fff}
+.btn-dark{background:var(--c1);color:var(--bg);padding:10px 22px}.btn-dark:hover{opacity:.85}
+.btn-outline{background:transparent;color:var(--text1);border:1.5px solid var(--nd1);padding:9px 20px}.btn-outline:hover{background:var(--text1);color:var(--bg)}
 .btn-ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.3);padding:9px 20px}.btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.08)}
 .btn-icon{background:var(--bg);border:1px solid var(--nd1);border-radius:var(--r6);width:36px;height:36px;display:flex;align-items:center;justify-content:center;transition:background var(--tr)}.btn-icon:hover{background:var(--nd1)}
 
 /* TAGS */
 .tag{display:inline-block;font-size:9px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;padding:3px 7px;border-radius:3px;line-height:1.4}
-.tag-r{background:var(--c2);color:#fff}.tag-d{background:var(--c1);color:#fff}.tag-g{background:var(--ok);color:#fff}.tag-o{background:#f59e0b;color:#fff}
+.tag-r{background:var(--c2);color:#fff}.tag-d{background:#0B1416;color:#fff}.tag-g{background:var(--ok);color:#fff}.tag-o{background:#f59e0b;color:#fff}
 
 /* TOPBAR */
-.topbar{background:var(--c1);padding:7px 0}
-.topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar{background:var(--topbar-bg);padding:7px 0}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
 .topbar-l{color:#888;font-size:11px}.topbar-l b{color:var(--nd1)}
 .topbar-r{display:flex;gap:16px;align-items:center}
 .sw{display:flex;gap:10px}
 .sw button{background:none;border:none;font-size:11px;color:#555;padding:0;transition:color var(--tr)}.sw button.on,.sw button:hover{color:var(--nd1)}
 .tsep{width:1px;height:12px;background:#2a3538}
 
+/* THEME TOGGLE */
+.theme-toggle{background:none;border:1px solid #333;border-radius:20px;padding:4px 10px;display:flex;align-items:center;gap:5px;font-size:11px;color:#888;cursor:pointer;transition:all var(--tr)}
+.theme-toggle:hover{border-color:#555;color:#bbb}
+.theme-toggle svg{width:14px;height:14px}
+
 /* HEADER */
-.hdr{background:var(--wh);border-bottom:1px solid #E5E5E2;position:sticky;top:0;z-index:200}
+.hdr{background:var(--hdr-bg);border-bottom:1px solid var(--hdr-border);position:sticky;top:0;z-index:200;transition:background .3s}
 .hdr-main{display:flex;align-items:center;gap:18px;padding:12px 0}
 .logo{display:flex;align-items:center;flex-shrink:0;min-width:120px}
 .logo img{height:42px;width:auto;object-fit:contain}
+.logo-text{font-family:var(--fh);font-size:18px;font-weight:700;letter-spacing:-.5px;color:var(--text1)}
 
 /* SEARCH */
 .srch{flex:1;position:relative}
-.srch input{width:100%;padding:10px 44px 10px 14px;border:1.5px solid var(--nd1);border-radius:var(--r8);font-size:13px;font-family:var(--fb);background:var(--bg);color:var(--c1);outline:none;transition:border-color var(--tr)}.srch input:focus{border-color:var(--c1)}.srch input::placeholder{color:#aaa}
+.srch input{width:100%;padding:10px 44px 10px 14px;border:1.5px solid var(--nd1);border-radius:var(--r8);font-size:13px;font-family:var(--fb);background:var(--bg);color:var(--text1);outline:none;transition:border-color var(--tr)}.srch input:focus{border-color:var(--c2)}.srch input::placeholder{color:var(--text3)}
 .srch-btn{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:var(--c2);border:none;border-radius:var(--r4);width:30px;height:30px;display:flex;align-items:center;justify-content:center;transition:background var(--tr)}.srch-btn:hover{background:#d94946}
-.srch-drop{position:absolute;top:calc(100% + 6px);left:0;right:0;background:var(--wh);border:1px solid #E5E5E2;border-radius:var(--r8);box-shadow:0 8px 24px rgba(0,0,0,.12);z-index:300;display:none}
+.srch-drop{position:absolute;top:calc(100% + 6px);left:0;right:0;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--r8);box-shadow:0 8px 24px rgba(0,0,0,.12);z-index:300;display:none;max-height:400px;overflow-y:auto}
 .srch-drop.show{display:block}
-.sri{display:flex;align-items:center;gap:12px;padding:10px 14px;cursor:pointer;transition:background var(--tr)}.sri:hover{background:var(--bg)}.sri:not(:last-child){border-bottom:1px solid #F5F5F3}
-.sri-img{width:44px;height:44px;background:#F0F0EE;border-radius:var(--r4);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:9px;color:#aaa}
-.sri-name{font-size:13px;font-weight:500;line-height:1.3}.sri-price{font-size:12px;color:var(--nd2);margin-top:2px}
+.sri{display:flex;align-items:center;gap:12px;padding:10px 14px;cursor:pointer;transition:background var(--tr)}.sri:hover{background:var(--bg)}.sri:not(:last-child){border-bottom:1px solid var(--border)}
+.sri-img{width:44px;height:44px;background:var(--bg2);border-radius:var(--r4);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:9px;color:var(--text3)}
+.sri-name{font-size:13px;font-weight:500;line-height:1.3}.sri-price{font-size:12px;color:var(--text2);margin-top:2px}
+.sri-cat{font-size:10px;color:var(--text3);margin-top:1px}
 
 /* HEADER ACTIONS */
-.hdr-acts{display:flex;gap:20px;align-items:center;flex-shrink:0}
-.act-btn{display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;font-size:10px;color:var(--nd2);position:relative;transition:color var(--tr)}.act-btn:hover{color:var(--c1)}
-.act-badge{position:absolute;top:-4px;right:-7px;background:var(--c2);color:#fff;border-radius:50%;width:16px;height:16px;font-size:9px;display:flex;align-items:center;justify-content:center;font-weight:600}
+.hdr-acts{display:flex;gap:12px;align-items:center;flex-shrink:0}
+.act-btn{display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;font-size:10px;color:var(--text2);position:relative;transition:color var(--tr);padding:4px 8px;border-radius:var(--r6)}.act-btn:hover{color:var(--c2)}
+.act-badge{position:absolute;top:-2px;right:0px;background:var(--c2);color:#fff;border-radius:50%;width:16px;height:16px;font-size:9px;display:flex;align-items:center;justify-content:center;font-weight:600}
+
+/* COMPARE BTN in header */
+.cmp-hdr-btn{display:flex;align-items:center;gap:5px;background:none;border:1px solid var(--nd1);padding:6px 14px;border-radius:20px;font-size:12px;color:var(--text1);transition:all var(--tr);cursor:pointer;white-space:nowrap}
+.cmp-hdr-btn:hover{border-color:var(--c2);color:var(--c2)}
+.cmp-hdr-btn .cmp-count{background:var(--c2);color:#fff;border-radius:50%;width:18px;height:18px;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:600}
 
 /* NAV */
-.hdr-nav{border-top:1px solid #F0F0EE;padding:8px 0;display:flex;gap:4px;flex-wrap:wrap}
-.nav-btn{background:transparent;border:1px solid transparent;padding:6px 14px;border-radius:20px;font-size:12px;color:var(--c1);transition:all var(--tr)}.nav-btn:hover{border-color:var(--nd1);background:var(--bg)}.nav-btn.on{background:var(--c1);color:#fff;border-color:var(--c1)}.nav-btn.acc{color:var(--c2);border-color:rgba(248,92,88,.35)}.nav-btn.acc:hover{background:rgba(248,92,88,.06)}
+.hdr-nav{border-top:1px solid var(--border);padding:8px 0;display:flex;gap:4px;flex-wrap:wrap;align-items:center}
+.nav-btn{background:transparent;border:1px solid transparent;padding:6px 14px;border-radius:20px;font-size:12px;color:var(--text1);transition:all var(--tr)}.nav-btn:hover{border-color:var(--nd1);background:var(--bg)}.nav-btn.on{background:#0B1416;color:#fff;border-color:#0B1416}.nav-btn.acc{color:var(--c2);border-color:rgba(248,92,88,.35)}.nav-btn.acc:hover{background:rgba(248,92,88,.06)}
 
 /* MAIN */
 main{padding:22px 0 56px}
 
 /* HERO */
-.hero{background:var(--c1);border-radius:var(--r12);padding:38px 44px;display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;overflow:hidden;position:relative}
+.hero{background:linear-gradient(135deg,#0B1416 0%,#142025 50%,#0B1416 100%);border-radius:var(--r12);padding:38px 44px;display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;overflow:hidden;position:relative}
 .hero::before{content:'';position:absolute;right:260px;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,var(--c2),transparent);opacity:.2}
+.hero::after{content:'';position:absolute;top:-50%;right:-10%;width:400px;height:400px;background:radial-gradient(circle,rgba(248,92,88,.08) 0%,transparent 70%);pointer-events:none}
 .hero-tags{display:flex;gap:6px;margin-bottom:12px}
 .hero h1{font-family:var(--fh);font-size:26px;font-weight:700;color:#fff;line-height:1.25;margin-bottom:10px}
 .hero h1 em{color:var(--c2);font-style:normal}
@@ -84,10 +111,10 @@ main{padding:22px 0 56px}
 
 /* TRUST */
 .trust{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px}
-.tcard{background:var(--wh);border:1px solid #EAEAE8;border-radius:var(--r8);padding:14px;display:flex;align-items:center;gap:10px;box-shadow:var(--sh)}
-.tico{background:#FEF0F0;border-radius:var(--r6);width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.tcard{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--r8);padding:14px;display:flex;align-items:center;gap:10px;box-shadow:var(--sh);transition:background .3s,border-color .3s}
+.tico{background:rgba(248,92,88,.08);border-radius:var(--r6);width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .tico svg{stroke:var(--c2)}
-.tt{font-size:12px;font-weight:500}.ts{font-size:11px;color:var(--nd2)}
+.tt{font-size:12px;font-weight:500}.ts{font-size:11px;color:var(--text2)}
 
 /* SEC HEADER */
 .sec-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
@@ -96,32 +123,32 @@ main{padding:22px 0 56px}
 
 /* FILTERS */
 .filters{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
-.fc{background:var(--wh);border:1px solid var(--nd1);padding:6px 14px;border-radius:20px;font-size:11px;color:var(--c1);transition:all var(--tr)}.fc:hover,.fc.on{background:var(--c1);color:#fff;border-color:var(--c1)}.fc.acc{color:var(--c2);border-color:rgba(248,92,88,.4)}.fc.acc:hover{background:var(--c2);color:#fff;border-color:var(--c2)}
+.fc{background:var(--card-bg);border:1px solid var(--nd1);padding:6px 14px;border-radius:20px;font-size:11px;color:var(--text1);transition:all var(--tr)}.fc:hover,.fc.on{background:#0B1416;color:#fff;border-color:#0B1416}.fc.acc{color:var(--c2);border-color:rgba(248,92,88,.4)}.fc.acc:hover{background:var(--c2);color:#fff;border-color:var(--c2)}
 
 /* PRODUCT GRID */
 .pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:30px}
-.pcard{background:var(--wh);border:1px solid #EAEAE8;border-radius:var(--r12);overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--sh);transition:box-shadow var(--tr),transform var(--tr)}.pcard:hover{box-shadow:0 6px 22px rgba(0,0,0,.11);transform:translateY(-2px)}
-.pimg{background:#F0F0EE;height:168px;display:flex;align-items:center;justify-content:center;position:relative;cursor:pointer;overflow:hidden}
+.pcard{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--r12);overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--sh);transition:box-shadow var(--tr),transform var(--tr),background .3s}.pcard:hover{box-shadow:0 6px 22px rgba(0,0,0,.11);transform:translateY(-2px)}
+.pimg{background:var(--bg2);height:168px;display:flex;align-items:center;justify-content:center;position:relative;cursor:pointer;overflow:hidden}
 .pimg-ph{width:100px;height:66px;background:var(--nd1);border-radius:var(--r6);display:flex;align-items:center;justify-content:center;font-size:10px;color:#999}
 .ptags{position:absolute;top:8px;left:8px;display:flex;gap:4px;flex-wrap:wrap}
-.pwish{position:absolute;top:8px;right:8px;background:rgba(255,255,255,.88);border:none;border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;transition:background var(--tr)}.pwish:hover{background:#fff}.pwish svg{stroke:#aaa;transition:stroke var(--tr),fill var(--tr)}.pwish.on svg{stroke:var(--c2);fill:var(--c2)}
-.pcmp{position:absolute;bottom:8px;right:8px;background:rgba(255,255,255,.88);border:none;border-radius:var(--r4);width:28px;height:28px;display:flex;align-items:center;justify-content:center;color:var(--nd2);transition:background var(--tr)}.pcmp:hover{background:#fff;color:var(--c1)}
+.pwish{position:absolute;top:8px;right:8px;background:rgba(255,255,255,.88);border:none;border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;transition:background var(--tr)}.pwish:hover{background:#fff}.pwish svg{stroke:#aaa;fill:none;transition:stroke var(--tr),fill var(--tr)}.pwish.on svg{stroke:var(--c2);fill:var(--c2)}
+.pcmp{position:absolute;bottom:8px;right:8px;background:rgba(255,255,255,.88);border:none;border-radius:var(--r4);width:28px;height:28px;display:flex;align-items:center;justify-content:center;color:var(--text2);transition:all var(--tr)}.pcmp:hover{background:#fff;color:var(--c2)}.pcmp.on{background:var(--c2);color:#fff}
 .pbody{padding:12px;flex:1;display:flex;flex-direction:column}
-.pbrand{font-size:10px;color:var(--nd2);text-transform:uppercase;letter-spacing:.4px;margin-bottom:3px}
+.pbrand{font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:.4px;margin-bottom:3px}
 .pname{font-size:13px;font-weight:500;line-height:1.35;margin-bottom:7px;cursor:pointer}.pname:hover{color:var(--c2)}
 .pspecs{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:8px}
-.spec{background:var(--bg);font-size:10px;color:#444;padding:2px 7px;border-radius:3px;border:1px solid #E5E5E2}
+.spec{background:var(--bg);font-size:10px;color:var(--text2);padding:2px 7px;border-radius:3px;border:1px solid var(--border)}
 .pprow{display:flex;align-items:baseline;gap:7px;margin-bottom:2px}
 .pprice{font-family:var(--fh);font-size:16px;font-weight:700}
 .pold{font-size:11px;color:#bbb;text-decoration:line-through}
 .pavail{font-size:10px;margin-bottom:4px;margin-top:2px}
 .av-in{color:var(--ok);font-weight:500}.av-pre{color:var(--c2)}
-.pkaspi{font-size:10px;color:var(--nd2);margin-bottom:8px}
+.pkaspi{font-size:10px;color:var(--text2);margin-bottom:8px}
 .pacts{display:flex;gap:6px;margin-top:auto}
 .pacts .btn-red{flex:1;font-size:12px;padding:8px 10px}
 
 /* COMPARE PROMO */
-.cmp-promo{background:var(--c1);border-radius:var(--r12);padding:20px 18px;display:flex;flex-direction:column;justify-content:space-between}
+.cmp-promo{background:linear-gradient(135deg,#0B1416,#1a2a30);border-radius:var(--r12);padding:20px 18px;display:flex;flex-direction:column;justify-content:space-between}
 .cmp-bar{width:28px;height:3px;background:var(--c2);border-radius:2px;margin-bottom:14px}
 .cmp-promo h3{font-family:var(--fh);font-size:15px;font-weight:600;color:#fff;line-height:1.4;margin-bottom:8px}
 .cmp-promo p{font-size:11px;color:#666;line-height:1.6}
@@ -130,33 +157,40 @@ main{padding:22px 0 56px}
 .cmp-slot{flex:1;background:rgba(255,255,255,.04);border:1px dashed rgba(255,255,255,.1);border-radius:var(--r6);height:38px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#444}
 
 /* B2B */
-.b2b{background:var(--wh);border:1px solid #EAEAE8;border-radius:var(--r12);padding:20px 26px;display:flex;justify-content:space-between;align-items:center;margin-bottom:34px;box-shadow:var(--sh)}
-.b2b-ey{font-size:10px;color:var(--nd2);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.b2b{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--r12);padding:20px 26px;display:flex;justify-content:space-between;align-items:center;margin-bottom:34px;box-shadow:var(--sh);transition:background .3s}
+.b2b-ey{font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
 .b2b h3{font-family:var(--fh);font-size:16px;font-weight:600;margin-bottom:4px}
-.b2b p{font-size:12px;color:var(--nd2);line-height:1.5}
+.b2b p{font-size:12px;color:var(--text2);line-height:1.5}
 .b2b-acts{display:flex;gap:10px;flex-shrink:0;margin-left:24px}
 
 /* CATEGORIES */
 .cgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:34px}
-.ccat{border:1px solid #EAEAE8;border-radius:var(--r8);padding:18px 12px;text-align:center;cursor:pointer;background:var(--wh);transition:all var(--tr)}.ccat:hover{border-color:var(--c1);transform:translateY(-1px)}.ccat.feat{background:var(--c1);border-color:var(--c1)}.ccat.feat .cn{color:#fff}.ccat.feat .cs{color:#555}
-.ci{font-size:22px;margin-bottom:7px}.cn{font-size:12px;font-weight:500}.cs{font-size:10px;color:var(--nd2);margin-top:2px}
+.ccat{border:1px solid var(--border);border-radius:var(--r8);padding:20px 12px;text-align:center;cursor:pointer;background:var(--card-bg);transition:all var(--tr)}.ccat:hover{border-color:var(--c2);transform:translateY(-2px);box-shadow:0 4px 16px rgba(248,92,88,.1)}.ccat.feat{background:linear-gradient(135deg,#0B1416,#1a2a30);border-color:#1a2a30}.ccat.feat .cn{color:#fff}.ccat.feat .cs{color:#555}.ccat.feat:hover{border-color:var(--c2)}
+.ci{margin-bottom:8px;display:flex;justify-content:center;align-items:center;height:40px}
+.ci svg{width:32px;height:32px}
+.cn{font-size:12px;font-weight:500}.cs{font-size:10px;color:var(--text2);margin-top:2px}
 
 /* PREORDER NOTE */
 .pre-note{background:#FFFBF0;border:1px solid #F5E6B5;border-radius:var(--r8);padding:12px 16px;display:flex;align-items:flex-start;gap:10px;margin-bottom:28px}
+[data-theme="dark"] .pre-note{background:#1f1c14;border-color:#3d3520}
 .pre-note strong{font-size:13px;font-weight:500}
-.pre-note p{font-size:12px;color:var(--nd2);margin-top:2px;line-height:1.5}
+.pre-note p{font-size:12px;color:var(--text2);margin-top:2px;line-height:1.5}
 
 /* FOOTER */
-.footer{background:var(--c1);padding:36px 0 0}
+.footer{background:#0B1416;padding:36px 0 0}
 .fgrid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:28px;padding-bottom:28px}
 .fabout{color:#555;font-size:11px;line-height:1.7;margin-bottom:14px}
 .fsoc{display:flex;gap:8px}
-.sbtn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:var(--r6);width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;cursor:pointer;transition:background var(--tr)}.sbtn:hover{background:rgba(255,255,255,.12)}
+.sbtn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:var(--r6);width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all var(--tr)}
+.sbtn:hover{transform:translateY(-1px)}
+.sbtn.wa{color:#25D366}.sbtn.wa:hover{background:rgba(37,211,102,.15);border-color:rgba(37,211,102,.3)}
+.sbtn.tg{color:#229ED9}.sbtn.tg:hover{background:rgba(34,158,217,.15);border-color:rgba(34,158,217,.3)}
+.sbtn.ig{color:#E1306C}.sbtn.ig:hover{background:rgba(225,48,108,.15);border-color:rgba(225,48,108,.3)}
 .fcol h4{color:#fff;font-family:var(--fh);font-size:12px;font-weight:600;margin-bottom:11px}
 .fcol li{margin-bottom:7px}
 .fcol li a,.fcol li span{color:#555;font-size:11px;transition:color var(--tr)}.fcol li a:hover,.fcol li span:hover{color:var(--nd1)}
 .fcol li .al{color:var(--c2)}.fcol li .al:hover{color:#e04a46}
-.fbot{border-top:1px solid rgba(255,255,255,.06);padding:16px 0;display:flex;justify-content:space-between;align-items:center}
+.fbot{border-top:1px solid rgba(255,255,255,.06);padding:16px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
 .fbot-l{color:#3a3a3a;font-size:10px}
 .fbot-r{display:flex;gap:16px}
 .fbot-r a{color:#3a3a3a;font-size:10px;transition:color var(--tr)}.fbot-r a:hover{color:#666}
@@ -166,66 +200,123 @@ main{padding:22px 0 56px}
 
 /* CART DRAWER */
 .ov{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:400;opacity:0;pointer-events:none;transition:opacity var(--tr)}.ov.open{opacity:1;pointer-events:all}
-.drawer{position:fixed;top:0;right:0;bottom:0;width:380px;background:var(--wh);z-index:401;transform:translateX(100%);transition:transform .3s ease;display:flex;flex-direction:column;box-shadow:-4px 0 24px rgba(0,0,0,.12)}.drawer.open{transform:translateX(0)}
-.drw-hdr{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid #EAEAE8}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:380px;background:var(--card-bg);z-index:401;transform:translateX(100%);transition:transform .3s ease;display:flex;flex-direction:column;box-shadow:-4px 0 24px rgba(0,0,0,.12)}.drawer.open{transform:translateX(0)}
+.drw-hdr{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid var(--border)}
 .drw-hdr h3{font-family:var(--fh);font-size:17px;font-weight:600}
-.drw-close{background:none;border:none;font-size:24px;color:var(--nd2);line-height:1}.drw-close:hover{color:var(--c1)}
+.drw-close{background:none;border:none;font-size:24px;color:var(--text2);line-height:1}.drw-close:hover{color:var(--text1)}
 .drw-body{flex:1;overflow-y:auto;padding:16px 20px}
-.cart-empty{text-align:center;padding:40px 20px;color:var(--nd2)}
-.ci-wrap{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid #F5F5F3}
-.ci-img{width:60px;height:60px;background:#F0F0EE;border-radius:var(--r6);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:9px;color:#aaa}
+.cart-empty{text-align:center;padding:40px 20px;color:var(--text2)}
+.ci-wrap{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
+.ci-img{width:60px;height:60px;background:var(--bg2);border-radius:var(--r6);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:9px;color:var(--text3)}
 .ci-body{flex:1;min-width:0}
 .ci-name{font-size:12px;font-weight:500;line-height:1.35;margin-bottom:4px}
 .ci-price{font-family:var(--fh);font-size:13px;font-weight:700}
 .ci-qty{display:flex;align-items:center;gap:8px;margin-top:6px}
 .qb{background:var(--bg);border:1px solid var(--nd1);border-radius:var(--r4);width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:500;transition:background var(--tr)}.qb:hover{background:var(--nd1)}
 .ci-rm{background:none;border:none;font-size:18px;color:#ccc;margin-left:auto;align-self:flex-start;padding:0 2px}.ci-rm:hover{color:var(--c2)}
-.drw-foot{padding:16px 20px;border-top:1px solid #EAEAE8}
+.drw-foot{padding:16px 20px;border-top:1px solid var(--border)}
 .cart-tot{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
-.cart-tot-l{font-size:13px;color:var(--nd2)}.cart-tot-r{font-family:var(--fh);font-size:20px;font-weight:700}
+.cart-tot-l{font-size:13px;color:var(--text2)}.cart-tot-r{font-family:var(--fh);font-size:20px;font-weight:700}
+
+/* FAVORITES DRAWER */
+.fav-drawer{position:fixed;top:0;right:0;bottom:0;width:380px;background:var(--card-bg);z-index:401;transform:translateX(100%);transition:transform .3s ease;display:flex;flex-direction:column;box-shadow:-4px 0 24px rgba(0,0,0,.12)}.fav-drawer.open{transform:translateX(0)}
+.fav-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--border);align-items:center}
+.fav-item-img{width:50px;height:50px;background:var(--bg2);border-radius:var(--r6);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:9px;color:var(--text3);cursor:pointer}
+.fav-item-body{flex:1;min-width:0;cursor:pointer}
+.fav-item-body:hover .fav-item-name{color:var(--c2)}
+.fav-item-name{font-size:12px;font-weight:500;line-height:1.35;margin-bottom:2px;transition:color var(--tr)}
+.fav-item-price{font-family:var(--fh);font-size:13px;font-weight:700}
+.fav-rm{background:none;border:none;font-size:18px;color:#ccc;padding:0 4px;flex-shrink:0}.fav-rm:hover{color:var(--c2)}
+.fav-actions{display:flex;gap:8px;margin-top:6px}
+.fav-actions .btn{font-size:11px;padding:5px 12px}
+
+/* ACCOUNT DRAWER */
+.acc-drawer{position:fixed;top:0;right:0;bottom:0;width:380px;background:var(--card-bg);z-index:401;transform:translateX(100%);transition:transform .3s ease;display:flex;flex-direction:column;box-shadow:-4px 0 24px rgba(0,0,0,.12)}.acc-drawer.open{transform:translateX(0)}
+.acc-avatar{width:64px;height:64px;background:var(--bg2);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:20px auto 12px}
+.acc-avatar svg{width:28px;height:28px;stroke:var(--text3)}
+.acc-info{text-align:center;margin-bottom:20px;padding:0 20px}
+.acc-info p{font-size:13px;color:var(--text2);line-height:1.6}
+.acc-menu{padding:0 20px}
+.acc-menu-item{display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--border);cursor:pointer;transition:color var(--tr);font-size:13px;color:var(--text1)}
+.acc-menu-item:hover{color:var(--c2)}
+.acc-menu-item svg{width:18px;height:18px;stroke:currentColor;flex-shrink:0}
 
 /* MODAL */
 .modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:500;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity var(--tr)}.modal-ov.open{opacity:1;pointer-events:all}
-.modal{background:var(--wh);border-radius:var(--r12);width:100%;max-width:860px;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.25);transform:scale(.96);transition:transform .25s ease}.modal-ov.open .modal{transform:scale(1)}
+.modal{background:var(--card-bg);border-radius:var(--r12);width:100%;max-width:860px;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.25);transform:scale(.96);transition:transform .25s ease,background .3s}.modal-ov.open .modal{transform:scale(1)}
 .modal-cr{display:flex;justify-content:flex-end;padding:14px 18px 0}
-.modal-close{background:none;border:none;font-size:26px;color:var(--nd2);line-height:1}.modal-close:hover{color:var(--c1)}
+.modal-close{background:none;border:none;font-size:26px;color:var(--text2);line-height:1}.modal-close:hover{color:var(--text1)}
 .modal-body{display:grid;grid-template-columns:1fr 1fr}
-.m-gallery{padding:20px 24px;background:#F9F9F7}
-.m-img-main{background:#EDEDE9;border-radius:var(--r8);height:240px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:12px;color:#aaa}
+.m-gallery{padding:20px 24px;background:var(--bg3)}
+.m-img-main{background:var(--bg2);border-radius:var(--r8);height:240px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:12px;color:var(--text3)}
 .m-info{padding:20px 24px 24px}
-.m-brand{font-size:11px;color:var(--nd2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.m-brand{font-size:11px;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
 .m-name{font-family:var(--fh);font-size:18px;font-weight:600;line-height:1.3;margin-bottom:10px}
 .m-price{font-family:var(--fh);font-size:26px;font-weight:700;margin-bottom:3px}
-.m-kaspi{font-size:12px;color:var(--nd2);margin-bottom:4px}
+.m-kaspi{font-size:12px;color:var(--text2);margin-bottom:4px}
 .m-avail{font-size:12px;font-weight:500;margin-bottom:14px}
-.m-specs-t{font-size:11px;font-weight:600;color:var(--nd2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.m-specs-t{font-size:11px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
 .m-tbl{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:16px}
-.m-tbl tr:nth-child(even) td{background:#F9F9F7}
-.m-tbl td{padding:6px 8px;border-bottom:1px solid #F0F0EE;vertical-align:top}
-.m-tbl td:first-child{color:var(--nd2);width:44%}
+.m-tbl tr:nth-child(even) td{background:var(--bg3)}
+.m-tbl td{padding:6px 8px;border-bottom:1px solid var(--border);vertical-align:top}
+.m-tbl td:first-child{color:var(--text2);width:44%}
 .m-acts{display:flex;flex-direction:column;gap:8px}
 .m-acts .btn-red,.m-acts .btn-outline{width:100%;padding:12px;font-size:14px;text-align:center;justify-content:center}
 
 /* QUICK ORDER */
 .qo-ov{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:550;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity var(--tr)}.qo-ov.open{opacity:1;pointer-events:all}
-.qo-box{background:var(--wh);border-radius:var(--r12);padding:28px;width:100%;max-width:400px;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.qo-box{background:var(--card-bg);border-radius:var(--r12);padding:28px;width:100%;max-width:400px;box-shadow:0 20px 60px rgba(0,0,0,.25)}
 .qo-box h3{font-family:var(--fh);font-size:18px;font-weight:600;margin-bottom:6px}
-.qo-box p{font-size:13px;color:var(--nd2);margin-bottom:18px;line-height:1.5}
+.qo-box p{font-size:13px;color:var(--text2);margin-bottom:18px;line-height:1.5}
 .qo-top{display:flex;justify-content:space-between;align-items:flex-start}
-.qo-close-btn{background:none;border:none;font-size:24px;color:var(--nd2);line-height:1}.qo-close-btn:hover{color:var(--c1)}
+.qo-close-btn{background:none;border:none;font-size:24px;color:var(--text2);line-height:1}.qo-close-btn:hover{color:var(--text1)}
 .field{margin-bottom:12px}
-.field label{display:block;font-size:12px;color:var(--nd2);margin-bottom:4px;font-weight:500}
-.field input,.field textarea{width:100%;padding:10px 12px;border:1.5px solid var(--nd1);border-radius:var(--r6);font-size:13px;font-family:var(--fb);outline:none;transition:border-color var(--tr);resize:none}.field input:focus,.field textarea:focus{border-color:var(--c1)}
+.field label{display:block;font-size:12px;color:var(--text2);margin-bottom:4px;font-weight:500}
+.field input,.field textarea{width:100%;padding:10px 12px;border:1.5px solid var(--nd1);border-radius:var(--r6);font-size:13px;font-family:var(--fb);outline:none;transition:border-color var(--tr);resize:none;background:var(--bg);color:var(--text1)}.field input:focus,.field textarea:focus{border-color:var(--c2)}
 .qo-acts{display:flex;gap:8px;margin-top:8px}
 .qo-acts .btn-red,.qo-acts .btn-outline{flex:1;padding:12px;text-align:center;justify-content:center}
 
 /* TOAST */
-.toast{position:fixed;bottom:90px;right:28px;background:var(--c1);color:#fff;padding:10px 18px;border-radius:var(--r8);font-size:13px;z-index:800;opacity:0;transform:translateY(10px);transition:all .3s ease;pointer-events:none;max-width:300px;line-height:1.4}
+.toast{position:fixed;bottom:90px;right:28px;background:#0B1416;color:#fff;padding:10px 18px;border-radius:var(--r8);font-size:13px;z-index:800;opacity:0;transform:translateY(10px);transition:all .3s ease;pointer-events:none;max-width:300px;line-height:1.4}
 .toast.show{opacity:1;transform:translateY(0)}
 
+/* PAGE VIEWS */
+.page-view{display:none;min-height:60vh}
+.page-view.active{display:block}
+#mainPage{display:block}
+
+/* COMPARE PAGE */
+.cmp-page-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:12px}
+.cmp-page-header h2{font-family:var(--fh);font-size:22px;font-weight:600}
+.cmp-empty{text-align:center;padding:60px 20px;color:var(--text2)}
+.cmp-empty svg{margin-bottom:16px}
+.cmp-table-wrap{overflow-x:auto;margin-bottom:30px}
+.cmp-table{width:100%;border-collapse:collapse;min-width:600px}
+.cmp-table th,.cmp-table td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--border);font-size:12px;vertical-align:top}
+.cmp-table th{background:var(--bg2);font-weight:600;position:sticky;left:0;z-index:1;min-width:140px}
+.cmp-table td{background:var(--card-bg);min-width:200px}
+.cmp-table .cmp-col-hdr{text-align:center;padding:16px 14px}
+.cmp-col-name{font-family:var(--fh);font-size:14px;font-weight:600;margin-bottom:4px}
+.cmp-col-price{font-family:var(--fh);font-size:18px;font-weight:700;color:var(--c2);margin-bottom:6px}
+.cmp-col-rm{background:none;border:1px solid var(--nd1);border-radius:var(--r4);padding:4px 10px;font-size:11px;color:var(--text2);cursor:pointer;transition:all var(--tr)}.cmp-col-rm:hover{border-color:var(--c2);color:var(--c2)}
+.cmp-diff{background:rgba(248,92,88,.06);font-weight:500}
+
+/* B2B PAGE */
+.b2b-page{padding:30px 0}
+.b2b-hero{background:linear-gradient(135deg,#0B1416,#1a2a30);border-radius:var(--r12);padding:40px;margin-bottom:24px;color:#fff}
+.b2b-hero h1{font-family:var(--fh);font-size:28px;font-weight:700;margin-bottom:10px}
+.b2b-hero p{color:#888;font-size:14px;line-height:1.7;max-width:500px}
+.b2b-features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:28px}
+.b2b-feat{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--r8);padding:20px;text-align:center}
+.b2b-feat svg{width:32px;height:32px;stroke:var(--c2);margin-bottom:10px}
+.b2b-feat h4{font-family:var(--fh);font-size:14px;font-weight:600;margin-bottom:6px}
+.b2b-feat p{font-size:12px;color:var(--text2);line-height:1.5}
+.b2b-form-wrap{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--r12);padding:30px;max-width:500px;margin:0 auto}
+.b2b-form-wrap h3{font-family:var(--fh);font-size:18px;font-weight:600;margin-bottom:16px;text-align:center}
+
 /* RESPONSIVE */
-@media(max-width:1024px){.pgrid{grid-template-columns:repeat(3,1fr)}.cgrid{grid-template-columns:repeat(4,1fr)}.trust{grid-template-columns:repeat(2,1fr)}.fgrid{grid-template-columns:1fr 1fr}.hero{padding:28px}.hero h1{font-size:22px}}
-@media(max-width:768px){.hdr-main{flex-wrap:wrap}.srch{order:3;width:100%;flex:none}.hero{flex-direction:column;gap:20px;padding:22px 18px}.hero-card{align-self:flex-start}.pgrid{grid-template-columns:repeat(2,1fr)}.cgrid{grid-template-columns:repeat(3,1fr)}.b2b{flex-direction:column;gap:12px}.b2b-acts{margin-left:0}.fgrid{grid-template-columns:1fr}.modal-body{grid-template-columns:1fr}.drawer{width:100%}}
+@media(max-width:1024px){.pgrid{grid-template-columns:repeat(3,1fr)}.cgrid{grid-template-columns:repeat(4,1fr)}.trust{grid-template-columns:repeat(2,1fr)}.fgrid{grid-template-columns:1fr 1fr}.hero{padding:28px}.hero h1{font-size:22px}.b2b-features{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){.hdr-main{flex-wrap:wrap}.srch{order:3;width:100%;flex:none}.hero{flex-direction:column;gap:20px;padding:22px 18px}.hero-card{align-self:flex-start}.pgrid{grid-template-columns:repeat(2,1fr)}.cgrid{grid-template-columns:repeat(3,1fr)}.b2b{flex-direction:column;gap:12px}.b2b-acts{margin-left:0}.fgrid{grid-template-columns:1fr}.modal-body{grid-template-columns:1fr}.drawer,.fav-drawer,.acc-drawer{width:100%}.cmp-hdr-btn span.cmp-lbl{display:none}.b2b-features{grid-template-columns:1fr}}
 @media(max-width:480px){.pgrid{grid-template-columns:1fr}.cgrid{grid-template-columns:repeat(2,1fr)}.trust{grid-template-columns:1fr}}
 </style>
 </head>
@@ -236,16 +327,21 @@ main{padding:22px 0 56px}
   <div class="wrap">
     <div class="topbar-l">Алматы · пн–пт 9:00–19:00 · <b>+7 747 043 67 47</b></div>
     <div class="topbar-r">
+      <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="Сменить тему">
+        <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <span id="themeLbl">Тёмная</span>
+      </button>
+      <div class="tsep"></div>
       <div class="sw" id="lgSw">
-        <button class="on" onclick="sw('lgSw',this)">RU</button>
-        <button onclick="sw('lgSw',this)">KZ</button>
-        <button onclick="sw('lgSw',this)">EN</button>
+        <button class="on" onclick="setLang('ru',this)">RU</button>
+        <button onclick="setLang('kz',this)">KZ</button>
+        <button onclick="setLang('en',this)">EN</button>
       </div>
       <div class="tsep"></div>
       <div class="sw" id="curSw">
-        <button class="on" onclick="sw('curSw',this);curSym='₸';rerender()">₸ KZT</button>
-        <button onclick="sw('curSw',this);curSym='₽';rerender()">₽ RUB</button>
-        <button onclick="sw('curSw',this);curSym='$';rerender()">$ USD</button>
+        <button class="on" onclick="sw('curSw',this);setCurrency('KZT')">₸ KZT</button>
+        <button onclick="sw('curSw',this);setCurrency('RUB')">₽ RUB</button>
+        <button onclick="sw('curSw',this);setCurrency('USD')">$ USD</button>
       </div>
     </div>
   </div>
@@ -255,17 +351,13 @@ main{padding:22px 0 56px}
 <header class="hdr">
   <div class="wrap">
     <div class="hdr-main">
-
-      <!-- ЛОГОТИП: замените logo.png на имя вашего файла логотипа -->
-      <a href="/" class="logo">
-        <img src="logo.png" alt="JOHNGALTAZ"
-          onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
-        <span style="display:none;font-family:var(--fh);font-size:18px;font-weight:700;letter-spacing:-.5px">JOHNGALTAZ</span>
+      <a href="#" class="logo" onclick="showPage('main');return false">
+        <img src="logo.png" alt="JOHNGALTAZ" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+        <span class="logo-text" style="display:none">JOHNGALTAZ</span>
       </a>
 
       <div class="srch">
-        <input type="text" id="si" placeholder="Поиск: ноутбуки, мониторы, подставки…"
-          oninput="doSearch(this.value)" onkeydown="if(event.key==='Escape')closeSrch()"/>
+        <input type="text" id="si" placeholder="Поиск: ноутбуки, мониторы, подставки…" oninput="doSearch(this.value)" onkeydown="if(event.key==='Escape')closeSrch()"/>
         <button class="srch-btn" onclick="doSearch(document.getElementById('si').value)" aria-label="Поиск">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
         </button>
@@ -273,117 +365,203 @@ main{padding:22px 0 56px}
       </div>
 
       <div class="hdr-acts">
-        <button class="act-btn" onclick="showToast('Личный кабинет в разработке')">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          Войти
+        <button class="cmp-hdr-btn" onclick="showPage('compare')" title="Сравнение товаров">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 6-10"/></svg>
+          <span class="cmp-lbl" data-i18n="compare_short">Сравнение</span>
+          <span class="cmp-count" id="cmpBadge" style="display:none">0</span>
         </button>
-        <button class="act-btn" onclick="showToast('Избранное пока пусто')">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-          Избранное
+
+        <button class="act-btn" onclick="openAccount()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span data-i18n="login">Войти</span>
+        </button>
+        <button class="act-btn" onclick="openFavorites()">
+          <div style="position:relative;display:inline-block">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            <span class="act-badge" id="favBadge" style="display:none">0</span>
+          </div>
+          <span data-i18n="favorites">Избранное</span>
         </button>
         <button class="act-btn" onclick="openCart()">
           <div style="position:relative;display:inline-block">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
             <span class="act-badge" id="cartBadge">0</span>
           </div>
-          Корзина
+          <span data-i18n="cart">Корзина</span>
         </button>
       </div>
     </div>
 
-    <nav class="hdr-nav">
-      <button class="nav-btn on" onclick="navFilter('all',this)">Все товары</button>
-      <button class="nav-btn" onclick="navFilter('laptop',this)">Ноутбуки</button>
-      <button class="nav-btn" onclick="navFilter('monitor',this)">Мониторы</button>
-      <button class="nav-btn" onclick="navFilter('stand',this)">Подставки</button>
-      <button class="nav-btn" onclick="navFilter('tech',this)">Техника</button>
+    <nav class="hdr-nav" id="mainNav">
+      <button class="nav-btn on" onclick="showPage('main');navFilter('all',this)">Все товары</button>
+      <button class="nav-btn" onclick="showPage('main');navFilter('laptop',this)">Ноутбуки</button>
+      <button class="nav-btn" onclick="showPage('main');navFilter('monitor',this)">Мониторы</button>
+      <button class="nav-btn" onclick="showPage('main');navFilter('stand',this)">Подставки</button>
+      <button class="nav-btn" onclick="showPage('main');navFilter('tech',this)">Техника</button>
       <button class="nav-btn" onclick="openQO(null,'consult')">Подбор ноутбука</button>
       <button class="nav-btn acc">🔥 Акции</button>
-      <button class="nav-btn" onclick="openQO(null,'b2b')">Юр. лица / КП</button>
+      <button class="nav-btn" onclick="showPage('b2b')">Юр. лица / КП</button>
     </nav>
   </div>
 </header>
 
-<!-- MAIN -->
+<!-- MAIN PAGE -->
 <main>
-  <div class="wrap">
+<div class="wrap">
 
-    <!-- HERO -->
-    <section class="hero">
-      <div>
-        <div class="hero-tags"><span class="tag tag-r">Новинка 2024</span><span class="tag tag-d">Предзаказ</span></div>
-        <h1>Игровые ноутбуки<br><em>ThundeRobot & MECHREVO</em><br>в Казахстане</h1>
-        <p class="hero-sub">RTX 4060 / RTX 5070Ti · 165–300 Гц · i9 / Ryzen 9<br>Официальная гарантия. Рассрочка Kaspi. Поставка ~8 дней.</p>
-        <div class="hero-acts">
-          <button class="btn btn-red" onclick="navFilter('laptop',document.querySelectorAll('.nav-btn')[1])">Смотреть ноутбуки</button>
-          <button class="btn btn-ghost" onclick="openQO(null,'consult')">Подбор ноутбука</button>
-        </div>
-      </div>
-      <div class="hero-card">
-        <div class="hero-lbl">ноутбуки от</div>
-        <div class="hero-price">969 990 ₸</div>
-        <div class="hero-old">рассрочка от 40 417 ₸/мес</div>
-        <div class="hero-disc">Kaspi · 24 месяца</div>
-      </div>
-    </section>
+<div id="mainPage" class="page-view active">
 
-    <!-- TRUST -->
-    <section class="trust">
-      <div class="tcard"><div class="tico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><div class="tt">Официальная гарантия</div><div class="ts">12–24 месяца</div></div></div>
-      <div class="tcard"><div class="tico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><div><div class="tt">Поставка ~8 дней</div><div class="ts">до Алматы, далее по РК</div></div></div>
-      <div class="tcard"><div class="tico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div><div class="tt">Рассрочка Kaspi</div><div class="ts">0–24 месяца</div></div></div>
-      <div class="tcard"><div class="tico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div><div class="tt">Консультация</div><div class="ts">WhatsApp · Telegram</div></div></div>
-    </section>
-
-    <!-- PREORDER NOTE -->
-    <div class="pre-note">
-      <div style="font-size:20px;flex-shrink:0;margin-top:1px">📦</div>
-      <div><strong>О предзаказе</strong><p>Большинство товаров доступны под заказ. Базовый срок поставки до Алматы ~8 дней, далее доставка по Казахстану. Актуальный срок и наличие уточняйте у менеджера.</p></div>
-    </div>
-
-    <!-- PRODUCTS -->
-    <section>
-      <div class="sec-hdr">
-        <h2 id="secTitle">Все товары</h2>
-        <a href="#" onclick="openQO(null,'b2b');return false">Запросить КП →</a>
-      </div>
-      <div class="filters" id="filterStrip">
-        <button class="fc on" onclick="chipFilter('all',this)">Все</button>
-        <button class="fc" onclick="chipFilter('laptop',this)">Ноутбуки</button>
-        <button class="fc" onclick="chipFilter('monitor',this)">Мониторы</button>
-        <button class="fc" onclick="chipFilter('stand',this)">Подставки</button>
-        <button class="fc" onclick="chipFilter('tech',this)">Техника</button>
-        <button class="fc acc" onclick="openQO(null,'consult')">🔍 Подбор по параметрам</button>
-      </div>
-      <div class="pgrid" id="productGrid"></div>
-    </section>
-
-    <!-- B2B -->
-    <div class="b2b">
-      <div>
-        <div class="b2b-ey">Для бизнеса</div>
-        <h3>Юридическим лицам — специальные условия</h3>
-        <p>Счета-фактуры · Оплата по БИН · Корпоративная рассрочка · Запрос КП</p>
-      </div>
-      <div class="b2b-acts">
-        <button class="btn btn-outline" onclick="showToast('Открываем раздел для юр.лиц')">Подробнее</button>
-        <button class="btn btn-red" onclick="openQO(null,'b2b')">Запросить КП</button>
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <div class="hero-tags"><span class="tag tag-r">Новинка 2024</span><span class="tag tag-d">Предзаказ</span></div>
+      <h1 data-i18n-html="hero_title">Игровые ноутбуки<br><em>ThundeRobot & MECHREVO</em><br>в Казахстане</h1>
+      <p class="hero-sub" data-i18n="hero_sub">RTX 4060 / RTX 5070Ti · 165–300 Гц · i9 / Ryzen 9<br>Официальная гарантия. Рассрочка Kaspi. Поставка ~8 дней.</p>
+      <div class="hero-acts">
+        <button class="btn btn-red" onclick="navFilter('laptop',document.querySelectorAll('.nav-btn')[1])" data-i18n="hero_btn1">Смотреть ноутбуки</button>
+        <button class="btn btn-ghost" onclick="openQO(null,'consult')" data-i18n="hero_btn2">Подбор ноутбука</button>
       </div>
     </div>
+    <div class="hero-card">
+      <div class="hero-lbl" data-i18n="hero_from">ноутбуки от</div>
+      <div class="hero-price">969 990 ₸</div>
+      <div class="hero-old">рассрочка от 40 417 ₸/мес</div>
+      <div class="hero-disc">Kaspi · 24 месяца</div>
+    </div>
+  </section>
 
-    <!-- CATEGORIES -->
-    <section>
-      <div class="sec-hdr"><h2>Категории</h2></div>
-      <div class="cgrid">
-        <div class="ccat feat" onclick="navFilter('laptop',document.querySelectorAll('.nav-btn')[1])"><div class="ci">💻</div><div class="cn">Ноутбуки</div><div class="cs">2 модели</div></div>
-        <div class="ccat" onclick="navFilter('monitor',document.querySelectorAll('.nav-btn')[2])"><div class="ci">🖥️</div><div class="cn">Мониторы</div><div class="cs">1 модель</div></div>
-        <div class="ccat" onclick="navFilter('stand',document.querySelectorAll('.nav-btn')[3])"><div class="ci">🌬️</div><div class="cn">Подставки</div><div class="cs">2 модели</div></div>
-        <div class="ccat" onclick="navFilter('tech',document.querySelectorAll('.nav-btn')[4])"><div class="ci">⚡</div><div class="cn">Техника</div><div class="cs">4 товара</div></div>
-        <div class="ccat" onclick="openQO(null,'b2b')"><div class="ci">🏢</div><div class="cn">Юр. лицам</div><div class="cs">Запрос КП</div></div>
-      </div>
-    </section>
+  <!-- TRUST -->
+  <section class="trust">
+    <div class="tcard"><div class="tico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><div class="tt" data-i18n="trust1_t">Официальная гарантия</div><div class="ts" data-i18n="trust1_s">12–24 месяца</div></div></div>
+    <div class="tcard"><div class="tico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><div><div class="tt" data-i18n="trust2_t">Поставка ~8 дней</div><div class="ts" data-i18n="trust2_s">до Алматы, далее по РК</div></div></div>
+    <div class="tcard"><div class="tico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div><div class="tt" data-i18n="trust3_t">Рассрочка Kaspi</div><div class="ts" data-i18n="trust3_s">0–24 месяца</div></div></div>
+    <div class="tcard"><div class="tico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div><div class="tt" data-i18n="trust4_t">Консультация</div><div class="ts">WhatsApp · Telegram</div></div></div>
+  </section>
 
+  <!-- PREORDER NOTE -->
+  <div class="pre-note">
+    <div style="font-size:20px;flex-shrink:0;margin-top:1px">📦</div>
+    <div><strong data-i18n="preorder_title">О предзаказе</strong><p data-i18n="preorder_text">Большинство товаров доступны под заказ. Базовый срок поставки до Алматы ~8 дней, далее доставка по Казахстану. Актуальный срок и наличие уточняйте у менеджера.</p></div>
   </div>
+
+  <!-- PRODUCTS -->
+  <section>
+    <div class="sec-hdr">
+      <h2 id="secTitle">Все товары</h2>
+      <a href="#" onclick="showPage('b2b');return false" data-i18n="request_kp">Запросить КП →</a>
+    </div>
+    <div class="filters" id="filterStrip">
+      <button class="fc on" onclick="chipFilter('all',this)">Все</button>
+      <button class="fc" onclick="chipFilter('laptop',this)">Ноутбуки</button>
+      <button class="fc" onclick="chipFilter('monitor',this)">Мониторы</button>
+      <button class="fc" onclick="chipFilter('stand',this)">Подставки</button>
+      <button class="fc" onclick="chipFilter('tech',this)">Техника</button>
+      <button class="fc acc" onclick="openQO(null,'consult')">🔍 Подбор по параметрам</button>
+    </div>
+    <div class="pgrid" id="productGrid"></div>
+  </section>
+
+  <!-- B2B BANNER -->
+  <div class="b2b">
+    <div>
+      <div class="b2b-ey" data-i18n="b2b_ey">Для бизнеса</div>
+      <h3 data-i18n="b2b_title">Юридическим лицам — специальные условия</h3>
+      <p data-i18n="b2b_desc">Счета-фактуры · Оплата по БИН · Корпоративная рассрочка · Запрос КП</p>
+    </div>
+    <div class="b2b-acts">
+      <button class="btn btn-outline" onclick="showPage('b2b')" data-i18n="b2b_more">Подробнее</button>
+      <button class="btn btn-red" onclick="showPage('b2b')" data-i18n="b2b_kp">Запросить КП</button>
+    </div>
+  </div>
+
+  <!-- CATEGORIES -->
+  <section>
+    <div class="sec-hdr"><h2 data-i18n="categories">Категории</h2></div>
+    <div class="cgrid">
+      <div class="ccat feat" onclick="navFilter('laptop',document.querySelectorAll('.nav-btn')[1])">
+        <div class="ci"><svg viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="1.5"><rect x="4" y="5" width="24" height="16" rx="2"/><path d="M1 25h30"/><path d="M12 21h8v4h-8z"/></svg></div>
+        <div class="cn">Ноутбуки</div><div class="cs">2 модели</div>
+      </div>
+      <div class="ccat" onclick="navFilter('monitor',document.querySelectorAll('.nav-btn')[2])">
+        <div class="ci"><svg viewBox="0 0 32 32" fill="none" stroke="var(--text1)" stroke-width="1.5"><rect x="3" y="4" width="26" height="18" rx="2"/><path d="M16 22v5M10 27h12"/></svg></div>
+        <div class="cn">Мониторы</div><div class="cs">1 модель</div>
+      </div>
+      <div class="ccat" onclick="navFilter('stand',document.querySelectorAll('.nav-btn')[3])">
+        <div class="ci"><svg viewBox="0 0 32 32" fill="none" stroke="var(--text1)" stroke-width="1.5"><path d="M6 20h20v2a2 2 0 01-2 2H8a2 2 0 01-2-2v-2z"/><path d="M9 20v-3a1 1 0 011-1h12a1 1 0 011 1v3"/><circle cx="16" cy="12" r="3"/><path d="M13 12a3 3 0 016 0"/><path d="M10 27l2-3h8l2 3"/></svg></div>
+        <div class="cn">Подставки</div><div class="cs">2 модели</div>
+      </div>
+      <div class="ccat" onclick="navFilter('tech',document.querySelectorAll('.nav-btn')[4])">
+        <div class="ci"><svg viewBox="0 0 32 32" fill="none" stroke="var(--text1)" stroke-width="1.5"><path d="M13 2L4.09 12.67a2 2 0 00.3 2.78L12 22"/><path d="M19 2l8.91 10.67a2 2 0 01-.3 2.78L20 22"/><path d="M8 28h16"/><path d="M12 22v6M20 22v6"/><circle cx="16" cy="7" r="2"/></svg></div>
+        <div class="cn">Техника</div><div class="cs">4 товара</div>
+      </div>
+      <div class="ccat" onclick="showPage('b2b')">
+        <div class="ci"><svg viewBox="0 0 32 32" fill="none" stroke="var(--text1)" stroke-width="1.5"><rect x="5" y="10" width="22" height="18" rx="2"/><path d="M16 4v6M10 10V7a2 2 0 012-2h8a2 2 0 012 2v3"/><path d="M5 16h22"/><circle cx="16" cy="19" r="2"/></svg></div>
+        <div class="cn">Юр. лицам</div><div class="cs">Запрос КП</div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /mainPage -->
+
+<!-- COMPARE PAGE -->
+<div id="comparePage" class="page-view">
+  <div class="cmp-page-header">
+    <h2 data-i18n="compare_title">Сравнение товаров</h2>
+    <div style="display:flex;gap:8px">
+      <button class="btn btn-outline" onclick="clearCompare()" data-i18n="compare_clear">Очистить</button>
+      <button class="btn btn-outline" onclick="showPage('main')" data-i18n="back_to_catalog">← Каталог</button>
+    </div>
+  </div>
+  <div id="compareContent"></div>
+</div>
+
+<!-- B2B PAGE -->
+<div id="b2bPage" class="page-view">
+  <div class="b2b-page">
+    <div class="b2b-hero">
+      <h1 data-i18n="b2b_page_title">Для юридических лиц</h1>
+      <p data-i18n="b2b_page_desc">Специальные условия для бизнеса. Оплата по безналу, счета-фактуры, корпоративная рассрочка и персональное сопровождение заказа.</p>
+    </div>
+
+    <div class="b2b-features">
+      <div class="b2b-feat">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        <h4>Счета-фактуры</h4>
+        <p>Полный комплект документов для бухгалтерии. Электронные и бумажные счета-фактуры.</p>
+      </div>
+      <div class="b2b-feat">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        <h4>Оплата по БИН</h4>
+        <p>Безналичная оплата на расчётный счёт. Корпоративная рассрочка на индивидуальных условиях.</p>
+      </div>
+      <div class="b2b-feat">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        <h4>Персональный менеджер</h4>
+        <p>Выделенный менеджер для вашей компании. Помощь с выбором и сопровождение заказа.</p>
+      </div>
+    </div>
+
+    <div class="b2b-form-wrap">
+      <h3 data-i18n="b2b_form_title">Запросить коммерческое предложение</h3>
+      <div class="field"><label>Компания / ИП</label><input type="text" id="b2bCompany" placeholder="Название компании"/></div>
+      <div class="field"><label>БИН / ИИН</label><input type="text" id="b2bBin" placeholder="000000000000"/></div>
+      <div class="field"><label>Контактное лицо</label><input type="text" id="b2bName" placeholder="Имя и фамилия"/></div>
+      <div class="field"><label>Телефон</label><input type="tel" id="b2bPhone" placeholder="+7 ___ ___ __ __"/></div>
+      <div class="field"><label>Email</label><input type="email" id="b2bEmail" placeholder="email@company.kz"/></div>
+      <div class="field"><label>Комментарий / список товаров</label><textarea id="b2bComment" rows="4" placeholder="Укажите интересующие товары, количество и любые дополнительные требования…"></textarea></div>
+      <div style="display:flex;gap:8px;margin-top:14px">
+        <button class="btn btn-red" onclick="submitB2B()" style="flex:1;padding:13px;font-size:14px">Отправить запрос</button>
+      </div>
+      <div style="text-align:center;font-size:11px;color:var(--text2);margin-top:10px;line-height:1.5">Менеджер подготовит КП и свяжется в течение 1 рабочего дня<br>+7 747 043 67 47 · WhatsApp</div>
+    </div>
+
+    <div style="text-align:center;margin-top:24px">
+      <button class="btn btn-outline" onclick="showPage('main')">← Вернуться в каталог</button>
+    </div>
+  </div>
+</div>
+
+</div>
 </main>
 
 <!-- FOOTER -->
@@ -391,37 +569,47 @@ main{padding:22px 0 56px}
   <div class="wrap">
     <div class="fgrid">
       <div>
-        <a href="/" class="logo" style="margin-bottom:12px">
+        <a href="#" class="logo" style="margin-bottom:12px" onclick="showPage('main');return false">
           <img src="logo.png" alt="JOHNGALTAZ" style="height:36px" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
           <span style="display:none;font-family:var(--fh);font-size:16px;font-weight:700;color:#fff">JOHNGALTAZ</span>
         </a>
         <p class="fabout">Официальный импортёр игровых ноутбуков и оборудования в Казахстане.<br>ИП «JOHNGALTAZ» · БИН: 990819301421</p>
         <div class="fsoc">
-          <a href="https://wa.me/77470436747" class="sbtn" style="color:#25D366" target="_blank" rel="noopener">W</a>
-          <a href="#" class="sbtn" style="color:#229ED9">T</a>
-          <a href="#" class="sbtn" style="color:#E1306C">I</a>
+          <!-- WhatsApp -->
+          <a href="https://wa.me/77470436747" class="sbtn wa" target="_blank" rel="noopener" title="WhatsApp">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+          <!-- Telegram -->
+          <a href="https://t.me/+77470436747" class="sbtn tg" target="_blank" rel="noopener" title="Telegram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0h-.056zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+          </a>
+          <!-- Instagram -->
+          <a href="#" class="sbtn ig" target="_blank" rel="noopener" title="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
         </div>
       </div>
       <div class="fcol"><h4>Каталог</h4><ul>
-        <li><a href="#" onclick="navFilter('laptop',document.querySelectorAll('.nav-btn')[1]);return false">Игровые ноутбуки</a></li>
-        <li><a href="#" onclick="navFilter('monitor',document.querySelectorAll('.nav-btn')[2]);return false">Мониторы</a></li>
-        <li><a href="#" onclick="navFilter('stand',document.querySelectorAll('.nav-btn')[3]);return false">Подставки</a></li>
-        <li><a href="#" onclick="navFilter('tech',document.querySelectorAll('.nav-btn')[4]);return false">Техника</a></li>
-        <li><a href="#" onclick="navFilter('all',document.querySelectorAll('.nav-btn')[0]);return false">Все товары</a></li>
+        <li><a href="#" onclick="showPage('main');navFilter('laptop',document.querySelectorAll('.nav-btn')[1]);return false">Игровые ноутбуки</a></li>
+        <li><a href="#" onclick="showPage('main');navFilter('monitor',document.querySelectorAll('.nav-btn')[2]);return false">Мониторы</a></li>
+        <li><a href="#" onclick="showPage('main');navFilter('stand',document.querySelectorAll('.nav-btn')[3]);return false">Подставки</a></li>
+        <li><a href="#" onclick="showPage('main');navFilter('tech',document.querySelectorAll('.nav-btn')[4]);return false">Техника</a></li>
+        <li><a href="#" onclick="showPage('main');navFilter('all',document.querySelectorAll('.nav-btn')[0]);return false">Все товары</a></li>
       </ul></div>
       <div class="fcol"><h4>Покупателям</h4><ul>
-        <li><a href="#">Доставка и оплата</a></li>
-        <li><a href="#">Гарантия и возврат</a></li>
-        <li><a href="#">Предзаказ</a></li>
-        <li><a href="#">Рассрочка Kaspi</a></li>
-        <li><a href="#" onclick="openQO(null,'b2b');return false">Юр. лица / КП</a></li>
-        <li><a href="#">О компании</a></li>
+        <li><a href="#" onclick="showToast('Страница в разработке')">Доставка и оплата</a></li>
+        <li><a href="#" onclick="showToast('Страница в разработке')">Гарантия и возврат</a></li>
+        <li><a href="#" onclick="showToast('Страница в разработке')">Предзаказ</a></li>
+        <li><a href="#" onclick="showToast('Страница в разработке')">Рассрочка Kaspi</a></li>
+        <li><a href="#" onclick="showPage('b2b');return false">Юр. лица / КП</a></li>
+        <li><a href="#" onclick="showToast('Страница в разработке')">О компании</a></li>
       </ul></div>
       <div class="fcol"><h4>Контакты</h4><ul>
-        <li><span>+7 747 043 67 47</span></li>
+        <li><a href="tel:+77470436747">+7 747 043 67 47</a></li>
         <li><span>Алматы, Казахстан</span></li>
         <li><span>пн–пт 9:00–19:00</span></li>
         <li><a class="al" href="https://wa.me/77470436747" target="_blank" rel="noopener">Написать в WhatsApp</a></li>
+        <li><a class="al" href="https://t.me/+77470436747" target="_blank" rel="noopener">Написать в Telegram</a></li>
         <li><a href="https://kaspi.kz/shop/search/?q=%3AallMerchants%3A30093000" target="_blank" rel="noopener">Kaspi магазин</a></li>
         <li><a href="https://m.halykmarket.kz/merchant/27172" target="_blank" rel="noopener">Halyk Market</a></li>
       </ul></div>
@@ -429,9 +617,8 @@ main{padding:22px 0 56px}
     <div class="fbot">
       <div class="fbot-l">© 2026 JOHNGALTAZ. Все права защищены.</div>
       <div class="fbot-r">
-        <a href="#">Политика конфиденциальности</a>
-        <a href="#">Пользовательское соглашение</a>
-        <a href="#">Cookie</a>
+        <a href="#" onclick="showToast('Страница в разработке')">Политика конфиденциальности</a>
+        <a href="#" onclick="showToast('Страница в разработке')">Пользовательское соглашение</a>
       </div>
     </div>
   </div>
@@ -439,21 +626,70 @@ main{padding:22px 0 56px}
 
 <!-- FLOAT WA -->
 <a class="fwa" href="https://wa.me/77470436747" target="_blank" rel="noopener" aria-label="WhatsApp" title="Написать в WhatsApp">
-  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="#fff"/></svg>
 </a>
 
+<!-- OVERLAY for all drawers -->
+<div class="ov" id="drawerOv" onclick="closeAllDrawers()"></div>
+
 <!-- CART DRAWER -->
-<div class="ov" id="cartOv" onclick="closeCart()"></div>
 <div class="drawer" id="cartDrawer">
   <div class="drw-hdr">
-    <h3>Корзина <span id="cartCnt" style="font-size:14px;color:var(--nd2)"></span></h3>
+    <h3>Корзина <span id="cartCnt" style="font-size:14px;color:var(--text2)"></span></h3>
     <button class="drw-close" onclick="closeCart()">×</button>
   </div>
   <div class="drw-body" id="cartBody"></div>
   <div class="drw-foot" id="cartFoot" style="display:none">
     <div class="cart-tot"><span class="cart-tot-l">Итого:</span><span class="cart-tot-r" id="cartTotal"></span></div>
     <button class="btn btn-red" onclick="checkout()" style="width:100%;padding:13px;font-size:14px">Оформить заказ</button>
-    <div style="text-align:center;font-size:11px;color:var(--nd2);margin-top:8px">Рассрочка Kaspi доступна при оформлении</div>
+    <div style="text-align:center;font-size:11px;color:var(--text2);margin-top:8px">Рассрочка Kaspi доступна при оформлении</div>
+  </div>
+</div>
+
+<!-- FAVORITES DRAWER -->
+<div class="fav-drawer" id="favDrawer">
+  <div class="drw-hdr">
+    <h3>Избранное <span id="favCnt" style="font-size:14px;color:var(--text2)"></span></h3>
+    <button class="drw-close" onclick="closeFavorites()">×</button>
+  </div>
+  <div class="drw-body" id="favBody"></div>
+</div>
+
+<!-- ACCOUNT DRAWER -->
+<div class="acc-drawer" id="accDrawer">
+  <div class="drw-hdr">
+    <h3>Личный кабинет</h3>
+    <button class="drw-close" onclick="closeAccount()">×</button>
+  </div>
+  <div class="drw-body">
+    <div class="acc-avatar">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </div>
+    <div class="acc-info">
+      <p>Войдите, чтобы отслеживать заказы, сохранять избранное и получать персональные предложения.</p>
+    </div>
+    <div class="acc-menu">
+      <div class="acc-menu-item" onclick="showToast('Функция в разработке')">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        Мои заказы
+      </div>
+      <div class="acc-menu-item" onclick="openFavorites();closeAccount()">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        Избранное
+      </div>
+      <div class="acc-menu-item" onclick="showPage('compare');closeAccount()">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 6-10"/></svg>
+        Сравнение
+      </div>
+      <div class="acc-menu-item" onclick="showToast('Функция в разработке')">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+        Настройки
+      </div>
+      <div class="acc-menu-item" style="margin-top:12px" onclick="window.open('https://wa.me/77470436747','_blank')">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        Связаться с менеджером
+      </div>
+    </div>
   </div>
 </div>
 
@@ -465,8 +701,8 @@ main{padding:22px 0 56px}
   </div>
 </div>
 
-<!-- QUICK ORDER / CONSULT MODAL -->
-<div class="qo-ov" id="qoOv">
+<!-- QUICK ORDER MODAL -->
+<div class="qo-ov" id="qoOv" onclick="if(event.target===this)closeQO()">
   <div class="qo-box">
     <div class="qo-top">
       <h3 id="qoTitle">Купить в 1 клик</h3>
@@ -490,75 +726,196 @@ main{padding:22px 0 56px}
 /* ===== DATA ===== */
 const P = [
   {id:1,cat:'laptop',brand:'ThundeRobot',name:'ThundeRobot Zero Ultra XT R15',short:'Zero Ultra XT R15 · 15.6" / i9 / RTX 4060',price:969990,kaspi:'40 417 ₸ × 24 мес',reviews:37,inStock:false,
-   tags:['Предзаказ'],
+   tags:['Предзаказ'],keywords:['ноутбук','игровой','thunderobot','intel','i9','rtx 4060','laptop','gaming'],
    specs:['i9-14900HX','32 Гб DDR5','1 ТБ NVMe','RTX 4060 8Гб','165Hz QHD'],
    table:[['Экран','15.6" · 2560×1440 · IPS · 165 Гц · матовый'],['Процессор','Intel Core i9-14900HX · 24 ядра · до 5800 МГц'],['Оперативная память','32 Гб DDR5 · 2 слота'],['Видеокарта','NVIDIA GeForce RTX 4060 · 8 Гб GDDR5'],['Накопитель','SSD M.2 · 1000 Гб'],['ОС','Windows 11 Pro'],['Wi-Fi / BT','802.11ac · Bluetooth 5.2'],['Интерфейсы','USB Type-C · USB 3.2 Gen2 · DisplayPort · RJ-45'],['Подсветка клавиатуры','Да'],['Цвет','Серый · влагозащищённый'],['Год выпуска','2024']]},
 
   {id:2,cat:'laptop',brand:'MECHREVO',name:'MECHREVO 16 Pro (RTX 5070Ti)',short:'16 Pro · 16" / Ryzen 9 / RTX 5070Ti',price:1089904,kaspi:'45 413 ₸ × 24 мес',reviews:3,inStock:false,
-   tags:['Предзаказ','RTX 5070Ti'],
+   tags:['Предзаказ','RTX 5070Ti'],keywords:['ноутбук','игровой','mechrevo','amd','ryzen','rtx 5070','laptop','gaming'],
    specs:['Ryzen 9 8940HX','32 Гб','1 ТБ M.2','RTX 5070Ti','300Hz QHD+'],
    table:[['Экран','16" · 2560×1600 · IPS · 300 Гц · матовый'],['Процессор','AMD Ryzen 9 8940HX · 16 ядер · до 5300 МГц'],['Оперативная память','32 Гб'],['Видеокарта','RTX 5070Ti (280W SIC)'],['Накопитель','SSD M.2 · 1000 Гб'],['ОС','Windows 11 Pro'],['Подсветка клавиатуры','Да'],['Цвет','Чёрный'],['Вес','4 кг']]},
 
   {id:3,cat:'monitor',brand:'ThundeRobot',name:'Монитор ThundeRobot DF27C240L',short:'DF27C240L · 27" / VA / 240Hz / изогнутый',price:189990,kaspi:'7 917 ₸ × 24 мес',reviews:306,inStock:false,
-   tags:['Предзаказ','240Hz'],
+   tags:['Предзаказ','240Hz'],keywords:['монитор','экран','27','240hz','изогнутый','thunderobot','monitor','display','curved'],
    specs:['27" VA изогнутый','1920×1080','240 Гц','0.5 мс','HDMI + DP'],
    table:[['Диагональ','27" · изогнутый экран'],['Разрешение','1920×1080 (FHD)'],['Тип матрицы','TFT VA'],['Частота обновления','240 Гц'],['Время отклика','0.5 мс'],['Яркость','330 кд/м²'],['Контрастность','1 000 : 1 (динам. 1 000 000 : 1)'],['Покрытие','Матовое'],['Подключение','HDMI · DisplayPort'],['Выходы','Разъём для наушников'],['Регулировка по высоте','Да · игровой монитор'],['Питание','36 Вт'],['Вес','4.9 кг']]},
 
   {id:4,cat:'stand',brand:'FLYDIGI',name:'Подставка FLYDIGI BS2 Pro',short:'BS2 Pro · активное охл. · до 21" · RGB',price:39168,kaspi:'3 264 ₸ × 12 мес',reviews:48,inStock:false,
-   tags:['Предзаказ'],
+   tags:['Предзаказ'],keywords:['подставка','охлаждение','кулер','flydigi','stand','cooler','cooling'],
    specs:['До 21"','120мм вент.','1300–4000 RPM','RGB подсветка','USB Type-C'],
    table:[['Тип','Активное охлаждение'],['Макс. диагональ','21"'],['Вентилятор','1 шт · 120 мм'],['Скорость вращения','1300–4000 RPM'],['Уровень шума','до 57 dB'],['Разъём питания','USB Type-C'],['Подсветка','Да (RGB)'],['Габариты','460 × 260 × 76 мм'],['Вес','1800 г'],['Цвет','Белый']]},
 
   {id:5,cat:'stand',brand:'FLYDIGI',name:'Подставка FLYDIGI BS1',short:'BS1 · активное охл. · до 21" · тихая',price:33234,kaspi:'2 770 ₸ × 12 мес',reviews:37,inStock:false,
-   tags:['Предзаказ'],
+   tags:['Предзаказ'],keywords:['подставка','охлаждение','кулер','flydigi','stand','cooler','cooling'],
    specs:['До 21"','120мм вент.','55dB','RGB подсветка','1800 г'],
    table:[['Тип','Активное охлаждение'],['Макс. диагональ','15.6 / 16 / 17.3 / 21"'],['Вентилятор','1 шт · 120 мм'],['Уровень шума','55 dB'],['Подсветка','Да'],['Габариты','454 × 237 × 77 мм'],['Вес','1800 г'],['Цвет','Белый']]},
 
   {id:6,cat:'tech',brand:'EcoFlow',name:'Зарядная станция EcoFlow Delta 3',short:'Delta 3 · 1024Вт·ч / 1800Вт / зарядка 1ч',price:290990,kaspi:'12 125 ₸ × 24 мес',reviews:18,inStock:false,
-   tags:['Предзаказ'],
+   tags:['Предзаказ'],keywords:['зарядная','станция','аккумулятор','ecoflow','powerbank','power station','зарядка','энергия','батарея'],
    specs:['1024 Вт·ч','1800 Вт','Зарядка за 1 ч','3000 циклов','14 кг'],
    table:[['Ёмкость','1024 Вт·ч / 320 000 мАч'],['Мощность','1800 Вт'],['Выходы','220В×4 · USB-A×2 · USB-C×2 · прикуриватель'],['Зарядка','Сеть / солнечная батарея / авто'],['Время зарядки','~1 час'],['Ресурс','3000 циклов'],['Защиты','КЗ · перезаряд · перегрев · перегрузка'],['Размеры','398 × 200 × 284 мм'],['Вес','14 кг']]},
 
   {id:7,cat:'tech',brand:'Creality',name:'Сушилка филамента Creality Dryer Plus',short:'Dryer Plus · 2кг · 1.75 и 2.85мм',price:39878,kaspi:'3 324 ₸ × 12 мес',reviews:29,inStock:false,
-   tags:['Предзаказ'],
+   tags:['Предзаказ'],keywords:['сушилка','филамент','3d','печать','creality','dryer','filament','принтер'],
    specs:['2 кг пластика','1.75 мм','2.85 мм','343×300 мм','2500 г'],
    table:[['Тип','Сушилка филамента'],['Совместимость','Пластик 1.75 мм и 2.85 мм'],['Объём камеры','2 кг пластика'],['Ширина × Высота','343 × 300 мм'],['Вес','2500 г']]},
 
   {id:8,cat:'tech',brand:'Anycubic',name:'3D-принтер Anycubic Photon Mono 4',short:'Photon Mono 4 · LCD 10K · закрытая камера',price:140000,kaspi:'5 834 ₸ × 24 мес',reviews:30,inStock:false,
-   tags:['Предзаказ'],
+   tags:['Предзаказ'],keywords:['3d','принтер','печать','anycubic','photon','3д','printer','фотополимер'],
    specs:['LCD 10K','153×165×87мм','Слой 0.03–0.15мм','Фотополимер','4 кг'],
    table:[['Технология','LCD / фотополимер'],['Экран','7" · разрешение 10K'],['Рабочая зона','153 × 165 × 87 мм'],['Высота слоя','0.03–0.15 мм (макс. слой 300 мкм)'],['Конструкция','Закрытая камера'],['Применение','Дом · медицина · дизайн · промышленность'],['Габариты корпуса','235 × 391 × 230 мм'],['Вес','4 кг']]},
 
   {id:9,cat:'tech',brand:'iWord',name:'Ударная установка iWord G3001',short:'G3001 · 6 барабанов · USB · влагозащита',price:20993,kaspi:'3 499 ₸ × 6 мес',reviews:23,inStock:false,
-   tags:['Предзаказ'],
+   tags:['Предзаказ'],keywords:['барабаны','ударная','установка','музыка','iword','drums','music','электронная'],
    specs:['6 барабанов','AUX / USB','Встроенный динамик','Влагозащита','430×310мм'],
    table:[['Тип','Электронная ударная установка'],['Барабанов','6 (бас · том · малый · пэды)'],['Размер площадки','430 × 310 × 60 мм'],['Разъёмы','Наушники · AUX · USB'],['Дополнительно','Встроенный динамик · влагозащита'],['Материал','Пластик'],['Цвет','Чёрный']]},
 ];
 
 /* ===== STATE ===== */
-let cart = [], curSym = '₸', curCat = 'all';
-const TIT = {all:'Все товары',laptop:'Игровые ноутбуки',monitor:'Мониторы',stand:'Подставки',tech:'Техника'};
-const CHIP_LBL = {all:'Все',laptop:'Ноутбуки',monitor:'Мониторы',stand:'Подставки',tech:'Техника'};
+let cart=[], favorites=[], compareList=[], curCat='all', currentLang='ru';
+const TIT={all:'Все товары',laptop:'Игровые ноутбуки',monitor:'Мониторы',stand:'Подставки',tech:'Техника'};
+const CHIP_LBL={all:'Все',laptop:'Ноутбуки',monitor:'Мониторы',stand:'Подставки',tech:'Техника'};
+
+/* ===== I18N ===== */
+const I18N = {
+  kz: {
+    hero_title:'Ойын ноутбуктері<br><em>ThundeRobot & MECHREVO</em><br>Қазақстанда',
+    hero_sub:'RTX 4060 / RTX 5070Ti · 165–300 Гц · i9 / Ryzen 9<br>Ресми кепілдік. Kaspi бөліп төлеу. Жеткізу ~8 күн.',
+    hero_btn1:'Ноутбуктерді қарау',hero_btn2:'Ноутбук таңдау',hero_from:'ноутбуктер бастап',
+    trust1_t:'Ресми кепілдік',trust1_s:'12–24 ай',trust2_t:'Жеткізу ~8 күн',trust2_s:'Алматыға дейін, одан әрі ҚР бойынша',
+    trust3_t:'Kaspi бөліп төлеу',trust3_s:'0–24 ай',trust4_t:'Кеңес беру',
+    preorder_title:'Алдын ала тапсырыс туралы',preorder_text:'Көптеген тауарлар тапсырыс бойынша қол жетімді. Алматыға дейін базалық жеткізу мерзімі ~8 күн, содан кейін Қазақстан бойынша жеткізу. Нақты мерзім мен қолжетімділікті менеджерден нақтылаңыз.',
+    login:'Кіру',favorites:'Таңдаулылар',cart:'Себет',categories:'Санаттар',
+    compare_short:'Салыстыру',compare_title:'Тауарларды салыстыру',compare_clear:'Тазарту',back_to_catalog:'← Каталог',
+    request_kp:'КҚ сұрау →',b2b_ey:'Бизнес үшін',b2b_title:'Заңды тұлғаларға — арнайы шарттар',
+    b2b_desc:'Шот-фактуралар · БИН бойынша төлем · Корпоративтік бөліп төлеу · КҚ сұрау',
+    b2b_more:'Толығырақ',b2b_kp:'КҚ сұрау',
+    b2b_page_title:'Заңды тұлғаларға',b2b_page_desc:'Бизнес үшін арнайы шарттар. Қолма-қол ақшасыз төлем, шот-фактуралар, корпоративтік бөліп төлеу және тапсырысты жеке сүйемелдеу.',
+    b2b_form_title:'Коммерциялық ұсыныс сұрау',
+  },
+  en: {
+    hero_title:'Gaming Laptops<br><em>ThundeRobot & MECHREVO</em><br>in Kazakhstan',
+    hero_sub:'RTX 4060 / RTX 5070Ti · 165–300 Hz · i9 / Ryzen 9<br>Official warranty. Kaspi installments. Delivery ~8 days.',
+    hero_btn1:'View Laptops',hero_btn2:'Help Me Choose',hero_from:'laptops from',
+    trust1_t:'Official Warranty',trust1_s:'12–24 months',trust2_t:'Delivery ~8 days',trust2_s:'to Almaty, then across KZ',
+    trust3_t:'Kaspi Installments',trust3_s:'0–24 months',trust4_t:'Consultation',
+    preorder_title:'About Pre-order',preorder_text:'Most items are available to order. Base delivery to Almaty is ~8 days, then shipping across Kazakhstan. Contact the manager for current availability.',
+    login:'Sign in',favorites:'Favorites',cart:'Cart',categories:'Categories',
+    compare_short:'Compare',compare_title:'Compare Products',compare_clear:'Clear',back_to_catalog:'← Catalog',
+    request_kp:'Request Quote →',b2b_ey:'For Business',b2b_title:'Special terms for businesses',
+    b2b_desc:'Invoices · BIN payment · Corporate installments · Quote request',
+    b2b_more:'Learn more',b2b_kp:'Request Quote',
+    b2b_page_title:'For Legal Entities',b2b_page_desc:'Special business terms. Bank transfer, invoices, corporate installments and personal order support.',
+    b2b_form_title:'Request a Commercial Offer',
+  }
+};
+
+function setLang(lang, btn){
+  currentLang=lang;
+  sw('lgSw',btn);
+  if(lang==='ru'){
+    // Reset to default (HTML is in Russian)
+    document.querySelectorAll('[data-i18n]').forEach(el=>{el.textContent=el.getAttribute('data-orig')||el.textContent});
+    document.querySelectorAll('[data-i18n-html]').forEach(el=>{el.innerHTML=el.getAttribute('data-orig-html')||el.innerHTML});
+    return;
+  }
+  const dict=I18N[lang];
+  if(!dict)return;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key=el.getAttribute('data-i18n');
+    if(!el.getAttribute('data-orig'))el.setAttribute('data-orig',el.textContent);
+    if(dict[key])el.textContent=dict[key];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el=>{
+    const key=el.getAttribute('data-i18n-html');
+    if(!el.getAttribute('data-orig-html'))el.setAttribute('data-orig-html',el.innerHTML);
+    if(dict[key])el.innerHTML=dict[key];
+  });
+}
+
+/* ===== CURRENCY ===== */
+const CUR_SYM={KZT:'₸',RUB:'₽',USD:'$'};
+let curCode='KZT', rates={KZT:1,RUB:null,USD:null}, ratesLoaded=false;
+
+function showRateStatus(msg,color){
+  let el=document.getElementById('rateStatus');
+  if(!el){el=document.createElement('span');el.id='rateStatus';el.style.cssText='font-size:10px;margin-left:8px;opacity:.8';document.getElementById('curSw').after(el)}
+  el.textContent=msg;el.style.color=color||'#888';
+}
+
+async function loadRates(){
+  showRateStatus('⟳','#888');
+  try{
+    const r=await fetch('https://open.er-api.com/v6/latest/KZT');
+    if(!r.ok)throw new Error();
+    const d=await r.json();
+    if(d.result!=='success')throw new Error();
+    rates.RUB=d.rates.RUB;rates.USD=d.rates.USD;rates.KZT=1;ratesLoaded=true;
+    showRateStatus('✓','#22a06b');rerender();
+  }catch(e){
+    rates.RUB=0.248;rates.USD=0.00195;ratesLoaded=true;
+    showRateStatus('~','#f59e0b');rerender();
+  }
+}
+
+function setCurrency(code){
+  if(!ratesLoaded){showToast('Курсы загружаются…');return}
+  curCode=code;rerender();renderCart();renderFavorites();
+}
 
 /* ===== HELPERS ===== */
-function fmt(n){return Math.round(n).toLocaleString('ru-RU')+' '+curSym}
+function fmt(kztPrice){
+  const rate=rates[curCode]||1,conv=kztPrice*rate,sym=CUR_SYM[curCode]||'₸';
+  if(curCode==='KZT')return Math.round(conv).toLocaleString('ru-RU')+' '+sym;
+  if(curCode==='USD')return sym+' '+conv.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',');
+  return Math.round(conv).toLocaleString('ru-RU')+' '+sym;
+}
 function tagH(t){const m={'Предзаказ':'tag-d','RTX 5070Ti':'tag-r','240Hz':'tag-o','В наличии':'tag-g'};return`<span class="tag ${m[t]||'tag-d'}">${t}</span>`}
 function stars(n){return'★'.repeat(n)+'☆'.repeat(5-n)}
 
+/* ===== THEME ===== */
+function toggleTheme(){
+  const isDark=document.documentElement.getAttribute('data-theme')==='dark';
+  document.documentElement.setAttribute('data-theme',isDark?'':'dark');
+  updateThemeUI(!isDark);
+  try{localStorage.setItem('jga-theme',isDark?'light':'dark')}catch(e){}
+}
+function updateThemeUI(dark){
+  document.getElementById('themeLbl').textContent=dark?'Светлая':'Тёмная';
+  document.getElementById('themeIcon').innerHTML=dark
+    ?'<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>'
+    :'<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+}
+// Load saved theme
+try{
+  const saved=localStorage.getItem('jga-theme');
+  if(saved==='dark'){document.documentElement.setAttribute('data-theme','dark');updateThemeUI(true)}
+}catch(e){}
+
+/* ===== PAGES ===== */
+function showPage(page){
+  document.querySelectorAll('.page-view').forEach(p=>p.classList.remove('active'));
+  const el=document.getElementById(page+'Page');
+  if(el){el.classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}
+  if(page==='compare')renderCompare();
+  // Update nav active state
+  if(page!=='main'){document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('on'))}
+}
+
 /* ===== RENDER ===== */
 function render(list){
-  const g = document.getElementById('productGrid');
-  if(!list.length){g.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:48px;color:var(--nd2);font-size:14px">Товары не найдены</div>';return}
-  g.innerHTML = list.map(p=>`
+  const g=document.getElementById('productGrid');
+  if(!list.length){g.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:48px;color:var(--text2);font-size:14px">Товары не найдены</div>';return}
+  g.innerHTML=list.map(p=>`
     <article class="pcard">
       <div class="pimg" onclick="openModal(${p.id})">
         <div class="ptags">${p.tags.map(tagH).join('')}</div>
-        <button class="pwish" onclick="event.stopPropagation();toggleWish(this)" aria-label="В избранное">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <button class="pwish${favorites.includes(p.id)?' on':''}" onclick="event.stopPropagation();toggleWish(${p.id},this)" aria-label="В избранное">
+          <svg width="14" height="14" viewBox="0 0 24 24" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
         </button>
         <div class="pimg-ph">Фото товара</div>
-        <button class="pcmp" onclick="event.stopPropagation();showToast('Добавлено в сравнение')" title="Сравнить">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        <button class="pcmp${compareList.includes(p.id)?' on':''}" onclick="event.stopPropagation();toggleCompare(${p.id},this)" title="Сравнить">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 6-10"/></svg>
         </button>
       </div>
       <div class="pbody">
@@ -576,10 +933,10 @@ function render(list){
         </div>
       </div>
     </article>
-  `).join('') + (list===P?`
+  `).join('') + (list.length===P.length?`
     <div class="cmp-promo">
       <div><div class="cmp-bar"></div><h3>Сравни до 4 товаров в один клик</h3><p>Характеристики, цена, наличие — в одной таблице. Отличия подсвечиваются.</p></div>
-      <div><button class="cmp-btn" onclick="showToast('Функция сравнения скоро будет')">Перейти к сравнению →</button><div class="cmp-slots"><div class="cmp-slot">+ добавить</div><div class="cmp-slot">+ добавить</div></div></div>
+      <div><button class="cmp-btn" onclick="showPage('compare')">Перейти к сравнению →</button><div class="cmp-slots"><div class="cmp-slot">+ добавить</div><div class="cmp-slot">+ добавить</div></div></div>
     </div>`:'');
 }
 function rerender(){render(curCat==='all'?P:P.filter(x=>x.cat===curCat))}
@@ -591,6 +948,7 @@ function navFilter(cat,btn){
   if(btn)btn.classList.add('on');
   document.querySelectorAll('.fc:not(.acc)').forEach(fc=>fc.classList.toggle('on',fc.textContent.trim()===(CHIP_LBL[cat]||'Все')));
   document.getElementById('secTitle').textContent=TIT[cat]||'Товары';
+  showPage('main');
   render(cat==='all'?P:P.filter(x=>x.cat===cat));
   document.getElementById('productGrid').scrollIntoView({behavior:'smooth',block:'start'});
 }
@@ -603,13 +961,29 @@ function chipFilter(cat,btn){
 }
 function sw(id,btn){document.querySelectorAll('#'+id+' button').forEach(b=>b.classList.remove('on'));btn.classList.add('on')}
 
-/* ===== SEARCH ===== */
+/* ===== SEARCH (improved with keywords) ===== */
 function doSearch(q){
   const d=document.getElementById('srchDrop');
-  if(!q||q.length<2){d.classList.remove('show');return}
-  const f=P.filter(p=>p.name.toLowerCase().includes(q.toLowerCase())||p.brand.toLowerCase().includes(q.toLowerCase())||p.specs.some(s=>s.toLowerCase().includes(q.toLowerCase())));
-  if(!f.length){d.innerHTML='<div style="padding:12px 14px;color:var(--nd2);font-size:13px">Ничего не найдено</div>';d.classList.add('show');return}
-  d.innerHTML=f.map(p=>`<div class="sri" onclick="openModal(${p.id});closeSrch()"><div class="sri-img">Фото</div><div><div class="sri-name">${p.name}</div><div class="sri-price">${fmt(p.price)}</div></div></div>`).join('');
+  if(!q||q.length<1){d.classList.remove('show');return}
+  const ql=q.toLowerCase().trim();
+  const f=P.filter(p=>{
+    if(p.name.toLowerCase().includes(ql))return true;
+    if(p.brand.toLowerCase().includes(ql))return true;
+    if(p.short.toLowerCase().includes(ql))return true;
+    if(p.cat.includes(ql))return true;
+    if(p.specs.some(s=>s.toLowerCase().includes(ql)))return true;
+    if(p.keywords&&p.keywords.some(k=>k.includes(ql)||ql.includes(k)))return true;
+    // Multi-word search
+    const words=ql.split(/\s+/);
+    if(words.length>1){
+      const all=([p.name,p.brand,p.short,...p.specs,...(p.keywords||[])]).join(' ').toLowerCase();
+      return words.every(w=>all.includes(w));
+    }
+    return false;
+  });
+  const catMap={laptop:'Ноутбуки',monitor:'Мониторы',stand:'Подставки',tech:'Техника'};
+  if(!f.length){d.innerHTML='<div style="padding:12px 14px;color:var(--text2);font-size:13px">Ничего не найдено</div>';d.classList.add('show');return}
+  d.innerHTML=f.map(p=>`<div class="sri" onclick="openModal(${p.id});closeSrch()"><div class="sri-img">Фото</div><div><div class="sri-name">${p.name}</div><div class="sri-price">${fmt(p.price)}</div><div class="sri-cat">${catMap[p.cat]||''}</div></div></div>`).join('');
   d.classList.add('show');
 }
 function closeSrch(){document.getElementById('srchDrop').classList.remove('show')}
@@ -621,7 +995,7 @@ function openModal(id){
   document.getElementById('modalBody').innerHTML=`
     <div class="m-gallery">
       <div class="m-img-main">Фото товара</div>
-      <div style="font-size:12px;color:var(--nd2);margin-top:6px">${p.reviews} отзывов · ${stars(5)}</div>
+      <div style="font-size:12px;color:var(--text2);margin-top:6px">${p.reviews} отзывов · ${stars(5)}</div>
     </div>
     <div class="m-info">
       <div class="m-brand">${p.brand}</div>
@@ -635,6 +1009,14 @@ function openModal(id){
       <div class="m-acts">
         <button class="btn btn-red" onclick="addToCart(${p.id});closeModal()">В корзину</button>
         <button class="btn btn-outline" onclick="closeModal();openQO(${p.id},'buy')">Купить в 1 клик</button>
+        <div style="display:flex;gap:8px;margin-top:4px">
+          <button class="btn btn-outline" style="flex:1" onclick="toggleWishById(${p.id})">
+            ${favorites.includes(p.id)?'❤ В избранном':'♡ В избранное'}
+          </button>
+          <button class="btn btn-outline" style="flex:1" onclick="toggleCompareById(${p.id});closeModal()">
+            ${compareList.includes(p.id)?'✓ В сравнении':'⇔ Сравнить'}
+          </button>
+        </div>
       </div>
     </div>`;
   document.getElementById('modalOv').classList.add('open');
@@ -652,7 +1034,7 @@ function addToCart(id){
 function updBadge(){document.getElementById('cartBadge').textContent=cart.reduce((s,c)=>s+c.qty,0)}
 function renderCart(){
   const body=document.getElementById('cartBody'),foot=document.getElementById('cartFoot'),cnt=document.getElementById('cartCnt');
-  if(!cart.length){body.innerHTML='<div class="cart-empty"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ddd" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><p>Корзина пуста</p></div>';foot.style.display='none';cnt.textContent='';return}
+  if(!cart.length){body.innerHTML='<div class="cart-empty"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--nd1)" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><p style="margin-top:12px">Корзина пуста</p></div>';foot.style.display='none';cnt.textContent='';return}
   const tot=cart.reduce((s,c)=>s+c.price*c.qty,0);
   cnt.textContent='('+cart.reduce((s,c)=>s+c.qty,0)+')';
   body.innerHTML=cart.map(c=>`
@@ -674,9 +1056,122 @@ function renderCart(){
 }
 function chQty(id,d){const c=cart.find(x=>x.id===id);if(!c)return;c.qty+=d;if(c.qty<=0)rmCart(id);else{updBadge();renderCart()}}
 function rmCart(id){cart=cart.filter(c=>c.id!==id);updBadge();renderCart()}
-function openCart(){document.getElementById('cartOv').classList.add('open');document.getElementById('cartDrawer').classList.add('open');document.body.style.overflow='hidden';renderCart()}
-function closeCart(){document.getElementById('cartOv').classList.remove('open');document.getElementById('cartDrawer').classList.remove('open');document.body.style.overflow=''}
+function openCart(){closeAllDrawers();document.getElementById('drawerOv').classList.add('open');document.getElementById('cartDrawer').classList.add('open');document.body.style.overflow='hidden';renderCart()}
+function closeCart(){document.getElementById('drawerOv').classList.remove('open');document.getElementById('cartDrawer').classList.remove('open');document.body.style.overflow=''}
 function checkout(){closeCart();openQO(null,'checkout')}
+
+/* ===== FAVORITES ===== */
+function toggleWish(id,btn){
+  const idx=favorites.indexOf(id);
+  if(idx>-1){favorites.splice(idx,1);if(btn)btn.classList.remove('on');showToast('Убрано из избранного')}
+  else{favorites.push(id);if(btn)btn.classList.add('on');showToast('❤ Добавлено в избранное')}
+  updFavBadge();
+}
+function toggleWishById(id){
+  toggleWish(id,null);rerender();closeModal();
+}
+function updFavBadge(){
+  const b=document.getElementById('favBadge');
+  b.textContent=favorites.length;b.style.display=favorites.length?'flex':'none';
+}
+function openFavorites(){
+  closeAllDrawers();
+  document.getElementById('drawerOv').classList.add('open');
+  document.getElementById('favDrawer').classList.add('open');
+  document.body.style.overflow='hidden';
+  renderFavorites();
+}
+function closeFavorites(){document.getElementById('drawerOv').classList.remove('open');document.getElementById('favDrawer').classList.remove('open');document.body.style.overflow=''}
+function renderFavorites(){
+  const body=document.getElementById('favBody'),cnt=document.getElementById('favCnt');
+  cnt.textContent=favorites.length?'('+favorites.length+')':'';
+  if(!favorites.length){body.innerHTML='<div class="cart-empty"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--nd1)" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><p style="margin-top:12px">Избранное пусто</p><p style="font-size:12px;margin-top:6px">Нажмите ♡ на товаре, чтобы добавить</p></div>';return}
+  body.innerHTML=favorites.map(id=>{
+    const p=P.find(x=>x.id===id);if(!p)return'';
+    return`<div class="fav-item">
+      <div class="fav-item-img" onclick="closeFavorites();openModal(${p.id})">Фото</div>
+      <div class="fav-item-body" onclick="closeFavorites();openModal(${p.id})">
+        <div class="fav-item-name">${p.short}</div>
+        <div class="fav-item-price">${fmt(p.price)}</div>
+        <div class="fav-actions">
+          <button class="btn btn-red" onclick="event.stopPropagation();addToCart(${p.id})">В корзину</button>
+        </div>
+      </div>
+      <button class="fav-rm" onclick="toggleWish(${p.id},null);renderFavorites();rerender()">×</button>
+    </div>`;
+  }).join('');
+}
+
+/* ===== ACCOUNT ===== */
+function openAccount(){closeAllDrawers();document.getElementById('drawerOv').classList.add('open');document.getElementById('accDrawer').classList.add('open');document.body.style.overflow='hidden'}
+function closeAccount(){document.getElementById('drawerOv').classList.remove('open');document.getElementById('accDrawer').classList.remove('open');document.body.style.overflow=''}
+
+/* ===== CLOSE ALL DRAWERS ===== */
+function closeAllDrawers(){
+  document.getElementById('drawerOv').classList.remove('open');
+  document.getElementById('cartDrawer').classList.remove('open');
+  document.getElementById('favDrawer').classList.remove('open');
+  document.getElementById('accDrawer').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+/* ===== COMPARE ===== */
+function toggleCompare(id,btn){
+  const idx=compareList.indexOf(id);
+  if(idx>-1){compareList.splice(idx,1);if(btn){btn.classList.remove('on')}showToast('Убрано из сравнения')}
+  else{
+    if(compareList.length>=4){showToast('Максимум 4 товара для сравнения');return}
+    compareList.push(id);if(btn){btn.classList.add('on')}showToast('✓ Добавлено в сравнение')
+  }
+  updCmpBadge();
+}
+function toggleCompareById(id){toggleCompare(id,null);rerender()}
+function updCmpBadge(){
+  const b=document.getElementById('cmpBadge');
+  b.textContent=compareList.length;b.style.display=compareList.length?'flex':'none';
+}
+function clearCompare(){compareList=[];updCmpBadge();renderCompare();rerender();showToast('Сравнение очищено')}
+function renderCompare(){
+  const el=document.getElementById('compareContent');
+  if(!compareList.length){
+    el.innerHTML=`<div class="cmp-empty">
+      <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--nd1)" stroke-width="1.2"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 6-10"/></svg>
+      <p style="font-size:16px;margin-bottom:8px">Нет товаров для сравнения</p>
+      <p style="font-size:13px">Нажмите кнопку сравнения на карточке товара</p>
+      <button class="btn btn-red" style="margin-top:16px" onclick="showPage('main')">Перейти в каталог</button>
+    </div>`;return;
+  }
+  const items=compareList.map(id=>P.find(x=>x.id===id)).filter(Boolean);
+  // Collect all spec keys
+  const allKeys=[];
+  items.forEach(p=>{p.table.forEach(r=>{if(!allKeys.includes(r[0]))allKeys.push(r[0])})});
+
+  let html=`<div class="cmp-table-wrap"><table class="cmp-table">`;
+  // Header row
+  html+=`<tr><th></th>${items.map(p=>`<td class="cmp-col-hdr">
+    <div class="cmp-col-name">${p.short}</div>
+    <div class="cmp-col-price">${fmt(p.price)}</div>
+    <div style="margin-bottom:8px;font-size:11px;color:var(--text2)">${p.brand}</div>
+    <button class="cmp-col-rm" onclick="compareList=compareList.filter(x=>x!==${p.id});updCmpBadge();renderCompare();rerender()">Убрать</button>
+    <button class="btn btn-red" style="font-size:11px;padding:6px 14px;margin-top:6px;width:100%" onclick="addToCart(${p.id})">В корзину</button>
+  </td>`).join('')}</tr>`;
+  // Spec rows
+  allKeys.forEach(key=>{
+    const vals=items.map(p=>{const r=p.table.find(t=>t[0]===key);return r?r[1]:'—'});
+    const allSame=vals.every(v=>v===vals[0]);
+    html+=`<tr><th>${key}</th>${vals.map(v=>`<td class="${!allSame?'cmp-diff':''}">${v}</td>`).join('')}</tr>`;
+  });
+  html+=`</table></div>`;
+  el.innerHTML=html;
+}
+
+/* ===== B2B FORM ===== */
+function submitB2B(){
+  const phone=document.getElementById('b2bPhone').value.trim();
+  if(!phone){showToast('Укажите номер телефона');return}
+  showToast('✓ Запрос отправлен! Менеджер свяжется в течение 1 рабочего дня.');
+  ['b2bCompany','b2bBin','b2bName','b2bPhone','b2bEmail','b2bComment'].forEach(id=>{document.getElementById(id).value=''});
+}
 
 /* ===== QUICK ORDER ===== */
 function openQO(id,mode){
@@ -692,10 +1187,10 @@ function openQO(id,mode){
   document.getElementById('qoSub').textContent=c.sub;
   document.getElementById('qoComField').style.display=c.showCom?'block':'none';
   document.getElementById('qoOv').classList.add('open');
+  document.body.style.overflow='hidden';
 }
-function closeQO(){document.getElementById('qoOv').classList.remove('open')}
+function closeQO(){document.getElementById('qoOv').classList.remove('open');document.body.style.overflow=''}
 function submitQO(){
-  const name=document.getElementById('qoName').value.trim();
   const phone=document.getElementById('qoPhone').value.trim();
   if(!phone){showToast('Пожалуйста, укажите номер телефона');return}
   closeQO();
@@ -703,18 +1198,19 @@ function submitQO(){
   document.getElementById('qoName').value='';document.getElementById('qoPhone').value='';document.getElementById('qoCom').value='';
 }
 
-/* ===== WISH ===== */
-function toggleWish(btn){btn.classList.toggle('on');showToast(btn.classList.contains('on')?'❤ Добавлено в избранное':'Убрано из избранного')}
-
 /* ===== TOAST ===== */
 let tt;
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2800)}
 
 /* ===== KEYBOARD ===== */
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeCart();closeQO();closeSrch()}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeAllDrawers();closeQO();closeSrch()}});
 
 /* ===== INIT ===== */
-render(P);renderCart();
+render(P);
+renderCart();
+updFavBadge();
+updCmpBadge();
+loadRates();
 </script>
 </body>
 </html>
