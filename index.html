@@ -283,7 +283,6 @@ main{padding:22px 0 56px}
 /* PAGE VIEWS */
 .page-view{display:none;min-height:60vh}
 .page-view.active{display:block}
-#mainPage{display:block}
 
 /* COMPARE PAGE */
 .cmp-page-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:12px}
@@ -314,10 +313,34 @@ main{padding:22px 0 56px}
 .b2b-form-wrap{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--r12);padding:30px;max-width:500px;margin:0 auto}
 .b2b-form-wrap h3{font-family:var(--fh);font-size:18px;font-weight:600;margin-bottom:16px;text-align:center}
 
+/* MOBILE HEADER COLLAPSE */
+.hdr-toggle{display:none;background:none;border:1px solid var(--nd1);border-radius:var(--r4);width:32px;height:32px;align-items:center;justify-content:center;color:var(--text1);transition:all var(--tr);flex-shrink:0}
+.hdr-toggle:hover{background:var(--bg)}
+.hdr-toggle svg{transition:transform .3s}
+.hdr.collapsed .hdr-toggle svg{transform:rotate(180deg)}
+
+.hdr-mini-acts{display:none;gap:8px;align-items:center;margin-left:auto;margin-right:8px}
+.hdr-mini-acts .mini-btn{background:none;border:none;color:var(--text2);position:relative;padding:4px;display:flex;align-items:center;justify-content:center;transition:color var(--tr)}
+.hdr-mini-acts .mini-btn:hover{color:var(--c2)}
+.hdr-mini-acts .mini-badge{position:absolute;top:-3px;right:-5px;background:var(--c2);color:#fff;border-radius:50%;width:14px;height:14px;font-size:8px;display:flex;align-items:center;justify-content:center;font-weight:600}
+
+@media(max-width:768px){
+  .hdr-toggle{display:flex}
+  .hdr.collapsed .hdr-collapsible{display:none!important}
+  .hdr.collapsed .hdr-mini-acts{display:flex}
+  .hdr.collapsed .hdr-main{padding:8px 0}
+  .hdr.collapsed .hdr-acts{display:none}
+  .hdr.collapsed .srch{display:none}
+  .hdr.collapsed .cmp-hdr-btn{display:none}
+  .hdr-nav{overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:6px 0}
+  .hdr-nav::-webkit-scrollbar{display:none}
+  .nav-btn{flex-shrink:0}
+}
+
 /* RESPONSIVE */
 @media(max-width:1024px){.pgrid{grid-template-columns:repeat(3,1fr)}.cgrid{grid-template-columns:repeat(4,1fr)}.trust{grid-template-columns:repeat(2,1fr)}.fgrid{grid-template-columns:1fr 1fr}.hero{padding:28px}.hero h1{font-size:22px}.b2b-features{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:768px){.hdr-main{flex-wrap:wrap}.srch{order:3;width:100%;flex:none}.hero{flex-direction:column;gap:20px;padding:22px 18px}.hero-card{align-self:flex-start}.pgrid{grid-template-columns:repeat(2,1fr)}.cgrid{grid-template-columns:repeat(3,1fr)}.b2b{flex-direction:column;gap:12px}.b2b-acts{margin-left:0}.fgrid{grid-template-columns:1fr}.modal-body{grid-template-columns:1fr}.drawer,.fav-drawer,.acc-drawer{width:100%}.cmp-hdr-btn span.cmp-lbl{display:none}.b2b-features{grid-template-columns:1fr}}
-@media(max-width:480px){.pgrid{grid-template-columns:1fr}.cgrid{grid-template-columns:repeat(2,1fr)}.trust{grid-template-columns:1fr}}
+@media(max-width:768px){.hdr-main{flex-wrap:wrap}.srch{order:3;width:100%;flex:none}.hero{flex-direction:column;gap:20px;padding:22px 18px}.hero-card{align-self:flex-start}.pgrid{grid-template-columns:repeat(2,1fr)}.cgrid{grid-template-columns:repeat(3,1fr)}.b2b{flex-direction:column;gap:12px}.b2b-acts{margin-left:0}.fgrid{grid-template-columns:1fr}.modal-body{grid-template-columns:1fr}.drawer,.fav-drawer,.acc-drawer{width:100%}.cmp-hdr-btn span.cmp-lbl{display:none}.b2b-features{grid-template-columns:1fr}.topbar-l{font-size:10px}.topbar-r{gap:8px}.topbar .wrap{flex-wrap:nowrap;overflow-x:auto}.cmp-page-header{flex-direction:column;align-items:flex-start}.cmp-table td,.cmp-table th{font-size:11px;padding:8px 10px;min-width:150px}.b2b-hero{padding:24px}.b2b-hero h1{font-size:22px}}
+@media(max-width:480px){.pgrid{grid-template-columns:1fr}.cgrid{grid-template-columns:repeat(2,1fr)}.trust{grid-template-columns:1fr}.topbar{display:none}.hdr-acts{gap:6px}.act-btn{font-size:9px;padding:2px 4px}}
 </style>
 </head>
 <body>
@@ -356,6 +379,26 @@ main{padding:22px 0 56px}
         <span class="logo-text" style="display:none">JOHNGALTAZ</span>
       </a>
 
+      <!-- Mini action buttons (visible when header collapsed on mobile) -->
+      <div class="hdr-mini-acts" id="miniActs">
+        <button class="mini-btn" onclick="openAccount()" title="Войти">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </button>
+        <button class="mini-btn" onclick="openFavorites()" title="Избранное">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <span class="mini-badge" id="favBadgeMini" style="display:none">0</span>
+        </button>
+        <button class="mini-btn" onclick="openCart()" title="Корзина">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="mini-badge" id="cartBadgeMini">0</span>
+        </button>
+      </div>
+
+      <!-- Collapse toggle (mobile only) -->
+      <button class="hdr-toggle" onclick="toggleHeader()" id="hdrToggle" title="Свернуть/развернуть">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+      </button>
+
       <div class="srch">
         <input type="text" id="si" placeholder="Поиск: ноутбуки, мониторы, подставки…" oninput="doSearch(this.value)" onkeydown="if(event.key==='Escape')closeSrch()"/>
         <button class="srch-btn" onclick="doSearch(document.getElementById('si').value)" aria-label="Поиск">
@@ -392,7 +435,7 @@ main{padding:22px 0 56px}
       </div>
     </div>
 
-    <nav class="hdr-nav" id="mainNav">
+    <nav class="hdr-nav hdr-collapsible" id="mainNav">
       <button class="nav-btn on" onclick="showPage('main');navFilter('all',this)">Все товары</button>
       <button class="nav-btn" onclick="showPage('main');navFilter('laptop',this)">Ноутбуки</button>
       <button class="nav-btn" onclick="showPage('main');navFilter('monitor',this)">Мониторы</button>
@@ -581,6 +624,123 @@ main{padding:22px 0 56px}
   </div>
 </div>
 
+<!-- INFO: Доставка и оплата -->
+<div id="deliveryPage" class="page-view">
+  <div style="max-width:700px;margin:0 auto;padding:20px 0">
+    <button class="btn btn-outline" onclick="showPage('main')" style="margin-bottom:20px">← Каталог</button>
+    <h2 style="font-family:var(--fh);font-size:24px;margin-bottom:18px">Доставка и оплата</h2>
+
+    <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--r12);padding:24px;margin-bottom:16px">
+      <h3 style="font-family:var(--fh);font-size:16px;margin-bottom:10px">📦 Сроки доставки</h3>
+      <p style="color:var(--text2);line-height:1.7;font-size:13px">Большинство товаров доступны под заказ. Базовый срок поставки до Алматы составляет <strong>~8 рабочих дней</strong>. Далее — доставка по Казахстану любой удобной курьерской службой. Актуальные сроки уточняйте у менеджера.</p>
+    </div>
+
+    <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--r12);padding:24px;margin-bottom:16px">
+      <h3 style="font-family:var(--fh);font-size:16px;margin-bottom:10px">💳 Способы оплаты</h3>
+      <p style="color:var(--text2);line-height:1.7;font-size:13px"><strong>Kaspi перевод</strong> — перевод на Kaspi Gold<br><strong>Kaspi рассрочка</strong> — от 0 до 24 месяцев<br><strong>Наличные</strong> — при самовывозе в Алматы<br><strong>Безналичный расчёт</strong> — для юридических лиц по БИН</p>
+    </div>
+
+    <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--r12);padding:24px;margin-bottom:16px">
+      <h3 style="font-family:var(--fh);font-size:16px;margin-bottom:10px">🏙️ Самовывоз</h3>
+      <p style="color:var(--text2);line-height:1.7;font-size:13px">Самовывоз доступен в Алматы. Адрес и время согласовываются с менеджером после оформления заказа.</p>
+    </div>
+
+    <div style="text-align:center;margin-top:20px;font-size:13px;color:var(--text2)">
+      Есть вопросы? <a href="https://wa.me/77470436747" target="_blank" style="color:var(--c2)">Напишите в WhatsApp</a> или позвоните: <strong>+7 747 043 67 47</strong>
+    </div>
+  </div>
+</div>
+
+<!-- INFO: Гарантия и возврат -->
+<div id="warrantyPage" class="page-view">
+  <div style="max-width:700px;margin:0 auto;padding:20px 0">
+    <button class="btn btn-outline" onclick="showPage('main')" style="margin-bottom:20px">← Каталог</button>
+    <h2 style="font-family:var(--fh);font-size:24px;margin-bottom:18px">Гарантия и возврат</h2>
+
+    <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--r12);padding:24px;margin-bottom:16px">
+      <h3 style="font-family:var(--fh);font-size:16px;margin-bottom:10px">🛡️ Гарантия</h3>
+      <p style="color:var(--text2);line-height:1.7;font-size:13px">На все товары предоставляется <strong>официальная гарантия от 12 до 24 месяцев</strong> в зависимости от категории. Гарантийное обслуживание осуществляется через наш сервисный центр в Алматы.</p>
+    </div>
+
+    <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--r12);padding:24px;margin-bottom:16px">
+      <h3 style="font-family:var(--fh);font-size:16px;margin-bottom:10px">↩️ Возврат и обмен</h3>
+      <p style="color:var(--text2);line-height:1.7;font-size:13px">Возврат товара надлежащего качества — в течение <strong>14 дней</strong> с момента получения при сохранении товарного вида и упаковки. Возврат товара ненадлежащего качества — в течение гарантийного срока. Для оформления возврата свяжитесь с менеджером.</p>
+    </div>
+
+    <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--r12);padding:24px">
+      <h3 style="font-family:var(--fh);font-size:16px;margin-bottom:10px">🔧 Сервис</h3>
+      <p style="color:var(--text2);line-height:1.7;font-size:13px">Постгарантийное обслуживание доступно для всех купленных у нас товаров. Диагностика, ремонт и замена комплектующих — обращайтесь к менеджеру.</p>
+    </div>
+  </div>
+</div>
+
+<!-- INFO: Предзаказ -->
+<div id="preorderPage" class="page-view">
+  <div style="max-width:700px;margin:0 auto;padding:20px 0">
+    <button class="btn btn-outline" onclick="showPage('main')" style="margin-bottom:20px">← Каталог</button>
+    <h2 style="font-family:var(--fh);font-size:24px;margin-bottom:18px">Как работает предзаказ</h2>
+
+    <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--r12);padding:24px;margin-bottom:16px">
+      <div style="display:flex;gap:14px;align-items:flex-start;margin-bottom:18px"><div style="background:var(--c2);color:#fff;border-radius:50%;min-width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700">1</div><div><strong style="font-size:14px">Выберите товар</strong><p style="color:var(--text2);font-size:13px;margin-top:4px;line-height:1.6">Добавьте товар в корзину или оформите «Купить в 1 клик». Все товары с пометкой «Предзаказ» заказываются напрямую от производителя.</p></div></div>
+      <div style="display:flex;gap:14px;align-items:flex-start;margin-bottom:18px"><div style="background:var(--c2);color:#fff;border-radius:50%;min-width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700">2</div><div><strong style="font-size:14px">Подтверждение и оплата</strong><p style="color:var(--text2);font-size:13px;margin-top:4px;line-height:1.6">Менеджер свяжется, уточнит детали и согласует оплату. Доступна предоплата или рассрочка Kaspi.</p></div></div>
+      <div style="display:flex;gap:14px;align-items:flex-start;margin-bottom:18px"><div style="background:var(--c2);color:#fff;border-radius:50%;min-width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700">3</div><div><strong style="font-size:14px">Поставка ~8 дней</strong><p style="color:var(--text2);font-size:13px;margin-top:4px;line-height:1.6">Товар доставляется до Алматы. Отслеживание статуса — через менеджера в WhatsApp.</p></div></div>
+      <div style="display:flex;gap:14px;align-items:flex-start"><div style="background:var(--c2);color:#fff;border-radius:50%;min-width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700">4</div><div><strong style="font-size:14px">Получение</strong><p style="color:var(--text2);font-size:13px;margin-top:4px;line-height:1.6">Самовывоз в Алматы или отправка по Казахстану курьерской службой.</p></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- INFO: Рассрочка Kaspi -->
+<div id="kaspiPage" class="page-view">
+  <div style="max-width:700px;margin:0 auto;padding:20px 0">
+    <button class="btn btn-outline" onclick="showPage('main')" style="margin-bottom:20px">← Каталог</button>
+    <h2 style="font-family:var(--fh);font-size:24px;margin-bottom:18px">Рассрочка Kaspi</h2>
+
+    <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--r12);padding:24px;margin-bottom:16px">
+      <p style="color:var(--text2);line-height:1.7;font-size:13px">Мы предлагаем оформление рассрочки через <strong>Kaspi.kz</strong> на срок от 3 до 24 месяцев. Рассрочка доступна для всех товаров в каталоге.</p>
+      <div style="margin-top:14px;display:grid;gap:10px">
+        <div style="background:var(--bg);border-radius:var(--r8);padding:12px;display:flex;justify-content:space-between"><span style="font-size:13px">3 месяца</span><span style="font-weight:600;font-size:13px">0% переплата</span></div>
+        <div style="background:var(--bg);border-radius:var(--r8);padding:12px;display:flex;justify-content:space-between"><span style="font-size:13px">6 месяцев</span><span style="font-weight:600;font-size:13px">Минимальная переплата</span></div>
+        <div style="background:var(--bg);border-radius:var(--r8);padding:12px;display:flex;justify-content:space-between"><span style="font-size:13px">12 месяцев</span><span style="font-weight:600;font-size:13px">Удобные платежи</span></div>
+        <div style="background:var(--bg);border-radius:var(--r8);padding:12px;display:flex;justify-content:space-between"><span style="font-size:13px">24 месяца</span><span style="font-weight:600;font-size:13px">Минимальный ежемесячный платёж</span></div>
+      </div>
+      <p style="color:var(--text2);line-height:1.7;font-size:12px;margin-top:14px">Для оформления рассрочки вам понадобится аккаунт в Kaspi.kz. Условия и процент переплаты зависят от срока и определяются банком.</p>
+    </div>
+
+    <div style="text-align:center;margin-top:16px">
+      <a href="https://kaspi.kz/shop/search/?q=%3AallMerchants%3A30093000" target="_blank" class="btn btn-red" style="padding:12px 28px;font-size:14px">Наш магазин на Kaspi.kz →</a>
+    </div>
+  </div>
+</div>
+
+<!-- INFO: О компании -->
+<div id="aboutPage" class="page-view">
+  <div style="max-width:700px;margin:0 auto;padding:20px 0">
+    <button class="btn btn-outline" onclick="showPage('main')" style="margin-bottom:20px">← Каталог</button>
+    <h2 style="font-family:var(--fh);font-size:24px;margin-bottom:18px">О компании</h2>
+
+    <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--r12);padding:24px;margin-bottom:16px">
+      <p style="color:var(--text2);line-height:1.8;font-size:13px"><strong style="color:var(--text1);font-size:15px">JOHNGALTAZ</strong> — официальный импортёр игровых ноутбуков, мониторов, периферии и техники в Казахстане.</p>
+      <p style="color:var(--text2);line-height:1.8;font-size:13px;margin-top:10px">Мы работаем напрямую с производителями: ThundeRobot, MECHREVO, FLYDIGI, EcoFlow, Anycubic и другими брендами. Это позволяет нам предлагать конкурентные цены и официальную гарантию на весь ассортимент.</p>
+      <p style="color:var(--text2);line-height:1.8;font-size:13px;margin-top:10px">Наша цель — сделать качественную технику доступной для казахстанских покупателей.</p>
+    </div>
+
+    <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--r12);padding:24px;margin-bottom:16px">
+      <h3 style="font-family:var(--fh);font-size:16px;margin-bottom:10px">Реквизиты</h3>
+      <p style="color:var(--text2);line-height:1.8;font-size:13px">ИП «JOHNGALTAZ»<br>БИН: 990819301421<br>Алматы, Казахстан</p>
+    </div>
+
+    <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--r12);padding:24px">
+      <h3 style="font-family:var(--fh);font-size:16px;margin-bottom:10px">Контакты</h3>
+      <p style="color:var(--text2);line-height:1.8;font-size:13px">
+        Телефон: <a href="tel:+77470436747" style="color:var(--c2)">+7 747 043 67 47</a><br>
+        WhatsApp: <a href="https://wa.me/77470436747" target="_blank" style="color:var(--c2)">Написать</a><br>
+        Telegram: <a href="https://t.me/+77470436747" target="_blank" style="color:var(--c2)">Написать</a><br>
+        Режим работы: пн–пт 9:00–19:00
+      </p>
+    </div>
+  </div>
+</div>
+
 </div>
 </main>
 
@@ -618,12 +778,12 @@ main{padding:22px 0 56px}
         <li><a href="#" onclick="showPage('main');navFilter('all',document.querySelectorAll('.nav-btn')[0]);return false">Все товары</a></li>
       </ul></div>
       <div class="fcol"><h4>Покупателям</h4><ul>
-        <li><a href="#" onclick="showToast('Страница в разработке')">Доставка и оплата</a></li>
-        <li><a href="#" onclick="showToast('Страница в разработке')">Гарантия и возврат</a></li>
-        <li><a href="#" onclick="showToast('Страница в разработке')">Предзаказ</a></li>
-        <li><a href="#" onclick="showToast('Страница в разработке')">Рассрочка Kaspi</a></li>
+        <li><a href="#" onclick="showPage('delivery');return false">Доставка и оплата</a></li>
+        <li><a href="#" onclick="showPage('warranty');return false">Гарантия и возврат</a></li>
+        <li><a href="#" onclick="showPage('preorder');return false">Предзаказ</a></li>
+        <li><a href="#" onclick="showPage('kaspi');return false">Рассрочка Kaspi</a></li>
         <li><a href="#" onclick="showPage('b2b');return false">Юр. лица / КП</a></li>
-        <li><a href="#" onclick="showToast('Страница в разработке')">О компании</a></li>
+        <li><a href="#" onclick="showPage('about');return false">О компании</a></li>
       </ul></div>
       <div class="fcol"><h4>Контакты</h4><ul>
         <li><a href="tel:+77470436747">+7 747 043 67 47</a></li>
@@ -638,8 +798,8 @@ main{padding:22px 0 56px}
     <div class="fbot">
       <div class="fbot-l">© 2026 JOHNGALTAZ. Все права защищены.</div>
       <div class="fbot-r">
-        <a href="#" onclick="showToast('Страница в разработке')">Политика конфиденциальности</a>
-        <a href="#" onclick="showToast('Страница в разработке')">Пользовательское соглашение</a>
+        <a href="#" onclick="showToast('Документ будет размещён позже');return false">Политика конфиденциальности</a>
+        <a href="#" onclick="showToast('Документ будет размещён позже');return false">Пользовательское соглашение</a>
       </div>
     </div>
   </div>
@@ -690,7 +850,7 @@ main{padding:22px 0 56px}
       <p>Войдите, чтобы отслеживать заказы, сохранять избранное и получать персональные предложения.</p>
     </div>
     <div class="acc-menu">
-      <div class="acc-menu-item" onclick="showToast('Функция в разработке')">
+      <div class="acc-menu-item" onclick="showToast('История заказов будет доступна после регистрации')">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
         Мои заказы
       </div>
@@ -702,7 +862,7 @@ main{padding:22px 0 56px}
         <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 6-10"/></svg>
         Сравнение
       </div>
-      <div class="acc-menu-item" onclick="showToast('Функция в разработке')">
+      <div class="acc-menu-item" onclick="showToast('Настройки будут доступны после регистрации')">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
         Настройки
       </div>
@@ -1137,6 +1297,22 @@ try{
   if(saved==='dark'){document.documentElement.setAttribute('data-theme','dark');updateThemeUI(true)}
 }catch(e){}
 
+/* ===== MOBILE HEADER COLLAPSE ===== */
+function toggleHeader(){
+  const hdr=document.querySelector('.hdr');
+  hdr.classList.toggle('collapsed');
+  // Save state
+  try{localStorage.setItem('jga-hdr-collapsed',hdr.classList.contains('collapsed')?'1':'0')}catch(e){}
+}
+// Auto-collapse on mobile on scroll down, expand on scroll up
+let lastScrollY=0, headerManuallyToggled=false;
+// Restore saved state on mobile
+try{
+  if(window.innerWidth<=768 && localStorage.getItem('jga-hdr-collapsed')==='1'){
+    document.querySelector('.hdr').classList.add('collapsed');
+  }
+}catch(e){}
+
 /* ===== PAGES ===== */
 function showPage(page){
   document.querySelectorAll('.page-view').forEach(p=>p.classList.remove('active'));
@@ -1284,7 +1460,12 @@ function addToCart(id){
   if(ex)ex.qty++;else cart.push({...p,qty:1});
   updBadge();showToast('✓ Добавлено: '+p.short);renderCart();
 }
-function updBadge(){document.getElementById('cartBadge').textContent=cart.reduce((s,c)=>s+c.qty,0)}
+function updBadge(){
+  const n=cart.reduce((s,c)=>s+c.qty,0);
+  document.getElementById('cartBadge').textContent=n;
+  const m=document.getElementById('cartBadgeMini');
+  if(m){m.textContent=n;m.style.display=n?'flex':'none'}
+}
 function renderCart(){
   const body=document.getElementById('cartBody'),foot=document.getElementById('cartFoot'),cnt=document.getElementById('cartCnt');
   if(!cart.length){body.innerHTML='<div class="cart-empty"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--nd1)" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><p style="margin-top:12px">Корзина пуста</p></div>';foot.style.display='none';cnt.textContent='';return}
@@ -1326,6 +1507,8 @@ function toggleWishById(id){
 function updFavBadge(){
   const b=document.getElementById('favBadge');
   b.textContent=favorites.length;b.style.display=favorites.length?'flex':'none';
+  const m=document.getElementById('favBadgeMini');
+  if(m){m.textContent=favorites.length;m.style.display=favorites.length?'flex':'none'}
 }
 function openFavorites(){
   closeAllDrawers();
