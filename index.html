@@ -1,1403 +1,720 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>JOHNGALTAZ — Игровые ноутбуки и оборудование</title>
-  <meta name="description" content="Официальный импортёр игровых ноутбуков Thunderobot в Казахстане. Гарантия, рассрочка, поставка ~8 дней." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>JOHNGALTAZ — Игровые ноутбуки и оборудование в Казахстане</title>
+<meta name="description" content="Игровые ноутбуки ThundeRobot, MECHREVO, мониторы, периферия и техника. Гарантия, рассрочка Kaspi, поставка ~8 дней."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--c1:#0B1416;--c2:#F85C58;--bg:#F6F6F3;--nd1:#D6D6D6;--nd2:#666;--wh:#fff;--ok:#22a06b;--fh:'Syne',sans-serif;--fb:'Inter',sans-serif;--r4:4px;--r6:6px;--r8:8px;--r12:12px;--sh:0 1px 6px rgba(0,0,0,.08);--tr:.17s ease}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--bg);color:var(--c1);font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+button{cursor:pointer;font-family:var(--fb)}
+img{display:block;max-width:100%}
+.wrap{max-width:1240px;margin:0 auto;padding:0 20px}
 
-  <style>
-    /* ============================================================
-       RESET & BASE
-    ============================================================ */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:none;border-radius:var(--r6);font-size:13px;font-weight:500;white-space:nowrap;transition:all var(--tr);cursor:pointer}
+.btn-red{background:var(--c2);color:#fff;padding:10px 22px}.btn-red:hover{background:#d94946;transform:translateY(-1px)}.btn-red:active{transform:none}
+.btn-dark{background:var(--c1);color:#fff;padding:10px 22px}.btn-dark:hover{background:#1d2f33}
+.btn-outline{background:transparent;color:var(--c1);border:1.5px solid var(--c1);padding:9px 20px}.btn-outline:hover{background:var(--c1);color:#fff}
+.btn-ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.3);padding:9px 20px}.btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+.btn-icon{background:var(--bg);border:1px solid var(--nd1);border-radius:var(--r6);width:36px;height:36px;display:flex;align-items:center;justify-content:center;transition:background var(--tr)}.btn-icon:hover{background:var(--nd1)}
 
-    :root {
-      --primary:   #0B1416;
-      --accent:    #F85C58;
-      --bg:        #F6F6F3;
-      --neutral-1: #D6D6D6;
-      --neutral-2: #666666;
-      --white:     #ffffff;
-      --success:   #22a06b;
-      --font-head: 'Syne', sans-serif;
-      --font-body: 'Inter', sans-serif;
-      --radius-sm: 6px;
-      --radius-md: 8px;
-      --radius-lg: 12px;
-      --shadow:    0 1px 4px rgba(0,0,0,.07);
-      --transition: 0.18s ease;
-    }
+/* TAGS */
+.tag{display:inline-block;font-size:9px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;padding:3px 7px;border-radius:3px;line-height:1.4}
+.tag-r{background:var(--c2);color:#fff}.tag-d{background:var(--c1);color:#fff}.tag-g{background:var(--ok);color:#fff}.tag-o{background:#f59e0b;color:#fff}
 
-    html { scroll-behavior: smooth; }
+/* TOPBAR */
+.topbar{background:var(--c1);padding:7px 0}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar-l{color:#888;font-size:11px}.topbar-l b{color:var(--nd1)}
+.topbar-r{display:flex;gap:16px;align-items:center}
+.sw{display:flex;gap:10px}
+.sw button{background:none;border:none;font-size:11px;color:#555;padding:0;transition:color var(--tr)}.sw button.on,.sw button:hover{color:var(--nd1)}
+.tsep{width:1px;height:12px;background:#2a3538}
 
-    body {
-      font-family: var(--font-body);
-      background: var(--bg);
-      color: var(--primary);
-      font-size: 14px;
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
-    }
+/* HEADER */
+.hdr{background:var(--wh);border-bottom:1px solid #E5E5E2;position:sticky;top:0;z-index:200}
+.hdr-main{display:flex;align-items:center;gap:18px;padding:12px 0}
+.logo{display:flex;align-items:center;flex-shrink:0;min-width:120px}
+.logo img{height:42px;width:auto;object-fit:contain}
 
-    a { text-decoration: none; color: inherit; }
-    ul { list-style: none; }
-    button { cursor: pointer; font-family: var(--font-body); }
-    img { display: block; max-width: 100%; }
+/* SEARCH */
+.srch{flex:1;position:relative}
+.srch input{width:100%;padding:10px 44px 10px 14px;border:1.5px solid var(--nd1);border-radius:var(--r8);font-size:13px;font-family:var(--fb);background:var(--bg);color:var(--c1);outline:none;transition:border-color var(--tr)}.srch input:focus{border-color:var(--c1)}.srch input::placeholder{color:#aaa}
+.srch-btn{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:var(--c2);border:none;border-radius:var(--r4);width:30px;height:30px;display:flex;align-items:center;justify-content:center;transition:background var(--tr)}.srch-btn:hover{background:#d94946}
+.srch-drop{position:absolute;top:calc(100% + 6px);left:0;right:0;background:var(--wh);border:1px solid #E5E5E2;border-radius:var(--r8);box-shadow:0 8px 24px rgba(0,0,0,.12);z-index:300;display:none}
+.srch-drop.show{display:block}
+.sri{display:flex;align-items:center;gap:12px;padding:10px 14px;cursor:pointer;transition:background var(--tr)}.sri:hover{background:var(--bg)}.sri:not(:last-child){border-bottom:1px solid #F5F5F3}
+.sri-img{width:44px;height:44px;background:#F0F0EE;border-radius:var(--r4);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:9px;color:#aaa}
+.sri-name{font-size:13px;font-weight:500;line-height:1.3}.sri-price{font-size:12px;color:var(--nd2);margin-top:2px}
 
-    /* ============================================================
-       UTILITIES
-    ============================================================ */
-    .container {
-      max-width: 1240px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
+/* HEADER ACTIONS */
+.hdr-acts{display:flex;gap:20px;align-items:center;flex-shrink:0}
+.act-btn{display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;font-size:10px;color:var(--nd2);position:relative;transition:color var(--tr)}.act-btn:hover{color:var(--c1)}
+.act-badge{position:absolute;top:-4px;right:-7px;background:var(--c2);color:#fff;border-radius:50%;width:16px;height:16px;font-size:9px;display:flex;align-items:center;justify-content:center;font-weight:600}
 
-    .btn-primary {
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      padding: 10px 22px;
-      border-radius: var(--radius-sm);
-      font-size: 13px;
-      font-weight: 500;
-      white-space: nowrap;
-      transition: background var(--transition), transform var(--transition);
-    }
-    .btn-primary:hover { background: #e04a46; transform: translateY(-1px); }
-    .btn-primary:active { transform: translateY(0); }
+/* NAV */
+.hdr-nav{border-top:1px solid #F0F0EE;padding:8px 0;display:flex;gap:4px;flex-wrap:wrap}
+.nav-btn{background:transparent;border:1px solid transparent;padding:6px 14px;border-radius:20px;font-size:12px;color:var(--c1);transition:all var(--tr)}.nav-btn:hover{border-color:var(--nd1);background:var(--bg)}.nav-btn.on{background:var(--c1);color:#fff;border-color:var(--c1)}.nav-btn.acc{color:var(--c2);border-color:rgba(248,92,88,.35)}.nav-btn.acc:hover{background:rgba(248,92,88,.06)}
 
-    .btn-outline {
-      background: transparent;
-      color: var(--primary);
-      border: 1.5px solid var(--primary);
-      padding: 9px 20px;
-      border-radius: var(--radius-sm);
-      font-size: 13px;
-      font-weight: 500;
-      white-space: nowrap;
-      transition: background var(--transition), color var(--transition);
-    }
-    .btn-outline:hover { background: var(--primary); color: #fff; }
+/* MAIN */
+main{padding:22px 0 56px}
 
-    .btn-outline-white {
-      background: transparent;
-      color: #fff;
-      border: 1.5px solid rgba(255,255,255,.3);
-      padding: 9px 20px;
-      border-radius: var(--radius-sm);
-      font-size: 13px;
-      font-weight: 500;
-      white-space: nowrap;
-      transition: border-color var(--transition), background var(--transition);
-    }
-    .btn-outline-white:hover { border-color: #fff; background: rgba(255,255,255,.08); }
+/* HERO */
+.hero{background:var(--c1);border-radius:var(--r12);padding:38px 44px;display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;overflow:hidden;position:relative}
+.hero::before{content:'';position:absolute;right:260px;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,var(--c2),transparent);opacity:.2}
+.hero-tags{display:flex;gap:6px;margin-bottom:12px}
+.hero h1{font-family:var(--fh);font-size:26px;font-weight:700;color:#fff;line-height:1.25;margin-bottom:10px}
+.hero h1 em{color:var(--c2);font-style:normal}
+.hero-sub{color:#777;font-size:13px;line-height:1.65;margin-bottom:22px;max-width:400px}
+.hero-acts{display:flex;gap:10px}
+.hero-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:var(--r8);padding:22px 28px;text-align:right;flex-shrink:0}
+.hero-lbl{color:#555;font-size:11px;margin-bottom:4px}
+.hero-price{font-family:var(--fh);font-size:30px;font-weight:700;color:#fff}
+.hero-old{color:#555;font-size:12px;text-decoration:line-through;margin-top:4px}
+.hero-disc{color:var(--c2);font-size:12px;font-weight:600;margin-top:2px}
 
-    .tag {
-      display: inline-block;
-      background: var(--primary);
-      color: #fff;
-      font-size: 9px;
-      font-weight: 600;
-      letter-spacing: .6px;
-      text-transform: uppercase;
-      padding: 3px 7px;
-      border-radius: 3px;
-    }
-    .tag-red { background: var(--accent); }
-    .tag-green { background: var(--success); }
+/* TRUST */
+.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px}
+.tcard{background:var(--wh);border:1px solid #EAEAE8;border-radius:var(--r8);padding:14px;display:flex;align-items:center;gap:10px;box-shadow:var(--sh)}
+.tico{background:#FEF0F0;border-radius:var(--r6);width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.tico svg{stroke:var(--c2)}
+.tt{font-size:12px;font-weight:500}.ts{font-size:11px;color:var(--nd2)}
 
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
-    }
-    .section-header h2 {
-      font-family: var(--font-head);
-      font-size: 20px;
-      font-weight: 600;
-    }
-    .section-header a {
-      font-size: 13px;
-      color: var(--accent);
-      font-weight: 500;
-      transition: opacity var(--transition);
-    }
-    .section-header a:hover { opacity: .75; }
+/* SEC HEADER */
+.sec-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.sec-hdr h2{font-family:var(--fh);font-size:20px;font-weight:600}
+.sec-hdr a{font-size:13px;color:var(--c2);font-weight:500}.sec-hdr a:hover{opacity:.75}
 
-    /* ============================================================
-       TOP BAR
-    ============================================================ */
-    .topbar {
-      background: var(--primary);
-      padding: 7px 0;
-    }
-    .topbar .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .topbar-left { color: #888; font-size: 11px; }
-    .topbar-left span { color: var(--neutral-1); }
-    .topbar-right {
-      display: flex;
-      gap: 20px;
-      align-items: center;
-    }
-    .lang-switcher { display: flex; gap: 12px; }
-    .lang-switcher button {
-      background: none;
-      border: none;
-      font-size: 11px;
-      color: #666;
-      padding: 0;
-      transition: color var(--transition);
-    }
-    .lang-switcher button.active, .lang-switcher button:hover { color: var(--neutral-1); }
-    .currency-switcher { display: flex; gap: 10px; }
-    .currency-switcher button {
-      background: none;
-      border: none;
-      font-size: 11px;
-      color: #666;
-      padding: 0;
-      transition: color var(--transition);
-    }
-    .currency-switcher button.active, .currency-switcher button:hover { color: var(--neutral-1); }
-    .topbar-divider { width: 1px; height: 12px; background: #2a3538; }
+/* FILTERS */
+.filters{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+.fc{background:var(--wh);border:1px solid var(--nd1);padding:6px 14px;border-radius:20px;font-size:11px;color:var(--c1);transition:all var(--tr)}.fc:hover,.fc.on{background:var(--c1);color:#fff;border-color:var(--c1)}.fc.acc{color:var(--c2);border-color:rgba(248,92,88,.4)}.fc.acc:hover{background:var(--c2);color:#fff;border-color:var(--c2)}
 
-    /* ============================================================
-       HEADER
-    ============================================================ */
-    .header {
-      background: var(--white);
-      border-bottom: 1px solid #E5E5E2;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    .header-main {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      padding: 14px 0;
-    }
+/* PRODUCT GRID */
+.pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:30px}
+.pcard{background:var(--wh);border:1px solid #EAEAE8;border-radius:var(--r12);overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--sh);transition:box-shadow var(--tr),transform var(--tr)}.pcard:hover{box-shadow:0 6px 22px rgba(0,0,0,.11);transform:translateY(-2px)}
+.pimg{background:#F0F0EE;height:168px;display:flex;align-items:center;justify-content:center;position:relative;cursor:pointer;overflow:hidden}
+.pimg-ph{width:100px;height:66px;background:var(--nd1);border-radius:var(--r6);display:flex;align-items:center;justify-content:center;font-size:10px;color:#999}
+.ptags{position:absolute;top:8px;left:8px;display:flex;gap:4px;flex-wrap:wrap}
+.pwish{position:absolute;top:8px;right:8px;background:rgba(255,255,255,.88);border:none;border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;transition:background var(--tr)}.pwish:hover{background:#fff}.pwish svg{stroke:#aaa;transition:stroke var(--tr),fill var(--tr)}.pwish.on svg{stroke:var(--c2);fill:var(--c2)}
+.pcmp{position:absolute;bottom:8px;right:8px;background:rgba(255,255,255,.88);border:none;border-radius:var(--r4);width:28px;height:28px;display:flex;align-items:center;justify-content:center;color:var(--nd2);transition:background var(--tr)}.pcmp:hover{background:#fff;color:var(--c1)}
+.pbody{padding:12px;flex:1;display:flex;flex-direction:column}
+.pbrand{font-size:10px;color:var(--nd2);text-transform:uppercase;letter-spacing:.4px;margin-bottom:3px}
+.pname{font-size:13px;font-weight:500;line-height:1.35;margin-bottom:7px;cursor:pointer}.pname:hover{color:var(--c2)}
+.pspecs{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:8px}
+.spec{background:var(--bg);font-size:10px;color:#444;padding:2px 7px;border-radius:3px;border:1px solid #E5E5E2}
+.pprow{display:flex;align-items:baseline;gap:7px;margin-bottom:2px}
+.pprice{font-family:var(--fh);font-size:16px;font-weight:700}
+.pold{font-size:11px;color:#bbb;text-decoration:line-through}
+.pavail{font-size:10px;margin-bottom:4px;margin-top:2px}
+.av-in{color:var(--ok);font-weight:500}.av-pre{color:var(--c2)}
+.pkaspi{font-size:10px;color:var(--nd2);margin-bottom:8px}
+.pacts{display:flex;gap:6px;margin-top:auto}
+.pacts .btn-red{flex:1;font-size:12px;padding:8px 10px}
 
-    /* Logo */
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      min-width: 140px;
-      flex-shrink: 0;
-    }
-    .logo-mark {
-      background: var(--primary);
-      border-radius: var(--radius-sm);
-      width: 38px;
-      height: 38px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      flex-shrink: 0;
-    }
-    .logo-mark span {
-      color: #fff;
-      font-family: var(--font-head);
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-    }
-    .logo-mark::after {
-      content: '';
-      position: absolute;
-      bottom: 5px;
-      right: 5px;
-      width: 7px;
-      height: 7px;
-      background: var(--accent);
-      border-radius: 50%;
-    }
-    .logo-text { line-height: 1.15; }
-    .logo-text .name {
-      font-family: var(--font-head);
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: .5px;
-      color: var(--primary);
-    }
-    .logo-text .sub {
-      font-size: 9px;
-      color: var(--accent);
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
+/* COMPARE PROMO */
+.cmp-promo{background:var(--c1);border-radius:var(--r12);padding:20px 18px;display:flex;flex-direction:column;justify-content:space-between}
+.cmp-bar{width:28px;height:3px;background:var(--c2);border-radius:2px;margin-bottom:14px}
+.cmp-promo h3{font-family:var(--fh);font-size:15px;font-weight:600;color:#fff;line-height:1.4;margin-bottom:8px}
+.cmp-promo p{font-size:11px;color:#666;line-height:1.6}
+.cmp-btn{background:var(--c2);color:#fff;border:none;padding:10px;border-radius:var(--r6);font-size:12px;font-weight:500;width:100%;margin:16px 0 8px;transition:background var(--tr)}.cmp-btn:hover{background:#d94946}
+.cmp-slots{display:flex;gap:6px}
+.cmp-slot{flex:1;background:rgba(255,255,255,.04);border:1px dashed rgba(255,255,255,.1);border-radius:var(--r6);height:38px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#444}
 
-    /* Search */
-    .search-wrap {
-      flex: 1;
-      position: relative;
-    }
-    .search-wrap input {
-      width: 100%;
-      padding: 11px 46px 11px 14px;
-      border: 1.5px solid var(--neutral-1);
-      border-radius: var(--radius-md);
-      font-size: 13px;
-      font-family: var(--font-body);
-      background: var(--bg);
-      color: var(--primary);
-      outline: none;
-      transition: border-color var(--transition);
-    }
-    .search-wrap input::placeholder { color: #aaa; }
-    .search-wrap input:focus { border-color: var(--primary); }
-    .search-btn {
-      position: absolute;
-      right: 8px;
-      top: 50%;
-      transform: translateY(-50%);
-      background: var(--accent);
-      border: none;
-      border-radius: var(--radius-sm);
-      width: 30px;
-      height: 30px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background var(--transition);
-    }
-    .search-btn:hover { background: #e04a46; }
-    .search-btn svg { display: block; }
+/* B2B */
+.b2b{background:var(--wh);border:1px solid #EAEAE8;border-radius:var(--r12);padding:20px 26px;display:flex;justify-content:space-between;align-items:center;margin-bottom:34px;box-shadow:var(--sh)}
+.b2b-ey{font-size:10px;color:var(--nd2);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.b2b h3{font-family:var(--fh);font-size:16px;font-weight:600;margin-bottom:4px}
+.b2b p{font-size:12px;color:var(--nd2);line-height:1.5}
+.b2b-acts{display:flex;gap:10px;flex-shrink:0;margin-left:24px}
 
-    /* Header actions */
-    .header-actions { display: flex; gap: 22px; align-items: center; flex-shrink: 0; }
-    .action-btn {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 3px;
-      background: none;
-      border: none;
-      font-family: var(--font-body);
-      font-size: 10px;
-      color: var(--neutral-2);
-      position: relative;
-      transition: color var(--transition);
-    }
-    .action-btn:hover { color: var(--primary); }
-    .action-btn svg { stroke: currentColor; }
-    .badge {
-      position: absolute;
-      top: -4px;
-      right: -6px;
-      background: var(--accent);
-      color: #fff;
-      border-radius: 50%;
-      width: 16px;
-      height: 16px;
-      font-size: 9px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 600;
-    }
+/* CATEGORIES */
+.cgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:34px}
+.ccat{border:1px solid #EAEAE8;border-radius:var(--r8);padding:18px 12px;text-align:center;cursor:pointer;background:var(--wh);transition:all var(--tr)}.ccat:hover{border-color:var(--c1);transform:translateY(-1px)}.ccat.feat{background:var(--c1);border-color:var(--c1)}.ccat.feat .cn{color:#fff}.ccat.feat .cs{color:#555}
+.ci{font-size:22px;margin-bottom:7px}.cn{font-size:12px;font-weight:500}.cs{font-size:10px;color:var(--nd2);margin-top:2px}
 
-    /* Nav */
-    .header-nav {
-      border-top: 1px solid #F0F0EE;
-      padding: 10px 0;
-      display: flex;
-      gap: 4px;
-      flex-wrap: wrap;
-    }
-    .nav-btn {
-      background: transparent;
-      border: 1px solid transparent;
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-family: var(--font-body);
-      color: var(--primary);
-      transition: all var(--transition);
-    }
-    .nav-btn:hover { border-color: var(--neutral-1); background: var(--bg); }
-    .nav-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
-    .nav-btn.accent { color: var(--accent); border-color: rgba(248,92,88,.3); }
-    .nav-btn.accent:hover { background: rgba(248,92,88,.06); }
+/* PREORDER NOTE */
+.pre-note{background:#FFFBF0;border:1px solid #F5E6B5;border-radius:var(--r8);padding:12px 16px;display:flex;align-items:flex-start;gap:10px;margin-bottom:28px}
+.pre-note strong{font-size:13px;font-weight:500}
+.pre-note p{font-size:12px;color:var(--nd2);margin-top:2px;line-height:1.5}
 
-    /* ============================================================
-       MAIN
-    ============================================================ */
-    main { padding: 24px 0 48px; }
+/* FOOTER */
+.footer{background:var(--c1);padding:36px 0 0}
+.fgrid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:28px;padding-bottom:28px}
+.fabout{color:#555;font-size:11px;line-height:1.7;margin-bottom:14px}
+.fsoc{display:flex;gap:8px}
+.sbtn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:var(--r6);width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;cursor:pointer;transition:background var(--tr)}.sbtn:hover{background:rgba(255,255,255,.12)}
+.fcol h4{color:#fff;font-family:var(--fh);font-size:12px;font-weight:600;margin-bottom:11px}
+.fcol li{margin-bottom:7px}
+.fcol li a,.fcol li span{color:#555;font-size:11px;transition:color var(--tr)}.fcol li a:hover,.fcol li span:hover{color:var(--nd1)}
+.fcol li .al{color:var(--c2)}.fcol li .al:hover{color:#e04a46}
+.fbot{border-top:1px solid rgba(255,255,255,.06);padding:16px 0;display:flex;justify-content:space-between;align-items:center}
+.fbot-l{color:#3a3a3a;font-size:10px}
+.fbot-r{display:flex;gap:16px}
+.fbot-r a{color:#3a3a3a;font-size:10px;transition:color var(--tr)}.fbot-r a:hover{color:#666}
 
-    /* ============================================================
-       HERO
-    ============================================================ */
-    .hero {
-      background: var(--primary);
-      border-radius: var(--radius-lg);
-      padding: 40px 44px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      right: 280px;
-      top: 0;
-      bottom: 0;
-      width: 1px;
-      background: linear-gradient(to bottom, transparent, var(--accent), transparent);
-      opacity: .25;
-    }
-    .hero::after {
-      content: '';
-      position: absolute;
-      right: 240px;
-      top: 0;
-      bottom: 0;
-      width: 1px;
-      background: linear-gradient(to bottom, transparent, rgba(248,92,88,.3), transparent);
-      opacity: .15;
-    }
-    .hero-tags { display: flex; gap: 6px; margin-bottom: 14px; }
-    .hero h1 {
-      font-family: var(--font-head);
-      font-size: 26px;
-      font-weight: 700;
-      color: #fff;
-      line-height: 1.25;
-      margin-bottom: 10px;
-    }
-    .hero h1 .accent-text { color: var(--accent); }
-    .hero-sub {
-      color: #888;
-      font-size: 13px;
-      line-height: 1.65;
-      margin-bottom: 22px;
-      max-width: 400px;
-    }
-    .hero-actions { display: flex; gap: 10px; }
-    .hero-price-card {
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: var(--radius-md);
-      padding: 22px 30px;
-      text-align: right;
-      flex-shrink: 0;
-    }
-    .hero-price-label { color: #555; font-size: 11px; margin-bottom: 4px; }
-    .hero-price {
-      font-family: var(--font-head);
-      font-size: 30px;
-      font-weight: 700;
-      color: #fff;
-    }
-    .hero-price span { font-size: 18px; }
-    .hero-price-old { color: #555; font-size: 12px; text-decoration: line-through; margin-top: 4px; }
-    .hero-price-disc { color: var(--accent); font-size: 12px; font-weight: 600; margin-top: 2px; }
+/* FLOAT WA */
+.fwa{position:fixed;bottom:28px;right:28px;background:#25D366;border-radius:50%;width:52px;height:52px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 16px rgba(37,211,102,.35);z-index:999;transition:transform var(--tr),box-shadow var(--tr)}.fwa:hover{transform:scale(1.08);box-shadow:0 6px 22px rgba(37,211,102,.45)}
 
-    /* ============================================================
-       TRUST BADGES
-    ============================================================ */
-    .trust-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-bottom: 32px;
-    }
-    .trust-card {
-      background: var(--white);
-      border: 1px solid #EAEAE8;
-      border-radius: var(--radius-md);
-      padding: 14px 16px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      box-shadow: var(--shadow);
-    }
-    .trust-icon {
-      background: #FEF0F0;
-      border-radius: var(--radius-sm);
-      width: 38px;
-      height: 38px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-    .trust-icon svg { stroke: var(--accent); }
-    .trust-title { font-size: 12px; font-weight: 500; color: var(--primary); }
-    .trust-sub { font-size: 11px; color: var(--neutral-2); }
+/* CART DRAWER */
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:400;opacity:0;pointer-events:none;transition:opacity var(--tr)}.ov.open{opacity:1;pointer-events:all}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:380px;background:var(--wh);z-index:401;transform:translateX(100%);transition:transform .3s ease;display:flex;flex-direction:column;box-shadow:-4px 0 24px rgba(0,0,0,.12)}.drawer.open{transform:translateX(0)}
+.drw-hdr{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid #EAEAE8}
+.drw-hdr h3{font-family:var(--fh);font-size:17px;font-weight:600}
+.drw-close{background:none;border:none;font-size:24px;color:var(--nd2);line-height:1}.drw-close:hover{color:var(--c1)}
+.drw-body{flex:1;overflow-y:auto;padding:16px 20px}
+.cart-empty{text-align:center;padding:40px 20px;color:var(--nd2)}
+.ci-wrap{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid #F5F5F3}
+.ci-img{width:60px;height:60px;background:#F0F0EE;border-radius:var(--r6);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:9px;color:#aaa}
+.ci-body{flex:1;min-width:0}
+.ci-name{font-size:12px;font-weight:500;line-height:1.35;margin-bottom:4px}
+.ci-price{font-family:var(--fh);font-size:13px;font-weight:700}
+.ci-qty{display:flex;align-items:center;gap:8px;margin-top:6px}
+.qb{background:var(--bg);border:1px solid var(--nd1);border-radius:var(--r4);width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:500;transition:background var(--tr)}.qb:hover{background:var(--nd1)}
+.ci-rm{background:none;border:none;font-size:18px;color:#ccc;margin-left:auto;align-self:flex-start;padding:0 2px}.ci-rm:hover{color:var(--c2)}
+.drw-foot{padding:16px 20px;border-top:1px solid #EAEAE8}
+.cart-tot{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.cart-tot-l{font-size:13px;color:var(--nd2)}.cart-tot-r{font-family:var(--fh);font-size:20px;font-weight:700}
 
-    /* ============================================================
-       FILTER STRIP
-    ============================================================ */
-    .filter-strip {
-      display: flex;
-      gap: 6px;
-      margin-bottom: 18px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-    .filter-chip {
-      background: var(--white);
-      border: 1px solid var(--neutral-1);
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 11px;
-      font-family: var(--font-body);
-      color: var(--primary);
-      transition: all var(--transition);
-    }
-    .filter-chip:hover, .filter-chip.active {
-      background: var(--primary);
-      color: #fff;
-      border-color: var(--primary);
-    }
-    .filter-chip.accent-chip {
-      color: var(--accent);
-      border-color: rgba(248,92,88,.4);
-    }
-    .filter-chip.accent-chip:hover {
-      background: var(--accent);
-      color: #fff;
-      border-color: var(--accent);
-    }
+/* MODAL */
+.modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:500;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity var(--tr)}.modal-ov.open{opacity:1;pointer-events:all}
+.modal{background:var(--wh);border-radius:var(--r12);width:100%;max-width:860px;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.25);transform:scale(.96);transition:transform .25s ease}.modal-ov.open .modal{transform:scale(1)}
+.modal-cr{display:flex;justify-content:flex-end;padding:14px 18px 0}
+.modal-close{background:none;border:none;font-size:26px;color:var(--nd2);line-height:1}.modal-close:hover{color:var(--c1)}
+.modal-body{display:grid;grid-template-columns:1fr 1fr}
+.m-gallery{padding:20px 24px;background:#F9F9F7}
+.m-img-main{background:#EDEDE9;border-radius:var(--r8);height:240px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:12px;color:#aaa}
+.m-info{padding:20px 24px 24px}
+.m-brand{font-size:11px;color:var(--nd2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.m-name{font-family:var(--fh);font-size:18px;font-weight:600;line-height:1.3;margin-bottom:10px}
+.m-price{font-family:var(--fh);font-size:26px;font-weight:700;margin-bottom:3px}
+.m-kaspi{font-size:12px;color:var(--nd2);margin-bottom:4px}
+.m-avail{font-size:12px;font-weight:500;margin-bottom:14px}
+.m-specs-t{font-size:11px;font-weight:600;color:var(--nd2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.m-tbl{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:16px}
+.m-tbl tr:nth-child(even) td{background:#F9F9F7}
+.m-tbl td{padding:6px 8px;border-bottom:1px solid #F0F0EE;vertical-align:top}
+.m-tbl td:first-child{color:var(--nd2);width:44%}
+.m-acts{display:flex;flex-direction:column;gap:8px}
+.m-acts .btn-red,.m-acts .btn-outline{width:100%;padding:12px;font-size:14px;text-align:center;justify-content:center}
 
-    /* ============================================================
-       PRODUCT GRID
-    ============================================================ */
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-      margin-bottom: 32px;
-    }
+/* QUICK ORDER */
+.qo-ov{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:550;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity var(--tr)}.qo-ov.open{opacity:1;pointer-events:all}
+.qo-box{background:var(--wh);border-radius:var(--r12);padding:28px;width:100%;max-width:400px;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.qo-box h3{font-family:var(--fh);font-size:18px;font-weight:600;margin-bottom:6px}
+.qo-box p{font-size:13px;color:var(--nd2);margin-bottom:18px;line-height:1.5}
+.qo-top{display:flex;justify-content:space-between;align-items:flex-start}
+.qo-close-btn{background:none;border:none;font-size:24px;color:var(--nd2);line-height:1}.qo-close-btn:hover{color:var(--c1)}
+.field{margin-bottom:12px}
+.field label{display:block;font-size:12px;color:var(--nd2);margin-bottom:4px;font-weight:500}
+.field input,.field textarea{width:100%;padding:10px 12px;border:1.5px solid var(--nd1);border-radius:var(--r6);font-size:13px;font-family:var(--fb);outline:none;transition:border-color var(--tr);resize:none}.field input:focus,.field textarea:focus{border-color:var(--c1)}
+.qo-acts{display:flex;gap:8px;margin-top:8px}
+.qo-acts .btn-red,.qo-acts .btn-outline{flex:1;padding:12px;text-align:center;justify-content:center}
 
-    .product-card {
-      background: var(--white);
-      border: 1px solid #EAEAE8;
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      box-shadow: var(--shadow);
-      transition: box-shadow var(--transition), transform var(--transition);
-    }
-    .product-card:hover { box-shadow: 0 4px 18px rgba(0,0,0,.1); transform: translateY(-2px); }
+/* TOAST */
+.toast{position:fixed;bottom:90px;right:28px;background:var(--c1);color:#fff;padding:10px 18px;border-radius:var(--r8);font-size:13px;z-index:800;opacity:0;transform:translateY(10px);transition:all .3s ease;pointer-events:none;max-width:300px;line-height:1.4}
+.toast.show{opacity:1;transform:translateY(0)}
 
-    .product-image {
-      background: #F0F0EE;
-      height: 170px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-    .product-image-placeholder {
-      width: 100px;
-      height: 65px;
-      background: var(--neutral-1);
-      border-radius: var(--radius-sm);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #aaa;
-      font-size: 10px;
-    }
-    .product-tags {
-      position: absolute;
-      top: 8px;
-      left: 8px;
-      display: flex;
-      gap: 4px;
-    }
-    .product-wish {
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      background: rgba(255,255,255,.85);
-      border: none;
-      border-radius: 50%;
-      width: 30px;
-      height: 30px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background var(--transition);
-    }
-    .product-wish:hover { background: #fff; }
-    .product-wish svg { stroke: #aaa; transition: stroke var(--transition); }
-    .product-wish.active svg { stroke: var(--accent); fill: var(--accent); }
-    .product-wish:hover svg { stroke: var(--accent); }
-
-    .product-compare {
-      position: absolute;
-      bottom: 8px;
-      right: 8px;
-      background: rgba(255,255,255,.85);
-      border: none;
-      border-radius: var(--radius-sm);
-      width: 30px;
-      height: 30px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 10px;
-      color: var(--neutral-2);
-      transition: background var(--transition), color var(--transition);
-    }
-    .product-compare:hover { background: #fff; color: var(--primary); }
-
-    .product-body { padding: 12px; flex: 1; display: flex; flex-direction: column; }
-    .product-brand { font-size: 10px; color: var(--neutral-2); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 3px; }
-    .product-name { font-size: 13px; font-weight: 500; color: var(--primary); margin-bottom: 7px; line-height: 1.35; }
-
-    .product-specs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 3px;
-      margin-bottom: 10px;
-    }
-    .spec-chip {
-      background: var(--bg);
-      font-size: 10px;
-      color: #444;
-      padding: 2px 7px;
-      border-radius: 3px;
-      border: 1px solid #E8E8E5;
-    }
-
-    .product-price-row { display: flex; align-items: baseline; gap: 7px; margin-bottom: 3px; }
-    .product-price { font-family: var(--font-head); font-size: 16px; font-weight: 700; color: var(--primary); }
-    .product-price-old { font-size: 11px; color: #bbb; text-decoration: line-through; }
-    .product-avail {
-      font-size: 10px;
-      margin-bottom: 10px;
-      margin-top: 1px;
-    }
-    .avail-in { color: var(--success); font-weight: 500; }
-    .avail-pre { color: var(--accent); }
-
-    .product-actions { display: flex; gap: 6px; margin-top: auto; }
-    .product-actions .btn-primary { flex: 1; padding: 9px 10px; font-size: 12px; }
-    .product-icon-btn {
-      background: var(--bg);
-      border: 1px solid var(--neutral-1);
-      border-radius: var(--radius-sm);
-      width: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      transition: background var(--transition), border-color var(--transition);
-    }
-    .product-icon-btn:hover { background: var(--neutral-1); }
-
-    /* Compare promo card */
-    .compare-promo {
-      background: var(--primary);
-      border-radius: var(--radius-lg);
-      padding: 22px 18px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .compare-promo-bar { width: 28px; height: 3px; background: var(--accent); border-radius: 2px; margin-bottom: 14px; }
-    .compare-promo h3 {
-      font-family: var(--font-head);
-      font-size: 15px;
-      font-weight: 600;
-      color: #fff;
-      line-height: 1.4;
-      margin-bottom: 8px;
-    }
-    .compare-promo p { font-size: 11px; color: #666; line-height: 1.6; }
-    .compare-promo-bottom { margin-top: 20px; }
-    .compare-promo-btn {
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      padding: 10px 14px;
-      border-radius: var(--radius-sm);
-      font-size: 12px;
-      font-weight: 500;
-      font-family: var(--font-body);
-      width: 100%;
-      margin-bottom: 10px;
-      transition: background var(--transition);
-    }
-    .compare-promo-btn:hover { background: #e04a46; }
-    .compare-slots { display: flex; gap: 6px; }
-    .compare-slot {
-      flex: 1;
-      background: rgba(255,255,255,.05);
-      border: 1px dashed rgba(255,255,255,.12);
-      border-radius: var(--radius-sm);
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 10px;
-      color: #444;
-    }
-
-    /* ============================================================
-       B2B BANNER
-    ============================================================ */
-    .b2b-banner {
-      background: var(--white);
-      border: 1px solid #EAEAE8;
-      border-radius: var(--radius-lg);
-      padding: 22px 28px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 36px;
-      box-shadow: var(--shadow);
-    }
-    .b2b-eyebrow { font-size: 10px; color: var(--neutral-2); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
-    .b2b-banner h3 { font-family: var(--font-head); font-size: 17px; font-weight: 600; margin-bottom: 5px; }
-    .b2b-banner p { font-size: 12px; color: var(--neutral-2); line-height: 1.55; }
-    .b2b-actions { display: flex; gap: 10px; flex-shrink: 0; margin-left: 24px; }
-
-    /* ============================================================
-       CATEGORIES
-    ============================================================ */
-    .category-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 12px;
-      margin-bottom: 36px;
-    }
-    .category-card {
-      border-radius: var(--radius-md);
-      padding: 18px 14px;
-      text-align: center;
-      cursor: pointer;
-      transition: all var(--transition);
-      border: 1px solid #EAEAE8;
-      background: var(--white);
-    }
-    .category-card:hover { border-color: var(--primary); }
-    .category-card.featured { background: var(--primary); border-color: var(--primary); }
-    .category-card.featured .cat-name { color: #fff; }
-    .cat-icon { font-size: 22px; margin-bottom: 8px; }
-    .cat-name { font-size: 12px; font-weight: 500; color: var(--primary); }
-    .cat-count { font-size: 10px; color: var(--neutral-2); margin-top: 2px; }
-    .category-card.featured .cat-count { color: #666; }
-
-    /* ============================================================
-       PREORDER BANNER
-    ============================================================ */
-    .preorder-info {
-      background: #FFFBF0;
-      border: 1px solid #F5E6B5;
-      border-radius: var(--radius-md);
-      padding: 14px 18px;
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      margin-bottom: 32px;
-    }
-    .preorder-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
-    .preorder-info strong { font-size: 13px; font-weight: 500; color: var(--primary); }
-    .preorder-info p { font-size: 12px; color: var(--neutral-2); margin-top: 2px; line-height: 1.5; }
-
-    /* ============================================================
-       FOOTER
-    ============================================================ */
-    .footer { background: var(--primary); padding: 36px 0 0; }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 28px;
-      padding-bottom: 28px;
-    }
-    .footer-brand .logo { margin-bottom: 12px; }
-    .footer-brand .logo-text .name { color: #fff; }
-    .footer-about { color: #555; font-size: 11px; line-height: 1.7; margin-bottom: 14px; }
-    .footer-socials { display: flex; gap: 8px; }
-    .social-btn {
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: var(--radius-sm);
-      width: 34px;
-      height: 34px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background var(--transition);
-    }
-    .social-btn:hover { background: rgba(255,255,255,.12); }
-    .social-wa { color: #25D366; }
-    .social-tg { color: #229ED9; }
-    .social-ig { color: #E1306C; }
-
-    .footer-col h4 { color: #fff; font-size: 12px; font-weight: 600; margin-bottom: 12px; font-family: var(--font-head); }
-    .footer-col ul { display: flex; flex-direction: column; gap: 7px; }
-    .footer-col li a, .footer-col li span {
-      color: #555;
-      font-size: 11px;
-      cursor: pointer;
-      transition: color var(--transition);
-    }
-    .footer-col li a:hover, .footer-col li span:hover { color: var(--neutral-1); }
-    .footer-col li .accent-link { color: var(--accent); }
-    .footer-col li .accent-link:hover { color: #e04a46; }
-
-    .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,.06);
-      padding: 16px 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .footer-bottom-left { color: #3a3a3a; font-size: 10px; }
-    .footer-bottom-right { display: flex; gap: 18px; }
-    .footer-bottom-right a { color: #3a3a3a; font-size: 10px; transition: color var(--transition); }
-    .footer-bottom-right a:hover { color: #666; }
-
-    /* ============================================================
-       FLOATING WHATSAPP
-    ============================================================ */
-    .float-wa {
-      position: fixed;
-      bottom: 28px;
-      right: 28px;
-      background: #25D366;
-      border-radius: 50%;
-      width: 52px;
-      height: 52px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 4px 16px rgba(37,211,102,.35);
-      z-index: 999;
-      transition: transform var(--transition), box-shadow var(--transition);
-    }
-    .float-wa:hover { transform: scale(1.08); box-shadow: 0 6px 22px rgba(37,211,102,.45); }
-    .float-wa svg { stroke: #fff; }
-
-    /* Tooltip */
-    .float-wa-tooltip {
-      position: fixed;
-      bottom: 90px;
-      right: 28px;
-      background: var(--primary);
-      color: #fff;
-      font-size: 11px;
-      padding: 6px 12px;
-      border-radius: var(--radius-sm);
-      white-space: nowrap;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity var(--transition);
-    }
-    .float-wa:hover + .float-wa-tooltip { opacity: 1; }
-
-    /* ============================================================
-       RESPONSIVE
-    ============================================================ */
-    @media (max-width: 1024px) {
-      .product-grid { grid-template-columns: repeat(3, 1fr); }
-      .category-grid { grid-template-columns: repeat(4, 1fr); }
-      .trust-grid { grid-template-columns: repeat(2, 1fr); }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
-      .hero { padding: 28px 28px; }
-      .hero h1 { font-size: 22px; }
-    }
-
-    @media (max-width: 768px) {
-      .topbar .container { flex-direction: column; gap: 4px; }
-      .header-main { flex-wrap: wrap; gap: 12px; }
-      .logo { min-width: auto; }
-      .search-wrap { order: 3; width: 100%; flex: none; }
-      .hero { flex-direction: column; gap: 24px; padding: 24px 20px; }
-      .hero-price-card { align-self: flex-start; }
-      .product-grid { grid-template-columns: repeat(2, 1fr); }
-      .category-grid { grid-template-columns: repeat(3, 1fr); }
-      .b2b-banner { flex-direction: column; gap: 14px; }
-      .b2b-actions { margin-left: 0; }
-      .footer-grid { grid-template-columns: 1fr; }
-    }
-
-    @media (max-width: 480px) {
-      .product-grid { grid-template-columns: 1fr; }
-      .category-grid { grid-template-columns: repeat(2, 1fr); }
-      .trust-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+/* RESPONSIVE */
+@media(max-width:1024px){.pgrid{grid-template-columns:repeat(3,1fr)}.cgrid{grid-template-columns:repeat(4,1fr)}.trust{grid-template-columns:repeat(2,1fr)}.fgrid{grid-template-columns:1fr 1fr}.hero{padding:28px}.hero h1{font-size:22px}}
+@media(max-width:768px){.hdr-main{flex-wrap:wrap}.srch{order:3;width:100%;flex:none}.hero{flex-direction:column;gap:20px;padding:22px 18px}.hero-card{align-self:flex-start}.pgrid{grid-template-columns:repeat(2,1fr)}.cgrid{grid-template-columns:repeat(3,1fr)}.b2b{flex-direction:column;gap:12px}.b2b-acts{margin-left:0}.fgrid{grid-template-columns:1fr}.modal-body{grid-template-columns:1fr}.drawer{width:100%}}
+@media(max-width:480px){.pgrid{grid-template-columns:1fr}.cgrid{grid-template-columns:repeat(2,1fr)}.trust{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
 
-  <!-- ============================================================
-       TOP BAR
-  ============================================================ -->
-  <div class="topbar">
-    <div class="container">
-      <div class="topbar-left">
-        Алматы: пн–пт 9:00–19:00 · <span>+7 747 043 67 47</span>
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="wrap">
+    <div class="topbar-l">Алматы · пн–пт 9:00–19:00 · <b>+7 747 043 67 47</b></div>
+    <div class="topbar-r">
+      <div class="sw" id="lgSw">
+        <button class="on" onclick="sw('lgSw',this)">RU</button>
+        <button onclick="sw('lgSw',this)">KZ</button>
+        <button onclick="sw('lgSw',this)">EN</button>
       </div>
-      <div class="topbar-right">
-        <div class="lang-switcher">
-          <button class="active" onclick="setLang('RU',this)">RU</button>
-          <button onclick="setLang('KZ',this)">KZ</button>
-          <button onclick="setLang('EN',this)">EN</button>
-        </div>
-        <div class="topbar-divider"></div>
-        <div class="currency-switcher">
-          <button class="active" onclick="setCurrency('KZT',this)">₸ KZT</button>
-          <button onclick="setCurrency('RUB',this)">₽ RUB</button>
-          <button onclick="setCurrency('USD',this)">$ USD</button>
-        </div>
+      <div class="tsep"></div>
+      <div class="sw" id="curSw">
+        <button class="on" onclick="sw('curSw',this);curSym='₸';rerender()">₸ KZT</button>
+        <button onclick="sw('curSw',this);curSym='₽';rerender()">₽ RUB</button>
+        <button onclick="sw('curSw',this);curSym='$';rerender()">$ USD</button>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- ============================================================
-       HEADER
-  ============================================================ -->
-  <header class="header">
-    <div class="container">
-      <div class="header-main">
+<!-- HEADER -->
+<header class="hdr">
+  <div class="wrap">
+    <div class="hdr-main">
 
-        <!-- Logo -->
-        <a href="/" class="logo">
-          <div class="logo-mark"><span>GTZ</span></div>
-          <div class="logo-text">
-            <div class="name">JOHNGALT</div>
-            <div class="sub">AZ</div>
+      <!-- ЛОГОТИП: замените logo.png на имя вашего файла логотипа -->
+      <a href="/" class="logo">
+        <img src="logo.png" alt="JOHNGALTAZ"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+        <span style="display:none;font-family:var(--fh);font-size:18px;font-weight:700;letter-spacing:-.5px">JOHNGALTAZ</span>
+      </a>
+
+      <div class="srch">
+        <input type="text" id="si" placeholder="Поиск: ноутбуки, мониторы, подставки…"
+          oninput="doSearch(this.value)" onkeydown="if(event.key==='Escape')closeSrch()"/>
+        <button class="srch-btn" onclick="doSearch(document.getElementById('si').value)" aria-label="Поиск">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </button>
+        <div class="srch-drop" id="srchDrop"></div>
+      </div>
+
+      <div class="hdr-acts">
+        <button class="act-btn" onclick="showToast('Личный кабинет в разработке')">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Войти
+        </button>
+        <button class="act-btn" onclick="showToast('Избранное пока пусто')">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          Избранное
+        </button>
+        <button class="act-btn" onclick="openCart()">
+          <div style="position:relative;display:inline-block">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <span class="act-badge" id="cartBadge">0</span>
           </div>
+          Корзина
+        </button>
+      </div>
+    </div>
+
+    <nav class="hdr-nav">
+      <button class="nav-btn on" onclick="navFilter('all',this)">Все товары</button>
+      <button class="nav-btn" onclick="navFilter('laptop',this)">Ноутбуки</button>
+      <button class="nav-btn" onclick="navFilter('monitor',this)">Мониторы</button>
+      <button class="nav-btn" onclick="navFilter('stand',this)">Подставки</button>
+      <button class="nav-btn" onclick="navFilter('tech',this)">Техника</button>
+      <button class="nav-btn" onclick="openQO(null,'consult')">Подбор ноутбука</button>
+      <button class="nav-btn acc">🔥 Акции</button>
+      <button class="nav-btn" onclick="openQO(null,'b2b')">Юр. лица / КП</button>
+    </nav>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main>
+  <div class="wrap">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div>
+        <div class="hero-tags"><span class="tag tag-r">Новинка 2024</span><span class="tag tag-d">Предзаказ</span></div>
+        <h1>Игровые ноутбуки<br><em>ThundeRobot & MECHREVO</em><br>в Казахстане</h1>
+        <p class="hero-sub">RTX 4060 / RTX 5070Ti · 165–300 Гц · i9 / Ryzen 9<br>Официальная гарантия. Рассрочка Kaspi. Поставка ~8 дней.</p>
+        <div class="hero-acts">
+          <button class="btn btn-red" onclick="navFilter('laptop',document.querySelectorAll('.nav-btn')[1])">Смотреть ноутбуки</button>
+          <button class="btn btn-ghost" onclick="openQO(null,'consult')">Подбор ноутбука</button>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-lbl">ноутбуки от</div>
+        <div class="hero-price">969 990 ₸</div>
+        <div class="hero-old">рассрочка от 40 417 ₸/мес</div>
+        <div class="hero-disc">Kaspi · 24 месяца</div>
+      </div>
+    </section>
+
+    <!-- TRUST -->
+    <section class="trust">
+      <div class="tcard"><div class="tico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><div class="tt">Официальная гарантия</div><div class="ts">12–24 месяца</div></div></div>
+      <div class="tcard"><div class="tico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><div><div class="tt">Поставка ~8 дней</div><div class="ts">до Алматы, далее по РК</div></div></div>
+      <div class="tcard"><div class="tico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div><div class="tt">Рассрочка Kaspi</div><div class="ts">0–24 месяца</div></div></div>
+      <div class="tcard"><div class="tico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div><div class="tt">Консультация</div><div class="ts">WhatsApp · Telegram</div></div></div>
+    </section>
+
+    <!-- PREORDER NOTE -->
+    <div class="pre-note">
+      <div style="font-size:20px;flex-shrink:0;margin-top:1px">📦</div>
+      <div><strong>О предзаказе</strong><p>Большинство товаров доступны под заказ. Базовый срок поставки до Алматы ~8 дней, далее доставка по Казахстану. Актуальный срок и наличие уточняйте у менеджера.</p></div>
+    </div>
+
+    <!-- PRODUCTS -->
+    <section>
+      <div class="sec-hdr">
+        <h2 id="secTitle">Все товары</h2>
+        <a href="#" onclick="openQO(null,'b2b');return false">Запросить КП →</a>
+      </div>
+      <div class="filters" id="filterStrip">
+        <button class="fc on" onclick="chipFilter('all',this)">Все</button>
+        <button class="fc" onclick="chipFilter('laptop',this)">Ноутбуки</button>
+        <button class="fc" onclick="chipFilter('monitor',this)">Мониторы</button>
+        <button class="fc" onclick="chipFilter('stand',this)">Подставки</button>
+        <button class="fc" onclick="chipFilter('tech',this)">Техника</button>
+        <button class="fc acc" onclick="openQO(null,'consult')">🔍 Подбор по параметрам</button>
+      </div>
+      <div class="pgrid" id="productGrid"></div>
+    </section>
+
+    <!-- B2B -->
+    <div class="b2b">
+      <div>
+        <div class="b2b-ey">Для бизнеса</div>
+        <h3>Юридическим лицам — специальные условия</h3>
+        <p>Счета-фактуры · Оплата по БИН · Корпоративная рассрочка · Запрос КП</p>
+      </div>
+      <div class="b2b-acts">
+        <button class="btn btn-outline" onclick="showToast('Открываем раздел для юр.лиц')">Подробнее</button>
+        <button class="btn btn-red" onclick="openQO(null,'b2b')">Запросить КП</button>
+      </div>
+    </div>
+
+    <!-- CATEGORIES -->
+    <section>
+      <div class="sec-hdr"><h2>Категории</h2></div>
+      <div class="cgrid">
+        <div class="ccat feat" onclick="navFilter('laptop',document.querySelectorAll('.nav-btn')[1])"><div class="ci">💻</div><div class="cn">Ноутбуки</div><div class="cs">2 модели</div></div>
+        <div class="ccat" onclick="navFilter('monitor',document.querySelectorAll('.nav-btn')[2])"><div class="ci">🖥️</div><div class="cn">Мониторы</div><div class="cs">1 модель</div></div>
+        <div class="ccat" onclick="navFilter('stand',document.querySelectorAll('.nav-btn')[3])"><div class="ci">🌬️</div><div class="cn">Подставки</div><div class="cs">2 модели</div></div>
+        <div class="ccat" onclick="navFilter('tech',document.querySelectorAll('.nav-btn')[4])"><div class="ci">⚡</div><div class="cn">Техника</div><div class="cs">4 товара</div></div>
+        <div class="ccat" onclick="openQO(null,'b2b')"><div class="ci">🏢</div><div class="cn">Юр. лицам</div><div class="cs">Запрос КП</div></div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <a href="/" class="logo" style="margin-bottom:12px">
+          <img src="logo.png" alt="JOHNGALTAZ" style="height:36px" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+          <span style="display:none;font-family:var(--fh);font-size:16px;font-weight:700;color:#fff">JOHNGALTAZ</span>
         </a>
-
-        <!-- Search -->
-        <div class="search-wrap">
-          <input type="text" placeholder="Поиск: ноутбуки, мыши, мониторы, оборудование…" />
-          <button class="search-btn" aria-label="Поиск">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5">
-              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-            </svg>
-          </button>
-        </div>
-
-        <!-- Actions -->
-        <div class="header-actions">
-          <button class="action-btn" aria-label="Войти">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="1.8">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
-            </svg>
-            Войти
-          </button>
-          <button class="action-btn" aria-label="Избранное" onclick="this.classList.toggle('active')">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="1.8">
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-            </svg>
-            Избранное
-          </button>
-          <button class="action-btn" aria-label="Корзина">
-            <div style="position:relative; display:inline-block;">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="1.8">
-                <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
-                <line x1="3" y1="6" x2="21" y2="6"/>
-                <path d="M16 10a4 4 0 0 1-8 0"/>
-              </svg>
-              <span class="badge">2</span>
-            </div>
-            Корзина
-          </button>
+        <p class="fabout">Официальный импортёр игровых ноутбуков и оборудования в Казахстане.<br>ИП «JOHNGALTAZ» · БИН: 990819301421</p>
+        <div class="fsoc">
+          <a href="https://wa.me/77470436747" class="sbtn" style="color:#25D366" target="_blank" rel="noopener">W</a>
+          <a href="#" class="sbtn" style="color:#229ED9">T</a>
+          <a href="#" class="sbtn" style="color:#E1306C">I</a>
         </div>
       </div>
-
-      <!-- Nav -->
-      <nav class="header-nav" aria-label="Категории">
-        <button class="nav-btn active" onclick="setNav(this)">Ноутбуки</button>
-        <button class="nav-btn" onclick="setNav(this)">Периферия</button>
-        <button class="nav-btn" onclick="setNav(this)">Бытовая техника</button>
-        <button class="nav-btn" onclick="setNav(this)">Косм. оборудование</button>
-        <button class="nav-btn" onclick="setNav(this)">Мед. оборудование</button>
-        <button class="nav-btn" onclick="setNav(this)">Доставка и оплата</button>
-        <button class="nav-btn" onclick="setNav(this)">Гарантия</button>
-        <button class="nav-btn" onclick="setNav(this)">О компании</button>
-        <button class="nav-btn accent">🔥 Акции</button>
-        <button class="nav-btn" onclick="setNav(this)">Юр. лица / КП</button>
-      </nav>
+      <div class="fcol"><h4>Каталог</h4><ul>
+        <li><a href="#" onclick="navFilter('laptop',document.querySelectorAll('.nav-btn')[1]);return false">Игровые ноутбуки</a></li>
+        <li><a href="#" onclick="navFilter('monitor',document.querySelectorAll('.nav-btn')[2]);return false">Мониторы</a></li>
+        <li><a href="#" onclick="navFilter('stand',document.querySelectorAll('.nav-btn')[3]);return false">Подставки</a></li>
+        <li><a href="#" onclick="navFilter('tech',document.querySelectorAll('.nav-btn')[4]);return false">Техника</a></li>
+        <li><a href="#" onclick="navFilter('all',document.querySelectorAll('.nav-btn')[0]);return false">Все товары</a></li>
+      </ul></div>
+      <div class="fcol"><h4>Покупателям</h4><ul>
+        <li><a href="#">Доставка и оплата</a></li>
+        <li><a href="#">Гарантия и возврат</a></li>
+        <li><a href="#">Предзаказ</a></li>
+        <li><a href="#">Рассрочка Kaspi</a></li>
+        <li><a href="#" onclick="openQO(null,'b2b');return false">Юр. лица / КП</a></li>
+        <li><a href="#">О компании</a></li>
+      </ul></div>
+      <div class="fcol"><h4>Контакты</h4><ul>
+        <li><span>+7 747 043 67 47</span></li>
+        <li><span>Алматы, Казахстан</span></li>
+        <li><span>пн–пт 9:00–19:00</span></li>
+        <li><a class="al" href="https://wa.me/77470436747" target="_blank" rel="noopener">Написать в WhatsApp</a></li>
+        <li><a href="https://kaspi.kz/shop/search/?q=%3AallMerchants%3A30093000" target="_blank" rel="noopener">Kaspi магазин</a></li>
+        <li><a href="https://m.halykmarket.kz/merchant/27172" target="_blank" rel="noopener">Halyk Market</a></li>
+      </ul></div>
     </div>
-  </header>
-
-  <!-- ============================================================
-       MAIN
-  ============================================================ -->
-  <main>
-    <div class="container">
-
-      <!-- HERO -->
-      <section class="hero" aria-label="Главный баннер">
-        <div class="hero-content">
-          <div class="hero-tags">
-            <span class="tag tag-red">Новинка</span>
-            <span class="tag">Предзаказ</span>
-          </div>
-          <h1>
-            Игровые ноутбуки<br>
-            <span class="accent-text">Thunderobot</span> — в Казахстане
-          </h1>
-          <p class="hero-sub">
-            RTX 4070 / 4060 · 165Hz QHD · Поставка до Алматы ~8 дней.<br>
-            Официальная гарантия. Рассрочка Kaspi.
-          </p>
-          <div class="hero-actions">
-            <button class="btn-primary">Смотреть каталог</button>
-            <button class="btn-outline-white">Подбор ноутбука</button>
-          </div>
-        </div>
-        <div class="hero-price-card">
-          <div class="hero-price-label">от</div>
-          <div class="hero-price">549 990 <span>₸</span></div>
-          <div class="hero-price-old">629 990 ₸</div>
-          <div class="hero-price-disc">Скидка 13%</div>
-        </div>
-      </section>
-
-      <!-- TRUST BADGES -->
-      <section class="trust-grid" aria-label="Преимущества">
-        <div class="trust-card">
-          <div class="trust-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            </svg>
-          </div>
-          <div>
-            <div class="trust-title">Официальная гарантия</div>
-            <div class="trust-sub">12–24 месяца на всё</div>
-          </div>
-        </div>
-        <div class="trust-card">
-          <div class="trust-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2">
-              <rect x="1" y="3" width="15" height="13"/>
-              <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
-              <circle cx="5.5" cy="18.5" r="2.5"/>
-              <circle cx="18.5" cy="18.5" r="2.5"/>
-            </svg>
-          </div>
-          <div>
-            <div class="trust-title">Поставка ~8 дней</div>
-            <div class="trust-sub">до Алматы, далее по РК</div>
-          </div>
-        </div>
-        <div class="trust-card">
-          <div class="trust-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2">
-              <line x1="12" y1="1" x2="12" y2="23"/>
-              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-            </svg>
-          </div>
-          <div>
-            <div class="trust-title">Рассрочка / Kaspi</div>
-            <div class="trust-sub">0–12 месяцев</div>
-          </div>
-        </div>
-        <div class="trust-card">
-          <div class="trust-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2">
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-            </svg>
-          </div>
-          <div>
-            <div class="trust-title">Консультация</div>
-            <div class="trust-sub">WhatsApp · Telegram</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- PREORDER NOTE -->
-      <div class="preorder-info">
-        <div class="preorder-icon">📦</div>
-        <div>
-          <strong>О предзаказе</strong>
-          <p>Большинство товаров доступны по предзаказу. Базовый срок поставки до Алматы — около 8 дней, затем доставка по Казахстану. Срок указан на каждой карточке товара.</p>
-        </div>
-      </div>
-
-      <!-- PRODUCTS -->
-      <section aria-label="Каталог ноутбуков">
-        <div class="section-header">
-          <h2>Игровые ноутбуки</h2>
-          <a href="#">Все ноутбуки →</a>
-        </div>
-
-        <!-- Filter strip -->
-        <div class="filter-strip" role="group" aria-label="Быстрые фильтры">
-          <button class="filter-chip active" onclick="setFilter(this)">Все</button>
-          <button class="filter-chip" onclick="setFilter(this)">RTX 4070</button>
-          <button class="filter-chip" onclick="setFilter(this)">RTX 4060</button>
-          <button class="filter-chip" onclick="setFilter(this)">до 600 000 ₸</button>
-          <button class="filter-chip" onclick="setFilter(this)">32GB RAM</button>
-          <button class="filter-chip" onclick="setFilter(this)">165Hz+</button>
-          <button class="filter-chip" onclick="setFilter(this)">QHD</button>
-          <button class="filter-chip accent-chip" onclick="setFilter(this)">Все фильтры ↓</button>
-        </div>
-
-        <div class="product-grid">
-
-          <!-- Card 1 -->
-          <article class="product-card">
-            <div class="product-image">
-              <div class="product-tags">
-                <span class="tag tag-red">−15%</span>
-                <span class="tag">Предзаказ</span>
-              </div>
-              <button class="product-wish" aria-label="В избранное" onclick="this.classList.toggle('active')">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2">
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-                </svg>
-              </button>
-              <div class="product-image-placeholder">Фото товара</div>
-              <button class="product-compare" title="Сравнить">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polyline points="9 11 12 14 22 4"/>
-                  <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
-                </svg>
-              </button>
-            </div>
-            <div class="product-body">
-              <div class="product-brand">Thunderobot</div>
-              <div class="product-name">911 X Wild Beast · RTX 4070 / 16" 165Hz QHD</div>
-              <div class="product-specs">
-                <span class="spec-chip">i9-14900H</span>
-                <span class="spec-chip">32GB DDR5</span>
-                <span class="spec-chip">1TB NVMe</span>
-                <span class="spec-chip">RGB</span>
-              </div>
-              <div class="product-price-row">
-                <span class="product-price">849 990 ₸</span>
-                <span class="product-price-old">999 990 ₸</span>
-              </div>
-              <div class="product-avail avail-pre">📦 Предзаказ · поставка ~8 дн.</div>
-              <div class="product-actions">
-                <button class="btn-primary">В корзину</button>
-                <button class="product-icon-btn" title="Купить в 1 клик">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="2">
-                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </article>
-
-          <!-- Card 2 -->
-          <article class="product-card">
-            <div class="product-image">
-              <div class="product-tags">
-                <span class="tag tag-green">В наличии</span>
-              </div>
-              <button class="product-wish" aria-label="В избранное" onclick="this.classList.toggle('active')">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2">
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-                </svg>
-              </button>
-              <div class="product-image-placeholder">Фото товара</div>
-              <button class="product-compare" title="Сравнить">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polyline points="9 11 12 14 22 4"/>
-                  <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
-                </svg>
-              </button>
-            </div>
-            <div class="product-body">
-              <div class="product-brand">Thunderobot</div>
-              <div class="product-name">ST Plus · RTX 4060 / 15.6" 144Hz</div>
-              <div class="product-specs">
-                <span class="spec-chip">i7-13700H</span>
-                <span class="spec-chip">16GB DDR5</span>
-                <span class="spec-chip">512GB</span>
-              </div>
-              <div class="product-price-row">
-                <span class="product-price">549 990 ₸</span>
-              </div>
-              <div class="product-avail avail-in">● В наличии, Алматы</div>
-              <div class="product-actions">
-                <button class="btn-primary">В корзину</button>
-                <button class="product-icon-btn" title="Купить в 1 клик">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="2">
-                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </article>
-
-          <!-- Card 3 -->
-          <article class="product-card">
-            <div class="product-image">
-              <div class="product-tags">
-                <span class="tag tag-red">Хит</span>
-                <span class="tag">Предзаказ</span>
-              </div>
-              <button class="product-wish active" aria-label="В избранное" onclick="this.classList.toggle('active')">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2">
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-                </svg>
-              </button>
-              <div class="product-image-placeholder">Фото товара</div>
-              <button class="product-compare" title="Сравнить">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polyline points="9 11 12 14 22 4"/>
-                  <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
-                </svg>
-              </button>
-            </div>
-            <div class="product-body">
-              <div class="product-brand">Thunderobot</div>
-              <div class="product-name">Zero · RTX 4060 / 16" 165Hz QHD</div>
-              <div class="product-specs">
-                <span class="spec-chip">Ryzen 7 7745HX</span>
-                <span class="spec-chip">32GB</span>
-                <span class="spec-chip">1TB</span>
-              </div>
-              <div class="product-price-row">
-                <span class="product-price">699 990 ₸</span>
-                <span class="product-price-old">749 990 ₸</span>
-              </div>
-              <div class="product-avail avail-pre">📦 Предзаказ · поставка ~8 дн.</div>
-              <div class="product-actions">
-                <button class="btn-primary">В корзину</button>
-                <button class="product-icon-btn" title="Купить в 1 клик">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="2">
-                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </article>
-
-          <!-- Compare promo -->
-          <div class="compare-promo">
-            <div>
-              <div class="compare-promo-bar"></div>
-              <h3>Сравни до 4 ноутбуков в один клик</h3>
-              <p>Характеристики, цена, наличие — в одной таблице. Отличия подсвечиваются автоматически.</p>
-            </div>
-            <div class="compare-promo-bottom">
-              <button class="compare-promo-btn">Перейти к сравнению →</button>
-              <div class="compare-slots">
-                <div class="compare-slot">+ добавить</div>
-                <div class="compare-slot">+ добавить</div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- B2B BANNER -->
-      <div class="b2b-banner">
-        <div>
-          <div class="b2b-eyebrow">Для бизнеса</div>
-          <h3>Юридическим лицам — специальные условия</h3>
-          <p>Счета-фактуры · Оплата по БИН · Корпоративная рассрочка · Запрос коммерческого предложения</p>
-        </div>
-        <div class="b2b-actions">
-          <button class="btn-outline">Подробнее</button>
-          <button class="btn-primary">Запросить КП</button>
-        </div>
-      </div>
-
-      <!-- CATEGORIES -->
-      <section aria-label="Все категории">
-        <div class="section-header">
-          <h2>Все категории</h2>
-        </div>
-        <div class="category-grid">
-          <div class="category-card featured">
-            <div class="cat-icon">💻</div>
-            <div class="cat-name">Ноутбуки</div>
-            <div class="cat-count">48 моделей</div>
-          </div>
-          <div class="category-card">
-            <div class="cat-icon">🖱️</div>
-            <div class="cat-name">Периферия</div>
-            <div class="cat-count">Мыши, клавиатуры</div>
-          </div>
-          <div class="category-card">
-            <div class="cat-icon">🏠</div>
-            <div class="cat-name">Бытовая техника</div>
-            <div class="cat-count">Мелко-бытовая</div>
-          </div>
-          <div class="category-card">
-            <div class="cat-icon">✨</div>
-            <div class="cat-name">Косм. оборудование</div>
-            <div class="cat-count">С сертификатами</div>
-          </div>
-          <div class="category-card">
-            <div class="cat-icon">🩺</div>
-            <div class="cat-name">Мед. оборудование</div>
-            <div class="cat-count">Лицензированное</div>
-          </div>
-        </div>
-      </section>
-
-    </div>
-  </main>
-
-  <!-- ============================================================
-       FOOTER
-  ============================================================ -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-
-        <div class="footer-brand">
-          <a href="/" class="logo">
-            <div class="logo-mark"><span>GTZ</span></div>
-            <div class="logo-text">
-              <div class="name">JOHNGALT</div>
-              <div class="sub">AZ</div>
-            </div>
-          </a>
-          <p class="footer-about">
-            Официальный импортёр игровых ноутбуков и оборудования в Казахстане.<br>
-            ИП «JOHNGALTAZ» · БИН: 990819301421
-          </p>
-          <div class="footer-socials">
-            <a href="https://wa.me/77470436747" class="social-btn social-wa" target="_blank" rel="noopener" aria-label="WhatsApp">W</a>
-            <a href="#" class="social-btn social-tg" aria-label="Telegram">T</a>
-            <a href="#" class="social-btn social-ig" aria-label="Instagram">I</a>
-          </div>
-        </div>
-
-        <div class="footer-col">
-          <h4>Каталог</h4>
-          <ul>
-            <li><a href="#">Игровые ноутбуки</a></li>
-            <li><a href="#">Периферия</a></li>
-            <li><a href="#">Бытовая техника</a></li>
-            <li><a href="#">Косм. оборудование</a></li>
-            <li><a href="#">Мед. оборудование</a></li>
-            <li><a href="#">Акции и скидки</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h4>Покупателям</h4>
-          <ul>
-            <li><a href="#">Доставка и оплата</a></li>
-            <li><a href="#">Гарантия и возврат</a></li>
-            <li><a href="#">Предзаказ</a></li>
-            <li><a href="#">Рассрочка Kaspi</a></li>
-            <li><a href="#">Юр. лица / КП</a></li>
-            <li><a href="#">О компании</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h4>Контакты</h4>
-          <ul>
-            <li><span>+7 747 043 67 47</span></li>
-            <li><span>Алматы, Казахстан</span></li>
-            <li><span>пн–пт 9:00–19:00</span></li>
-            <li><a class="accent-link" href="https://wa.me/77470436747" target="_blank" rel="noopener">Написать в WhatsApp</a></li>
-            <li><a href="https://kaspi.kz/shop/search/?q=%3AallMerchants%3A30093000" target="_blank" rel="noopener">Наш магазин на Kaspi</a></li>
-            <li><a href="https://m.halykmarket.kz/merchant/27172" target="_blank" rel="noopener">Halyk Market</a></li>
-          </ul>
-        </div>
-
-      </div>
-
-      <div class="footer-bottom">
-        <div class="footer-bottom-left">© 2026 JOHNGALTAZ. Все права защищены.</div>
-        <div class="footer-bottom-right">
-          <a href="#">Политика конфиденциальности</a>
-          <a href="#">Пользовательское соглашение</a>
-          <a href="#">Cookie</a>
-        </div>
+    <div class="fbot">
+      <div class="fbot-l">© 2026 JOHNGALTAZ. Все права защищены.</div>
+      <div class="fbot-r">
+        <a href="#">Политика конфиденциальности</a>
+        <a href="#">Пользовательское соглашение</a>
+        <a href="#">Cookie</a>
       </div>
     </div>
-  </footer>
+  </div>
+</footer>
 
-  <!-- FLOATING WHATSAPP -->
-  <a class="float-wa" href="https://wa.me/77470436747" target="_blank" rel="noopener" aria-label="Написать в WhatsApp">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2">
-      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-    </svg>
-  </a>
-  <div class="float-wa-tooltip">Написать в WhatsApp</div>
+<!-- FLOAT WA -->
+<a class="fwa" href="https://wa.me/77470436747" target="_blank" rel="noopener" aria-label="WhatsApp" title="Написать в WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+</a>
 
-  <!-- ============================================================
-       JS
-  ============================================================ -->
-  <script>
-    /* Language switcher */
-    function setLang(lang, btn) {
-      document.querySelectorAll('.lang-switcher button').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-    }
+<!-- CART DRAWER -->
+<div class="ov" id="cartOv" onclick="closeCart()"></div>
+<div class="drawer" id="cartDrawer">
+  <div class="drw-hdr">
+    <h3>Корзина <span id="cartCnt" style="font-size:14px;color:var(--nd2)"></span></h3>
+    <button class="drw-close" onclick="closeCart()">×</button>
+  </div>
+  <div class="drw-body" id="cartBody"></div>
+  <div class="drw-foot" id="cartFoot" style="display:none">
+    <div class="cart-tot"><span class="cart-tot-l">Итого:</span><span class="cart-tot-r" id="cartTotal"></span></div>
+    <button class="btn btn-red" onclick="checkout()" style="width:100%;padding:13px;font-size:14px">Оформить заказ</button>
+    <div style="text-align:center;font-size:11px;color:var(--nd2);margin-top:8px">Рассрочка Kaspi доступна при оформлении</div>
+  </div>
+</div>
 
-    /* Currency switcher */
-    function setCurrency(cur, btn) {
-      document.querySelectorAll('.currency-switcher button').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-    }
+<!-- PRODUCT MODAL -->
+<div class="modal-ov" id="modalOv" onclick="if(event.target===this)closeModal()">
+  <div class="modal" id="modalBox">
+    <div class="modal-cr"><button class="modal-close" onclick="closeModal()">×</button></div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
 
-    /* Nav active state */
-    function setNav(btn) {
-      document.querySelectorAll('.nav-btn:not(.accent)').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-    }
+<!-- QUICK ORDER / CONSULT MODAL -->
+<div class="qo-ov" id="qoOv">
+  <div class="qo-box">
+    <div class="qo-top">
+      <h3 id="qoTitle">Купить в 1 клик</h3>
+      <button class="qo-close-btn" onclick="closeQO()">×</button>
+    </div>
+    <p id="qoSub" style="margin-top:6px;margin-bottom:18px"></p>
+    <div class="field"><label>Ваше имя</label><input type="text" id="qoName" placeholder="Как к вам обращаться?"/></div>
+    <div class="field"><label>Телефон</label><input type="tel" id="qoPhone" placeholder="+7 ___ ___ __ __"/></div>
+    <div class="field" id="qoComField"><label>Комментарий / вопрос</label><textarea id="qoCom" rows="3" placeholder="Уточнения, параметры, бюджет…"></textarea></div>
+    <div class="qo-acts">
+      <button class="btn btn-red" onclick="submitQO()">Отправить заявку</button>
+      <button class="btn btn-outline" onclick="closeQO()">Отмена</button>
+    </div>
+  </div>
+</div>
 
-    /* Filter chips */
-    function setFilter(chip) {
-      document.querySelectorAll('.filter-chip:not(.accent-chip)').forEach(c => c.classList.remove('active'));
-      if (!chip.classList.contains('accent-chip')) {
-        chip.classList.add('active');
-      }
-    }
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
 
-    /* Wishlist persistence (session) */
-    document.querySelectorAll('.product-wish').forEach(btn => {
-      btn.addEventListener('click', function() {
-        const count = document.querySelectorAll('.product-wish.active').length;
-        /* Update wishlist badge here if needed */
-      });
-    });
+<script>
+/* ===== DATA ===== */
+const P = [
+  {id:1,cat:'laptop',brand:'ThundeRobot',name:'ThundeRobot Zero Ultra XT R15',short:'Zero Ultra XT R15 · 15.6" / i9 / RTX 4060',price:969990,kaspi:'40 417 ₸ × 24 мес',reviews:37,inStock:false,
+   tags:['Предзаказ'],
+   specs:['i9-14900HX','32 Гб DDR5','1 ТБ NVMe','RTX 4060 8Гб','165Hz QHD'],
+   table:[['Экран','15.6" · 2560×1440 · IPS · 165 Гц · матовый'],['Процессор','Intel Core i9-14900HX · 24 ядра · до 5800 МГц'],['Оперативная память','32 Гб DDR5 · 2 слота'],['Видеокарта','NVIDIA GeForce RTX 4060 · 8 Гб GDDR5'],['Накопитель','SSD M.2 · 1000 Гб'],['ОС','Windows 11 Pro'],['Wi-Fi / BT','802.11ac · Bluetooth 5.2'],['Интерфейсы','USB Type-C · USB 3.2 Gen2 · DisplayPort · RJ-45'],['Подсветка клавиатуры','Да'],['Цвет','Серый · влагозащищённый'],['Год выпуска','2024']]},
 
-    /* Add to cart feedback */
-    document.querySelectorAll('.product-actions .btn-primary').forEach(btn => {
-      btn.addEventListener('click', function() {
-        const orig = this.textContent;
-        this.textContent = 'Добавлено ✓';
-        this.style.background = '#22a06b';
-        setTimeout(() => {
-          this.textContent = orig;
-          this.style.background = '';
-        }, 1500);
+  {id:2,cat:'laptop',brand:'MECHREVO',name:'MECHREVO 16 Pro (RTX 5070Ti)',short:'16 Pro · 16" / Ryzen 9 / RTX 5070Ti',price:1089904,kaspi:'45 413 ₸ × 24 мес',reviews:3,inStock:false,
+   tags:['Предзаказ','RTX 5070Ti'],
+   specs:['Ryzen 9 8940HX','32 Гб','1 ТБ M.2','RTX 5070Ti','300Hz QHD+'],
+   table:[['Экран','16" · 2560×1600 · IPS · 300 Гц · матовый'],['Процессор','AMD Ryzen 9 8940HX · 16 ядер · до 5300 МГц'],['Оперативная память','32 Гб'],['Видеокарта','RTX 5070Ti (280W SIC)'],['Накопитель','SSD M.2 · 1000 Гб'],['ОС','Windows 11 Pro'],['Подсветка клавиатуры','Да'],['Цвет','Чёрный'],['Вес','4 кг']]},
 
-        /* Update cart badge */
-        const badge = document.querySelector('.action-btn .badge');
-        if (badge) {
-          const current = parseInt(badge.textContent) || 0;
-          badge.textContent = current + 1;
-        }
-      });
-    });
-  </script>
+  {id:3,cat:'monitor',brand:'ThundeRobot',name:'Монитор ThundeRobot DF27C240L',short:'DF27C240L · 27" / VA / 240Hz / изогнутый',price:189990,kaspi:'7 917 ₸ × 24 мес',reviews:306,inStock:false,
+   tags:['Предзаказ','240Hz'],
+   specs:['27" VA изогнутый','1920×1080','240 Гц','0.5 мс','HDMI + DP'],
+   table:[['Диагональ','27" · изогнутый экран'],['Разрешение','1920×1080 (FHD)'],['Тип матрицы','TFT VA'],['Частота обновления','240 Гц'],['Время отклика','0.5 мс'],['Яркость','330 кд/м²'],['Контрастность','1 000 : 1 (динам. 1 000 000 : 1)'],['Покрытие','Матовое'],['Подключение','HDMI · DisplayPort'],['Выходы','Разъём для наушников'],['Регулировка по высоте','Да · игровой монитор'],['Питание','36 Вт'],['Вес','4.9 кг']]},
 
+  {id:4,cat:'stand',brand:'FLYDIGI',name:'Подставка FLYDIGI BS2 Pro',short:'BS2 Pro · активное охл. · до 21" · RGB',price:39168,kaspi:'3 264 ₸ × 12 мес',reviews:48,inStock:false,
+   tags:['Предзаказ'],
+   specs:['До 21"','120мм вент.','1300–4000 RPM','RGB подсветка','USB Type-C'],
+   table:[['Тип','Активное охлаждение'],['Макс. диагональ','21"'],['Вентилятор','1 шт · 120 мм'],['Скорость вращения','1300–4000 RPM'],['Уровень шума','до 57 dB'],['Разъём питания','USB Type-C'],['Подсветка','Да (RGB)'],['Габариты','460 × 260 × 76 мм'],['Вес','1800 г'],['Цвет','Белый']]},
+
+  {id:5,cat:'stand',brand:'FLYDIGI',name:'Подставка FLYDIGI BS1',short:'BS1 · активное охл. · до 21" · тихая',price:33234,kaspi:'2 770 ₸ × 12 мес',reviews:37,inStock:false,
+   tags:['Предзаказ'],
+   specs:['До 21"','120мм вент.','55dB','RGB подсветка','1800 г'],
+   table:[['Тип','Активное охлаждение'],['Макс. диагональ','15.6 / 16 / 17.3 / 21"'],['Вентилятор','1 шт · 120 мм'],['Уровень шума','55 dB'],['Подсветка','Да'],['Габариты','454 × 237 × 77 мм'],['Вес','1800 г'],['Цвет','Белый']]},
+
+  {id:6,cat:'tech',brand:'EcoFlow',name:'Зарядная станция EcoFlow Delta 3',short:'Delta 3 · 1024Вт·ч / 1800Вт / зарядка 1ч',price:290990,kaspi:'12 125 ₸ × 24 мес',reviews:18,inStock:false,
+   tags:['Предзаказ'],
+   specs:['1024 Вт·ч','1800 Вт','Зарядка за 1 ч','3000 циклов','14 кг'],
+   table:[['Ёмкость','1024 Вт·ч / 320 000 мАч'],['Мощность','1800 Вт'],['Выходы','220В×4 · USB-A×2 · USB-C×2 · прикуриватель'],['Зарядка','Сеть / солнечная батарея / авто'],['Время зарядки','~1 час'],['Ресурс','3000 циклов'],['Защиты','КЗ · перезаряд · перегрев · перегрузка'],['Размеры','398 × 200 × 284 мм'],['Вес','14 кг']]},
+
+  {id:7,cat:'tech',brand:'Creality',name:'Сушилка филамента Creality Dryer Plus',short:'Dryer Plus · 2кг · 1.75 и 2.85мм',price:39878,kaspi:'3 324 ₸ × 12 мес',reviews:29,inStock:false,
+   tags:['Предзаказ'],
+   specs:['2 кг пластика','1.75 мм','2.85 мм','343×300 мм','2500 г'],
+   table:[['Тип','Сушилка филамента'],['Совместимость','Пластик 1.75 мм и 2.85 мм'],['Объём камеры','2 кг пластика'],['Ширина × Высота','343 × 300 мм'],['Вес','2500 г']]},
+
+  {id:8,cat:'tech',brand:'Anycubic',name:'3D-принтер Anycubic Photon Mono 4',short:'Photon Mono 4 · LCD 10K · закрытая камера',price:140000,kaspi:'5 834 ₸ × 24 мес',reviews:30,inStock:false,
+   tags:['Предзаказ'],
+   specs:['LCD 10K','153×165×87мм','Слой 0.03–0.15мм','Фотополимер','4 кг'],
+   table:[['Технология','LCD / фотополимер'],['Экран','7" · разрешение 10K'],['Рабочая зона','153 × 165 × 87 мм'],['Высота слоя','0.03–0.15 мм (макс. слой 300 мкм)'],['Конструкция','Закрытая камера'],['Применение','Дом · медицина · дизайн · промышленность'],['Габариты корпуса','235 × 391 × 230 мм'],['Вес','4 кг']]},
+
+  {id:9,cat:'tech',brand:'iWord',name:'Ударная установка iWord G3001',short:'G3001 · 6 барабанов · USB · влагозащита',price:20993,kaspi:'3 499 ₸ × 6 мес',reviews:23,inStock:false,
+   tags:['Предзаказ'],
+   specs:['6 барабанов','AUX / USB','Встроенный динамик','Влагозащита','430×310мм'],
+   table:[['Тип','Электронная ударная установка'],['Барабанов','6 (бас · том · малый · пэды)'],['Размер площадки','430 × 310 × 60 мм'],['Разъёмы','Наушники · AUX · USB'],['Дополнительно','Встроенный динамик · влагозащита'],['Материал','Пластик'],['Цвет','Чёрный']]},
+];
+
+/* ===== STATE ===== */
+let cart = [], curSym = '₸', curCat = 'all';
+const TIT = {all:'Все товары',laptop:'Игровые ноутбуки',monitor:'Мониторы',stand:'Подставки',tech:'Техника'};
+const CHIP_LBL = {all:'Все',laptop:'Ноутбуки',monitor:'Мониторы',stand:'Подставки',tech:'Техника'};
+
+/* ===== HELPERS ===== */
+function fmt(n){return Math.round(n).toLocaleString('ru-RU')+' '+curSym}
+function tagH(t){const m={'Предзаказ':'tag-d','RTX 5070Ti':'tag-r','240Hz':'tag-o','В наличии':'tag-g'};return`<span class="tag ${m[t]||'tag-d'}">${t}</span>`}
+function stars(n){return'★'.repeat(n)+'☆'.repeat(5-n)}
+
+/* ===== RENDER ===== */
+function render(list){
+  const g = document.getElementById('productGrid');
+  if(!list.length){g.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:48px;color:var(--nd2);font-size:14px">Товары не найдены</div>';return}
+  g.innerHTML = list.map(p=>`
+    <article class="pcard">
+      <div class="pimg" onclick="openModal(${p.id})">
+        <div class="ptags">${p.tags.map(tagH).join('')}</div>
+        <button class="pwish" onclick="event.stopPropagation();toggleWish(this)" aria-label="В избранное">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+        <div class="pimg-ph">Фото товара</div>
+        <button class="pcmp" onclick="event.stopPropagation();showToast('Добавлено в сравнение')" title="Сравнить">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        </button>
+      </div>
+      <div class="pbody">
+        <div class="pbrand">${p.brand}</div>
+        <div class="pname" onclick="openModal(${p.id})">${p.short}</div>
+        <div class="pspecs">${p.specs.map(s=>`<span class="spec">${s}</span>`).join('')}</div>
+        <div class="pprow"><span class="pprice">${fmt(p.price)}</span></div>
+        <div class="pavail ${p.inStock?'av-in':'av-pre'}">${p.inStock?'● В наличии, Алматы':'📦 Предзаказ · ~8 дней до Алматы'}</div>
+        <div class="pkaspi">Рассрочка Kaspi: ${p.kaspi}</div>
+        <div class="pacts">
+          <button class="btn btn-red" onclick="addToCart(${p.id})">В корзину</button>
+          <button class="btn-icon" onclick="openQO(${p.id},'buy')" title="Купить в 1 клик">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </button>
+        </div>
+      </div>
+    </article>
+  `).join('') + (list===P?`
+    <div class="cmp-promo">
+      <div><div class="cmp-bar"></div><h3>Сравни до 4 товаров в один клик</h3><p>Характеристики, цена, наличие — в одной таблице. Отличия подсвечиваются.</p></div>
+      <div><button class="cmp-btn" onclick="showToast('Функция сравнения скоро будет')">Перейти к сравнению →</button><div class="cmp-slots"><div class="cmp-slot">+ добавить</div><div class="cmp-slot">+ добавить</div></div></div>
+    </div>`:'');
+}
+function rerender(){render(curCat==='all'?P:P.filter(x=>x.cat===curCat))}
+
+/* ===== FILTERS ===== */
+function navFilter(cat,btn){
+  curCat=cat;
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('on'));
+  if(btn)btn.classList.add('on');
+  document.querySelectorAll('.fc:not(.acc)').forEach(fc=>fc.classList.toggle('on',fc.textContent.trim()===(CHIP_LBL[cat]||'Все')));
+  document.getElementById('secTitle').textContent=TIT[cat]||'Товары';
+  render(cat==='all'?P:P.filter(x=>x.cat===cat));
+  document.getElementById('productGrid').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function chipFilter(cat,btn){
+  curCat=cat;
+  document.querySelectorAll('.fc:not(.acc)').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById('secTitle').textContent=TIT[cat]||'Товары';
+  render(cat==='all'?P:P.filter(x=>x.cat===cat));
+}
+function sw(id,btn){document.querySelectorAll('#'+id+' button').forEach(b=>b.classList.remove('on'));btn.classList.add('on')}
+
+/* ===== SEARCH ===== */
+function doSearch(q){
+  const d=document.getElementById('srchDrop');
+  if(!q||q.length<2){d.classList.remove('show');return}
+  const f=P.filter(p=>p.name.toLowerCase().includes(q.toLowerCase())||p.brand.toLowerCase().includes(q.toLowerCase())||p.specs.some(s=>s.toLowerCase().includes(q.toLowerCase())));
+  if(!f.length){d.innerHTML='<div style="padding:12px 14px;color:var(--nd2);font-size:13px">Ничего не найдено</div>';d.classList.add('show');return}
+  d.innerHTML=f.map(p=>`<div class="sri" onclick="openModal(${p.id});closeSrch()"><div class="sri-img">Фото</div><div><div class="sri-name">${p.name}</div><div class="sri-price">${fmt(p.price)}</div></div></div>`).join('');
+  d.classList.add('show');
+}
+function closeSrch(){document.getElementById('srchDrop').classList.remove('show')}
+document.addEventListener('click',e=>{if(!e.target.closest('.srch'))closeSrch()});
+
+/* ===== MODAL ===== */
+function openModal(id){
+  const p=P.find(x=>x.id===id);if(!p)return;
+  document.getElementById('modalBody').innerHTML=`
+    <div class="m-gallery">
+      <div class="m-img-main">Фото товара</div>
+      <div style="font-size:12px;color:var(--nd2);margin-top:6px">${p.reviews} отзывов · ${stars(5)}</div>
+    </div>
+    <div class="m-info">
+      <div class="m-brand">${p.brand}</div>
+      <div class="m-name">${p.name}</div>
+      <div style="display:flex;gap:6px;margin-bottom:12px">${p.tags.map(tagH).join('')}</div>
+      <div class="m-price">${fmt(p.price)}</div>
+      <div class="m-kaspi">Рассрочка: ${p.kaspi}</div>
+      <div class="m-avail ${p.inStock?'av-in':'av-pre'}">${p.inStock?'● В наличии, Алматы':'📦 Предзаказ — поставка ~8 дней до Алматы'}</div>
+      <div class="m-specs-t">Характеристики</div>
+      <table class="m-tbl">${p.table.map(r=>`<tr><td>${r[0]}</td><td><strong>${r[1]}</strong></td></tr>`).join('')}</table>
+      <div class="m-acts">
+        <button class="btn btn-red" onclick="addToCart(${p.id});closeModal()">В корзину</button>
+        <button class="btn btn-outline" onclick="closeModal();openQO(${p.id},'buy')">Купить в 1 клик</button>
+      </div>
+    </div>`;
+  document.getElementById('modalOv').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){document.getElementById('modalOv').classList.remove('open');document.body.style.overflow=''}
+
+/* ===== CART ===== */
+function addToCart(id){
+  const p=P.find(x=>x.id===id);if(!p)return;
+  const ex=cart.find(c=>c.id===id);
+  if(ex)ex.qty++;else cart.push({...p,qty:1});
+  updBadge();showToast('✓ Добавлено: '+p.short);renderCart();
+}
+function updBadge(){document.getElementById('cartBadge').textContent=cart.reduce((s,c)=>s+c.qty,0)}
+function renderCart(){
+  const body=document.getElementById('cartBody'),foot=document.getElementById('cartFoot'),cnt=document.getElementById('cartCnt');
+  if(!cart.length){body.innerHTML='<div class="cart-empty"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ddd" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><p>Корзина пуста</p></div>';foot.style.display='none';cnt.textContent='';return}
+  const tot=cart.reduce((s,c)=>s+c.price*c.qty,0);
+  cnt.textContent='('+cart.reduce((s,c)=>s+c.qty,0)+')';
+  body.innerHTML=cart.map(c=>`
+    <div class="ci-wrap">
+      <div class="ci-img">Фото</div>
+      <div class="ci-body">
+        <div class="ci-name">${c.short}</div>
+        <div class="ci-price">${fmt(c.price*c.qty)}</div>
+        <div class="ci-qty">
+          <button class="qb" onclick="chQty(${c.id},-1)">−</button>
+          <span style="min-width:20px;text-align:center;font-size:13px;font-weight:500">${c.qty}</span>
+          <button class="qb" onclick="chQty(${c.id},1)">+</button>
+        </div>
+      </div>
+      <button class="ci-rm" onclick="rmCart(${c.id})">×</button>
+    </div>`).join('');
+  document.getElementById('cartTotal').textContent=fmt(tot);
+  foot.style.display='block';
+}
+function chQty(id,d){const c=cart.find(x=>x.id===id);if(!c)return;c.qty+=d;if(c.qty<=0)rmCart(id);else{updBadge();renderCart()}}
+function rmCart(id){cart=cart.filter(c=>c.id!==id);updBadge();renderCart()}
+function openCart(){document.getElementById('cartOv').classList.add('open');document.getElementById('cartDrawer').classList.add('open');document.body.style.overflow='hidden';renderCart()}
+function closeCart(){document.getElementById('cartOv').classList.remove('open');document.getElementById('cartDrawer').classList.remove('open');document.body.style.overflow=''}
+function checkout(){closeCart();openQO(null,'checkout')}
+
+/* ===== QUICK ORDER ===== */
+function openQO(id,mode){
+  const p=id?P.find(x=>x.id===id):null;
+  const cfg={
+    buy:{title:'Купить в 1 клик',sub:p?p.name+' — '+fmt(p.price)+'. Менеджер перезвонит за 15 минут.':'Менеджер перезвонит за 15 минут.',showCom:false},
+    consult:{title:'Подбор ноутбука',sub:'Опишите требования — GPU, бюджет, задачи. Мы подберём лучший вариант и свяжемся с вами.',showCom:true},
+    b2b:{title:'Запрос коммерческого предложения',sub:'Укажите контакты и список товаров — подготовим КП с реквизитами для вашей компании.',showCom:true},
+    checkout:{title:'Оформление заказа',sub:'Укажите контакты — менеджер свяжется и уточнит способ доставки и оплаты.',showCom:true},
+  };
+  const c=cfg[mode]||cfg.buy;
+  document.getElementById('qoTitle').textContent=c.title;
+  document.getElementById('qoSub').textContent=c.sub;
+  document.getElementById('qoComField').style.display=c.showCom?'block':'none';
+  document.getElementById('qoOv').classList.add('open');
+}
+function closeQO(){document.getElementById('qoOv').classList.remove('open')}
+function submitQO(){
+  const name=document.getElementById('qoName').value.trim();
+  const phone=document.getElementById('qoPhone').value.trim();
+  if(!phone){showToast('Пожалуйста, укажите номер телефона');return}
+  closeQO();
+  showToast('✓ Заявка отправлена! Менеджер свяжется с вами в ближайшее время.');
+  document.getElementById('qoName').value='';document.getElementById('qoPhone').value='';document.getElementById('qoCom').value='';
+}
+
+/* ===== WISH ===== */
+function toggleWish(btn){btn.classList.toggle('on');showToast(btn.classList.contains('on')?'❤ Добавлено в избранное':'Убрано из избранного')}
+
+/* ===== TOAST ===== */
+let tt;
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2800)}
+
+/* ===== KEYBOARD ===== */
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeCart();closeQO();closeSrch()}});
+
+/* ===== INIT ===== */
+render(P);renderCart();
+</script>
 </body>
 </html>
