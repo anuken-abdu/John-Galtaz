@@ -403,7 +403,7 @@ main{padding:22px 0 56px}
       <button class="nav-btn" onclick="showPage('main');navFilter('stand',this)">Подставки</button>
       <button class="nav-btn" onclick="showPage('main');navFilter('tech',this)">Техника</button>
       <button class="nav-btn" onclick="openQO(null,'consult')">Подбор</button>
-      <button class="nav-btn acc">🔥 Акции</button>
+      <button class="nav-btn acc" onclick="showPage('main');filterNew()">🔥 Новинки</button>
       <button class="nav-btn" onclick="showPage('b2b')">Юр. лица</button>
     </nav>
   </div>
@@ -488,31 +488,31 @@ main{padding:22px 0 56px}
     <div class="cgrid" style="grid-template-columns:repeat(4,1fr)">
       <div class="ccat feat" onclick="navFilter('laptop',document.querySelectorAll('.nav-btn')[1])">
         <div class="ci"><svg viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="1.5"><rect x="4" y="5" width="24" height="16" rx="2"/><path d="M1 25h30"/><path d="M12 21h8v4h-8z"/></svg></div>
-        <div class="cn">Ноутбуки</div><div class="cs">2 модели</div>
+        <div class="cn">Ноутбуки</div><div class="cs">7 моделей</div>
       </div>
       <div class="ccat" onclick="navFilter('monitor',document.querySelectorAll('.nav-btn')[2])">
         <div class="ci"><svg viewBox="0 0 32 32" fill="none" stroke="var(--text1)" stroke-width="1.5"><rect x="3" y="4" width="26" height="18" rx="2"/><path d="M16 22v5M10 27h12"/></svg></div>
-        <div class="cn">Мониторы</div><div class="cs">2 модели</div>
+        <div class="cn">Мониторы</div><div class="cs">5 моделей</div>
       </div>
       <div class="ccat" onclick="navFilter('audio',document.querySelectorAll('.nav-btn')[3])">
         <div class="ci"><svg viewBox="0 0 32 32" fill="none" stroke="var(--text1)" stroke-width="1.5"><path d="M9 18V5l12-3v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="15" r="3"/></svg></div>
-        <div class="cn">Аудио</div><div class="cs">3 товара</div>
+        <div class="cn">Аудио</div><div class="cs">7 товаров</div>
       </div>
       <div class="ccat" onclick="navFilter('drone',document.querySelectorAll('.nav-btn')[4])">
         <div class="ci"><svg viewBox="0 0 32 32" fill="none" stroke="var(--text1)" stroke-width="1.5"><circle cx="8" cy="10" r="4"/><circle cx="24" cy="10" r="4"/><circle cx="8" cy="22" r="4"/><circle cx="24" cy="22" r="4"/><rect x="12" y="13" width="8" height="6" rx="1"/><line x1="12" y1="16" x2="8" y2="13"/><line x1="20" y1="16" x2="24" y2="13"/><line x1="12" y1="16" x2="8" y2="19"/><line x1="20" y1="16" x2="24" y2="19"/></svg></div>
-        <div class="cn">Дроны</div><div class="cs">2 модели</div>
+        <div class="cn">Дроны</div><div class="cs">5 моделей</div>
       </div>
       <div class="ccat" onclick="navFilter('gadget',document.querySelectorAll('.nav-btn')[5])">
         <div class="ci"><svg viewBox="0 0 32 32" fill="none" stroke="var(--text1)" stroke-width="1.5"><rect x="8" y="2" width="16" height="28" rx="3"/><line x1="8" y1="6" x2="24" y2="6"/><line x1="8" y1="24" x2="24" y2="24"/><circle cx="16" cy="27" r="1.5"/></svg></div>
-        <div class="cn">Гаджеты</div><div class="cs">3 товара</div>
+        <div class="cn">Гаджеты</div><div class="cs">11 товаров</div>
       </div>
       <div class="ccat" onclick="navFilter('pc',document.querySelectorAll('.nav-btn')[6])">
         <div class="ci"><svg viewBox="0 0 32 32" fill="none" stroke="var(--text1)" stroke-width="1.5"><rect x="4" y="6" width="24" height="20" rx="2"/><path d="M4 22h24"/><circle cx="8" cy="25" r="1"/><path d="M20 12h4M20 16h4"/><rect x="10" y="10" width="6" height="8"/></svg></div>
-        <div class="cn">PC-компоненты</div><div class="cs">1 товар</div>
+        <div class="cn">PC-компоненты</div><div class="cs">5 товаров</div>
       </div>
       <div class="ccat" onclick="navFilter('stand',document.querySelectorAll('.nav-btn')[7])">
         <div class="ci"><svg viewBox="0 0 32 32" fill="none" stroke="var(--text1)" stroke-width="1.5"><path d="M6 20h20v2a2 2 0 01-2 2H8a2 2 0 01-2-2v-2z"/><path d="M9 20v-3a1 1 0 011-1h12a1 1 0 011 1v3"/><circle cx="16" cy="12" r="3"/><path d="M10 27l2-3h8l2 3"/></svg></div>
-        <div class="cn">Подставки / Техника</div><div class="cs">6 товаров</div>
+        <div class="cn">Подставки / Техника</div><div class="cs">10 товаров</div>
       </div>
       <div class="ccat" onclick="showPage('b2b')">
         <div class="ci"><svg viewBox="0 0 32 32" fill="none" stroke="var(--text1)" stroke-width="1.5"><rect x="5" y="10" width="22" height="18" rx="2"/><path d="M16 4v6M10 10V7a2 2 0 012-2h8a2 2 0 012 2v3"/><path d="M5 16h22"/><circle cx="16" cy="19" r="2"/></svg></div>
@@ -844,6 +844,176 @@ const P = [
    img:'images/gpu-peladn-rtx3050.jpg',tags:['Предзаказ'],keywords:['видеокарта','gpu','rtx','nvidia','3050','pc','компьютер','gaming','графика','geforce'],
    specs:['RTX 3050 6 Гб','GDDR6','GA107','HDMI/DP/DVI','200 мм'],
    table:[['Серия','GeForce RTX 30 Series'],['Графический процессор','GA107'],['Интерфейс','PCI-E 4.0'],['Техпроцесс','8 нм'],['Объём видеопамяти','6 Гб GDDR6'],['Частота памяти','1750 МГц'],['Шина','96 бит'],['Частота GPU','1042 МГц (Boost 1470 МГц)'],['CUDA ядер','2304'],['Разъёмы','HDMI · DisplayPort · DVI'],['Мониторов','до 3'],['Охлаждение','Активное · 2 вентилятора'],['Рекомендуемый БП','500 Вт'],['Размер','200 × 114 × 39 мм'],['Производитель GPU','NVIDIA']]},
+
+  // ===== ЗАГЛУШКИ (описания и фото будут заменены) =====
+
+  // Ноутбуки 19-23
+  {id:19,cat:'laptop',brand:'Lenovo',name:'Lenovo Legion Pro 5 16IRX9',short:'Legion Pro 5 · 16" / i7 / RTX 4070',price:1249990,kaspi:'52 083 ₸ × 24 мес',reviews:0,inStock:false,
+   img:'images/laptop-lenovo-legion-pro5.jpg',tags:['Предзаказ','Скоро'],keywords:['ноутбук','игровой','lenovo','legion','rtx 4070','laptop','gaming','i7'],
+   specs:['i7-14700HX','16 Гб DDR5','512 Гб SSD','RTX 4070 8Гб','165Hz 2K'],
+   table:[['Экран','16" · 2560×1600 · IPS · 165 Гц'],['Процессор','Intel Core i7-14700HX'],['ОЗУ','16 Гб DDR5'],['Видеокарта','NVIDIA RTX 4070 8 Гб'],['Накопитель','512 Гб SSD NVMe'],['ОС','Windows 11']]},
+
+  {id:20,cat:'laptop',brand:'ASUS',name:'ASUS ROG Strix G16 G614JU',short:'ROG Strix G16 · 16" / i7 / RTX 4050',price:879990,kaspi:'36 666 ₸ × 24 мес',reviews:0,inStock:false,
+   img:'images/laptop-asus-rog-strix-g16.jpg',tags:['Предзаказ','Скоро'],keywords:['ноутбук','игровой','asus','rog','strix','rtx 4050','laptop','gaming'],
+   specs:['i7-13650HX','16 Гб DDR5','512 Гб SSD','RTX 4050 6Гб','165Hz FHD+'],
+   table:[['Экран','16" · 1920×1200 · IPS · 165 Гц'],['Процессор','Intel Core i7-13650HX'],['ОЗУ','16 Гб DDR5'],['Видеокарта','NVIDIA RTX 4050 6 Гб'],['Накопитель','512 Гб SSD'],['ОС','Windows 11']]},
+
+  {id:21,cat:'laptop',brand:'MSI',name:'MSI Raider GE68 HX 14V',short:'Raider GE68 · 16" / i9 / RTX 4080',price:1599990,kaspi:'66 666 ₸ × 24 мес',reviews:0,inStock:false,
+   img:'images/laptop-msi-raider-ge68.jpg',tags:['Предзаказ','Скоро'],keywords:['ноутбук','игровой','msi','raider','rtx 4080','laptop','gaming','i9','премиум'],
+   specs:['i9-14900HX','32 Гб DDR5','1 ТБ SSD','RTX 4080 12Гб','240Hz QHD+'],
+   table:[['Экран','16" · 2560×1600 · 240 Гц · mini LED'],['Процессор','Intel Core i9-14900HX'],['ОЗУ','32 Гб DDR5'],['Видеокарта','NVIDIA RTX 4080 12 Гб'],['Накопитель','1 ТБ SSD NVMe'],['ОС','Windows 11 Pro']]},
+
+  {id:22,cat:'laptop',brand:'HP',name:'HP OMEN 16-xf0015ur',short:'OMEN 16 · 16.1" / Ryzen 7 / RTX 4060',price:949990,kaspi:'39 583 ₸ × 24 мес',reviews:0,inStock:false,
+   img:'images/laptop-hp-omen-16.jpg',tags:['Предзаказ','Скоро'],keywords:['ноутбук','игровой','hp','omen','rtx 4060','laptop','gaming','ryzen'],
+   specs:['Ryzen 7 7840HS','16 Гб DDR5','512 Гб SSD','RTX 4060 8Гб','165Hz FHD'],
+   table:[['Экран','16.1" · 1920×1080 · IPS · 165 Гц'],['Процессор','AMD Ryzen 7 7840HS'],['ОЗУ','16 Гб DDR5'],['Видеокарта','NVIDIA RTX 4060 8 Гб'],['Накопитель','512 Гб SSD'],['ОС','Windows 11']]},
+
+  {id:23,cat:'laptop',brand:'Acer',name:'Acer Nitro V 15 ANV15-51',short:'Nitro V 15 · 15.6" / i5 / RTX 4050',price:699990,kaspi:'29 166 ₸ × 24 мес',reviews:0,inStock:false,
+   img:'images/laptop-acer-nitro-v15.jpg',tags:['Предзаказ','Скоро'],keywords:['ноутбук','игровой','acer','nitro','rtx 4050','laptop','gaming','бюджетный','i5'],
+   specs:['i5-13420H','16 Гб DDR5','512 Гб SSD','RTX 4050 6Гб','144Hz FHD'],
+   table:[['Экран','15.6" · 1920×1080 · IPS · 144 Гц'],['Процессор','Intel Core i5-13420H'],['ОЗУ','16 Гб DDR5'],['Видеокарта','NVIDIA RTX 4050 6 Гб'],['Накопитель','512 Гб SSD'],['ОС','Windows 11']]},
+
+  // Мониторы 24-26
+  {id:24,cat:'monitor',brand:'ThundeRobot',name:'Монитор ThundeRobot KF24F144L',short:'KF24F144L · 24" / IPS / 144Hz',price:89990,kaspi:'3 750 ₸ × 24 мес',reviews:0,inStock:false,
+   img:'images/monitor-thunderobot-kf24.jpg',tags:['Предзаказ','Скоро'],keywords:['монитор','24','144hz','ips','thunderobot','бюджетный','игровой'],
+   specs:['24" IPS','1920×1080','144 Гц','1 мс','HDMI + DP'],
+   table:[['Диагональ','24"'],['Разрешение','1920×1080 (FHD)'],['Тип матрицы','IPS'],['Частота обновления','144 Гц'],['Время отклика','1 мс'],['Подключение','HDMI · DisplayPort']]},
+
+  {id:25,cat:'monitor',brand:'INNOCN',name:'Монитор INNOCN 32C1U-D 4K',short:'32C1U-D · 32" / IPS / 4K / USB-C',price:229990,kaspi:'9 583 ₸ × 24 мес',reviews:0,inStock:false,
+   img:'images/monitor-innocn-32c1u.jpg',tags:['Предзаказ','Скоро'],keywords:['монитор','32','4k','uhd','ips','innocn','usb-c','дизайн','профессиональный'],
+   specs:['32" IPS','3840×2160','60 Гц','USB-C 65Вт','HDR400'],
+   table:[['Диагональ','32"'],['Разрешение','3840×2160 (4K UHD)'],['Тип матрицы','IPS'],['Частота обновления','60 Гц'],['Подключение','HDMI · DP · USB-C (65 Вт)'],['HDR','HDR400']]},
+
+  {id:26,cat:'monitor',brand:'TITAN ARMY',name:'Монитор TITAN ARMY 34" Ultrawide',short:'34" Ultrawide · VA / 165Hz / UWQHD',price:269990,kaspi:'11 250 ₸ × 24 мес',reviews:0,inStock:false,
+   img:'images/monitor-titan-army-34uw.jpg',tags:['Предзаказ','Скоро'],keywords:['монитор','34','ultrawide','изогнутый','165hz','uwqhd','titan'],
+   specs:['34" VA изогнутый','3440×1440','165 Гц','1 мс','HDMI + DP'],
+   table:[['Диагональ','34" · изогнутый'],['Разрешение','3440×1440 (UWQHD)'],['Тип матрицы','VA'],['Частота обновления','165 Гц'],['Время отклика','1 мс'],['Подключение','HDMI ×2 · DP']]},
+
+  // Аудио 27-30
+  {id:27,cat:'audio',brand:'QCY',name:'TWS наушники QCY T13 ANC',short:'QCY T13 ANC · шумоподавление · 30 ч · BT 5.3',price:14990,kaspi:'2 499 ₸ × 6 мес',reviews:0,inStock:false,
+   img:'images/earbuds-qcy-t13.jpg',tags:['Предзаказ','Скоро'],keywords:['наушники','tws','беспроводные','bluetooth','шумоподавление','anc','qcy','вкладыши'],
+   specs:['ANC','Bluetooth 5.3','30 ч (с кейсом)','USB-C','IPX4'],
+   table:[['Тип','TWS (вкладыши)'],['Шумоподавление','ANC'],['Bluetooth','5.3'],['Время работы','7 ч (30 ч с кейсом)'],['Зарядка','USB-C'],['Водозащита','IPX4']]},
+
+  {id:28,cat:'audio',brand:'HyperX',name:'Гарнитура HyperX Cloud III Wireless',short:'Cloud III Wireless · 120 ч · DTS · микрофон',price:69990,kaspi:'5 833 ₸ × 12 мес',reviews:0,inStock:false,
+   img:'images/headset-hyperx-cloud3.jpg',tags:['Предзаказ','Скоро'],keywords:['наушники','гарнитура','gaming','hyperx','cloud','беспроводные','игровая','микрофон'],
+   specs:['2.4 ГГц + BT','120 ч работы','DTS:X','Съёмный микр.','300 г'],
+   table:[['Тип','Игровая гарнитура'],['Подключение','2.4 ГГц / Bluetooth'],['Время работы','120 часов'],['Звук','DTS:X Spatial Audio'],['Микрофон','Съёмный с шумоподавлением'],['Вес','300 г']]},
+
+  {id:29,cat:'audio',brand:'JBL',name:'Колонка JBL Charge 5',short:'Charge 5 · 40 Вт · IP67 · 20 ч · пауэрбанк',price:89990,kaspi:'7 499 ₸ × 12 мес',reviews:0,inStock:false,
+   img:'images/speaker-jbl-charge5.jpg',tags:['Предзаказ','Скоро'],keywords:['колонка','портативная','bluetooth','jbl','charge','водонепроницаемая','музыка','speaker'],
+   specs:['40 Вт','IP67','20 ч работы','BT 5.1','Пауэрбанк'],
+   table:[['Тип','Портативная колонка'],['Мощность','40 Вт'],['Защита','IP67'],['Время работы','20 часов'],['Bluetooth','5.1'],['Функция пауэрбанка','Да']]},
+
+  {id:30,cat:'audio',brand:'FIFINE',name:'Микрофон FIFINE K688',short:'K688 · USB/XLR · кардиоидный · стрим/подкаст',price:34990,kaspi:'2 916 ₸ × 12 мес',reviews:0,inStock:false,
+   img:'images/mic-fifine-k688.jpg',tags:['Предзаказ','Скоро'],keywords:['микрофон','usb','xlr','стрим','подкаст','fifine','запись','вокал','podcast'],
+   specs:['USB + XLR','Кардиоидный','48 кГц / 16 бит','Мониторинг','Gain + Mute'],
+   table:[['Тип','Конденсаторный'],['Диаграмма','Кардиоидная'],['Подключение','USB / XLR'],['Частотный диапазон','70–15 000 Гц'],['Разрядность','48 кГц / 16 бит'],['Кнопки','Gain · Mute · мониторинг']]},
+
+  // Дроны 31-33
+  {id:31,cat:'drone',brand:'BetaFPV',name:'FPV дрон BetaFPV Cetus X',short:'Cetus X · FPV Kit · очки + пульт · RTF',price:159990,kaspi:'6 666 ₸ × 24 мес',reviews:0,inStock:false,
+   img:'images/drone-betafpv-cetus-x.jpg',tags:['Предзаказ','Скоро'],keywords:['дрон','fpv','betafpv','коптер','гоночный','очки','racing','freestyle'],
+   specs:['FPV Kit','Пульт + очки','1080p камера','RTF','250 г'],
+   table:[['Тип','FPV квадрокоптер'],['Комплект','Дрон + пульт + очки + акк.'],['Камера','1080p'],['Частота видео','5.8 ГГц'],['Режимы','Стабилизация / Acro'],['Вес','250 г']]},
+
+  {id:32,cat:'drone',brand:'DJI',name:'Дрон DJI Mini 4K',short:'DJI Mini 4K · 4K видео · 31 мин · 249 г',price:249990,kaspi:'10 416 ₸ × 24 мес',reviews:0,inStock:false,
+   img:'images/drone-dji-mini-4k.jpg',tags:['Предзаказ','Скоро'],keywords:['дрон','dji','mini','4k','квадрокоптер','компактный','лёгкий'],
+   specs:['4K видео','31 мин полёта','10 км дальность','249 г','GPS'],
+   table:[['Тип','Квадрокоптер'],['Видео','4K / 30fps'],['Время полёта','31 мин'],['Дальность','10 км'],['Вес','249 г'],['Датчики','GPS · ГЛОНАСС']]},
+
+  {id:33,cat:'drone',brand:'Hubsan',name:'Мини-дрон Hubsan H111',short:'Hubsan H111 · мини · для новичков · LED',price:12990,kaspi:'2 165 ₸ × 6 мес',reviews:0,inStock:false,
+   img:'images/drone-hubsan-h111.jpg',tags:['Предзаказ','Скоро'],keywords:['дрон','мини','hubsan','новичок','детский','маленький','indoor'],
+   specs:['Мини','6-осевой гиро','LED подсветка','2.4 ГГц','14 г'],
+   table:[['Тип','Мини-квадрокоптер'],['Гироскоп','6-осевой'],['Подсветка','LED'],['Частота','2.4 ГГц'],['Время полёта','~6 мин'],['Вес','14 г']]},
+
+  // Гаджеты 34-38
+  {id:34,cat:'gadget',brand:'Xiaomi',name:'Фитнес-браслет Xiaomi Mi Band 8',short:'Mi Band 8 · AMOLED · 16 дней · 150+ трен.',price:24990,kaspi:'4 165 ₸ × 6 мес',reviews:0,inStock:false,
+   img:'images/band-xiaomi-miband8.jpg',tags:['Предзаказ','Скоро'],keywords:['браслет','фитнес','xiaomi','mi band','трекер','спорт','шагомер'],
+   specs:['AMOLED 1.62"','16 дней батарея','5 ATM','150+ трен.','27 г'],
+   table:[['Тип','Фитнес-браслет'],['Экран','AMOLED 1.62"'],['Батарея','до 16 дней'],['Водозащита','5 ATM'],['Тренировки','150+'],['Вес','27 г']]},
+
+  {id:35,cat:'gadget',brand:'BoboVR',name:'VR-гарнитура BoboVR Z6',short:'BoboVR Z6 · для смартфонов · складная',price:29990,kaspi:'4 999 ₸ × 6 мес',reviews:0,inStock:false,
+   img:'images/vr-bobovr-z6.jpg',tags:['Предзаказ','Скоро'],keywords:['vr','виртуальная','реальность','очки','шлем','bobovr','гарнитура'],
+   specs:['Для смартфонов','110° обзор','Bluetooth','Складная','240 г'],
+   table:[['Тип','VR-гарнитура для смартфонов'],['Угол обзора','110°'],['Bluetooth','Да (пульт)'],['Конструкция','Складная'],['Совместимость','4.7–6.7"'],['Вес','240 г']]},
+
+  {id:36,cat:'gadget',brand:'Xiaomi',name:'Умные весы Xiaomi Mi Body Scale 2',short:'Mi Scale 2 · 13 показателей · BT · приложение',price:17990,kaspi:'2 999 ₸ × 6 мес',reviews:0,inStock:false,
+   img:'images/scale-xiaomi-mibody2.jpg',tags:['Предзаказ','Скоро'],keywords:['весы','умные','xiaomi','фитнес','здоровье','body','scale'],
+   specs:['13 показателей','Bluetooth','LED дисплей','До 150 кг','1.7 кг'],
+   table:[['Тип','Умные напольные весы'],['Показатели','13 (вес, BMI, жир, мышцы…)'],['Bluetooth','Да'],['Макс. вес','150 кг'],['Дисплей','LED скрытый'],['Приложение','Mi Fit']]},
+
+  {id:37,cat:'gadget',brand:'Dreame',name:'Робот-пылесос Dreame D10 Plus',short:'Dreame D10 Plus · LiDAR · самоочистка · 4000 Па',price:179990,kaspi:'7 500 ₸ × 24 мес',reviews:0,inStock:false,
+   img:'images/vacuum-dreame-d10plus.jpg',tags:['Предзаказ','Скоро'],keywords:['робот','пылесос','dreame','уборка','умный','дом','smart home','lidar'],
+   specs:['LiDAR навигация','4000 Па','Самоочистка','Влажная уборка','3.7 кг'],
+   table:[['Тип','Робот-пылесос'],['Навигация','LiDAR'],['Мощность всасывания','4000 Па'],['Самоочистка базы','Да'],['Влажная уборка','Да'],['Батарея','5200 мАч']]},
+
+  {id:38,cat:'gadget',brand:'Yeelight',name:'Умная лампа Yeelight LED Bulb',short:'Yeelight LED · RGB · Wi-Fi · голосовое управление',price:8990,kaspi:'1 499 ₸ × 6 мес',reviews:0,inStock:false,
+   img:'images/lamp-yeelight-bulb.jpg',tags:['Предзаказ','Скоро'],keywords:['лампа','умная','yeelight','smart','rgb','свет','wifi','дом'],
+   specs:['RGB 16 млн цветов','Wi-Fi','Alexa / Google','900 лм','E27'],
+   table:[['Тип','Умная LED лампочка'],['Цоколь','E27'],['Яркость','900 лм'],['Цвета','RGB (16 млн)'],['Подключение','Wi-Fi 2.4 ГГц'],['Голосовое управление','Alexa · Google · Siri']]},
+
+  // PC-компоненты 39-42
+  {id:39,cat:'pc',brand:'PELADN',name:'Видеокарта PELADN RTX 4060 8 GB',short:'RTX 4060 8 Гб · GDDR6 · PCI-E 4.0',price:239990,kaspi:'10 000 ₸ × 24 мес',reviews:0,inStock:false,
+   img:'images/gpu-peladn-rtx4060.jpg',tags:['Предзаказ','Скоро'],keywords:['видеокарта','gpu','rtx','nvidia','4060','pc','gaming','графика'],
+   specs:['RTX 4060 8 Гб','GDDR6','PCI-E 4.0','HDMI + DP','2 вент.'],
+   table:[['Серия','GeForce RTX 40 Series'],['Видеопамять','8 Гб GDDR6'],['Интерфейс','PCI-E 4.0'],['Разъёмы','HDMI · DP ×3'],['Рекомендуемый БП','550 Вт']]},
+
+  {id:40,cat:'pc',brand:'Kingston',name:'SSD Kingston NV2 1TB NVMe',short:'NV2 1TB · NVMe M.2 · 3500 МБ/с',price:42990,kaspi:'3 583 ₸ × 12 мес',reviews:0,inStock:false,
+   img:'images/ssd-kingston-nv2-1tb.jpg',tags:['Предзаказ','Скоро'],keywords:['ssd','накопитель','nvme','m.2','kingston','хранение','pc','диск'],
+   specs:['1 ТБ','NVMe M.2','3500/2100 МБ/с','2280','TLC'],
+   table:[['Объём','1 ТБ'],['Интерфейс','NVMe M.2 2280'],['Чтение','3500 МБ/с'],['Запись','2100 МБ/с'],['Тип памяти','TLC']]},
+
+  {id:41,cat:'pc',brand:'Kingston',name:'ОЗУ Kingston Fury Beast DDR5 32GB',short:'Fury Beast DDR5 · 32 Гб (2×16) · 5600 МГц',price:54990,kaspi:'4 583 ₸ × 12 мес',reviews:0,inStock:false,
+   img:'images/ram-kingston-fury-32gb.jpg',tags:['Предзаказ','Скоро'],keywords:['озу','ram','оперативная','память','ddr5','kingston','fury','pc'],
+   specs:['32 Гб (2×16)','DDR5','5600 МГц','CL36','XMP 3.0'],
+   table:[['Объём','32 Гб (2×16 Гб)'],['Тип','DDR5'],['Частота','5600 МГц'],['Тайминги','CL36'],['Профиль','XMP 3.0']]},
+
+  {id:42,cat:'pc',brand:'Cooler Master',name:'БП Cooler Master MWE 650W 80+',short:'MWE 650W · 80+ Bronze · полумод.',price:39990,kaspi:'3 333 ₸ × 12 мес',reviews:0,inStock:false,
+   img:'images/psu-coolermaster-mwe650.jpg',tags:['Предзаказ','Скоро'],keywords:['блок','питания','бп','psu','cooler master','pc','650w','bronze'],
+   specs:['650 Вт','80+ Bronze','Полумодульный','120 мм вент.','ATX'],
+   table:[['Мощность','650 Вт'],['Сертификат','80+ Bronze'],['Тип','Полумодульный'],['Вентилятор','120 мм'],['Форм-фактор','ATX']]},
+
+  // Подставки / Техника 43-46
+  {id:43,cat:'stand',brand:'ORICO',name:'USB-хаб ORICO 7-Port USB 3.0',short:'ORICO 7 портов · USB 3.0 · алюминий',price:15990,kaspi:'2 665 ₸ × 6 мес',reviews:0,inStock:false,
+   img:'images/hub-orico-7port.jpg',tags:['Предзаказ','Скоро'],keywords:['usb','хаб','hub','orico','порт','разветвитель','концентратор'],
+   specs:['7 × USB 3.0','5 Гбит/с','Алюминий','LED индик.','Доп. питание'],
+   table:[['Порты','7 × USB 3.0'],['Скорость','5 Гбит/с'],['Материал','Алюминий'],['Доп. питание','Да'],['Индикация','LED']]},
+
+  {id:44,cat:'stand',brand:'NB',name:'Кронштейн NB F80 для монитора',short:'NB F80 · газлифт · 17–27" · до 6.5 кг',price:18990,kaspi:'3 165 ₸ × 6 мес',reviews:0,inStock:false,
+   img:'images/mount-nb-f80.jpg',tags:['Предзаказ','Скоро'],keywords:['кронштейн','крепление','монитор','стойка','nb','настольный','arm','газлифт'],
+   specs:['17–27"','До 6.5 кг','Газлифт','VESA 100×100','Поворот 360°'],
+   table:[['Диагональ','17–27"'],['Макс. вес','6.5 кг'],['Механизм','Газлифт'],['VESA','75×75 / 100×100'],['Крепление','Струбцина']]},
+
+  {id:45,cat:'tech',brand:'APC',name:'ИБП APC Back-UPS 650VA',short:'APC 650VA · 360 Вт · 4 розетки · AVR',price:47990,kaspi:'3 999 ₸ × 12 мес',reviews:0,inStock:false,
+   img:'images/ups-apc-650va.jpg',tags:['Предзаказ','Скоро'],keywords:['ибп','ups','apc','бесперебойник','питание','защита','back-ups'],
+   specs:['650 ВА / 360 Вт','4 розетки','AVR','USB','4.5 кг'],
+   table:[['Мощность','650 ВА / 360 Вт'],['Розетки','4 (2 с батарейным резервом)'],['AVR','Да'],['USB','Да'],['Вес','4.5 кг']]},
+
+  {id:46,cat:'tech',brand:'Logitech',name:'Вебкамера Logitech C920 HD Pro',short:'C920 HD Pro · 1080p / 30fps · автофокус',price:49990,kaspi:'4 166 ₸ × 12 мес',reviews:0,inStock:false,
+   img:'images/webcam-logitech-c920.jpg',tags:['Предзаказ','Скоро'],keywords:['вебкамера','камера','webcam','logitech','стрим','видео','1080p','zoom'],
+   specs:['1080p / 30fps','Автофокус','Стерео микр.','USB-A','162 г'],
+   table:[['Разрешение','1080p / 30fps'],['Автофокус','Да'],['Микрофон','Стерео'],['Угол обзора','78°'],['Подключение','USB-A']]},
+
+  // Периферия / Аксессуары 47-50
+  {id:47,cat:'gadget',brand:'Razer',name:'Игровая клавиатура Razer BlackWidow V4',short:'BlackWidow V4 · механика · RGB · USB',price:119990,kaspi:'5 000 ₸ × 24 мес',reviews:0,inStock:false,
+   img:'images/keyboard-razer-blackwidow.jpg',tags:['Предзаказ','Скоро'],keywords:['клавиатура','механическая','razer','gaming','игровая','rgb','keyboard'],
+   specs:['Механическая','Razer Green','RGB Chroma','USB-C','Алюм. рама'],
+   table:[['Тип','Механическая'],['Свитчи','Razer Green'],['Подсветка','RGB Chroma'],['Подключение','USB-C'],['Подставка для рук','Магнитная']]},
+
+  {id:48,cat:'gadget',brand:'Logitech',name:'Мышь Logitech G Pro X Superlight 2',short:'G Pro X Superlight 2 · 32K DPI · 95 ч · 60 г',price:89990,kaspi:'3 750 ₸ × 24 мес',reviews:0,inStock:false,
+   img:'images/mouse-logitech-gpro-x2.jpg',tags:['Предзаказ','Скоро'],keywords:['мышь','мышка','gaming','logitech','gpro','беспроводная','игровая','mouse'],
+   specs:['32 000 DPI','95 ч батарея','LIGHTSPEED','PTFE','60 г'],
+   table:[['Сенсор','HERO 2 / 32 000 DPI'],['Батарея','95 часов'],['Подключение','LIGHTSPEED 2.4 ГГц'],['Ножки','PTFE'],['Вес','60 г']]},
+
+  {id:49,cat:'gadget',brand:'ARTISAN',name:'Коврик ARTISAN Hien FX XL',short:'Hien FX XL · 490×420 мм · гибридный',price:39990,kaspi:'6 665 ₸ × 6 мес',reviews:0,inStock:false,
+   img:'images/mousepad-artisan-hien.jpg',tags:['Предзаказ','Скоро'],keywords:['коврик','мышь','mousepad','artisan','gaming','игровой','большой'],
+   specs:['490×420 мм','Гибрид','3 мм','Нескользящая основа','Японское производство'],
+   table:[['Размер','490 × 420 × 3 мм'],['Поверхность','Гибридная (ткань + полимер)'],['Основа','Нескользящая'],['Тип','Скоростной / контрольный'],['Производство','Япония']]},
+
+  {id:50,cat:'tech',brand:'Baseus',name:'Сетевой фильтр Baseus PowerCombo 65W',short:'PowerCombo · 65W USB-C · 3 розетки + 2 USB',price:22990,kaspi:'3 832 ₸ × 6 мес',reviews:0,inStock:false,
+   img:'images/powerstrip-baseus-combo.jpg',tags:['Предзаказ','Скоро'],keywords:['сетевой','фильтр','удлинитель','baseus','usb','зарядка','розетка'],
+   specs:['3 розетки 220В','USB-C 65 Вт','USB-A × 2','Защита от КЗ','1.5 м кабель'],
+   table:[['Розетки','3 × 220В'],['USB-C','65 Вт (PD)'],['USB-A','2 порта'],['Защиты','КЗ · перегрузка · перенапряжение'],['Кабель','1.5 м']]},
 ];
 
 /* ===== STATE ===== */
@@ -945,7 +1115,7 @@ function fmt(kztPrice){
   if(curCode==='USD')return sym+' '+conv.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',');
   return Math.round(conv).toLocaleString('ru-RU')+' '+sym;
 }
-function tagH(t){const m={'Предзаказ':'tag-d','RTX 5070Ti':'tag-r','240Hz':'tag-o','В наличии':'tag-g'};return`<span class="tag ${m[t]||'tag-d'}">${t}</span>`}
+function tagH(t){const m={'Предзаказ':'tag-d','RTX 5070Ti':'tag-r','240Hz':'tag-o','300Hz':'tag-o','В наличии':'tag-g','Скоро':'tag-o'};return`<span class="tag ${m[t]||'tag-d'}">${t}</span>`}
 function stars(n){return'★'.repeat(n)+'☆'.repeat(5-n)}
 
 /* ===== THEME ===== */
@@ -1033,6 +1203,14 @@ function chipFilter(cat,btn){
   btn.classList.add('on');
   document.getElementById('secTitle').textContent=TIT[cat]||'Товары';
   render(cat==='all'?P:P.filter(x=>x.cat===cat));
+}
+function filterNew(){
+  curCat='all';
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll('.fc:not(.acc)').forEach(b=>b.classList.remove('on'));
+  document.getElementById('secTitle').textContent='🔥 Новинки';
+  render(P.filter(x=>x.tags.includes('Скоро')||x.tags.includes('RTX 5070Ti')||x.tags.includes('300Hz')));
+  document.getElementById('productGrid').scrollIntoView({behavior:'smooth',block:'start'});
 }
 function sw(id,btn){document.querySelectorAll('#'+id+' button').forEach(b=>b.classList.remove('on'));btn.classList.add('on')}
 
