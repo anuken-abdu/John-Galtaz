@@ -44,7 +44,9 @@ img{display:block;max-width:100%}
 .btn-outline{background:transparent;color:var(--text1);border:1.5px solid var(--nd1);padding:9px 20px}.btn-outline:hover{background:var(--text1);color:var(--bg)}
 .btn-ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.3);padding:9px 20px}.btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.08)}
 .btn-icon{background:var(--bg);border:1px solid var(--nd1);border-radius:var(--r6);width:40px;height:40px;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:background var(--tr)}.btn-icon:hover{background:var(--nd1)}
-.btn-icon svg{stroke:var(--text1)}
+.btn-icon svg{stroke:currentColor}
+.btn-icon.on{background:var(--c2);border-color:var(--c2);color:#fff}
+.btn-icon.on:hover{background:#d94946}
 
 /* TAGS */
 .tag{display:inline-block;font-size:9px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;padding:3px 7px;border-radius:3px;line-height:1.4}
@@ -157,8 +159,6 @@ main{padding:22px 0 56px}
 .pwish{position:absolute;top:8px;right:8px;z-index:2;background:rgba(255,255,255,.9);border:none;border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;transition:background var(--tr)}
 .pwish:hover{background:#fff}.pwish svg{stroke:#8a8a8a;fill:none;transition:stroke var(--tr),fill var(--tr)}
 .pwish.on svg{stroke:var(--c2);fill:var(--c2)}
-.pcmp{position:absolute;bottom:8px;right:8px;z-index:2;background:rgba(255,255,255,.9);border:none;border-radius:var(--r4);width:32px;height:32px;display:flex;align-items:center;justify-content:center;color:#666;transition:background var(--tr),color var(--tr)}
-.pcmp:hover{background:#fff;color:var(--c2)}.pcmp.on{background:var(--c2);color:#fff}
 .pbody{padding:12px;flex:1;display:flex;flex-direction:column}
 .pbrand{font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:.4px;margin-bottom:3px}
 .pname{font-size:13px;font-weight:500;line-height:1.35;margin-bottom:7px;cursor:pointer;text-align:left;background:none;border:none;padding:0;color:var(--text1)}
@@ -380,52 +380,97 @@ main{padding:22px 0 56px}
   .hdr-main{flex-wrap:wrap;gap:10px;padding:10px 0}
   .srch{order:3;width:100%;flex:1 0 100%}
   .hdr-acts{margin-left:auto;gap:2px}
-  .act-btn span:not(.act-badge){display:none}
-  .act-btn{padding:8px;min-width:40px}
+  .act-lbl{display:none}
+  .act-btn{padding:8px;min-width:42px}
   .cmp-hdr-btn .cmp-lbl{display:none}
-  .cmp-hdr-btn{padding:8px 12px}
+  .cmp-hdr-btn{padding:9px 12px}
   .hdr-nav{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:8px 0}
   .hdr-nav::-webkit-scrollbar{display:none}
   .nav-btn{flex-shrink:0}
-  .hero{flex-direction:column;align-items:flex-start;gap:20px;padding:24px 20px}
+  .hero{flex-direction:column;align-items:flex-start;gap:18px;padding:24px 20px}
   .hero-card{align-self:stretch;text-align:left}
-  .hero-acts .btn{flex:1}
   .b2b{flex-direction:column;align-items:flex-start}
+  .b2b-acts{width:100%}.b2b-acts .btn{flex:1}
   .modal-body{grid-template-columns:1fr}
   .cmp-page-header{align-items:flex-start}
 }
 @media(max-width:760px){
   .wrap{padding:0 14px}
-  main{padding:16px 0 40px}
-  .pgrid{grid-template-columns:repeat(2,1fr);gap:10px}
-  .cgrid{grid-template-columns:repeat(2,1fr)}
-  .fgrid{grid-template-columns:1fr;gap:22px}
-  .b2b-features{grid-template-columns:1fr}
-  .pimg{height:150px}
+  main{padding:14px 0 40px}
+  /* топбар: контакты уходят в футер, остаются переключатели */
+  .topbar{padding:6px 0}
+  .topbar-l{display:none}
+  .topbar .wrap{flex-wrap:nowrap;justify-content:center;gap:10px;overflow-x:auto;scrollbar-width:none}
+  .topbar .wrap::-webkit-scrollbar{display:none}
+  .topbar-r{flex-shrink:0;gap:10px}
+  .theme-toggle{padding:5px 9px}
+  /* шапка компактнее */
+  .hdr-main{padding:8px 0;gap:8px}
+  .logo img{height:32px}
+  .logo-text{font-size:16px}
+  .hdr.hide{transform:translateY(-100%)}
+  /* герой */
+  .hero{padding:18px 16px;gap:14px;margin-bottom:14px;border-radius:var(--r8)}
+  .hero h1{font-size:20px;line-height:1.3;margin-bottom:8px}
+  .hero-sub{font-size:12px;line-height:1.6;margin-bottom:16px}
+  .hero-tags{margin-bottom:10px}
+  .hero-acts{width:100%;gap:8px}
+  .hero-acts .btn{flex:1 1 140px}
+  .hero-card{padding:14px 16px}
+  .hero-price{font-size:24px}
+  .hero::after{display:none}
+  /* блоки */
+  .trust{grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:16px}
+  .tcard{padding:10px;gap:8px}
+  .tico{width:30px;height:30px}
+  .tt{font-size:11px}.ts{font-size:10px}
+  .pre-note{padding:10px 12px;margin-bottom:18px}
+  .sec-hdr h2{font-size:17px}
+  .filters{gap:5px;margin-bottom:12px}
+  .fc{padding:7px 12px}
+  .sort{margin-left:0;width:100%;margin-top:2px}
+  .sort select{flex:1}
+  /* товары */
+  .pgrid{grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:22px}
+  .pimg{height:145px}
   .pbody{padding:10px}
   .pname{font-size:12px}
   .pspecs .spec:nth-child(n+4){display:none}
-  .sort{margin-left:0;width:100%}
-  .sort select{flex:1}
+  .pprice{font-size:15px}
+  .pwish{width:32px;height:32px}
+  .cgrid{grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:24px}
+  .ccat{padding:16px 10px}
+  .b2b{padding:16px 18px;margin-bottom:24px}
+  .b2b-features{grid-template-columns:1fr}
+  /* карточка товара */
   .modal-ov{padding:0}
-  .modal{max-width:100%;max-height:100dvh;height:100dvh;border-radius:0}
-  .m-img{height:210px}
-  .m-info{padding:16px 16px 24px}
+  .modal{max-width:100%;height:100dvh;max-height:100dvh;border-radius:0}
+  .m-img{height:200px}
   .m-gallery{padding:12px 16px}
-  .b2b-hero{padding:26px 20px}.b2b-hero h1{font-size:22px}
-  .info-card{padding:18px}
-  .fwa{width:50px;height:50px;right:14px;bottom:calc(16px + var(--safe-b))}
-  .topbar-l{font-size:10px}
-  .topbar .wrap{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;gap:10px}
-  .topbar .wrap::-webkit-scrollbar{display:none}
-  .topbar-r{flex-shrink:0}
-  .hdr.hide{transform:translateY(-100%)}
+  .m-info{padding:16px 16px 28px}
+  .m-name{font-size:16px}
+  .m-price{font-size:22px}
+  /* страницы и футер */
+  .b2b-hero{padding:24px 18px}.b2b-hero h1{font-size:22px}
+  .b2b-form{padding:20px 16px}
+  .info h2{font-size:20px}
+  .info-card{padding:18px 16px}
+  .fgrid{grid-template-columns:1fr;gap:22px;padding-bottom:22px}
+  .footer{padding:26px 0 0}
+  .fbot{flex-direction:column;align-items:flex-start;gap:8px}
+  .fwa{width:50px;height:50px;right:14px;bottom:calc(14px + var(--safe-b))}
+  .toast{bottom:calc(78px + var(--safe-b))}
 }
 @media(max-width:400px){
-  .hero h1{font-size:20px}
-  .hero-price{font-size:26px}
-  .trust{grid-template-columns:1fr}
-  .pacts .btn-red{font-size:11px;padding:8px 6px}
+  .hero h1{font-size:18px}
+  .hero-price{font-size:22px}
+  .pgrid{gap:8px}
+  .pimg{height:130px}
+  .pacts{gap:4px}
+  .pacts .btn-red{font-size:11px;padding:8px 4px}
+  .btn-icon{width:38px;height:38px}
+  .cgrid .cn{font-size:11px}
+  .cmp-hdr-btn{padding:9px 10px}
 }
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
@@ -481,27 +526,27 @@ main{padding:22px 0 56px}
 
       <div class="hdr-acts">
         <button class="cmp-hdr-btn" data-act="page" data-page="compare" title="Сравнение товаров">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 6-10"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M8 21h8"/><path d="M3 7h18"/><path d="M12 7 8.5 5"/><path d="m7 7-4 7h8z"/><path d="m17 7-4 7h8z"/></svg>
           <span class="cmp-lbl" data-i18n="compare_short">Сравнение</span>
           <span class="cmp-count" id="cmpBadge" hidden>0</span>
         </button>
         <button class="act-btn" data-act="acc">
           <span class="act-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
-          <span data-i18n="login">Войти</span>
+          <span class="act-lbl" data-i18n="login">Войти</span>
         </button>
         <button class="act-btn" data-act="fav">
           <span class="act-ico">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
             <span class="act-badge" id="favBadge" hidden>0</span>
           </span>
-          <span data-i18n="favorites">Избранное</span>
+          <span class="act-lbl" data-i18n="favorites">Избранное</span>
         </button>
         <button class="act-btn" data-act="cart">
           <span class="act-ico">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
             <span class="act-badge" id="cartBadge" hidden>0</span>
           </span>
-          <span data-i18n="cart">Корзина</span>
+          <span class="act-lbl" data-i18n="cart">Корзина</span>
         </button>
       </div>
     </div>
@@ -515,6 +560,7 @@ main{padding:22px 0 56px}
       <button class="nav-btn" data-act="cat" data-cat="gadget" data-i18n="c_gadget">Гаджеты</button>
       <button class="nav-btn" data-act="cat" data-cat="pc" data-i18n="c_pc">PC</button>
       <button class="nav-btn" data-act="cat" data-cat="stand" data-i18n="c_stand">Подставки</button>
+      <button class="nav-btn" data-act="cat" data-cat="print3d" data-i18n="c_print3d">3D-печать</button>
       <button class="nav-btn" data-act="cat" data-cat="tech" data-i18n="c_tech">Техника</button>
       <button class="nav-btn acc" data-act="cat" data-cat="new" data-i18n="c_new">🔥 Новинки</button>
       <button class="nav-btn" data-act="qo" data-mode="consult" data-i18n="nav_pick">Подбор</button>
@@ -573,6 +619,7 @@ main{padding:22px 0 56px}
       <button class="fc" data-act="cat" data-cat="gadget" data-i18n="c_gadget">Гаджеты</button>
       <button class="fc" data-act="cat" data-cat="pc" data-i18n="c_pc">PC</button>
       <button class="fc" data-act="cat" data-cat="stand" data-i18n="c_stand">Подставки</button>
+      <button class="fc" data-act="cat" data-cat="print3d" data-i18n="c_print3d">3D-печать</button>
       <button class="fc" data-act="cat" data-cat="tech" data-i18n="c_tech">Техника</button>
       <button class="fc acc" data-act="qo" data-mode="consult" data-i18n="chip_pick">🔍 Подбор</button>
       <div class="sort">
@@ -631,6 +678,10 @@ main{padding:22px 0 56px}
       <button class="ccat" data-act="cat" data-cat="stand">
         <div class="ci"><svg viewBox="0 0 32 32" fill="none" stroke="var(--text1)" stroke-width="1.5"><path d="M6 20h20v2a2 2 0 01-2 2H8a2 2 0 01-2-2v-2z"/><path d="M9 20v-3a1 1 0 011-1h12a1 1 0 011 1v3"/><circle cx="16" cy="12" r="3"/><path d="M10 27l2-3h8l2 3"/></svg></div>
         <div class="cn" data-i18n="c_stand">Подставки</div><div class="cs" data-count="stand"></div>
+      </button>
+      <button class="ccat" data-act="cat" data-cat="print3d">
+        <div class="ci"><svg viewBox="0 0 32 32" fill="none" stroke="var(--text1)" stroke-width="1.5"><path d="M5 11 16 5l11 6v10l-11 6-11-6z"/><path d="M5 11l11 6 11-6M16 17v10"/></svg></div>
+        <div class="cn" data-i18n="c_print3d">3D-печать</div><div class="cs" data-count="print3d"></div>
       </button>
       <button class="ccat" data-act="page" data-page="b2b">
         <div class="ci"><svg viewBox="0 0 32 32" fill="none" stroke="var(--text1)" stroke-width="1.5"><rect x="5" y="10" width="22" height="18" rx="2"/><path d="M16 4v6M10 10V7a2 2 0 012-2h8a2 2 0 012 2v3"/><path d="M5 16h22"/><circle cx="16" cy="19" r="2"/></svg></div>
@@ -855,7 +906,7 @@ main{padding:22px 0 56px}
       Избранное
     </button>
     <button class="acc-item" data-act="page" data-page="compare">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 6-10"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M8 21h8"/><path d="M3 7h18"/><path d="M12 7 8.5 5"/><path d="m7 7-4 7h8z"/><path d="m17 7-4 7h8z"/></svg>
       Сравнение
     </button>
     <button class="acc-item" data-act="cart">
@@ -901,212 +952,486 @@ main{padding:22px 0 56px}
 /* ============ КАТАЛОГ ============ */
 const P=[
 {id:1,cat:'laptop',brand:'ThundeRobot',name:'ThundeRobot Zero Ultra XT R15',short:'Zero Ultra XT R15 · 15.6" / i9 / RTX 4060',price:969990,kaspi:'40 417 ₸ × 24 мес',reviews:37,inStock:false,
- img:'images/laptop-thunderobot-zero-ultra.jpg',tags:['Предзаказ'],keywords:['ноутбук','игровой','thunderobot','intel','i9','rtx 4060','laptop','gaming'],
+ img:'images/laptop-thunderobot-zero-ultra',tags:['Предзаказ'],keywords:['ноутбук','игровой','thunderobot','intel','i9','rtx 4060','laptop','gaming'],
  specs:['i9-14900HX','32 Гб DDR5','1 ТБ NVMe','RTX 4060 8Гб','165Hz QHD'],
  table:[['Экран','15.6" · 2560×1440 · IPS · 165 Гц · матовый'],['Процессор','Intel Core i9-14900HX · 24 ядра · до 5800 МГц'],['Оперативная память','32 Гб DDR5 · 2 слота'],['Видеокарта','NVIDIA GeForce RTX 4060 · 8 Гб GDDR5'],['Накопитель','SSD M.2 · 1000 Гб'],['ОС','Windows 11 Pro'],['Wi-Fi / BT','802.11ac · Bluetooth 5.2'],['Интерфейсы','USB Type-C · USB 3.2 Gen2 · DisplayPort · RJ-45'],['Подсветка клавиатуры','Да'],['Цвет','Серый'],['Год выпуска','2024']]},
 {id:2,cat:'laptop',brand:'MECHREVO',name:'MECHREVO 16 Pro (RTX 5070Ti)',short:'16 Pro · 16" / Ryzen 9 / RTX 5070Ti',price:1089904,kaspi:'45 413 ₸ × 24 мес',reviews:3,inStock:false,
- img:'images/laptop-mechrevo-16pro.jpg',tags:['Предзаказ','RTX 5070Ti'],keywords:['ноутбук','игровой','mechrevo','amd','ryzen','rtx 5070','laptop','gaming'],
+ img:'images/laptop-mechrevo-16pro',tags:['Предзаказ','RTX 5070Ti'],keywords:['ноутбук','игровой','mechrevo','amd','ryzen','rtx 5070','laptop','gaming'],
  specs:['Ryzen 9 8940HX','32 Гб','1 ТБ M.2','RTX 5070Ti','300Hz QHD+'],
  table:[['Экран','16" · 2560×1600 · IPS · 300 Гц · матовый'],['Процессор','AMD Ryzen 9 8940HX · 16 ядер · до 5300 МГц'],['Оперативная память','32 Гб'],['Видеокарта','RTX 5070Ti (280W SIC)'],['Накопитель','SSD M.2 · 1000 Гб'],['ОС','Windows 11 Pro'],['Подсветка клавиатуры','Да'],['Цвет','Чёрный'],['Вес','4 кг']]},
 {id:19,cat:'laptop',brand:'Lenovo',name:'Lenovo Legion Pro 5 16IRX9',short:'Legion Pro 5 · 16" / i7 / RTX 4070',price:1249990,kaspi:'52 083 ₸ × 24 мес',reviews:0,inStock:false,
- img:'images/laptop-lenovo-legion-pro5.jpg',tags:['Предзаказ','Скоро'],keywords:['ноутбук','игровой','lenovo','legion','rtx 4070','laptop','gaming','i7'],
+ img:'images/laptop-lenovo-legion-pro5',tags:['Предзаказ','Скоро'],keywords:['ноутбук','игровой','lenovo','legion','rtx 4070','laptop','gaming','i7'],
  specs:['i7-14700HX','16 Гб DDR5','512 Гб SSD','RTX 4070 8Гб','165Hz 2K'],
  table:[['Экран','16" · 2560×1600 · IPS · 165 Гц'],['Процессор','Intel Core i7-14700HX'],['Оперативная память','16 Гб DDR5'],['Видеокарта','NVIDIA RTX 4070 8 Гб'],['Накопитель','512 Гб SSD NVMe'],['ОС','Windows 11']]},
 {id:20,cat:'laptop',brand:'ASUS',name:'ASUS ROG Strix G16 G614JU',short:'ROG Strix G16 · 16" / i7 / RTX 4050',price:879990,kaspi:'36 666 ₸ × 24 мес',reviews:0,inStock:false,
- img:'images/laptop-asus-rog-strix-g16.jpg',tags:['Предзаказ','Скоро'],keywords:['ноутбук','игровой','asus','rog','strix','rtx 4050','laptop','gaming'],
+ img:'images/laptop-asus-rog-strix-g16',tags:['Предзаказ','Скоро'],keywords:['ноутбук','игровой','asus','rog','strix','rtx 4050','laptop','gaming'],
  specs:['i7-13650HX','16 Гб DDR5','512 Гб SSD','RTX 4050 6Гб','165Hz FHD+'],
  table:[['Экран','16" · 1920×1200 · IPS · 165 Гц'],['Процессор','Intel Core i7-13650HX'],['Оперативная память','16 Гб DDR5'],['Видеокарта','NVIDIA RTX 4050 6 Гб'],['Накопитель','512 Гб SSD'],['ОС','Windows 11']]},
 {id:21,cat:'laptop',brand:'MSI',name:'MSI Raider GE68 HX 14V',short:'Raider GE68 · 16" / i9 / RTX 4080',price:1599990,kaspi:'66 666 ₸ × 24 мес',reviews:0,inStock:false,
- img:'images/laptop-msi-raider-ge68.jpg',tags:['Предзаказ','Скоро'],keywords:['ноутбук','игровой','msi','raider','rtx 4080','laptop','gaming','i9','премиум'],
+ img:'images/laptop-msi-raider-ge68',tags:['Предзаказ','Скоро'],keywords:['ноутбук','игровой','msi','raider','rtx 4080','laptop','gaming','i9','премиум'],
  specs:['i9-14900HX','32 Гб DDR5','1 ТБ SSD','RTX 4080 12Гб','240Hz QHD+'],
  table:[['Экран','16" · 2560×1600 · 240 Гц · mini LED'],['Процессор','Intel Core i9-14900HX'],['Оперативная память','32 Гб DDR5'],['Видеокарта','NVIDIA RTX 4080 12 Гб'],['Накопитель','1 ТБ SSD NVMe'],['ОС','Windows 11 Pro']]},
 {id:22,cat:'laptop',brand:'HP',name:'HP OMEN 16-xf0015ur',short:'OMEN 16 · 16.1" / Ryzen 7 / RTX 4060',price:949990,kaspi:'39 583 ₸ × 24 мес',reviews:0,inStock:false,
- img:'images/laptop-hp-omen-16.jpg',tags:['Предзаказ','Скоро'],keywords:['ноутбук','игровой','hp','omen','rtx 4060','laptop','gaming','ryzen'],
+ img:'images/laptop-hp-omen-16',tags:['Предзаказ','Скоро'],keywords:['ноутбук','игровой','hp','omen','rtx 4060','laptop','gaming','ryzen'],
  specs:['Ryzen 7 7840HS','16 Гб DDR5','512 Гб SSD','RTX 4060 8Гб','165Hz FHD'],
  table:[['Экран','16.1" · 1920×1080 · IPS · 165 Гц'],['Процессор','AMD Ryzen 7 7840HS'],['Оперативная память','16 Гб DDR5'],['Видеокарта','NVIDIA RTX 4060 8 Гб'],['Накопитель','512 Гб SSD'],['ОС','Windows 11']]},
 {id:23,cat:'laptop',brand:'Acer',name:'Acer Nitro V 15 ANV15-51',short:'Nitro V 15 · 15.6" / i5 / RTX 4050',price:699990,kaspi:'29 166 ₸ × 24 мес',reviews:0,inStock:false,
- img:'images/laptop-acer-nitro-v15.jpg',tags:['Предзаказ','Скоро'],keywords:['ноутбук','игровой','acer','nitro','rtx 4050','laptop','gaming','бюджетный','i5'],
+ img:'images/laptop-acer-nitro-v15',tags:['Предзаказ','Скоро'],keywords:['ноутбук','игровой','acer','nitro','rtx 4050','laptop','gaming','бюджетный','i5'],
  specs:['i5-13420H','16 Гб DDR5','512 Гб SSD','RTX 4050 6Гб','144Hz FHD'],
  table:[['Экран','15.6" · 1920×1080 · IPS · 144 Гц'],['Процессор','Intel Core i5-13420H'],['Оперативная память','16 Гб DDR5'],['Видеокарта','NVIDIA RTX 4050 6 Гб'],['Накопитель','512 Гб SSD'],['ОС','Windows 11']]},
 
 {id:3,cat:'monitor',brand:'ThundeRobot',name:'Монитор ThundeRobot DF27C240L',short:'DF27C240L · 27" / VA / 240Hz / изогнутый',price:189990,kaspi:'7 917 ₸ × 24 мес',reviews:306,inStock:false,
- img:'images/monitor-thunderobot-df27c240l.jpg',tags:['Предзаказ','240Hz'],keywords:['монитор','экран','27','240hz','изогнутый','thunderobot','monitor','display','curved'],
+ img:'images/monitor-thunderobot-df27c240l',tags:['Предзаказ','240Hz'],keywords:['монитор','экран','27','240hz','изогнутый','thunderobot','monitor','display','curved'],
  specs:['27" VA изогнутый','1920×1080','240 Гц','0.5 мс','HDMI + DP'],
  table:[['Диагональ','27" · изогнутый экран'],['Разрешение','1920×1080 (FHD)'],['Тип матрицы','TFT VA'],['Частота обновления','240 Гц'],['Время отклика','0.5 мс'],['Яркость','330 кд/м²'],['Контрастность','1 000 : 1 (динам. 1 000 000 : 1)'],['Покрытие','Матовое'],['Подключение','HDMI · DisplayPort'],['Выходы','Разъём для наушников'],['Регулировка по высоте','Да'],['Габариты','612 × 80 × 366 мм'],['Питание','36 Вт'],['Вес','4.9 кг'],['Цвет','Чёрный'],['Комплектация','Монитор, инструкция, DP кабель']]},
 {id:10,cat:'monitor',brand:'ThundeRobot',name:'Монитор ThundeRobot DQ27F300L',short:'DQ27F300L · 27" / IPS / 300Hz / 2K',price:189990,kaspi:'7 917 ₸ × 24 мес',reviews:54,inStock:false,
- img:'images/monitor-thunderobot-dq27f300l.jpg',tags:['Предзаказ','300Hz'],keywords:['монитор','экран','27','300hz','thunderobot','monitor','display','2k','ips'],
+ img:'images/monitor-thunderobot-dq27f300l',tags:['Предзаказ','300Hz'],keywords:['монитор','экран','27','300hz','thunderobot','monitor','display','2k','ips'],
  specs:['27" IPS','2560×1440','300 Гц','1 мс','HDMI + DP'],
  table:[['Диагональ','27"'],['Разрешение','2560×1440 (QHD)'],['Тип матрицы','IPS'],['Частота обновления','300 Гц'],['Время отклика','1 мс'],['Яркость','450 кд/м²'],['Контрастность','1500 : 1'],['Покрытие','Матовое'],['Подключение','Аудио стерео · HDMI · DisplayPort'],['Регулировка по высоте','Да'],['Игровой монитор','Да'],['Цвет','Чёрный']]},
 {id:24,cat:'monitor',brand:'ThundeRobot',name:'Монитор ThundeRobot KF24F144L',short:'KF24F144L · 24" / IPS / 144Hz',price:89990,kaspi:'3 750 ₸ × 24 мес',reviews:0,inStock:false,
- img:'images/monitor-thunderobot-kf24.jpg',tags:['Предзаказ','Скоро'],keywords:['монитор','24','144hz','ips','thunderobot','бюджетный','игровой'],
+ img:'images/monitor-thunderobot-kf24',tags:['Предзаказ','Скоро'],keywords:['монитор','24','144hz','ips','thunderobot','бюджетный','игровой'],
  specs:['24" IPS','1920×1080','144 Гц','1 мс','HDMI + DP'],
  table:[['Диагональ','24"'],['Разрешение','1920×1080 (FHD)'],['Тип матрицы','IPS'],['Частота обновления','144 Гц'],['Время отклика','1 мс'],['Подключение','HDMI · DisplayPort']]},
 {id:25,cat:'monitor',brand:'INNOCN',name:'Монитор INNOCN 32C1U-D 4K',short:'32C1U-D · 32" / IPS / 4K / USB-C',price:229990,kaspi:'9 583 ₸ × 24 мес',reviews:0,inStock:false,
- img:'images/monitor-innocn-32c1u.jpg',tags:['Предзаказ','Скоро'],keywords:['монитор','32','4k','uhd','ips','innocn','usb-c','дизайн','профессиональный'],
+ img:'images/monitor-innocn-32c1u',tags:['Предзаказ','Скоро'],keywords:['монитор','32','4k','uhd','ips','innocn','usb-c','дизайн','профессиональный'],
  specs:['32" IPS','3840×2160','60 Гц','USB-C 65Вт','HDR400'],
  table:[['Диагональ','32"'],['Разрешение','3840×2160 (4K UHD)'],['Тип матрицы','IPS'],['Частота обновления','60 Гц'],['Подключение','HDMI · DP · USB-C (65 Вт)'],['HDR','HDR400']]},
 {id:26,cat:'monitor',brand:'TITAN ARMY',name:'Монитор TITAN ARMY 34" Ultrawide',short:'34" Ultrawide · VA / 165Hz / UWQHD',price:269990,kaspi:'11 250 ₸ × 24 мес',reviews:0,inStock:false,
- img:'images/monitor-titan-army-34uw.jpg',tags:['Предзаказ','Скоро'],keywords:['монитор','34','ultrawide','изогнутый','165hz','uwqhd','titan'],
+ img:'images/monitor-titan-army-34uw',tags:['Предзаказ','Скоро'],keywords:['монитор','34','ultrawide','изогнутый','165hz','uwqhd','titan'],
  specs:['34" VA изогнутый','3440×1440','165 Гц','1 мс','HDMI + DP'],
  table:[['Диагональ','34" · изогнутый'],['Разрешение','3440×1440 (UWQHD)'],['Тип матрицы','VA'],['Частота обновления','165 Гц'],['Время отклика','1 мс'],['Подключение','HDMI ×2 · DP']]},
 
 {id:9,cat:'audio',brand:'iWord',name:'Ударная установка iWord G3001',short:'G3001 · 6 барабанов · USB · влагозащита',price:20993,kaspi:'3 499 ₸ × 6 мес',reviews:23,inStock:false,
- img:'images/drums-iword-g3001.jpg',tags:['Предзаказ'],keywords:['барабаны','ударная','установка','музыка','iword','drums','music','электронная'],
+ img:'images/drums-iword-g3001',tags:['Предзаказ'],keywords:['барабаны','ударная','установка','музыка','iword','drums','music','электронная'],
  specs:['6 барабанов','AUX / USB','Встроенный динамик','Влагозащита','430×310мм'],
  table:[['Тип','Электронная ударная установка'],['Барабанов','6 (бас · том · малый · пэды)'],['Размер площадки','430 × 310 × 60 мм'],['Разъёмы','Наушники · AUX · USB'],['Дополнительно','Встроенный динамик · влагозащита'],['Материал','Пластик'],['Цвет','Чёрный']]},
 {id:11,cat:'audio',brand:'Yongmei',name:'Синтезатор Yongmei MK61823-AD',short:'MK61823-AD · 61 клавиша · 300 тембров',price:50990,kaspi:'4 249 ₸ × 12 мес',reviews:15,inStock:false,
- img:'images/synth-yongmei-mk61823.jpg',tags:['Предзаказ'],keywords:['синтезатор','пианино','клавиши','музыка','yongmei','keyboard','piano','midi'],
+ img:'images/synth-yongmei-mk61823',tags:['Предзаказ'],keywords:['синтезатор','пианино','клавиши','музыка','yongmei','keyboard','piano','midi'],
  specs:['61 клавиша','300 тембров','MIDI + USB','30 демо','4 кг'],
  table:[['Тип','Синтезатор'],['Количество клавиш','61'],['Жёсткость клавиатуры','Невзвешенная'],['Количество тембров','300'],['Запись песен','Да'],['Обучение','Да'],['Функции','Метроном · реверберация · транспонирование · сустейн'],['Разъёмы','Наушники · микрофон · MIDI · USB'],['Интерфейс','USB Type B'],['Демо-композиций','30'],['Размеры','94 × 36 × 10 см'],['Вес','4 кг'],['Цвет','Чёрный']]},
 {id:12,cat:'audio',brand:'Audio-Technica',name:'Наушники Audio-Technica ATH-M50xBT2',short:'ATH-M50xBT2 · Bluetooth · 50 ч · складные',price:146990,kaspi:'6 125 ₸ × 24 мес',reviews:87,inStock:false,
- img:'images/headphones-audio-technica-m50x.jpg',tags:['Предзаказ'],keywords:['наушники','bluetooth','audio-technica','headphones','беспроводные','аудио','студийные','мониторные'],
+ img:'images/headphones-audio-technica-m50x',tags:['Предзаказ'],keywords:['наушники','bluetooth','audio-technica','headphones','беспроводные','аудио','студийные','мониторные'],
  specs:['Bluetooth 5.0','50 ч работы','15–28000 Гц','38 Ом','315 г'],
  table:[['Тип','Полноразмерные · гарнитура'],['Подключение','Беспроводное (Bluetooth 5.0) + проводное'],['Частота воспроизведения','15–28 000 Гц'],['Импеданс','38 Ом'],['Чувствительность','99 дБ'],['Конструкция','Складная · регулятор громкости'],['Время работы','50 часов'],['Разъём зарядки','USB Type-C'],['Разъём наушников','Mini jack 3.5 мм'],['Микрофон','Да'],['Радиус действия','10 м'],['Совместимость','iOS · Android · BlackBerry'],['Комплектация','Наушники · инструкция · кабель · чехол'],['Вес','315 г'],['Цвет','Чёрный']]},
 {id:27,cat:'audio',brand:'QCY',name:'TWS наушники QCY T13 ANC',short:'QCY T13 ANC · шумоподавление · 30 ч · BT 5.3',price:14990,kaspi:'2 499 ₸ × 6 мес',reviews:0,inStock:false,
- img:'images/earbuds-qcy-t13.jpg',tags:['Предзаказ','Скоро'],keywords:['наушники','tws','беспроводные','bluetooth','шумоподавление','anc','qcy','вкладыши'],
+ img:'images/earbuds-qcy-t13',tags:['Предзаказ','Скоро'],keywords:['наушники','tws','беспроводные','bluetooth','шумоподавление','anc','qcy','вкладыши'],
  specs:['ANC','Bluetooth 5.3','30 ч (с кейсом)','USB-C','IPX4'],
  table:[['Тип','TWS (вкладыши)'],['Шумоподавление','ANC'],['Bluetooth','5.3'],['Время работы','7 ч (30 ч с кейсом)'],['Зарядка','USB-C'],['Водозащита','IPX4']]},
 {id:28,cat:'audio',brand:'HyperX',name:'Гарнитура HyperX Cloud III Wireless',short:'Cloud III Wireless · 120 ч · DTS · микрофон',price:69990,kaspi:'5 833 ₸ × 12 мес',reviews:0,inStock:false,
- img:'images/headset-hyperx-cloud3.jpg',tags:['Предзаказ','Скоро'],keywords:['наушники','гарнитура','gaming','hyperx','cloud','беспроводные','игровая','микрофон'],
+ img:'images/headset-hyperx-cloud3',tags:['Предзаказ','Скоро'],keywords:['наушники','гарнитура','gaming','hyperx','cloud','беспроводные','игровая','микрофон'],
  specs:['2.4 ГГц + BT','120 ч работы','DTS:X','Съёмный микр.','300 г'],
  table:[['Тип','Игровая гарнитура'],['Подключение','2.4 ГГц / Bluetooth'],['Время работы','120 часов'],['Звук','DTS:X Spatial Audio'],['Микрофон','Съёмный с шумоподавлением'],['Вес','300 г']]},
 {id:29,cat:'audio',brand:'JBL',name:'Колонка JBL Charge 5',short:'Charge 5 · 40 Вт · IP67 · 20 ч · пауэрбанк',price:89990,kaspi:'7 499 ₸ × 12 мес',reviews:0,inStock:false,
- img:'images/speaker-jbl-charge5.jpg',tags:['Предзаказ','Скоро'],keywords:['колонка','портативная','bluetooth','jbl','charge','водонепроницаемая','музыка','speaker'],
+ img:'images/speaker-jbl-charge5',tags:['Предзаказ','Скоро'],keywords:['колонка','портативная','bluetooth','jbl','charge','водонепроницаемая','музыка','speaker'],
  specs:['40 Вт','IP67','20 ч работы','BT 5.1','Пауэрбанк'],
  table:[['Тип','Портативная колонка'],['Мощность','40 Вт'],['Защита','IP67'],['Время работы','20 часов'],['Bluetooth','5.1'],['Функция пауэрбанка','Да']]},
 {id:30,cat:'audio',brand:'FIFINE',name:'Микрофон FIFINE K688',short:'K688 · USB/XLR · кардиоидный · стрим/подкаст',price:34990,kaspi:'2 916 ₸ × 12 мес',reviews:0,inStock:false,
- img:'images/mic-fifine-k688.jpg',tags:['Предзаказ','Скоро'],keywords:['микрофон','usb','xlr','стрим','подкаст','fifine','запись','вокал','podcast'],
+ img:'images/mic-fifine-k688',tags:['Предзаказ','Скоро'],keywords:['микрофон','usb','xlr','стрим','подкаст','fifine','запись','вокал','podcast'],
  specs:['USB + XLR','Кардиоидный','48 кГц / 16 бит','Мониторинг','Gain + Mute'],
  table:[['Тип','Конденсаторный'],['Диаграмма','Кардиоидная'],['Подключение','USB / XLR'],['Частотный диапазон','70–15 000 Гц'],['Разрядность','48 кГц / 16 бит'],['Кнопки','Gain · Mute · мониторинг']]},
 
 {id:13,cat:'drone',brand:'ZLL',name:'Дрон ZLL SG603 PRO',short:'SG603 PRO · 4K фото · GPS · 25 мин полёта',price:125990,kaspi:'5 250 ₸ × 24 мес',reviews:42,inStock:false,
- img:'images/drone-zll-sg603-pro.jpg',tags:['Предзаказ'],keywords:['дрон','квадрокоптер','drone','zll','коптер','камера','полёт','gps'],
+ img:'images/drone-zll-sg603-pro',tags:['Предзаказ'],keywords:['дрон','квадрокоптер','drone','zll','коптер','камера','полёт','gps'],
  specs:['4K фото / 1080p видео','GPS','25 мин полёта','3 км дальность','3800 мАч'],
  table:[['Тип','Квадрокоптер (4 винта)'],['Макс. высота полёта','300 м'],['Макс. подъёмный вес','0.5 кг'],['Датчики','GPS · датчик высоты · гироскоп · ИК-датчик'],['Аккумулятор','3800 мАч'],['Время полёта','до 25 мин'],['Камера','Встроенная · 3840×2160 фото · 1080p видео'],['Угол обзора','90°'],['Управление камерой','3 оси'],['Дальность управления','до 3 км'],['Автопилот','Да'],['Следование за оператором','Да'],['Возврат к точке взлёта','Да'],['Карта памяти','Да'],['Комплектация','Дрон · пульт · запасные лопасти · 3 акк. · USB · сумка'],['Цвет','Чёрный']]},
 {id:14,cat:'drone',brand:'LYZ',name:'Дрон LYZ L900 PRO SE MAX',short:'L900 PRO SE MAX · 1080p · 60 мин · 2 км',price:79190,kaspi:'6 599 ₸ × 12 мес',reviews:31,inStock:false,
- img:'images/drone-lyz-l900-pro.jpg',tags:['Предзаказ'],keywords:['дрон','квадрокоптер','drone','lyz','коптер','камера','полёт','бюджетный'],
+ img:'images/drone-lyz-l900-pro',tags:['Предзаказ'],keywords:['дрон','квадрокоптер','drone','lyz','коптер','камера','полёт','бюджетный'],
  specs:['8 Мпикс / 1080p','GPS','60 мин полёта','2 км дальность','3 акк.'],
  table:[['Тип','Квадрокоптер (4 винта)'],['Макс. высота полёта','120 м'],['Датчики','GPS · акселерометр · датчик высоты · гироскоп · компас'],['Аккумулятор','3 штуки в комплекте'],['Время полёта','до 60 мин'],['Камера','Внешняя · 8 Мпикс · 1080p видео'],['Управление камерой','1 ось'],['Дальность управления','2000 м'],['Дальность трансляции','2000 м'],['Автопилот','Да'],['Следование за оператором','Да'],['Возврат к точке взлёта','Да'],['Поддержка ОС','Windows Phone · iOS · Android'],['Комплектация','Сумка · дрон · пульт ДУ · 3 акк. · запасные лопасти · кабель'],['Цвет','Оранжевый']]},
 {id:31,cat:'drone',brand:'BetaFPV',name:'FPV дрон BetaFPV Cetus X',short:'Cetus X · FPV Kit · очки + пульт · RTF',price:159990,kaspi:'6 666 ₸ × 24 мес',reviews:0,inStock:false,
- img:'images/drone-betafpv-cetus-x.jpg',tags:['Предзаказ','Скоро'],keywords:['дрон','fpv','betafpv','коптер','гоночный','очки','racing','freestyle'],
+ img:'images/drone-betafpv-cetus-x',tags:['Предзаказ','Скоро'],keywords:['дрон','fpv','betafpv','коптер','гоночный','очки','racing','freestyle'],
  specs:['FPV Kit','Пульт + очки','1080p камера','RTF','250 г'],
  table:[['Тип','FPV квадрокоптер'],['Комплект','Дрон + пульт + очки + акк.'],['Камера','1080p'],['Частота видео','5.8 ГГц'],['Режимы','Стабилизация / Acro'],['Вес','250 г']]},
 {id:32,cat:'drone',brand:'DJI',name:'Дрон DJI Mini 4K',short:'DJI Mini 4K · 4K видео · 31 мин · 249 г',price:249990,kaspi:'10 416 ₸ × 24 мес',reviews:0,inStock:false,
- img:'images/drone-dji-mini-4k.jpg',tags:['Предзаказ','Скоро'],keywords:['дрон','dji','mini','4k','квадрокоптер','компактный','лёгкий'],
+ img:'images/drone-dji-mini-4k',tags:['Предзаказ','Скоро'],keywords:['дрон','dji','mini','4k','квадрокоптер','компактный','лёгкий'],
  specs:['4K видео','31 мин полёта','10 км дальность','249 г','GPS'],
  table:[['Тип','Квадрокоптер'],['Видео','4K / 30fps'],['Время полёта','31 мин'],['Дальность','10 км'],['Вес','249 г'],['Датчики','GPS · ГЛОНАСС']]},
 {id:33,cat:'drone',brand:'Hubsan',name:'Мини-дрон Hubsan H111',short:'Hubsan H111 · мини · для новичков · LED',price:12990,kaspi:'2 165 ₸ × 6 мес',reviews:0,inStock:false,
- img:'images/drone-hubsan-h111.jpg',tags:['Предзаказ','Скоро'],keywords:['дрон','мини','hubsan','новичок','детский','маленький','indoor'],
+ img:'images/drone-hubsan-h111',tags:['Предзаказ','Скоро'],keywords:['дрон','мини','hubsan','новичок','детский','маленький','indoor'],
  specs:['Мини','6-осевой гиро','LED подсветка','2.4 ГГц','14 г'],
  table:[['Тип','Мини-квадрокоптер'],['Гироскоп','6-осевой'],['Подсветка','LED'],['Частота','2.4 ГГц'],['Время полёта','~6 мин'],['Вес','14 г']]},
 
 {id:15,cat:'gadget',brand:'Anker',name:'Внешний аккумулятор Anker A1289 24000 мАч',short:'Anker A1289 · 24000 мАч · 140 Вт',price:65990,kaspi:'5 499 ₸ × 12 мес',reviews:64,inStock:false,
- img:'images/powerbank-anker-a1289.jpg',tags:['Предзаказ'],keywords:['аккумулятор','powerbank','повербанк','зарядка','anker','батарея','внешний','портативный'],
+ img:'images/powerbank-anker-a1289',tags:['Предзаказ'],keywords:['аккумулятор','powerbank','повербанк','зарядка','anker','батарея','внешний','портативный'],
  specs:['24000 мАч','140 Вт','USB-C + micro USB','Быстрая зарядка','630 г'],
  table:[['Ёмкость','24 000 мАч'],['Макс. выходная мощность','140 Вт'],['Выходы','micro USB · USB Type-C'],['Вход','USB Type-C'],['USB портов','3'],['Назначение','Смартфон · ноутбук'],['Быстрая зарядка','Да'],['Тип батареи','Li-Polymer'],['Зарядка устройств','3 одновременно'],['Защиты','КЗ · перегрузка · перегрев'],['Размеры','156 × 55 × 50 мм'],['Вес','630 г'],['Комплектация','Аккумулятор · кабель USB-C'],['Цвет','Чёрный']]},
 {id:16,cat:'gadget',brand:'Coros',name:'Смарт-часы Coros Pace 3',short:'Coros Pace 3 · GPS · мониторинг · 39 г',price:179990,kaspi:'7 500 ₸ × 24 мес',reviews:52,inStock:false,
- img:'images/watch-coros-pace3.jpg',tags:['Предзаказ'],keywords:['часы','смарт','умные','watch','coros','фитнес','спорт','gps','трекер'],
+ img:'images/watch-coros-pace3',tags:['Предзаказ'],keywords:['часы','смарт','умные','watch','coros','фитнес','спорт','gps','трекер'],
  specs:['GPS','Android + iOS','Пульсометр + SpO2','WR50 защита','39 г'],
  table:[['Тип','Умные часы'],['Поддержка платформ','Android 6.0+ · iOS 9.0+'],['Уведомления','Звонки · SMS · почта · мессенджеры'],['Мониторинг','Сон · калории · активность · местоположение · SpO2'],['Датчики','Акселерометр · компас · термометр · высотомер · пульсометр · барометр · шагомер'],['GPS','Да'],['Водозащита','WR50 (5 атм)'],['Интерфейсы','Bluetooth · USB'],['Экран','Сенсорный ЖК · с подсветкой'],['Размер корпуса','42 мм'],['Форма корпуса','Круглая'],['Вес','39 г'],['Цвет','Чёрный']]},
 {id:17,cat:'gadget',brand:'LTDevice',name:'Туалет-домик автоматический',short:'Авто-туалет · самоочистка · приложение',price:118790,kaspi:'4 950 ₸ × 24 мес',reviews:19,inStock:false,
- img:'images/cat-toilet-auto.jpg',tags:['Предзаказ'],keywords:['туалет','кошка','питомец','авто','самоочистка','cat','pet','умный','лоток'],
+ img:'images/cat-toilet-auto',tags:['Предзаказ'],keywords:['туалет','кошка','питомец','авто','самоочистка','cat','pet','умный','лоток'],
  specs:['Самоочистка','Антибактер.','С сеткой','Приложение','51×48×50.5 см'],
  table:[['Тип','Туалет-лоток · туалет-домик'],['Вид животного','Кошки'],['Особенности','Самоочищающийся · с сеткой · антибактериальный'],['Управление','Приложение на смартфоне'],['Материал','Пластик'],['Размер животного','Средний'],['Длина','51 см'],['Ширина','48 см'],['Высота','50.5 см'],['Цвет','Белый'],['Производитель','LTDevice (Китай)']]},
 {id:34,cat:'gadget',brand:'Xiaomi',name:'Фитнес-браслет Xiaomi Mi Band 8',short:'Mi Band 8 · AMOLED · 16 дней · 150+ трен.',price:24990,kaspi:'4 165 ₸ × 6 мес',reviews:0,inStock:false,
- img:'images/band-xiaomi-miband8.jpg',tags:['Предзаказ','Скоро'],keywords:['браслет','фитнес','xiaomi','mi band','трекер','спорт','шагомер'],
+ img:'images/band-xiaomi-miband8',tags:['Предзаказ','Скоро'],keywords:['браслет','фитнес','xiaomi','mi band','трекер','спорт','шагомер'],
  specs:['AMOLED 1.62"','16 дней батарея','5 ATM','150+ трен.','27 г'],
  table:[['Тип','Фитнес-браслет'],['Экран','AMOLED 1.62"'],['Батарея','до 16 дней'],['Водозащита','5 ATM'],['Тренировки','150+'],['Вес','27 г']]},
 {id:35,cat:'gadget',brand:'BoboVR',name:'VR-гарнитура BoboVR Z6',short:'BoboVR Z6 · для смартфонов · складная',price:29990,kaspi:'4 999 ₸ × 6 мес',reviews:0,inStock:false,
- img:'images/vr-bobovr-z6.jpg',tags:['Предзаказ','Скоро'],keywords:['vr','виртуальная','реальность','очки','шлем','bobovr','гарнитура'],
+ img:'images/vr-bobovr-z6',tags:['Предзаказ','Скоро'],keywords:['vr','виртуальная','реальность','очки','шлем','bobovr','гарнитура'],
  specs:['Для смартфонов','110° обзор','Bluetooth','Складная','240 г'],
  table:[['Тип','VR-гарнитура для смартфонов'],['Угол обзора','110°'],['Bluetooth','Да (пульт)'],['Конструкция','Складная'],['Совместимость','4.7–6.7"'],['Вес','240 г']]},
 {id:36,cat:'gadget',brand:'Xiaomi',name:'Умные весы Xiaomi Mi Body Scale 2',short:'Mi Scale 2 · 13 показателей · Bluetooth',price:17990,kaspi:'2 999 ₸ × 6 мес',reviews:0,inStock:false,
- img:'images/scale-xiaomi-mibody2.jpg',tags:['Предзаказ','Скоро'],keywords:['весы','умные','xiaomi','фитнес','здоровье','body','scale'],
+ img:'images/scale-xiaomi-mibody2',tags:['Предзаказ','Скоро'],keywords:['весы','умные','xiaomi','фитнес','здоровье','body','scale'],
  specs:['13 показателей','Bluetooth','LED дисплей','До 150 кг','1.7 кг'],
  table:[['Тип','Умные напольные весы'],['Показатели','13 (вес, ИМТ, состав тела…)'],['Bluetooth','Да'],['Макс. вес','150 кг'],['Дисплей','LED скрытый'],['Приложение','Mi Fit']]},
 {id:37,cat:'gadget',brand:'Dreame',name:'Робот-пылесос Dreame D10 Plus',short:'Dreame D10 Plus · LiDAR · 4000 Па',price:179990,kaspi:'7 500 ₸ × 24 мес',reviews:0,inStock:false,
- img:'images/vacuum-dreame-d10plus.jpg',tags:['Предзаказ','Скоро'],keywords:['робот','пылесос','dreame','уборка','умный','дом','smart home','lidar'],
+ img:'images/vacuum-dreame-d10plus',tags:['Предзаказ','Скоро'],keywords:['робот','пылесос','dreame','уборка','умный','дом','smart home','lidar'],
  specs:['LiDAR навигация','4000 Па','Самоочистка','Влажная уборка','3.7 кг'],
  table:[['Тип','Робот-пылесос'],['Навигация','LiDAR'],['Мощность всасывания','4000 Па'],['Самоочистка базы','Да'],['Влажная уборка','Да'],['Батарея','5200 мАч']]},
 {id:38,cat:'gadget',brand:'Yeelight',name:'Умная лампа Yeelight LED Bulb',short:'Yeelight LED · RGB · Wi-Fi · голос',price:8990,kaspi:'1 499 ₸ × 6 мес',reviews:0,inStock:false,
- img:'images/lamp-yeelight-bulb.jpg',tags:['Предзаказ','Скоро'],keywords:['лампа','умная','yeelight','smart','rgb','свет','wifi','дом'],
+ img:'images/lamp-yeelight-bulb',tags:['Предзаказ','Скоро'],keywords:['лампа','умная','yeelight','smart','rgb','свет','wifi','дом'],
  specs:['RGB 16 млн цветов','Wi-Fi','Alexa / Google','900 лм','E27'],
  table:[['Тип','Умная LED лампочка'],['Цоколь','E27'],['Яркость','900 лм'],['Цвета','RGB (16 млн)'],['Подключение','Wi-Fi 2.4 ГГц'],['Голосовое управление','Alexa · Google · Siri']]},
 {id:47,cat:'gadget',brand:'Razer',name:'Игровая клавиатура Razer BlackWidow V4',short:'BlackWidow V4 · механика · RGB · USB',price:119990,kaspi:'5 000 ₸ × 24 мес',reviews:0,inStock:false,
- img:'images/keyboard-razer-blackwidow.jpg',tags:['Предзаказ','Скоро'],keywords:['клавиатура','механическая','razer','gaming','игровая','rgb','keyboard'],
+ img:'images/keyboard-razer-blackwidow',tags:['Предзаказ','Скоро'],keywords:['клавиатура','механическая','razer','gaming','игровая','rgb','keyboard'],
  specs:['Механическая','Razer Green','RGB Chroma','USB-C','Алюм. рама'],
  table:[['Тип','Механическая'],['Свитчи','Razer Green'],['Подсветка','RGB Chroma'],['Подключение','USB-C'],['Подставка для рук','Магнитная']]},
 {id:48,cat:'gadget',brand:'Logitech',name:'Мышь Logitech G Pro X Superlight 2',short:'G Pro X Superlight 2 · 32K DPI · 60 г',price:89990,kaspi:'3 750 ₸ × 24 мес',reviews:0,inStock:false,
- img:'images/mouse-logitech-gpro-x2.jpg',tags:['Предзаказ','Скоро'],keywords:['мышь','мышка','gaming','logitech','gpro','беспроводная','игровая','mouse'],
+ img:'images/mouse-logitech-gpro-x2',tags:['Предзаказ','Скоро'],keywords:['мышь','мышка','gaming','logitech','gpro','беспроводная','игровая','mouse'],
  specs:['32 000 DPI','95 ч батарея','LIGHTSPEED','PTFE','60 г'],
  table:[['Сенсор','HERO 2 / 32 000 DPI'],['Батарея','95 часов'],['Подключение','LIGHTSPEED 2.4 ГГц'],['Ножки','PTFE'],['Вес','60 г']]},
 {id:49,cat:'gadget',brand:'ARTISAN',name:'Коврик ARTISAN Hien FX XL',short:'Hien FX XL · 490×420 мм · гибридный',price:39990,kaspi:'6 665 ₸ × 6 мес',reviews:0,inStock:false,
- img:'images/mousepad-artisan-hien.jpg',tags:['Предзаказ','Скоро'],keywords:['коврик','мышь','mousepad','artisan','gaming','игровой','большой'],
+ img:'images/mousepad-artisan-hien',tags:['Предзаказ','Скоро'],keywords:['коврик','мышь','mousepad','artisan','gaming','игровой','большой'],
  specs:['490×420 мм','Гибрид','3 мм','Нескользящая основа','Япония'],
  table:[['Размер','490 × 420 × 3 мм'],['Поверхность','Гибридная (ткань + полимер)'],['Основа','Нескользящая'],['Тип','Скоростной / контрольный'],['Производство','Япония']]},
 
 {id:18,cat:'pc',brand:'PELADN',name:'Видеокарта PELADN RTX 3050 6 GB',short:'RTX 3050 6 Гб · GDDR6 · HDMI/DP/DVI',price:148490,kaspi:'6 187 ₸ × 24 мес',reviews:25,inStock:false,
- img:'images/gpu-peladn-rtx3050.jpg',tags:['Предзаказ'],keywords:['видеокарта','gpu','rtx','nvidia','3050','pc','компьютер','gaming','графика','geforce'],
+ img:'images/gpu-peladn-rtx3050',tags:['Предзаказ'],keywords:['видеокарта','gpu','rtx','nvidia','3050','pc','компьютер','gaming','графика','geforce'],
  specs:['RTX 3050 6 Гб','GDDR6','GA107','HDMI/DP/DVI','200 мм'],
  table:[['Серия','GeForce RTX 30 Series'],['Графический процессор','GA107'],['Интерфейс','PCI-E 4.0'],['Техпроцесс','8 нм'],['Объём видеопамяти','6 Гб GDDR6'],['Частота памяти','1750 МГц'],['Шина','96 бит'],['Частота GPU','1042 МГц (Boost 1470 МГц)'],['CUDA ядер','2304'],['Разъёмы','HDMI · DisplayPort · DVI'],['Мониторов','до 3'],['Охлаждение','Активное · 2 вентилятора'],['Рекомендуемый БП','500 Вт'],['Размер','200 × 114 × 39 мм'],['Производитель GPU','NVIDIA']]},
 {id:39,cat:'pc',brand:'PELADN',name:'Видеокарта PELADN RTX 4060 8 GB',short:'RTX 4060 8 Гб · GDDR6 · PCI-E 4.0',price:239990,kaspi:'10 000 ₸ × 24 мес',reviews:0,inStock:false,
- img:'images/gpu-peladn-rtx4060.jpg',tags:['Предзаказ','Скоро'],keywords:['видеокарта','gpu','rtx','nvidia','4060','pc','gaming','графика'],
+ img:'images/gpu-peladn-rtx4060',tags:['Предзаказ','Скоро'],keywords:['видеокарта','gpu','rtx','nvidia','4060','pc','gaming','графика'],
  specs:['RTX 4060 8 Гб','GDDR6','PCI-E 4.0','HDMI + DP','2 вент.'],
  table:[['Серия','GeForce RTX 40 Series'],['Объём видеопамяти','8 Гб GDDR6'],['Интерфейс','PCI-E 4.0'],['Разъёмы','HDMI · DP ×3'],['Рекомендуемый БП','550 Вт']]},
 {id:40,cat:'pc',brand:'Kingston',name:'SSD Kingston NV2 1TB NVMe',short:'NV2 1TB · NVMe M.2 · 3500 МБ/с',price:42990,kaspi:'3 583 ₸ × 12 мес',reviews:0,inStock:false,
- img:'images/ssd-kingston-nv2-1tb.jpg',tags:['Предзаказ','Скоро'],keywords:['ssd','накопитель','nvme','m.2','kingston','хранение','pc','диск'],
+ img:'images/ssd-kingston-nv2-1tb',tags:['Предзаказ','Скоро'],keywords:['ssd','накопитель','nvme','m.2','kingston','хранение','pc','диск'],
  specs:['1 ТБ','NVMe M.2','3500/2100 МБ/с','2280','TLC'],
  table:[['Объём','1 ТБ'],['Интерфейс','NVMe M.2 2280'],['Чтение','3500 МБ/с'],['Запись','2100 МБ/с'],['Тип памяти','TLC']]},
 {id:41,cat:'pc',brand:'Kingston',name:'ОЗУ Kingston Fury Beast DDR5 32GB',short:'Fury Beast DDR5 · 32 Гб (2×16) · 5600 МГц',price:54990,kaspi:'4 583 ₸ × 12 мес',reviews:0,inStock:false,
- img:'images/ram-kingston-fury-32gb.jpg',tags:['Предзаказ','Скоро'],keywords:['озу','ram','оперативная','память','ddr5','kingston','fury','pc'],
+ img:'images/ram-kingston-fury-32gb',tags:['Предзаказ','Скоро'],keywords:['озу','ram','оперативная','память','ddr5','kingston','fury','pc'],
  specs:['32 Гб (2×16)','DDR5','5600 МГц','CL36','XMP 3.0'],
  table:[['Объём','32 Гб (2×16 Гб)'],['Тип','DDR5'],['Частота','5600 МГц'],['Тайминги','CL36'],['Профиль','XMP 3.0']]},
 {id:42,cat:'pc',brand:'Cooler Master',name:'БП Cooler Master MWE 650W 80+',short:'MWE 650W · 80+ Bronze · полумод.',price:39990,kaspi:'3 333 ₸ × 12 мес',reviews:0,inStock:false,
- img:'images/psu-coolermaster-mwe650.jpg',tags:['Предзаказ','Скоро'],keywords:['блок','питания','бп','psu','cooler master','pc','650w','bronze'],
+ img:'images/psu-coolermaster-mwe650',tags:['Предзаказ','Скоро'],keywords:['блок','питания','бп','psu','cooler master','pc','650w','bronze'],
  specs:['650 Вт','80+ Bronze','Полумодульный','120 мм вент.','ATX'],
  table:[['Мощность','650 Вт'],['Сертификат','80+ Bronze'],['Тип','Полумодульный'],['Вентилятор','120 мм'],['Форм-фактор','ATX']]},
 
 {id:4,cat:'stand',brand:'FLYDIGI',name:'Подставка FLYDIGI BS2 Pro',short:'BS2 Pro · активное охл. · до 21" · RGB',price:39168,kaspi:'3 264 ₸ × 12 мес',reviews:48,inStock:false,
- img:'images/stand-flydigi-bs2pro.jpg',tags:['Предзаказ'],keywords:['подставка','охлаждение','кулер','flydigi','stand','cooler','cooling'],
+ img:'images/stand-flydigi-bs2pro',tags:['Предзаказ'],keywords:['подставка','охлаждение','кулер','flydigi','stand','cooler','cooling'],
  specs:['До 21"','120мм вент.','1300–4000 RPM','RGB подсветка','USB Type-C'],
  table:[['Тип','Активное охлаждение'],['Макс. диагональ','21"'],['Вентилятор','1 шт · 120 мм'],['Скорость вращения','1300–4000 RPM'],['Уровень шума','до 57 dB'],['Разъём питания','USB Type-C'],['Подсветка','Да (RGB)'],['Габариты','460 × 260 × 76 мм'],['Вес','1800 г'],['Цвет','Белый']]},
 {id:5,cat:'stand',brand:'FLYDIGI',name:'Подставка FLYDIGI BS1',short:'BS1 · активное охл. · до 21" · тихая',price:33234,kaspi:'2 770 ₸ × 12 мес',reviews:37,inStock:false,
- img:'images/stand-flydigi-bs1.jpg',tags:['Предзаказ'],keywords:['подставка','охлаждение','кулер','flydigi','stand','cooler','cooling'],
+ img:'images/stand-flydigi-bs1',tags:['Предзаказ'],keywords:['подставка','охлаждение','кулер','flydigi','stand','cooler','cooling'],
  specs:['До 21"','120мм вент.','55dB','Подсветка','1800 г'],
  table:[['Тип','Активное охлаждение'],['Макс. диагональ','15.6 / 16 / 17.3 / 21"'],['Вентилятор','1 шт · 120 мм'],['Уровень шума','55 dB'],['Подсветка','Да'],['Габариты','454 × 237 × 77 мм'],['Вес','1800 г'],['Цвет','Белый']]},
 {id:43,cat:'stand',brand:'ORICO',name:'USB-хаб ORICO 7-Port USB 3.0',short:'ORICO 7 портов · USB 3.0 · алюминий',price:15990,kaspi:'2 665 ₸ × 6 мес',reviews:0,inStock:false,
- img:'images/hub-orico-7port.jpg',tags:['Предзаказ','Скоро'],keywords:['usb','хаб','hub','orico','порт','разветвитель','концентратор'],
+ img:'images/hub-orico-7port',tags:['Предзаказ','Скоро'],keywords:['usb','хаб','hub','orico','порт','разветвитель','концентратор'],
  specs:['7 × USB 3.0','5 Гбит/с','Алюминий','LED индик.','Доп. питание'],
  table:[['Порты','7 × USB 3.0'],['Скорость','5 Гбит/с'],['Материал','Алюминий'],['Доп. питание','Да'],['Индикация','LED']]},
 {id:44,cat:'stand',brand:'NB',name:'Кронштейн NB F80 для монитора',short:'NB F80 · газлифт · 17–27" · до 6.5 кг',price:18990,kaspi:'3 165 ₸ × 6 мес',reviews:0,inStock:false,
- img:'images/mount-nb-f80.jpg',tags:['Предзаказ','Скоро'],keywords:['кронштейн','крепление','монитор','стойка','nb','настольный','arm','газлифт'],
+ img:'images/mount-nb-f80',tags:['Предзаказ','Скоро'],keywords:['кронштейн','крепление','монитор','стойка','nb','настольный','arm','газлифт'],
  specs:['17–27"','До 6.5 кг','Газлифт','VESA 100×100','Поворот 360°'],
  table:[['Диагональ','17–27"'],['Макс. вес','6.5 кг'],['Механизм','Газлифт'],['VESA','75×75 / 100×100'],['Крепление','Струбцина']]},
 
 {id:6,cat:'tech',brand:'EcoFlow',name:'Зарядная станция EcoFlow Delta 3',short:'Delta 3 · 1024Вт·ч / 1800Вт / зарядка 1ч',price:290990,kaspi:'12 125 ₸ × 24 мес',reviews:18,inStock:false,
- img:'images/station-ecoflow-delta3.jpg',tags:['Предзаказ'],keywords:['зарядная','станция','аккумулятор','ecoflow','powerbank','power station','зарядка','энергия','батарея'],
+ img:'images/station-ecoflow-delta3',tags:['Предзаказ'],keywords:['зарядная','станция','аккумулятор','ecoflow','powerbank','power station','зарядка','энергия','батарея'],
  specs:['1024 Вт·ч','1800 Вт','Зарядка за 1 ч','3000 циклов','14 кг'],
  table:[['Ёмкость','1024 Вт·ч / 320 000 мАч'],['Мощность','1800 Вт'],['Выходы','220В×4 · USB-A×2 · USB-C×2 · прикуриватель'],['Зарядка','Сеть / солнечная батарея / авто'],['Время зарядки','~1 час'],['Ресурс','3000 циклов'],['Защиты','КЗ · перезаряд · перегрев · перегрузка'],['Размеры','398 × 200 × 284 мм'],['Вес','14 кг']]},
-{id:7,cat:'tech',brand:'Creality',name:'Сушилка филамента Creality Dryer Plus',short:'Dryer Plus · 2 кг · 1.75 и 2.85 мм',price:39878,kaspi:'3 324 ₸ × 12 мес',reviews:29,inStock:false,
- img:'images/dryer-creality-plus.jpg',tags:['Предзаказ'],keywords:['сушилка','филамент','3d','печать','creality','dryer','filament','принтер'],
+{id:7,cat:'print3d',brand:'Creality',name:'Сушилка филамента Creality Dryer Plus',short:'Dryer Plus · 2 кг · 1.75 и 2.85 мм',price:39878,kaspi:'3 324 ₸ × 12 мес',reviews:29,inStock:false,
+ img:'images/dryer-creality-plus',tags:['Предзаказ'],keywords:['сушилка','филамент','3d','печать','creality','dryer','filament','принтер'],
  specs:['2 кг пластика','1.75 мм','2.85 мм','343×300 мм','2500 г'],
  table:[['Тип','Сушилка филамента'],['Совместимость','Пластик 1.75 мм и 2.85 мм'],['Объём камеры','2 кг пластика'],['Ширина × Высота','343 × 300 мм'],['Вес','2500 г']]},
-{id:8,cat:'tech',brand:'Anycubic',name:'3D-принтер Anycubic Photon Mono 4',short:'Photon Mono 4 · LCD 10K · закрытая камера',price:140000,kaspi:'5 834 ₸ × 24 мес',reviews:30,inStock:false,
- img:'images/printer-anycubic-photon4.jpg',tags:['Предзаказ'],keywords:['3d','принтер','печать','anycubic','photon','3д','printer','фотополимер'],
+{id:8,cat:'print3d',brand:'Anycubic',name:'3D-принтер Anycubic Photon Mono 4',short:'Photon Mono 4 · LCD 10K · закрытая камера',price:140000,kaspi:'5 834 ₸ × 24 мес',reviews:30,inStock:false,
+ img:'images/printer-anycubic-photon4',tags:['Предзаказ'],keywords:['3d','принтер','печать','anycubic','photon','3д','printer','фотополимер'],
  specs:['LCD 10K','153×165×87мм','Слой 0.03–0.15мм','Фотополимер','4 кг'],
  table:[['Технология','LCD / фотополимер'],['Экран','7" · разрешение 10K'],['Рабочая зона','153 × 165 × 87 мм'],['Высота слоя','0.03–0.15 мм'],['Конструкция','Закрытая камера'],['Применение','Дом · медицина · дизайн · промышленность'],['Габариты корпуса','235 × 391 × 230 мм'],['Вес','4 кг']]},
 {id:45,cat:'tech',brand:'APC',name:'ИБП APC Back-UPS 650VA',short:'APC 650VA · 360 Вт · 4 розетки · AVR',price:47990,kaspi:'3 999 ₸ × 12 мес',reviews:0,inStock:false,
- img:'images/ups-apc-650va.jpg',tags:['Предзаказ','Скоро'],keywords:['ибп','ups','apc','бесперебойник','питание','защита','back-ups'],
+ img:'images/ups-apc-650va',tags:['Предзаказ','Скоро'],keywords:['ибп','ups','apc','бесперебойник','питание','защита','back-ups'],
  specs:['650 ВА / 360 Вт','4 розетки','AVR','USB','4.5 кг'],
  table:[['Мощность','650 ВА / 360 Вт'],['Розетки','4 (2 с батарейным резервом)'],['AVR','Да'],['USB','Да'],['Вес','4.5 кг']]},
 {id:46,cat:'tech',brand:'Logitech',name:'Вебкамера Logitech C920 HD Pro',short:'C920 HD Pro · 1080p / 30fps · автофокус',price:49990,kaspi:'4 166 ₸ × 12 мес',reviews:0,inStock:false,
- img:'images/webcam-logitech-c920.jpg',tags:['Предзаказ','Скоро'],keywords:['вебкамера','камера','webcam','logitech','стрим','видео','1080p','zoom'],
+ img:'images/webcam-logitech-c920',tags:['Предзаказ','Скоро'],keywords:['вебкамера','камера','webcam','logitech','стрим','видео','1080p','zoom'],
  specs:['1080p / 30fps','Автофокус','Стерео микр.','USB-A','162 г'],
  table:[['Разрешение','1080p / 30fps'],['Автофокус','Да'],['Микрофон','Стерео'],['Угол обзора','78°'],['Подключение','USB-A']]},
 {id:50,cat:'tech',brand:'Baseus',name:'Сетевой фильтр Baseus PowerCombo 65W',short:'PowerCombo · 65W USB-C · 3 розетки + 2 USB',price:22990,kaspi:'3 832 ₸ × 6 мес',reviews:0,inStock:false,
- img:'images/powerstrip-baseus-combo.jpg',tags:['Предзаказ','Скоро'],keywords:['сетевой','фильтр','удлинитель','baseus','usb','зарядка','розетка'],
+ img:'images/powerstrip-baseus-combo',tags:['Предзаказ','Скоро'],keywords:['сетевой','фильтр','удлинитель','baseus','usb','зарядка','розетка'],
  specs:['3 розетки 220В','USB-C 65 Вт','USB-A × 2','Защита от КЗ','1.5 м кабель'],
- table:[['Розетки','3 × 220В'],['USB-C','65 Вт (PD)'],['USB-A','2 порта'],['Защиты','КЗ · перегрузка · перенапряжение'],['Кабель','1.5 м']]}
+ table:[['Розетки','3 × 220В'],['USB-C','65 Вт (PD)'],['USB-A','2 порта'],['Защиты','КЗ · перегрузка · перенапряжение'],['Кабель','1.5 м']]},
+
+/* === 3D-ПЕЧАТЬ, СКАНЕРЫ, ОРГТЕХНИКА === */
+{id:101,cat:'print3d',brand:'Creality',name:'3D-принтер Creality K2 Plus Combo',short:'K2 Plus Combo · 350³ · CFS · 600 мм/с',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-creality-k2-plus-combo',tags:['Предзаказ'],keywords:['3d','3д','creality','creality-k2-plus-combo','печать','принтер'],
+ specs:['350×350×350 мм','600 мм/с','CFS до 16 цветов','Закрытая камера','Сопло 350 °C'],
+ table:[['Технология','FDM'],['Область печати','350 × 350 × 350 мм'],['Скорость печати','до 600 мм/с'],['Мультицвет','CFS, до 16 цветов при 4 модулях'],['Камера','Активный подогрев до 60 °C'],['Сопло','Закалённое, до 350 °C'],['Связь','Wi-Fi · Ethernet']]},
+{id:102,cat:'print3d',brand:'Creality',name:'3D-принтер Creality K2 Plus',short:'K2 Plus · 350³ · 600 мм/с · закрытый',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-creality-k2-plus',tags:['Предзаказ'],keywords:['3d','3д','creality','creality-k2-plus','печать','принтер'],
+ specs:['350×350×350 мм','600 мм/с','Закрытая камера','Автокалибровка','Wi-Fi + Ethernet'],
+ table:[['Технология','FDM'],['Область печати','350 × 350 × 350 мм'],['Скорость печати','до 600 мм/с'],['Камера','Активный подогрев до 60 °C'],['Сопло','Закалённое, до 350 °C'],['Калибровка','Полностью автоматическая'],['Связь','Wi-Fi · Ethernet']]},
+{id:103,cat:'print3d',brand:'Creality',name:'3D-принтер Creality K2 Pro Combo',short:'K2 Pro Combo · 260³ · CFS · мультицвет',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-creality-k2-pro-combo',tags:['Предзаказ'],keywords:['3d','3д','creality','creality-k2-pro-combo','печать','принтер'],
+ specs:['260×260×260 мм','До 600 мм/с','CFS мультицвет','Закрытая камера','Сопло 350 °C'],
+ table:[['Технология','FDM'],['Область печати','260 × 260 × 260 мм'],['Скорость печати','до 600 мм/с'],['Мультицвет','CFS в комплекте'],['Камера','Закрытая, с подогревом'],['Сопло','До 350 °C'],['Связь','Wi-Fi · Ethernet']]},
+{id:104,cat:'print3d',brand:'Creality',name:'3D-принтер Creality K2',short:'K2 · 260³ · закрытый · CoreXY',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-creality-k2',tags:['Предзаказ'],keywords:['3d','3д','creality','creality-k2','печать','принтер'],
+ specs:['260×260×260 мм','CoreXY','Закрытая камера','Автокалибровка','Wi-Fi'],
+ table:[['Технология','FDM'],['Область печати','260 × 260 × 260 мм'],['Скорость печати','до 600 мм/с'],['Кинематика','CoreXY'],['Камера','Закрытая'],['Калибровка','Автоматическая'],['Связь','Wi-Fi · Ethernet']]},
+{id:105,cat:'print3d',brand:'Creality',name:'3D-принтер Creality K2 Combo',short:'K2 Combo · 260³ · CFS в комплекте',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-creality-k2-combo',tags:['Предзаказ'],keywords:['3d','3д','creality','creality-k2-combo','печать','принтер'],
+ specs:['260×260×260 мм','CFS мультицвет','CoreXY','Закрытая камера','Wi-Fi'],
+ table:[['Технология','FDM'],['Область печати','260 × 260 × 260 мм'],['Скорость печати','до 600 мм/с'],['Мультицвет','CFS в комплекте'],['Кинематика','CoreXY'],['Камера','Закрытая'],['Связь','Wi-Fi · Ethernet']]},
+{id:106,cat:'print3d',brand:'Creality',name:'3D-принтер Creality K1',short:'K1 · 220³ · 600 мм/с · закрытый',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-creality-k1',tags:['Предзаказ'],keywords:['3d','3д','creality','creality-k1','печать','принтер'],
+ specs:['220×220×250 мм','600 мм/с','CoreXY','Закрытый корпус','Директ-экструдер'],
+ table:[['Технология','FDM'],['Область печати','220 × 220 × 250 мм'],['Скорость печати','до 600 мм/с'],['Кинематика','CoreXY'],['Экструдер','Директ, до 300 °C'],['Корпус','Закрытый'],['Связь','Wi-Fi']]},
+{id:107,cat:'print3d',brand:'Creality',name:'3D-принтер Creality K1 SE',short:'K1 SE · 220³ · 600 мм/с',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-creality-k1-se',tags:['Предзаказ'],keywords:['3d','3д','creality','creality-k1-se','печать','принтер'],
+ specs:['220×220×250 мм','600 мм/с','CoreXY','Автокалибровка','Директ-экструдер'],
+ table:[['Технология','FDM'],['Область печати','220 × 220 × 250 мм'],['Скорость печати','до 600 мм/с'],['Кинематика','CoreXY'],['Экструдер','Директ'],['Калибровка','Автоматическая'],['Связь','Wi-Fi']]},
+{id:108,cat:'print3d',brand:'Creality',name:'3D-принтер Creality K1 Max',short:'K1 Max · 300³ · AI-камера · лидар',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-creality-k1-max',tags:['Предзаказ'],keywords:['3d','3д','creality','creality-k1-max','печать','принтер'],
+ specs:['300×300×300 мм','600 мм/с','AI-камера','Лидар','Закрытый корпус'],
+ table:[['Технология','FDM'],['Область печати','300 × 300 × 300 мм'],['Скорость печати','до 600 мм/с'],['Контроль печати','AI-камера + лидар'],['Кинематика','CoreXY'],['Корпус','Закрытый'],['Связь','Wi-Fi']]},
+{id:109,cat:'print3d',brand:'Creality',name:'3D-принтер Creality K1C',short:'K1C · 220³ · для карбона',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-creality-k1c',tags:['Предзаказ'],keywords:['3d','3д','creality','creality-k1c','печать','принтер'],
+ specs:['220×220×250 мм','600 мм/с','Карбон / CF','Закалённое сопло','AI-камера'],
+ table:[['Технология','FDM'],['Область печати','220 × 220 × 250 мм'],['Скорость печати','до 600 мм/с'],['Материалы','PLA-CF · PA-CF · ABS · PETG'],['Сопло','Закалённое, быстросъёмное'],['Контроль печати','AI-камера'],['Корпус','Закрытый']]},
+{id:110,cat:'print3d',brand:'Creality',name:'3D-принтер Creality Hi Combo',short:'Hi Combo · 260×260×300 · мультицвет',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-creality-hi-combo',tags:['Предзаказ'],keywords:['3d','3д','creality','creality-hi-combo','печать','принтер'],
+ specs:['260×260×300 мм','500 мм/с','CFS мультицвет','Автокалибровка','Wi-Fi'],
+ table:[['Технология','FDM'],['Область печати','260 × 260 × 300 мм'],['Скорость печати','до 500 мм/с'],['Мультицвет','CFS в комплекте'],['Калибровка','Автоматическая'],['Экструдер','Директ'],['Связь','Wi-Fi']]},
+{id:111,cat:'print3d',brand:'Creality',name:'3D-принтер Creality Ender-3 V3 KE',short:'Ender-3 V3 KE · 220×220×240 · 500 мм/с',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-creality-ender-3-v3-ke',tags:['Предзаказ'],keywords:['3d','3д','creality','creality-ender-3-v3-ke','печать','принтер'],
+ specs:['220×220×240 мм','500 мм/с','Автокалибровка','Директ-экструдер','Wi-Fi'],
+ table:[['Технология','FDM'],['Область печати','220 × 220 × 240 мм'],['Скорость печати','до 500 мм/с'],['Экструдер','Директ, до 300 °C'],['Калибровка','Автоматическая'],['Кинематика','Классическая (Cartesian)'],['Связь','Wi-Fi']]},
+{id:112,cat:'print3d',brand:'Creality',name:'3D-принтер Creality Ender-3 V3 SE',short:'Ender-3 V3 SE · 220×220×250 · для старта',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-creality-ender-3-v3-se',tags:['Предзаказ'],keywords:['3d','3д','creality','creality-ender-3-v3-se','печать','принтер'],
+ specs:['220×220×250 мм','250 мм/с','Автокалибровка','Директ-экструдер','Для новичков'],
+ table:[['Технология','FDM'],['Область печати','220 × 220 × 250 мм'],['Скорость печати','до 250 мм/с'],['Экструдер','Директ'],['Калибровка','Автоматическая (CR Touch)'],['Материалы','PLA · PETG · TPU'],['Сборка','Частичная, ~20 минут']]},
+{id:113,cat:'print3d',brand:'Creality',name:'3D-принтер Creality Ender-3 V3 Plus',short:'Ender-3 V3 Plus · 300×300×330',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-creality-ender-3-v3-plus',tags:['Предзаказ'],keywords:['3d','3д','creality','creality-ender-3-v3-plus','печать','принтер'],
+ specs:['300×300×330 мм','600 мм/с','Автокалибровка','Директ-экструдер','Большая область'],
+ table:[['Технология','FDM'],['Область печати','300 × 300 × 330 мм'],['Скорость печати','до 600 мм/с'],['Экструдер','Директ, до 300 °C'],['Калибровка','Автоматическая'],['Стол','PEI, гибкий'],['Связь','Wi-Fi']]},
+{id:114,cat:'print3d',brand:'Creality',name:'3D-принтер Creality Ender-5 Max',short:'Ender-5 Max · 400³ · закрытый',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-creality-ender-5-max',tags:['Предзаказ'],keywords:['3d','3д','creality','creality-ender-5-max','печать','принтер'],
+ specs:['400×400×400 мм','600 мм/с','Закрытый корпус','Сопло 300 °C','Большой формат'],
+ table:[['Технология','FDM'],['Область печати','400 × 400 × 400 мм'],['Скорость печати','до 600 мм/с'],['Корпус','Закрытый, кубическая рама'],['Сопло','До 300 °C'],['Стол','С подогревом до 110 °C'],['Связь','Wi-Fi']]},
+{id:115,cat:'print3d',brand:'Creality',name:'3D-принтер Creality Sermoon D3',short:'Sermoon D3 · 300×250×300 · промышленный',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-creality-sermoon-d3',tags:['Предзаказ'],keywords:['3d','3д','creality','creality-sermoon-d3','печать','принтер'],
+ specs:['300×250×300 мм','Закрытая камера','Двойной привод','Сопло 300 °C','Для производства'],
+ table:[['Технология','FDM'],['Область печати','300 × 250 × 300 мм'],['Скорость печати','до 300 мм/с'],['Корпус','Полностью закрытый'],['Назначение','Мелкосерийное производство'],['Сопло','До 300 °C'],['Связь','Wi-Fi · Ethernet']]},
+{id:116,cat:'print3d',brand:'Creality',name:'3D-принтер Creality Sermoon S1',short:'Sermoon S1 · закрытый · компактный',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-creality-sermoon-s1',tags:['Предзаказ'],keywords:['3d','3д','creality','creality-sermoon-s1','печать','принтер'],
+ specs:['Закрытая камера','Компактный','Автокалибровка','Тихая работа','Для дома и офиса'],
+ table:[['Технология','FDM'],['Область печати','уточняется'],['Скорость печати','уточняется'],['Корпус','Закрытый'],['Назначение','Дом · офис · школа'],['Калибровка','Автоматическая']]},
+{id:117,cat:'print3d',brand:'Creality',name:'3D-принтер Creality Sparki i7 Combo',short:'Sparki i7 Combo · мультицвет',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-creality-sparki-i7-combo',tags:['Предзаказ'],keywords:['3d','3д','creality','creality-sparki-i7-combo','печать','принтер'],
+ specs:['Мультицветная печать','Закрытый корпус','Комплект Combo','Автокалибровка'],
+ table:[['Технология','FDM'],['Область печати','уточняется'],['Скорость печати','уточняется'],['Комплектация','Combo — с системой подачи материала'],['Калибровка','Автоматическая']]},
+{id:118,cat:'print3d',brand:'Creality',name:'3D-принтер Creality Halot Mage',short:'Halot Mage · 8K · 10.3"',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-creality-halot-mage',tags:['Предзаказ'],keywords:['3d','3д','creality','creality-halot-mage','печать','принтер'],
+ specs:['LCD 8K 10.3"','228×128×230 мм','Фотополимер','Слой 0.01 мм','Wi-Fi'],
+ table:[['Технология','LCD / фотополимер'],['Экран','10.3" · разрешение 8K'],['Область печати','228 × 128 × 230 мм'],['Точность XY','29.7 мкм'],['Высота слоя','0.01–0.2 мм'],['Связь','Wi-Fi · USB']]},
+{id:119,cat:'print3d',brand:'Creality',name:'3D-принтер Creality Halot Mage Pro',short:'Halot Mage Pro · 8K · очистка воздуха',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-creality-halot-mage-pro',tags:['Предзаказ'],keywords:['3d','3д','creality','creality-halot-mage-pro','печать','принтер'],
+ specs:['LCD 8K 10.3"','228×128×230 мм','Очистка воздуха','Слой 0.01 мм','Wi-Fi'],
+ table:[['Технология','LCD / фотополимер'],['Экран','10.3" · разрешение 8K'],['Область печати','228 × 128 × 230 мм'],['Точность XY','29.7 мкм'],['Дополнительно','Система очистки воздуха'],['Связь','Wi-Fi · USB']]},
+{id:120,cat:'print3d',brand:'Creality',name:'3D-принтер Creality Halot Mage S 14K',short:'Halot Mage S · 14K · 10.1"',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-creality-halot-mage-s-14k',tags:['Предзаказ'],keywords:['3d','3д','creality','creality-halot-mage-s-14k','печать','принтер'],
+ specs:['LCD 14K 10.1"','Фотополимер','Высокая детализация','Слой 0.01 мм','Wi-Fi'],
+ table:[['Технология','LCD / фотополимер'],['Экран','10.1" · разрешение 14K'],['Область печати','218 × 123 × 230 мм'],['Детализация','14K, менее 20 мкм по XY'],['Высота слоя','0.01–0.2 мм'],['Связь','Wi-Fi · USB']]},
+{id:121,cat:'print3d',brand:'Creality',name:'3D-принтер Creality Halot Sky 2022',short:'Halot Sky · 8.9" 4K',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-creality-halot-sky-2022',tags:['Предзаказ'],keywords:['3d','3д','creality','creality-halot-sky-2022','печать','принтер'],
+ specs:['LCD 8.9" 4K','192×120×200 мм','Фотополимер','Слой 0.01 мм','Wi-Fi'],
+ table:[['Технология','LCD / фотополимер'],['Экран','8.9" · разрешение 4K'],['Область печати','192 × 120 × 200 мм'],['Точность XY','50 мкм'],['Высота слоя','0.01–0.2 мм'],['Связь','Wi-Fi · USB']]},
+{id:122,cat:'print3d',brand:'Creality',name:'3D-принтер Creality Halot X1 Combo',short:'Halot X1 Combo · принтер + мойка',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-creality-halot-x1-combo',tags:['Предзаказ'],keywords:['3d','3д','creality','creality-halot-x1-combo','печать','принтер'],
+ specs:['LCD фотополимер','Комплект Combo','Мойка и засветка','Компактный','Для старта'],
+ table:[['Технология','LCD / фотополимер'],['Экран','LCD'],['Область печати','уточняется'],['Комплектация','Принтер + станция мойки и засветки'],['Назначение','Старт в фотополимерной печати']]},
+{id:123,cat:'print3d',brand:'Creality',name:'3D-сканер Creality CR-Scan Raptor',short:'CR-Scan Raptor · 0.02 мм · синий свет',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-creality-cr-scan-raptor',tags:['Предзаказ'],keywords:['3d','3d-сканер','3д','creality','creality-cr-scan-raptor','scan','печать','принтер','сканер'],
+ specs:['Точность 0.02 мм','Синий свет','Ручной + на штативе','Цветная текстура','USB'],
+ table:[['Тип','3D-сканер структурированного света'],['Точность','до 0.02 мм'],['Источник','Синий свет / синий лазер'],['Режимы','Ручной и стационарный'],['Текстура','Цветная']]},
+{id:124,cat:'print3d',brand:'Creality',name:'3D-сканер Creality CR-Scan Raptor X',short:'CR-Scan Raptor X · ручной · высокая точность',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-creality-cr-scan-raptorx',tags:['Предзаказ'],keywords:['3d','3d-сканер','3д','creality','creality-cr-scan-raptorx','scan','печать','принтер','сканер'],
+ specs:['Высокая точность','Ручной','Синий лазер','Цветная текстура','USB'],
+ table:[['Тип','Ручной 3D-сканер'],['Источник','Синий лазер + структурированный свет'],['Точность','до 0.02 мм'],['Текстура','Цветная']]},
+{id:125,cat:'print3d',brand:'Creality',name:'3D-сканер Creality CR-Scan Ferret Pro',short:'Ferret Pro · 0.1 мм · портативный',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-creality-cr-scan-ferret-pro',tags:['Предзаказ'],keywords:['3d','3d-сканер','3д','creality','creality-cr-scan-ferret-pro','scan','печать','принтер','сканер'],
+ specs:['Точность 0.1 мм','Портативный','Wi-Fi','Работа с телефоном','30 к/с'],
+ table:[['Тип','Портативный 3D-сканер'],['Точность','до 0.1 мм'],['Скорость','до 30 кадров/с'],['Подключение','USB · Wi-Fi'],['Совместимость','ПК · смартфон']]},
+{id:126,cat:'print3d',brand:'Creality',name:'3D-сканер Creality CR-Scan Otter',short:'CR-Scan Otter · 0.02 мм · синий свет',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-creality-cr-scan-otter',tags:['Предзаказ'],keywords:['3d','3d-сканер','3д','creality','creality-cr-scan-otter','scan','печать','принтер','сканер'],
+ specs:['Точность 0.02 мм','Синий свет','Мелкие детали','Цветная текстура','USB'],
+ table:[['Тип','3D-сканер структурированного света'],['Точность','до 0.02 мм'],['Назначение','Мелкие детали, ювелирка, инженерия'],['Текстура','Цветная']]},
+{id:127,cat:'print3d',brand:'Creality',name:'3D-сканер Creality CR-Scan Otter Lite',short:'Otter Lite · компактный · точный',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-creality-cr-scan-otter-lite',tags:['Предзаказ'],keywords:['3d','3d-сканер','3д','creality','creality-cr-scan-otter-lite','scan','печать','принтер','сканер'],
+ specs:['Компактный','Синий свет','Мелкие объекты','Цветная текстура','USB'],
+ table:[['Тип','3D-сканер структурированного света'],['Точность','до 0.05 мм'],['Назначение','Небольшие объекты'],['Текстура','Цветная']]},
+{id:128,cat:'print3d',brand:'Creality',name:'Creality Scan Bridge для CR-Scan Raptor',short:'Scan Bridge · беспроводной модуль',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-creality-scan-bridge-raptor',tags:['Предзаказ'],keywords:['3d','3д','creality','creality-scan-bridge-raptor','печать','принтер'],
+ specs:['Аксессуар','Беспроводная работа','Для CR-Scan Raptor','Питание от АКБ'],
+ table:[['Тип','Аксессуар для 3D-сканера'],['Совместимость','CR-Scan Raptor'],['Назначение','Работа без ПК / без проводов']]},
+{id:129,cat:'print3d',brand:'Creality',name:'Сушилка филамента Creality Dry Box 2.0',short:'Dry Box 2.0 · сушка и хранение',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-creality-dry-box-2',tags:['Предзаказ'],keywords:['3d','3д','creality','creality-dry-box-2','dryer','печать','принтер','сушилка','филамент'],
+ specs:['1 катушка','Подогрев','Гигрометр','Прямая подача','Компактная'],
+ table:[['Тип','Сушилка / хранение филамента'],['Ёмкость','1 катушка'],['Функции','Сушка при печати, контроль влажности'],['Совместимость','1.75 / 2.85 мм']]},
+{id:130,cat:'print3d',brand:'Creality',name:'Сушилка филамента Creality Space Pi Dryer Plus',short:'Space Pi Plus · 2 катушки',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-creality-space-pi-dryer-plus',tags:['Предзаказ'],keywords:['3d','3д','creality','creality-space-pi-dryer-plus','dryer','печать','принтер','сушилка','филамент'],
+ specs:['2 катушки','Подогрев до 70 °C','Таймер','Прямая подача','Дисплей'],
+ table:[['Тип','Сушилка филамента'],['Ёмкость','2 катушки'],['Температура','до 70 °C'],['Управление','Дисплей, таймер']]},
+{id:131,cat:'print3d',brand:'Creality',name:'Сушилка филамента Creality Space Pi',short:'Space Pi · 1 катушка · компактная',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-creality-space-pi-filament-dryer',tags:['Предзаказ'],keywords:['3d','3д','creality','creality-space-pi-filament-dryer','dryer','печать','принтер','сушилка','филамент'],
+ specs:['1 катушка','Подогрев','Таймер','Прямая подача','Компактная'],
+ table:[['Тип','Сушилка филамента'],['Ёмкость','1 катушка'],['Температура','до 70 °C'],['Управление','Дисплей, таймер']]},
+{id:132,cat:'print3d',brand:'Creality',name:'Сушилка филамента Creality DB-03',short:'DB-03 · сушка и хранение',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-creality-db-03',tags:['Предзаказ'],keywords:['3d','3д','creality','creality-db-03','dryer','печать','принтер','сушилка','филамент'],
+ specs:['Подогрев','Гигрометр','Прямая подача','Совместим 1.75/2.85'],
+ table:[['Тип','Сушилка филамента'],['Функции','Сушка при печати'],['Совместимость','1.75 / 2.85 мм']]},
+{id:133,cat:'print3d',brand:'Creality',name:'Сушилка филамента Creality 4005010072',short:'Сушилка Creality · сушка при печати',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-creality-4005010072-dryer',tags:['Предзаказ'],keywords:['3d','3д','creality','creality-4005010072-dryer','dryer','печать','принтер','сушилка','филамент'],
+ specs:['Подогрев','Прямая подача','Компактная','Артикул 4005010072'],
+ table:[['Тип','Сушилка филамента'],['Артикул','4005010072'],['Функции','Сушка при печати']]},
+{id:134,cat:'print3d',brand:'Creality',name:'Платформа PEI для Creality K1 Max',short:'Гибкая PEI-пластина · для K1 Max',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-platforma-creality-k1-max-pei',tags:['Предзаказ'],keywords:['3d','3д','creality','platforma-creality-k1-max-pei','печать','принтер'],
+ specs:['PEI покрытие','Гибкая','Для K1 Max','Магнитная'],
+ table:[['Тип','Платформа для печати'],['Покрытие','PEI, двустороннее'],['Совместимость','Creality K1 Max'],['Крепление','Магнитное']]},
+{id:135,cat:'print3d',brand:'Anycubic',name:'3D-принтер Anycubic Photon P1',short:'Photon P1 · фотополимер · компактный',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-anycubic-photon-p1',tags:['Предзаказ'],keywords:['3d','3д','anycubic','anycubic-photon-p1','печать','принтер'],
+ specs:['LCD фотополимер','Компактный','Слой 0.01 мм','Для старта','USB'],
+ table:[['Технология','LCD / фотополимер'],['Экран','LCD'],['Область печати','уточняется'],['Назначение','Старт в фотополимерной печати'],['Высота слоя','0.01–0.15 мм']]},
+{id:136,cat:'print3d',brand:'Anycubic',name:'3D-принтер Anycubic Kobra 3 Combo',short:'Kobra 3 Combo · 250×250×260 · ACE Pro',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-anycubic-kobra-3-combo',tags:['Предзаказ'],keywords:['3d','3д','anycubic','anycubic-kobra-3-combo','печать','принтер'],
+ specs:['250×250×260 мм','600 мм/с','ACE Pro мультицвет','Автокалибровка','Wi-Fi'],
+ table:[['Технология','FDM'],['Область печати','250 × 250 × 260 мм'],['Скорость печати','до 600 мм/с'],['Мультицвет','ACE Pro, до 4 цветов'],['Калибровка','Автоматическая'],['Экструдер','Директ'],['Связь','Wi-Fi']]},
+{id:137,cat:'print3d',brand:'Anycubic',name:'3D-принтер Anycubic Kobra 3 Max',short:'Kobra 3 Max · 420×420×500',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-anycubic-kobra-3-max',tags:['Предзаказ'],keywords:['3d','3д','anycubic','anycubic-kobra-3-max','печать','принтер'],
+ specs:['420×420×500 мм','600 мм/с','Большой формат','Автокалибровка','Wi-Fi'],
+ table:[['Технология','FDM'],['Область печати','420 × 420 × 500 мм'],['Скорость печати','до 600 мм/с'],['Формат','Большая область печати'],['Калибровка','Автоматическая (LeviQ)'],['Экструдер','Директ'],['Связь','Wi-Fi']]},
+{id:138,cat:'print3d',brand:'Anycubic',name:'3D-принтер Anycubic Kobra S1',short:'Kobra S1 · 250×250×250 · закрытый',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-anycubic-kobra-s1',tags:['Предзаказ'],keywords:['3d','3д','anycubic','anycubic-kobra-s1','печать','принтер'],
+ specs:['250×250×250 мм','600 мм/с','Закрытый корпус','CoreXZ','Wi-Fi'],
+ table:[['Технология','FDM'],['Область печати','250 × 250 × 250 мм'],['Скорость печати','до 600 мм/с'],['Корпус','Закрытый'],['Кинематика','CoreXZ'],['Калибровка','Автоматическая'],['Связь','Wi-Fi']]},
+{id:139,cat:'print3d',brand:'Anycubic',name:'3D-принтер Anycubic Kobra S1 Combo',short:'Kobra S1 Combo · закрытый · ACE Pro',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-anycubic-kobra-s1-combo',tags:['Предзаказ'],keywords:['3d','3д','anycubic','anycubic-kobra-s1-combo','печать','принтер'],
+ specs:['250×250×250 мм','600 мм/с','ACE Pro мультицвет','Закрытый корпус','Wi-Fi'],
+ table:[['Технология','FDM'],['Область печати','250 × 250 × 250 мм'],['Скорость печати','до 600 мм/с'],['Мультицвет','ACE Pro, до 4 цветов'],['Корпус','Закрытый'],['Калибровка','Автоматическая'],['Связь','Wi-Fi']]},
+{id:140,cat:'print3d',brand:'Anycubic',name:'3D-принтер Anycubic Kobra S',short:'Kobra S · мультицвет · автокалибровка',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-anycubic-kobra-s',tags:['Предзаказ'],keywords:['3d','3д','anycubic','anycubic-kobra-s','печать','принтер'],
+ specs:['Мультицветная печать','Автокалибровка','Директ-экструдер','Wi-Fi'],
+ table:[['Технология','FDM'],['Область печати','уточняется'],['Скорость печати','до 600 мм/с'],['Мультицвет','Система подачи в комплекте'],['Калибровка','Автоматическая'],['Связь','Wi-Fi']]},
+{id:141,cat:'print3d',brand:'Anycubic',name:'3D-принтер Anycubic Kobra 2 Pro',short:'Kobra 2 Pro · 220×220×250 · 500 мм/с',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-anycubic-kobra-2-pro',tags:['Предзаказ'],keywords:['3d','3д','anycubic','anycubic-kobra-2-pro','печать','принтер'],
+ specs:['220×220×250 мм','500 мм/с','Автокалибровка','Директ-экструдер','PEI-стол'],
+ table:[['Технология','FDM'],['Область печати','220 × 220 × 250 мм'],['Скорость печати','до 500 мм/с'],['Калибровка','LeviQ 2.0'],['Экструдер','Директ'],['Стол','PEI, гибкий']]},
+{id:142,cat:'print3d',brand:'Anycubic',name:'Станция мойки и засветки Anycubic Wash & Cure 3',short:'Wash & Cure 3 · мойка + УФ-засветка',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-anycubic-wash-cure-3',tags:['Предзаказ'],keywords:['3d','3д','anycubic','anycubic-wash-cure-3','cure','wash','засветка','мойка','печать','постобработка','принтер'],
+ specs:['Мойка + засветка','2-в-1','УФ-лампа','Таймер','Для фотополимера'],
+ table:[['Тип','Постобработка фотополимерной печати'],['Функции','Мойка и УФ-засветка 2-в-1'],['Управление','Таймер, дисплей']]},
+{id:143,cat:'print3d',brand:'Anycubic',name:'Станция мойки и засветки Anycubic Wash & Cure 3 Plus',short:'Wash & Cure 3 Plus · для больших моделей',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-anycubic-wash-cure-3-plus',tags:['Предзаказ'],keywords:['3d','3д','anycubic','anycubic-wash-cure-3-plus','cure','wash','засветка','мойка','печать','постобработка','принтер'],
+ specs:['Мойка + засветка','Большая камера','УФ-лампа','Таймер','Для фотополимера'],
+ table:[['Тип','Постобработка фотополимерной печати'],['Функции','Мойка и УФ-засветка 2-в-1'],['Особенность','Увеличенная рабочая камера']]},
+{id:144,cat:'print3d',brand:'QIDI Tech',name:'3D-принтер QIDI Tech X-Max 3',short:'X-Max 3 · 325×325×315 · закрытый',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-qidi-tech-x-max-3',tags:['Предзаказ'],keywords:['3d','3д','qidi','qidi-tech-x-max-3','печать','принтер'],
+ specs:['325×325×315 мм','600 мм/с','Закрытая камера','Сопло 350 °C','CoreXY'],
+ table:[['Технология','FDM'],['Область печати','325 × 325 × 315 мм'],['Скорость печати','до 600 мм/с'],['Кинематика','CoreXY'],['Камера','Закрытая, с подогревом до 65 °C'],['Сопло','До 350 °C'],['Материалы','PA-CF · PET-CF · ABS · PC']]},
+{id:145,cat:'print3d',brand:'QIDI Tech',name:'3D-принтер QIDI Tech Q2 AMS',short:'Q2 AMS · мультицвет · закрытый',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-qidi-tech-q2-ams',tags:['Предзаказ'],keywords:['3d','3д','qidi','qidi-tech-q2-ams','печать','принтер'],
+ specs:['Мультицвет AMS','Закрытая камера','CoreXY','Высокая скорость','Wi-Fi'],
+ table:[['Технология','FDM'],['Область печати','уточняется'],['Скорость печати','до 600 мм/с'],['Мультицвет','Система AMS в комплекте'],['Кинематика','CoreXY'],['Камера','Закрытая']]},
+{id:146,cat:'print3d',brand:'ELEGOO',name:'3D-принтер ELEGOO Neptune 4 Plus',short:'Neptune 4 Plus · 320×320×385 · 500 мм/с',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-elegoo-neptune-4-plus',tags:['Предзаказ'],keywords:['3d','3д','elegoo','elegoo-neptune-4-plus','печать','принтер'],
+ specs:['320×320×385 мм','500 мм/с','Автокалибровка','Директ-экструдер','Wi-Fi'],
+ table:[['Технология','FDM'],['Область печати','320 × 320 × 385 мм'],['Скорость печати','до 500 мм/с'],['Экструдер','Директ, до 300 °C'],['Калибровка','Автоматическая, 121 точка'],['Стол','PEI, гибкий'],['Связь','Wi-Fi']]},
+{id:147,cat:'print3d',brand:'ELEGOO',name:'3D-принтер ELEGOO Neptune 4 Max',short:'Neptune 4 Max · 420×420×480',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-elegoo-neptune-4-max',tags:['Предзаказ'],keywords:['3d','3д','elegoo','elegoo-neptune-4-max','печать','принтер'],
+ specs:['420×420×480 мм','500 мм/с','Большой формат','Автокалибровка','Wi-Fi'],
+ table:[['Технология','FDM'],['Область печати','420 × 420 × 480 мм'],['Скорость печати','до 500 мм/с'],['Формат','Большая область печати'],['Экструдер','Директ, до 300 °C'],['Калибровка','Автоматическая'],['Связь','Wi-Fi']]},
+{id:148,cat:'print3d',brand:'ELEGOO',name:'3D-принтер ELEGOO Neptune 4 Pro',short:'Neptune 4 Pro · 225×225×265 · 500 мм/с',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-elegoo-neptune-4-pro',tags:['Предзаказ'],keywords:['3d','3д','elegoo','elegoo-neptune-4-pro','печать','принтер'],
+ specs:['225×225×265 мм','500 мм/с','Автокалибровка','Директ-экструдер','Wi-Fi'],
+ table:[['Технология','FDM'],['Область печати','225 × 225 × 265 мм'],['Скорость печати','до 500 мм/с'],['Экструдер','Директ, до 300 °C'],['Калибровка','Автоматическая, 121 точка'],['Стол','PEI, гибкий'],['Связь','Wi-Fi']]},
+{id:149,cat:'print3d',brand:'ELEGOO',name:'3D-принтер ELEGOO Mars 5 Ultra',short:'Mars 5 Ultra · 9K · 7"',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-elegoo-mars-5-ultra',tags:['Предзаказ'],keywords:['3d','3д','elegoo','elegoo-mars-5-ultra','печать','принтер'],
+ specs:['LCD 9K 7"','153×77×165 мм','AI-камера','Слой 0.01 мм','Wi-Fi'],
+ table:[['Технология','LCD / фотополимер'],['Экран','7" · разрешение 9K'],['Область печати','153 × 77 × 165 мм'],['Точность XY','18 мкм'],['Контроль печати','AI-камера'],['Связь','Wi-Fi · USB']]},
+{id:150,cat:'print3d',brand:'ELEGOO',name:'3D-принтер ELEGOO Mars 4 Ultra 9K',short:'Mars 4 Ultra · 9K · 7"',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-elegoo-mars-4-ultra-9k',tags:['Предзаказ'],keywords:['3d','3д','elegoo','elegoo-mars-4-ultra-9k','печать','принтер'],
+ specs:['LCD 9K 7"','153×77×165 мм','Слой 0.01 мм','Быстрая печать','Wi-Fi'],
+ table:[['Технология','LCD / фотополимер'],['Экран','7" · разрешение 9K'],['Область печати','153 × 77 × 165 мм'],['Точность XY','18 мкм'],['Скорость','до 150 мм/ч'],['Связь','Wi-Fi · USB']]},
+{id:151,cat:'print3d',brand:'ELEGOO',name:'3D-принтер ELEGOO Saturn 3 Ultra',short:'Saturn 3 Ultra · 12K · 10"',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-elegoo-saturn-3-ultra',tags:['Предзаказ'],keywords:['3d','3д','elegoo','elegoo-saturn-3-ultra','печать','принтер'],
+ specs:['LCD 12K 10"','218×123×260 мм','Слой 0.01 мм','Wi-Fi','Большая камера'],
+ table:[['Технология','LCD / фотополимер'],['Экран','10" · разрешение 12K'],['Область печати','218 × 123 × 260 мм'],['Точность XY','19 мкм'],['Скорость','до 70 мм/ч'],['Связь','Wi-Fi · USB']]},
+{id:152,cat:'print3d',brand:'ELEGOO',name:'3D-принтер ELEGOO Saturn 4 Ultra 16K',short:'Saturn 4 Ultra · 16K · 10"',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-elegoo-saturn-4-ultra-16k',tags:['Предзаказ'],keywords:['3d','3д','elegoo','elegoo-saturn-4-ultra-16k','печать','принтер'],
+ specs:['LCD 16K 10"','211×118×220 мм','AI-камера','Слой 0.01 мм','Wi-Fi'],
+ table:[['Технология','LCD / фотополимер'],['Экран','10" · разрешение 16K'],['Область печати','211 × 118 × 220 мм'],['Точность XY','14 мкм'],['Контроль печати','AI-камера, тайм-лапс'],['Связь','Wi-Fi · USB']]},
+{id:153,cat:'print3d',brand:'ELEGOO',name:'3D-принтер ELEGOO Saturn 4 Ultra 12K',short:'Saturn 4 Ultra · 12K · 10"',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-elegoo-saturn-4-ultra-12k',tags:['Предзаказ'],keywords:['3d','3д','elegoo','elegoo-saturn-4-ultra-12k','печать','принтер'],
+ specs:['LCD 12K 10"','218×123×220 мм','AI-камера','Слой 0.01 мм','Wi-Fi'],
+ table:[['Технология','LCD / фотополимер'],['Экран','10" · разрешение 12K'],['Область печати','218 × 123 × 220 мм'],['Точность XY','19 мкм'],['Контроль печати','AI-камера'],['Связь','Wi-Fi · USB']]},
+{id:154,cat:'print3d',brand:'ELEGOO',name:'3D-принтер ELEGOO Saturn 4 Ultra',short:'Saturn 4 Ultra · фотополимер · 10"',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-elegoo-saturn-4-ultra',tags:['Предзаказ'],keywords:['3d','3д','elegoo','elegoo-saturn-4-ultra','печать','принтер'],
+ specs:['LCD 10"','Фотополимер','AI-камера','Слой 0.01 мм','Wi-Fi'],
+ table:[['Технология','LCD / фотополимер'],['Экран','10"'],['Область печати','уточняется'],['Контроль печати','AI-камера'],['Связь','Wi-Fi · USB']]},
+{id:155,cat:'print3d',brand:'ELEGOO',name:'3D-принтер ELEGOO Centauri Carbon',short:'Centauri Carbon · 256³ · закрытый CoreXY',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-elegoo-centauri-carbon',tags:['Предзаказ'],keywords:['3d','3д','elegoo','elegoo-centauri-carbon','печать','принтер'],
+ specs:['256×256×256 мм','500 мм/с','Закрытый корпус','Сопло 320 °C','CoreXY'],
+ table:[['Технология','FDM'],['Область печати','256 × 256 × 256 мм'],['Скорость печати','до 500 мм/с'],['Кинематика','CoreXY'],['Корпус','Закрытый'],['Сопло','Закалённое, до 320 °C'],['Материалы','PLA-CF · PETG-CF · ABS · ASA']]},
+{id:156,cat:'print3d',brand:'ELEGOO',name:'3D-принтер ELEGOO Centauri Carbon 2 Combo',short:'Centauri Carbon 2 Combo · мультицвет',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-elegoo-centauri-carbon-2-combo',tags:['Предзаказ'],keywords:['3d','3д','elegoo','elegoo-centauri-carbon-2-combo','печать','принтер'],
+ specs:['256×256×256 мм','Мультицвет','Закрытый корпус','Сопло 320 °C','CoreXY'],
+ table:[['Технология','FDM'],['Область печати','256 × 256 × 256 мм'],['Скорость печати','до 500 мм/с'],['Мультицвет','Система подачи в комплекте'],['Кинематика','CoreXY'],['Корпус','Закрытый'],['Сопло','До 320 °C']]},
+{id:157,cat:'print3d',brand:'ELEGOO',name:'3D-принтер ELEGOO OrangeStorm Giga',short:'OrangeStorm Giga · 800×800×1000',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-elegoo-orangestorm-giga',tags:['Предзаказ'],keywords:['3d','3д','elegoo','elegoo-orangestorm-giga','печать','принтер'],
+ specs:['800×800×1000 мм','4 экструдера','Промышленный формат','Автокалибровка'],
+ table:[['Технология','FDM'],['Область печати','800 × 800 × 1000 мм'],['Скорость печати','до 300 мм/с'],['Формат','Сверхбольшой, промышленный'],['Экструдеры','До 4 независимых'],['Назначение','Крупногабаритные модели']]},
+{id:158,cat:'print3d',brand:'ELEGOO',name:'Станция мойки и засветки ELEGOO Mercury Plus V2.0',short:'Mercury Plus V2 · мойка + УФ-засветка',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-elegoo-mercury-plus-v2',tags:['Предзаказ'],keywords:['3d','3д','cure','elegoo','elegoo-mercury-plus-v2','wash','засветка','мойка','печать','постобработка','принтер'],
+ specs:['Мойка + засветка','2-в-1','УФ-лампа','Таймер','Для фотополимера'],
+ table:[['Тип','Постобработка фотополимерной печати'],['Функции','Мойка и УФ-засветка 2-в-1'],['Управление','Таймер']]},
+{id:159,cat:'print3d',brand:'ELEGOO',name:'Подсветка ELEGOO Mercury XS Bundle',short:'Mercury XS Bundle · засветка для крупных моделей',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-elegoo-mercury-xs-bundle',tags:['Предзаказ'],keywords:['3d','3д','cure','elegoo','elegoo-mercury-xs-bundle','wash','засветка','мойка','печать','постобработка','принтер'],
+ specs:['УФ-засветка','Большая камера','Для фотополимера','Таймер'],
+ table:[['Тип','УФ-засветка / постобработка'],['Особенность','Для крупных моделей'],['Управление','Таймер']]},
+{id:160,cat:'print3d',brand:'Bambu Lab',name:'3D-принтер Bambu Lab X1-Carbon',short:'X1-Carbon · 256³ · лидар · 500 мм/с',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-bambu-lab-x1-carbon',tags:['Предзаказ'],keywords:['3d','3д','bambu','bambu-lab-x1-carbon','печать','принтер'],
+ specs:['256×256×256 мм','500 мм/с','Лидар','Закрытый корпус','Сопло 300 °C'],
+ table:[['Технология','FDM'],['Область печати','256 × 256 × 256 мм'],['Скорость печати','до 500 мм/с'],['Кинематика','CoreXY'],['Контроль печати','Лидар + AI-камера'],['Корпус','Закрытый, карбоновая рама'],['Сопло','Закалённое, до 300 °C']]},
+{id:161,cat:'print3d',brand:'Bambu Lab',name:'3D-принтер Bambu Lab X1-Carbon Combo',short:'X1-Carbon Combo · с AMS · мультицвет',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-bambu-lab-x1-carbon-combo',tags:['Предзаказ'],keywords:['3d','3д','bambu','bambu-lab-x1-carbon-combo','печать','принтер'],
+ specs:['256×256×256 мм','AMS в комплекте','До 16 цветов','Лидар','500 мм/с'],
+ table:[['Технология','FDM'],['Область печати','256 × 256 × 256 мм'],['Скорость печати','до 500 мм/с'],['Мультицвет','AMS в комплекте, до 16 цветов'],['Контроль печати','Лидар + AI-камера'],['Корпус','Закрытый'],['Сопло','До 300 °C']]},
+{id:162,cat:'print3d',brand:'Bambu Lab',name:'3D-принтер Bambu Lab X1-Carbon Combo (EU, с AMS)',short:'X1-Carbon Combo EU · с AMS',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-bambu-lab-x1-carbon-combo-eu-ams',tags:['Предзаказ'],keywords:['3d','3д','bambu','bambu-lab-x1-carbon-combo-eu-ams','печать','принтер'],
+ specs:['256×256×256 мм','AMS в комплекте','EU-версия','Лидар','500 мм/с'],
+ table:[['Технология','FDM'],['Область печати','256 × 256 × 256 мм'],['Скорость печати','до 500 мм/с'],['Комплектация','EU-версия с системой AMS'],['Мультицвет','До 16 цветов'],['Контроль печати','Лидар + AI-камера'],['Корпус','Закрытый']]},
+{id:163,cat:'print3d',brand:'Bambu Lab',name:'3D-принтер Bambu Lab P1S Combo',short:'P1S Combo · 256³ · закрытый · AMS',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-bambu-lab-p1s-combo',tags:['Предзаказ'],keywords:['3d','3д','bambu','bambu-lab-p1s-combo','печать','принтер'],
+ specs:['256×256×256 мм','500 мм/с','AMS в комплекте','Закрытый корпус','CoreXY'],
+ table:[['Технология','FDM'],['Область печати','256 × 256 × 256 мм'],['Скорость печати','до 500 мм/с'],['Мультицвет','AMS в комплекте, до 16 цветов'],['Кинематика','CoreXY'],['Корпус','Закрытый'],['Сопло','До 300 °C']]},
+{id:164,cat:'print3d',brand:'Bambu Lab',name:'3D-принтер Bambu Lab P2S',short:'P2S · закрытый CoreXY',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-bambu-lab-p2s',tags:['Предзаказ'],keywords:['3d','3д','bambu','bambu-lab-p2s','печать','принтер'],
+ specs:['Закрытый корпус','CoreXY','Высокая скорость','Мультицвет (опция)','Wi-Fi'],
+ table:[['Технология','FDM'],['Область печати','уточняется'],['Скорость печати','до 500 мм/с'],['Кинематика','CoreXY'],['Корпус','Закрытый'],['Мультицвет','Совместим с AMS']]},
+{id:165,cat:'print3d',brand:'Bambu Lab',name:'3D-принтер Bambu Lab H2D AMS Combo',short:'H2D AMS Combo · 2 сопла · большой формат',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-bambu-lab-h2d-ams-combo',tags:['Предзаказ'],keywords:['3d','3д','bambu','bambu-lab-h2d-ams-combo','печать','принтер'],
+ specs:['350×320×325 мм','Два экструдера','AMS 2 Pro','Закрытый корпус','Лазер (опция)'],
+ table:[['Технология','FDM'],['Область печати','350 × 320 × 325 мм'],['Скорость печати','до 600 мм/с'],['Экструдеры','Два независимых'],['Мультицвет','AMS 2 Pro в комплекте'],['Корпус','Закрытый, с подогревом'],['Сопло','До 350 °C']]},
+{id:166,cat:'print3d',brand:'Bambu Lab',name:'Система подачи материалов Bambu Lab AMS 2 Pro',short:'AMS 2 Pro · 4 катушки · с сушкой',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-bambu-lab-ams-2-pro',tags:['Предзаказ'],keywords:['3d','3д','ams','bambu','bambu-lab-ams-2-pro','мультицвет','печать','подача','принтер','филамент'],
+ specs:['4 катушки','Сушка филамента','До 16 цветов','RFID','Для X1 / P1 / H2D'],
+ table:[['Тип','Система автоматической подачи филамента'],['Катушек','4 (до 16 цветов при 4 модулях)'],['Сушка','Встроенная, активная'],['Совместимость','Bambu Lab X1 · P1 · H2D']]},
+{id:167,cat:'print3d',brand:'Bambu Lab',name:'Система подачи материалов Bambu Lab AMS Lite',short:'AMS Lite · 4 катушки · для A1',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-bambu-lab-ams-lite',tags:['Предзаказ'],keywords:['3d','3д','ams','bambu','bambu-lab-ams-lite','мультицвет','печать','подача','принтер','филамент'],
+ specs:['4 катушки','До 16 цветов','Открытая конструкция','RFID','Для серии A1'],
+ table:[['Тип','Система автоматической подачи филамента'],['Катушек','4'],['Совместимость','Bambu Lab A1 · A1 mini']]},
+{id:168,cat:'print3d',brand:'Bambu Lab',name:'Система подачи материалов Bambu Lab AMS',short:'AMS · 4 катушки · до 16 цветов',price:null,kaspi:'',reviews:0,inStock:false,
+ img:'images/print3d-bambu-lab-ams',tags:['Предзаказ'],keywords:['3d','3д','ams','bambu','bambu-lab-ams','мультицвет','печать','подача','принтер','филамент'],
+ specs:['4 катушки','До 16 цветов','Контроль влажности','RFID','Для X1 / P1'],
+ table:[['Тип','Система автоматической подачи филамента'],['Катушек','4 (до 16 цветов при 4 модулях)'],['Влажность','Герметичный корпус с осушителем'],['Совместимость','Bambu Lab X1 · P1']]}
 ];
 
 /* ============ ХЕЛПЕРЫ ============ */
@@ -1136,7 +1461,7 @@ const save=()=>{store.set('jga-cart',S.cart);store.set('jga-fav',S.fav);store.se
 const RU={
   compare_short:'Сравнение',login:'Войти',favorites:'Избранное',cart:'Корзина',
   c_all:'Все товары',c_laptop:'Ноутбуки',c_monitor:'Мониторы',c_audio:'Аудио',c_drone:'Дроны',
-  c_gadget:'Гаджеты',c_pc:'PC-компоненты',c_stand:'Подставки',c_tech:'Техника',c_new:'🔥 Новинки',
+  c_gadget:'Гаджеты',c_pc:'PC-компоненты',c_stand:'Подставки',c_tech:'Техника',c_print3d:'3D-печать',c_new:'🔥 Новинки',
   nav_pick:'Подбор',nav_b2b:'Юр. лица',chip_pick:'🔍 Подбор',search_ph:'Поиск: ноутбуки, мониторы, дроны…',
   hero_tag1:'Официальный импорт',hero_tag2:'Предзаказ',
   hero_title:'Игровые ноутбуки<br><em>ThundeRobot &amp; MECHREVO</em><br>в Казахстане',
@@ -1164,13 +1489,13 @@ const RU={
   cmp_empty:'Нет товаров для сравнения',cmp_empty_sub:'Нажмите значок сравнения на карточке товара',
   to_catalog:'Перейти в каталог',remove:'Убрать',in_fav:'❤ В избранном',to_fav:'♡ В избранное',
   in_cmp:'✓ В сравнении',to_cmp:'⇔ Сравнить',found:'Найдено',reviews:'отзывов',
-  photo:'Фото товара',cmp_promo_t:'Сравните до 4 товаров',cmp_promo_p:'Характеристики, цена и наличие в одной таблице — отличия подсвечены.',cmp_promo_b:'Открыть сравнение →'
+  price_ask:'Цена по запросу',ask:'Узнать цену',ask_title:'Запрос цены',photo:'Фото товара',cmp_promo_t:'Сравните до 4 товаров',cmp_promo_p:'Характеристики, цена и наличие в одной таблице — отличия подсвечены.',cmp_promo_b:'Открыть сравнение →'
 };
 const I18N={
   kz:{
     compare_short:'Салыстыру',login:'Кіру',favorites:'Таңдаулылар',cart:'Себет',
     c_all:'Барлық тауарлар',c_laptop:'Ноутбуктер',c_monitor:'Мониторлар',c_audio:'Аудио',c_drone:'Дрондар',
-    c_gadget:'Гаджеттер',c_pc:'PC-компоненттер',c_stand:'Тіректер',c_tech:'Техника',c_new:'🔥 Жаңалықтар',
+    c_gadget:'Гаджеттер',c_pc:'PC-компоненттер',c_stand:'Тіректер',c_tech:'Техника',c_print3d:'3D-басып шығару',c_new:'🔥 Жаңалықтар',
     nav_pick:'Таңдау',nav_b2b:'Заңды тұлғалар',chip_pick:'🔍 Таңдау',search_ph:'Іздеу: ноутбуктер, мониторлар…',
     hero_tag1:'Ресми импорт',hero_tag2:'Алдын ала тапсырыс',
     hero_title:'Ойын ноутбуктері<br><em>ThundeRobot &amp; MECHREVO</em><br>Қазақстанда',
@@ -1197,12 +1522,12 @@ const I18N={
     cmp_empty:'Салыстыратын тауар жоқ',cmp_empty_sub:'Карточкадағы салыстыру белгісін басыңыз',
     to_catalog:'Каталогқа өту',remove:'Алып тастау',in_fav:'❤ Таңдаулыда',to_fav:'♡ Таңдаулыға',
     in_cmp:'✓ Салыстыруда',to_cmp:'⇔ Салыстыру',found:'Табылды',reviews:'пікір',
-    photo:'Тауар фотосы',cmp_promo_t:'4 тауарға дейін салыстырыңыз',cmp_promo_p:'Сипаттамалар, баға және қолжетімділік бір кестеде.',cmp_promo_b:'Салыстыруды ашу →'
+    price_ask:'Бағасы сұраныс бойынша',ask:'Бағасын білу',ask_title:'Баға сұрауы',photo:'Тауар фотосы',cmp_promo_t:'4 тауарға дейін салыстырыңыз',cmp_promo_p:'Сипаттамалар, баға және қолжетімділік бір кестеде.',cmp_promo_b:'Салыстыруды ашу →'
   },
   en:{
     compare_short:'Compare',login:'Sign in',favorites:'Favorites',cart:'Cart',
     c_all:'All products',c_laptop:'Laptops',c_monitor:'Monitors',c_audio:'Audio',c_drone:'Drones',
-    c_gadget:'Gadgets',c_pc:'PC parts',c_stand:'Stands',c_tech:'Appliances',c_new:'🔥 New',
+    c_gadget:'Gadgets',c_pc:'PC parts',c_stand:'Stands',c_tech:'Appliances',c_print3d:'3D printing',c_new:'🔥 New',
     nav_pick:'Help me choose',nav_b2b:'Business',chip_pick:'🔍 Help me choose',search_ph:'Search: laptops, monitors, drones…',
     hero_tag1:'Official import',hero_tag2:'Pre-order',
     hero_title:'Gaming laptops<br><em>ThundeRobot &amp; MECHREVO</em><br>in Kazakhstan',
@@ -1229,7 +1554,7 @@ const I18N={
     cmp_empty:'Nothing to compare',cmp_empty_sub:'Tap the compare icon on a product card',
     to_catalog:'Go to catalog',remove:'Remove',in_fav:'❤ In favorites',to_fav:'♡ Add to favorites',
     in_cmp:'✓ In compare',to_cmp:'⇔ Compare',found:'Found',reviews:'reviews',
-    photo:'Product photo',cmp_promo_t:'Compare up to 4 products',cmp_promo_p:'Specs, price and availability in one table — differences highlighted.',cmp_promo_b:'Open compare →'
+    price_ask:'Price on request',ask:'Ask for price',ask_title:'Price request',photo:'Product photo',cmp_promo_t:'Compare up to 4 products',cmp_promo_p:'Specs, price and availability in one table — differences highlighted.',cmp_promo_b:'Open compare →'
   }
 };
 function t(k){
@@ -1251,6 +1576,7 @@ function applyLang(){
 const SYM={KZT:'₸',RUB:'₽',USD:'$'};
 const RATES={KZT:1,RUB:0.248,USD:0.00195};
 function fmt(kzt){
+  if(kzt==null||kzt===0)return t('price_ask');
   const x=kzt*(RATES[S.cur]||1);
   if(S.cur==='USD')return '$ '+new Intl.NumberFormat('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}).format(x);
   return new Intl.NumberFormat('ru-RU',{maximumFractionDigits:0}).format(x)+' '+SYM[S.cur];
@@ -1302,9 +1628,15 @@ function lock(on){
 const anyOverlayOpen=()=>!!($('.drawer.open')||$('#modalOv').classList.contains('open')||$('#qoOv').classList.contains('open'));
 
 /* ============ КАРТОЧКА ТОВАРА ============ */
+const IMG_EXT=['.webp','.jpg','.jpeg','.png'];
+function imgNext(el){
+  const i=(+el.dataset.e||0)+1;
+  if(i>=IMG_EXT.length){el.remove();return}
+  el.dataset.e=i;el.src=el.dataset.base+IMG_EXT[i];
+}
 function imgTag(p,withPh){
   return (withPh===false?'':`<span class="pimg-ph">${t('photo')}</span>`)+
-    (p.img?`<img src="${esc(p.img)}" alt="${esc(p.name)}" loading="lazy" onerror="this.remove()"/>`:'');
+    (p.img?`<img src="${esc(p.img)}.webp" data-base="${esc(p.img)}" data-e="0" alt="${esc(p.name)}" loading="lazy" onerror="imgNext(this)"/>`:'');
 }
 function tagHTML(tag){
   const m={'Предзаказ':'tag-d','RTX 5070Ti':'tag-r','240Hz':'tag-o','300Hz':'tag-o','Скоро':'tag-o','В наличии':'tag-g'};
@@ -1319,20 +1651,19 @@ function cardHTML(p){
     <button class="pwish${S.fav.includes(p.id)?' on':''}" data-act="wish" data-id="${p.id}" aria-label="${t('to_fav')}">
       <svg width="15" height="15" viewBox="0 0 24 24" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
     </button>
-    <button class="pcmp${S.cmp.includes(p.id)?' on':''}" data-act="cmp" data-id="${p.id}" aria-label="${t('to_cmp')}">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 6-10"/></svg>
-    </button>
     <div class="pbody">
       <div class="pbrand">${esc(p.brand)}</div>
       <button class="pname" data-act="open" data-id="${p.id}">${esc(p.short)}</button>
       <div class="pspecs">${p.specs.map(s=>`<span class="spec">${esc(s)}</span>`).join('')}</div>
       <div class="pprice">${fmt(p.price)}</div>
       <div class="pavail ${p.inStock?'av-in':'av-pre'}">${p.inStock?t('instock'):t('preorder_badge')}</div>
-      <div class="pkaspi">${t('kaspi_lbl')} ${esc(p.kaspi)}</div>
+      <div class="pkaspi">${p.kaspi?t('kaspi_lbl')+' '+esc(p.kaspi):'&nbsp;'}</div>
       <div class="pacts">
-        <button class="btn btn-red" data-act="add" data-id="${p.id}">${t('add')}</button>
-        <button class="btn-icon" data-act="qo" data-mode="buy" data-id="${p.id}" title="${t('oneclick')}" aria-label="${t('oneclick')}">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        ${p.price
+          ?`<button class="btn btn-red" data-act="add" data-id="${p.id}">${t('add')}</button>`
+          :`<button class="btn btn-red" data-act="qo" data-mode="price" data-id="${p.id}">${t('ask')}</button>`}
+        <button class="btn-icon pcmp-btn${S.cmp.includes(p.id)?' on':''}" data-act="cmp" data-id="${p.id}" title="${t('to_cmp')}" aria-label="${t('to_cmp')}">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M8 21h8"/><path d="M3 7h18"/><path d="M12 7 8.5 5"/><path d="m7 7-4 7h8z"/><path d="m17 7-4 7h8z"/></svg>
         </button>
       </div>
     </div>
@@ -1343,8 +1674,9 @@ function cardHTML(p){
 const isNew=p=>p.tags.includes('Скоро')||p.tags.includes('RTX 5070Ti')||p.tags.includes('300Hz');
 function currentList(){
   let list=S.cat==='all'?P.slice():S.cat==='new'?P.filter(isNew):P.filter(p=>p.cat===S.cat);
-  if(S.sort==='asc')list.sort((a,b)=>a.price-b.price);
-  else if(S.sort==='desc')list.sort((a,b)=>b.price-a.price);
+  const pr=p=>p.price||0;
+  if(S.sort==='asc')list.sort((a,b)=>(pr(a)?0:1)-(pr(b)?0:1)||pr(a)-pr(b));
+  else if(S.sort==='desc')list.sort((a,b)=>(pr(a)?0:1)-(pr(b)?0:1)||pr(b)-pr(a));
   else if(S.sort==='name')list.sort((a,b)=>a.name.localeCompare(b.name,'ru'));
   return list;
 }
@@ -1377,6 +1709,7 @@ function cartCount(){return S.cart.reduce((s,i)=>s+i.qty,0)}
 function cartTotal(){return S.cart.reduce((s,i)=>s+(byId(i.id)?.price||0)*i.qty,0)}
 function addToCart(id){
   const p=byId(id);if(!p)return;
+  if(!p.price){openQO(id,'price');return}
   const ex=S.cart.find(i=>i.id===id);
   if(ex)ex.qty=Math.min(99,ex.qty+1);else S.cart.push({id,qty:1});
   save();renderCart();updBadges();toast('✓ '+p.short);
@@ -1461,7 +1794,7 @@ function renderCompare(){
   const el=$('#compareContent');
   if(!S.cmp.length){
     el.innerHTML=`<div class="empty">
-      <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--nd1)" stroke-width="1.2" style="margin:0 auto"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 6-10"/></svg>
+      <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--nd1)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" style="margin:0 auto"><path d="M12 3v18"/><path d="M8 21h8"/><path d="M3 7h18"/><path d="M12 7 8.5 5"/><path d="m7 7-4 7h8z"/><path d="m17 7-4 7h8z"/></svg>
       <p style="font-size:16px">${t('cmp_empty')}</p><p class="sub">${t('cmp_empty_sub')}</p>
       <button class="btn btn-red" style="margin-top:16px" data-act="page" data-page="main">${t('to_catalog')}</button></div>`;
     return;
@@ -1507,13 +1840,15 @@ function openModal(id){
       <h3 class="m-name">${esc(p.name)}</h3>
       <div class="m-tags">${p.tags.map(tagHTML).join('')}</div>
       <div class="m-price">${fmt(p.price)}</div>
-      <div class="m-kaspi">${t('kaspi_lbl')} ${esc(p.kaspi)}</div>
+      ${p.kaspi?`<div class="m-kaspi">${t('kaspi_lbl')} ${esc(p.kaspi)}</div>`:''}
       <div class="m-avail ${p.inStock?'av-in':'av-pre'}">${p.inStock?t('instock'):t('preorder_badge')}</div>
       <div class="m-specs-t">${t('specs')}</div>
       <table class="m-tbl">${p.table.map(r=>`<tr><td>${esc(r[0])}</td><td><strong>${esc(r[1])}</strong></td></tr>`).join('')}</table>
       <div class="m-acts">
-        <button class="btn btn-red" data-act="add" data-id="${p.id}">${t('add')}</button>
-        <button class="btn btn-outline" data-act="qo" data-mode="buy" data-id="${p.id}">${t('oneclick')}</button>
+        ${p.price
+          ?`<button class="btn btn-red" data-act="add" data-id="${p.id}">${t('add')}</button>
+            <button class="btn btn-outline" data-act="qo" data-mode="buy" data-id="${p.id}">${t('oneclick')}</button>`
+          :`<button class="btn btn-red" data-act="qo" data-mode="price" data-id="${p.id}">${t('ask')}</button>`}
         <div class="m-acts-row">
           <button class="btn btn-outline" data-act="wish" data-id="${p.id}" id="mWish"></button>
           <button class="btn btn-outline" data-act="cmp" data-id="${p.id}" id="mCmp"></button>
@@ -1553,14 +1888,17 @@ function closeDrawers(){
 const QO={
   buy:{title:()=>t('oneclick'),com:false},
   consult:{title:()=>S.lang==='ru'?'Подбор техники':S.lang==='kz'?'Техника таңдау':'Help me choose',com:true},
-  checkout:{title:()=>S.lang==='ru'?'Оформление заказа':S.lang==='kz'?'Тапсырысты рәсімдеу':'Place order',com:true}
+  checkout:{title:()=>S.lang==='ru'?'Оформление заказа':S.lang==='kz'?'Тапсырысты рәсімдеу':'Place order',com:true},
+  price:{title:()=>t('ask_title'),com:true}
 };
 function openQO(id,mode){
   mode=QO[mode]?mode:'buy';
   const p=id?byId(id):null;
   S.qo={id:p?p.id:null,mode};
   let sub='';
-  if(mode==='buy'&&p)sub=p.name+' — '+fmt(p.price)+'. Менеджер перезвонит в рабочее время.';
+  if(mode==='price'&&p)sub=p.name+'. Пришлём актуальную цену, наличие и срок поставки.';
+  else if(mode==='price')sub='Напишите, какая техника интересует — пришлём цену и срок поставки.';
+  else if(mode==='buy'&&p)sub=p.name+' — '+fmt(p.price)+'. Менеджер перезвонит в рабочее время.';
   else if(mode==='buy')sub='Менеджер перезвонит в рабочее время.';
   else if(mode==='consult')sub='Опишите задачи и бюджет — подберём модель и вышлем расчёт рассрочки.';
   else sub='Товаров: '+cartCount()+' на '+fmt(cartTotal())+'. Менеджер подтвердит наличие, доставку и оплату.';
@@ -1580,10 +1918,10 @@ function sendQO(){
   if(!validPhone(phone.value)){toast('Укажите телефон — минимум 10 цифр');phone.focus();return}
   const m=S.qo.mode;
   let msg='Заявка с сайта JOHNGALTAZ\n';
-  msg+='Тип: '+(m==='buy'?'покупка в 1 клик':m==='consult'?'подбор техники':'оформление заказа')+'\n';
+  msg+='Тип: '+(m==='buy'?'покупка в 1 клик':m==='consult'?'подбор техники':m==='price'?'запрос цены':'оформление заказа')+'\n';
   if(name.value.trim())msg+='Имя: '+name.value.trim()+'\n';
   msg+='Телефон: '+phone.value.trim()+'\n';
-  if(m==='buy'&&S.qo.id){const p=byId(S.qo.id);msg+='Товар: '+p.name+' — '+fmt(p.price)+'\n'}
+  if((m==='buy'||m==='price')&&S.qo.id){const p=byId(S.qo.id);msg+='Товар: '+p.name+(p.price?' — '+fmt(p.price):'')+'\n'}
   if(m==='checkout'&&S.cart.length){
     msg+='Заказ:\n'+S.cart.map(i=>{const p=byId(i.id);return '· '+p.name+' × '+i.qty+' — '+fmt(p.price*i.qty)}).join('\n');
     msg+='\nИтого: '+fmt(cartTotal())+'\n';
@@ -1627,7 +1965,7 @@ function runSearch(q){
     drop.innerHTML=`<div class="srch-empty">${t('nothing')}</div>`;
   }else{
     drop.innerHTML=searchHits.map(p=>`<button class="sri" data-act="open" data-id="${p.id}">
-      <span class="sri-img">${p.img?`<img src="${esc(p.img)}" alt="" loading="lazy" onerror="this.remove()"/>`:''}</span>
+      <span class="sri-img">${p.img?`<img src="${esc(p.img)}.webp" data-base="${esc(p.img)}" data-e="0" alt="" loading="lazy" onerror="imgNext(this)"/>`:''}</span>
       <span>
         <span class="sri-name">${esc(p.name)}</span>
         <span class="sri-price">${fmt(p.price)}</span>
@@ -1653,7 +1991,7 @@ function applyCat(cat){
   showPage('main');
   renderGrid();
 }
-const CATS_ALL=['all','new','laptop','monitor','audio','drone','gadget','pc','stand','tech'];
+const CATS_ALL=['all','new','laptop','monitor','audio','drone','gadget','pc','stand','tech','print3d'];
 let suppressHash=false;
 function go(hash){
   const target=hash?'#'+hash:'';
@@ -1682,7 +2020,7 @@ function route(scroll){
 /* ============ ОБЩИЙ РЕНДЕР ============ */
 function renderAll(){
   renderGrid();renderCounts();renderCart();renderFav();renderCompare();updBadges();updModalBtns();
-  const cheapest=Math.min(...P.filter(p=>p.cat==='laptop').map(p=>p.price));
+  const cheapest=Math.min(...P.filter(p=>p.cat==='laptop'&&p.price).map(p=>p.price));
   $('#heroPrice').textContent=fmt(cheapest);
   $('#heroNote').textContent=(S.lang==='en'?'instalments from ':S.lang==='kz'?'бөліп төлеу ':'рассрочка от ')+fmt(Math.round(cheapest/24))+' / '+(S.lang==='en'?'mo':'мес');
 }
