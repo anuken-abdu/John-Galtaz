@@ -328,6 +328,14 @@ main{padding:22px 0 56px}
 .qo-acts{display:flex;gap:8px;margin-top:14px}
 .qo-acts .btn{flex:1;padding:12px}
 
+/* KASPI */
+.kaspi-qr{display:block;margin:0 auto 14px;max-width:280px;width:100%;height:auto;border:1px solid var(--border);border-radius:var(--r8);cursor:zoom-in}
+.kaspi-comment label{display:block;font-size:12px;color:var(--text2);margin-bottom:5px;font-weight:500}
+.kaspi-copy-row{display:flex;gap:8px}
+.kaspi-copy-row input{flex:1;min-width:0;padding:11px 12px;border:1.5px solid var(--nd1);border-radius:var(--r6);font-size:13px;font-family:var(--fb);background:var(--bg);color:var(--text1);outline:none}
+.kaspi-copy-row .btn{padding:11px 16px;white-space:nowrap}
+.kaspi-note{font-size:12px;color:var(--text2);line-height:1.5;margin:12px 0}
+
 /* TOAST */
 .toast{position:fixed;left:50%;bottom:calc(90px + var(--safe-b));transform:translate(-50%,10px);background:#0B1416;color:#fff;padding:11px 18px;border-radius:var(--r8);font-size:13px;z-index:800;opacity:0;transition:opacity .25s ease,transform .25s ease;pointer-events:none;max-width:min(360px,calc(100% - 32px));line-height:1.4;text-align:center;box-shadow:0 6px 20px rgba(0,0,0,.25)}
 .toast.show{opacity:1;transform:translate(-50%,0)}
@@ -851,6 +859,7 @@ main{padding:22px 0 56px}
         <li><button data-act="page" data-page="warranty">Гарантия и возврат</button></li>
         <li><button data-act="page" data-page="preorder">Предзаказ</button></li>
         <li><button data-act="page" data-page="kaspi">Рассрочка Kaspi</button></li>
+        <li><button data-act="kaspi">Оплата через Kaspi (QR)</button></li>
         <li><button data-act="page" data-page="b2b">Юр. лица / КП</button></li>
         <li><button data-act="page" data-page="about">О компании</button></li>
       </ul></div>
@@ -890,6 +899,7 @@ main{padding:22px 0 56px}
   <div class="drw-foot" id="cartFoot" hidden>
     <div class="cart-tot"><span class="cart-tot-l" data-i18n="total">Итого:</span><span class="cart-tot-r" id="cartTotal"></span></div>
     <button class="btn btn-red" data-act="checkout" data-i18n="checkout">Оформить заказ</button>
+    <button class="btn btn-outline" data-act="kaspi" style="width:100%;margin-top:8px;background:#F14635;color:#fff;border-color:#F14635">Оплатить через Kaspi</button>
     <div class="foot-note" data-i18n="checkout_note">Рассрочка Kaspi доступна при оформлении</div>
   </div>
 </aside>
@@ -955,6 +965,29 @@ main{padding:22px 0 56px}
       <button class="btn btn-outline" data-act="closeqo">Отмена</button>
     </div>
     <div class="foot-note">Заявка уйдёт менеджеру в WhatsApp</div>
+  </div>
+</div>
+
+<!-- KASPI PAY -->
+<div class="qo-ov" id="kaspiOv" data-act="kaspibg">
+  <div class="qo-box" role="dialog" aria-modal="true">
+    <div class="qo-top">
+      <h3>Оплата через Kaspi</h3>
+      <button class="qo-close" data-act="closekaspi" aria-label="Закрыть">×</button>
+    </div>
+    <p class="qo-sub">Отсканируйте QR в приложении Kaspi.kz или переведите по реквизитам. В комментарии к переводу укажите товар — так заказ обработают быстрее.</p>
+    <a id="kaspiQrLink" href="images/kaspi-qr.png" target="_blank" rel="noopener" title="Открыть QR крупно">
+      <img class="kaspi-qr" src="images/kaspi-qr.png" alt="Kaspi QR — JOHNGALTAZ, ИП JOHNGALTAZ, Алматы"/>
+    </a>
+    <div class="kaspi-comment">
+      <label for="kaspiComment">Комментарий к переводу (скопируйте и вставьте):</label>
+      <div class="kaspi-copy-row">
+        <input id="kaspiComment" readonly value=""/>
+        <button class="btn btn-red" data-act="kaspicopy">Скопировать</button>
+      </div>
+    </div>
+    <p class="kaspi-note">После оплаты пришлите чек в WhatsApp — подтвердим заказ и сроки поставки.</p>
+    <button class="btn btn-outline" data-act="kaspiwa" style="width:100%">Написать в WhatsApp</button>
   </div>
 </div>
 
@@ -1366,7 +1399,7 @@ function lock(on){
   if(on&&!b.classList.contains('locked')){lockY=window.scrollY;b.style.top=-lockY+'px';b.classList.add('locked')}
   else if(!on&&b.classList.contains('locked')){b.classList.remove('locked');b.style.top='';window.scrollTo(0,lockY)}
 }
-const anyOverlayOpen=()=>!!($('.drawer.open')||$('#modalOv').classList.contains('open')||$('#qoOv').classList.contains('open'));
+const anyOverlayOpen=()=>!!($('.drawer.open')||$('#modalOv').classList.contains('open')||$('#qoOv').classList.contains('open')||$('#kaspiOv').classList.contains('open'));
 
 /* ============ КАРТОЧКА ТОВАРА ============ */
 const IMG_EXT=['.webp','.jpg','.jpeg','.png'];
@@ -1590,6 +1623,7 @@ function openModal(id){
           ?`<button class="btn btn-red" data-act="add" data-id="${p.id}">${t('add')}</button>
             <button class="btn btn-outline" data-act="qo" data-mode="buy" data-id="${p.id}">${t('oneclick')}</button>`
           :`<button class="btn btn-red" data-act="qo" data-mode="price" data-id="${p.id}">${t('ask')}</button>`}
+        <button class="btn" data-act="kaspi" data-id="${p.id}" style="background:#F14635;color:#fff">Оплатить через Kaspi</button>
         <div class="m-acts-row">
           <button class="btn btn-outline" data-act="wish" data-id="${p.id}" id="mWish"></button>
           <button class="btn btn-outline" data-act="cmp" data-id="${p.id}" id="mCmp"></button>
@@ -1651,6 +1685,28 @@ function openQO(id,mode){
   setTimeout(()=>$('#qoName').focus(),120);
 }
 function closeQO(){$('#qoOv').classList.remove('open');if(!anyOverlayOpen())lock(false)}
+function skuOf(p){return p&&p.img?p.img.replace(/^images\//,''):''}
+function kaspiLabel(p){return p?(p.name||p.short||('арт. '+skuOf(p))):''}
+function openKaspi(id){
+  const p=id?byId(id):null;
+  let comment;
+  if(p){comment='Оплата: '+kaspiLabel(p);}
+  else if(S.cart.length){
+    comment='Оплата заказа: '+S.cart.map(i=>{const x=byId(i.id);return kaspiLabel(x)+' ×'+i.qty}).join(', ');
+    const tot=cartTotal(); if(tot)comment+=' — итого '+fmt(tot);
+  } else comment='Оплата заказа JOHNGALTAZ';
+  $('#kaspiComment').value=comment;
+  $('#kaspiOv').classList.add('open'); lock(true);
+}
+function closeKaspi(){$('#kaspiOv').classList.remove('open');if(!anyOverlayOpen())lock(false)}
+function kaspiCopy(){
+  const inp=$('#kaspiComment');
+  const done=()=>toast('✓ Комментарий скопирован');
+  try{
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(inp.value).then(done).catch(()=>{inp.select();document.execCommand('copy');done()});}
+    else{inp.select();document.execCommand('copy');done();}
+  }catch(e){inp.select();document.execCommand('copy');done();}
+}
 function validPhone(v){return (v.match(/\d/g)||[]).length>=10}
 function waSend(text){window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(text),'_blank','noopener')}
 function sendQO(){
@@ -1799,7 +1855,12 @@ const ACTS={
   lang:el=>{S.lang=el.dataset.lang;applyLang()},
   cur:el=>setCurrency(el.dataset.cur),
   search:()=>{const v=$('#si').value;if(searchHits.length&&$('#srchDrop').classList.contains('show'))ACTS.open({dataset:{id:searchHits[0].id}});else runSearch(v)},
-  note:el=>toast(el.dataset.msg)
+  note:el=>toast(el.dataset.msg),
+  kaspi:el=>{closeDrawers();closeModal();openKaspi(el.dataset.id?+el.dataset.id:null)},
+  kaspicopy:kaspiCopy,
+  kaspibg:(el,e)=>{if(e.target===el)closeKaspi()},
+  closekaspi:closeKaspi,
+  kaspiwa:()=>{waSend($('#kaspiComment').value+'\n(оплата через Kaspi QR)')}
 };
 document.addEventListener('click',e=>{
   const el=e.target.closest('[data-act]');
@@ -1819,6 +1880,7 @@ document.addEventListener('click',e=>{if(!e.target.closest('.srch'))closeSearch(
 $('#sortSel').addEventListener('change',e=>{S.sort=e.target.value;renderGrid()});
 document.addEventListener('keydown',e=>{
   if(e.key!=='Escape')return;
+  if($('#kaspiOv').classList.contains('open'))return closeKaspi();
   if($('#qoOv').classList.contains('open'))return closeQO();
   if($('#modalOv').classList.contains('open'))return closeModal();
   if($('.drawer.open'))return closeDrawers();
